@@ -1,15 +1,11 @@
 // MODULE
-var myApp = angular.module('myApp', ['ngRoute']);
+var myApp = angular.module('myApp', ['ngRoute', 'firebase']);
 
 
 
 // //CONFIGURATION
 myApp.config(function ($routeProvider) {
 	$routeProvider  
-		// .when('/', {
-		// 	templateUrl: 'index.html',
-		// 	controller: 'mainController',
-		// })
 		.when('/signup', {
 			templateUrl: 'views/signup.html',
 			controller: 'SignupCtrl',
@@ -21,26 +17,62 @@ myApp.config(function ($routeProvider) {
 		})
 
 });
+//FACTORY
+
+myApp.factory('Auth', ['$firebaseAuth', function ($firebaseAuth) {
+	
+	var ref = new Firebase("https://homeworkmarket.firebaseio.com");
+	return  $firebaseAuth(ref);
+}])
 
 // CONTROLLERS
-myApp.controller('mainController', ['$scope','$log','$filter', '$location', function ($scope, $log, $filter, $location) {
-    $log.info($location.path());
-    $scope.mom = 'Asma'
-    $scope.name = ''
+myApp.controller('AuthCtrl', ['$scope','Auth', '$log', function ($scope, Auth, $log) {
+	var ref = new Firebase("https://homeworkmarket.firebaseio.com");
+	//keep track of user auth changes
+	ref.onAuth(function(authData) {
+	  if (authData) {
+	    console.log("Authenticated with uid:", authData.uid);
+	    $scope.authData = authData;
+	  } else {
+	    console.log("Client unauthenticated.")
+	    $scope.authData = authData;
+	   }
+	})
 
-    $scope.capitalize = function () {
-    	return $filter('uppercase')($scope.name);
-    };
+	$scope.create = function() {
+		ref.createUser({
+		  email    : $scope.email,
+		  password : $scope.password
+		}, function(error, userData) {
+		  if (error) {
+		    console.log("Error creating user:", error);
+		  } else {
+		    console.log("Successfully created user account with uid:", userData.uid);
+		  }
+		});
+	}
 
-    $scope.person = {
-    	name: 'Abdul',
-    };
+	$scope.login = function() {
+		ref.authWithPassword({
+		  "email": $scope.email,
+		  "password": $scope.password
+		}, function(error, authData) {
+		  if (error) {
+		    console.log("Login Failed!", error);
+		  } else {
+		    console.log("Authenticated successfully with payload:", authData);
+		  }
+		})
+	}
 
-    $scope.rules = [
-    	{ruleapplied: " must be cool"},
-    	{ruleapplied: " must be logical"},
-    	{ruleapplied: "must be amazing"}
-    ];
+	$scope.logout = function() {
+		ref.unauth();
+	}
+
+}])
+
+myApp.controller('mainController', ['$scope', function ($scope, $log, $filter, $location) {
+
 
 }]);
 
@@ -51,14 +83,3 @@ myApp.controller('LoginCtrl', ['$scope', function ($scope) {
 myApp.controller('SignupCtrl', ['$scope', function ($scope) {
 	
 }]);
-myApp.directive('homeworkPostDir', [function () {
-	return {
-		restrict: 'AEC',
-		templateUrl: 'directives/homework-post-dir.html',
-		replace: true,
-		scope: {
-			personName: "@",
-		}
-	};
-}])
-
