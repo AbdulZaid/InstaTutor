@@ -32,6 +32,10 @@ myApp.controller('mainController', ['$scope','$log','$filter', '$location', func
     	return $filter('uppercase')($scope.name);
     };
 
+    $scope.person = {
+    	name: 'Abdul',
+    };
+
     $scope.rules = [
     	{ruleapplied: " must be cool"},
     	{ruleapplied: " must be logical"},
@@ -41,11 +45,20 @@ myApp.controller('mainController', ['$scope','$log','$filter', '$location', func
 }]);
 
 myApp.controller('LoginCtrl', ['$scope', function ($scope) {
-	
+
 }]);
 
 myApp.controller('SignupCtrl', ['$scope', function ($scope) {
 	
 }]);
-
+myApp.directive('homeworkPostDir', [function () {
+	return {
+		restrict: 'AEC',
+		templateUrl: 'directives/homework-post-dir.html',
+		replace: true,
+		scope: {
+			personName: "@",
+		}
+	};
+}])
 

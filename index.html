@@ -1,6 +1,7 @@
 <!doctype html>
 <html ng-app ="myApp">
   <head>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular-route.min.js"></script>
 <!--
@@ -8,6 +9,7 @@
     <script type="https://code.angularjs.org/1.5.0-beta.2/angular-route.min.js"></script>-->
 
     <script src="app.js"></script>
+    <script src="additatives.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 
@@ -57,10 +59,13 @@
               </details>
             </div>
         </div>
-
-        <div ng-view></div>
-
       </div>
+    </div>
+    <div ng-controller="mainController" class="row">
+      <div class="homework-post-dir"  person-name=" {{ person.name }} "></div>
+      <homework-post-dir></homework-post-dir>
+      <div ng-view></div>
+
     </div>
 
   </div>
