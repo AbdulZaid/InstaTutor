@@ -17,10 +17,9 @@ myApp.config(function ($routeProvider) {
 		})
 
 });
-//FACTORY
 
+//FACTORY
 myApp.factory('Auth', ['$firebaseAuth', function ($firebaseAuth) {
-	
 	var ref = new Firebase("https://homeworkmarket.firebaseio.com");
 	return  $firebaseAuth(ref);
 }])
@@ -29,7 +28,7 @@ myApp.factory('Auth', ['$firebaseAuth', function ($firebaseAuth) {
 myApp.controller('AuthCtrl', ['$scope','Auth', '$log', function ($scope, Auth, $log) {
 	var ref = new Firebase("https://homeworkmarket.firebaseio.com");
 	//keep track of user auth changes
-	ref.onAuth(function(authData) {
+	Auth.$onAuth(function(authData) {
 	  if (authData) {
 	    console.log("Authenticated with uid:", authData.uid);
 	    $scope.authData = authData;
@@ -39,21 +38,20 @@ myApp.controller('AuthCtrl', ['$scope','Auth', '$log', function ($scope, Auth, $
 	   }
 	})
 
-	$scope.create = function() {
-		ref.createUser({
-		  email    : $scope.email,
-		  password : $scope.password
-		}, function(error, userData) {
-		  if (error) {
-		    console.log("Error creating user:", error);
-		  } else {
-		    console.log("Successfully created user account with uid:", userData.uid);
-		  }
-		});
+	$scope.logout = function() {
+		Auth.$unauth();
 	}
 
+}])
+
+myApp.controller('mainController', ['$scope', function ($scope, $log, $filter, $location) {
+
+
+}]);
+
+myApp.controller('LoginCtrl', ['$scope','Auth', function ($scope, Auth) {
 	$scope.login = function() {
-		ref.authWithPassword({
+		Auth.$authWithPassword({
 		  "email": $scope.email,
 		  "password": $scope.password
 		}, function(error, authData) {
@@ -65,21 +63,21 @@ myApp.controller('AuthCtrl', ['$scope','Auth', '$log', function ($scope, Auth, $
 		})
 	}
 
-	$scope.logout = function() {
-		ref.unauth();
-	}
-
-}])
-
-myApp.controller('mainController', ['$scope', function ($scope, $log, $filter, $location) {
-
-
 }]);
 
-myApp.controller('LoginCtrl', ['$scope', function ($scope) {
+myApp.controller('SignupCtrl', ['$scope','Auth', function ($scope, Auth) {
+		var ref = new Firebase("https://homeworkmarket.firebaseio.com");
 
-}]);
-
-myApp.controller('SignupCtrl', ['$scope', function ($scope) {
-	
+		$scope.create = function() {
+			ref.createUser({
+			  email    : $scope.email,
+			  password : $scope.password
+			}, function(error, userData) {
+			  if (error) {
+			    console.log("Error creating user:", error);
+			  } else {
+			    console.log("Successfully created user account with uid:", userData.uid);
+			  }
+			});
+	    }
 }]);
