@@ -30,7 +30,7 @@
         <nav class="navbar navbar-default navbar-fixed-top">
           <ul class="list-inline">
             <li>
-              <a href="#">home</a>
+              <a href="#/main">home</a>
             </li>
             <li>
               <a href="#/login">Login</a>
@@ -44,15 +44,7 @@
     </div>
 
 
-    <div class="row" id="row1">
-      <div>
-        <div ng-controller="mainController">
-            <label>Name:</label>
-            <input type="text" ng-model="data.text"  placeholder="Enter a name here">
-            <hr>
-        </div>
-      </div>
-    </div>
+
 
     <div id ="form" ng-controller="mainController" class="row">
       <div ng-view></div>
