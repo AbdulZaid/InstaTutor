@@ -107,19 +107,20 @@ myApp.controller('SignupCtrl', ['$scope','Auth','$location', function ($scope, A
 			  } else {
 			    console.log("Successfully created user account with uid:", userData.uid);
 			  }
+			}),
+			ref.onAuth(function(authData) {
+			    if (authData && isNewUser) {
+				    // save the user's profile into the database so we can list users,
+				    // use them in Security and Firebase Rules, and show profiles
+				    ref.child("users").child(authData.uid).set({
+				      provider: authData.provider,
+				      name: getName(authData)
+				    });
+			    }
 			})
 	    }
 
-	    ref.onAuth(function(authData) {
-		    if (authData && isNewUser) {
-			    // save the user's profile into the database so we can list users,
-			    // use them in Security and Firebase Rules, and show profiles
-			    ref.child("users").child(authData.uid).set({
-			      provider: authData.provider,
-			      name: getName(authData)
-			    });
-		    }
-		});
+
 		// find a suitable name based on the meta info given by each provider
 		function getName(authData) {
 		  switch(authData.provider) {
