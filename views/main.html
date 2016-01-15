@@ -3,10 +3,25 @@
     <div>
         <label>Name:</label>
         <input type="text" ng-model="$parent.author"  placeholder="Enter a name here">
+        <label>title:</label>
+        <input type="text" ng-model="$parent.title"  placeholder="Enter a title here">
         <hr>
         <textarea  ng-model="$parent.textModel" class="form-control" rows="3" textarea ngModel="string" name="string" required ngRequired="string" ngMinlength="number" ngMaxlength="number" ngPattern="string" ngChange="string"></textarea>
         <input ng-click="postMessage()"  ng-show= "authData" class="btn btn-default" type="submit" value="Submit">
+        <ul >
+          <li ng-model="posts.text" ng-repeat="post in items">
+             {{post}}
+             {{ posts.text }}
+            <!-- edit a message -->
+            <!-- <input ng-model="post.text" ng-change="items.$save(post)" /> -->
+          </li>
+        </ul>
+        <ul>
+          <li ng-repeat="post in posts">{{ post.author }}</li>
+        </ul>
     </div>
-    <div class="postArea"> hello there how are you?</div>
+    <!-- <div class="postArea" ng-model="data.text"> {{$scope.postsRef.posts}} hello there how are you?</div> -->
+
+
   </div>
 </div>

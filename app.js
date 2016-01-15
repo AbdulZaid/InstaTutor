@@ -51,8 +51,8 @@ myApp.controller('AuthCtrl', ['$scope','Auth', '$log', function ($scope, Auth, $
 
 }])
 
-myApp.controller('mainController', ['$scope','Auth', function ($scope, Auth, $location) {
-	var ref = new Firebase("https://homeworkmarket.firebaseio.com");
+myApp.controller('mainController', ['$scope','Auth','$firebaseArray', function ($scope, Auth, $firebaseArray,$location) {
+	var ref = new Firebase("https://homeworkmarket.firebaseio.com/messages");
 	var authData = Auth.$getAuth();
 
 	var postsRef = ref.child("posts");
@@ -62,17 +62,103 @@ myApp.controller('mainController', ['$scope','Auth', function ($scope, Auth, $lo
 		postsRef.push().set({
     		"authorID": authData.uid,
     		"author": $scope.author,
-    		"title": "The Turing Machine",
+    		"title": $scope.title,
     		"content": $scope.textModel
   		},
   		function(error) {
 	    	if (error) {
-	    	alert("Data could not be saved." + error);
+	    		alert("Data could not be saved." + error);
 	  		} else {
 	    		alert("Data saved successfully.");
 	  		}
 		});
-	}
+	};
+
+
+	// Get a database reference to our posts
+	// var ref = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
+	// // Attach an asynchronous callback to read the data at our posts reference
+	// ref.on("child_added", function(snapshot, prevChildKey) {
+	//   var newPost = snapshot.val();
+	//   console.log("Author: " + newPost.author);
+	//   console.log("Author ID : " + newPost.authorID);
+	//   console.log("Title: " + newPost.title);
+	//   console.log("Content: " + newPost.content);
+	// }, function (errorObject) {
+	//   console.log("The read failed: " + errorObject.code);
+	// });
+
+
+	var refOne = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
+
+	  // create a synchronized array
+	  // click on `index.html` above to see it used in the DOM!
+	  $scope.posts = $firebaseArray(refOne);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// // Attach an asynchronous callback to read the data at our posts reference
+	// 	refOne.on("child_added", function(snapshot) {
+	// 	  $scope.postsToShow = snapshot.val();
+	// 	  console.log( $scope.postsToShow);
+	// 	  postsFunc($scope.postsToShow)
+	// 	});
+
+ //    var postsFunc = function(postsData) {
+ //    	$scope.listMe = postsData
+ //    	console.log($scope.listMe + " Finally");
+ //    	addThem($scope.listMe)
+ //    	// return $scope.listMe;
+ //    }
+
+ //    $scope.listOfPosts = []
+ //    var addThem = function(post) {
+ //    	$scope.listOfPosts.push(post)
+ //    	console.log($scope.listOfPosts);
+
+ //    	// return $scope.listOfPosts
+ //    }
+ //    console.log($scope.listOfPosts);
+
+ //   	  // $scope.items = $scope.listMe;
+	//   console.log("The read failed: " + $scope.listOfPosts);
+
+
+
+
+	// var listMe = {
+	// 	"author": "hey",
+	// 	"Name": "hss"
+	// }
+ //   	$scope.items = listMe;
+
+	// 	ref.orderByChild("messages").on("child_added", function(snapshot) {
+	// 	  var newPost = snapshot.val();
+	// 	  return console.log("Post is titled as " + snapshot.val().title + " by " + snapshot.val().author + " ");
+	// 	});
+
+	// 	ref.orderByKey().on("child_added", function(snapshot) {
+	// 	  var newPost = snapshot.val();
+	// 	  console.log("Post is titled as " + snapshot.val().title + " by " + snapshot.val().author + " ");
+	// 	});
 
 }]);
 
