@@ -28,5 +28,55 @@ Why this project is acceptable?
 
 This application will be responsive web application, that work on different devices (smartphones, tablets, PCs)
 
+#### Mockup
 
+ UI Main Page first mockup
+ 
+ ![alt text](https://github.com/AbdulZaid/schooltutoring/blob/master/images/first_mockup.png "UI Main Page first mockup")
+
+ UI Post Job first mockup
+ 
+ ![alt text](https://github.com/AbdulZaid/schooltutoring/blob/master/images/first_mockup1.png "UI Post Job first mockup")
+
+ 
+## Operations Description
+
+The project will include:
+ 3 types of users: 
+
+1. Student (create account [profile], post jobs, message tutors, assign jobs to tutors, and rate tutor’s work)
+
+2. Tutor (create account, list specialities and years of experience, write bio, propose to do jobs, submit back)
+
+3. Admin (manage users and data)
+
+#### Demonstration of the system architecture
+
+ ![alt text](https://github.com/AbdulZaid/schooltutoring/blob/master/images/Untitled%20drawing%20(4).jpg "System Architecture")
+
+
+
+## Technologies
+
+##### Frontend Section:
+ * JavaScript (AngularJS 2.0)
+ * HTML5 and SASS (maybe bootstrap)
+
+##### Backend Section:
+ * Google Firebase   
+ ![alt text](https://github.com/AbdulZaid/schooltutoring/blob/master/images/Firebase.png "Firebase")
+  * Uses REST API
+  * Stores & sync data with *NoSQL Cloud Database
+  * Uses JSON formated data
+  * Uses realtime connection with all clients
+
+
+## Preliminary Development Schedule (milestones)
+
+ * Creating Tutor accounts including full profile.
+ * Writing security rules for users (admin, tutor, and student) (by Jan 25th).
+ * Proposing to do a job.
+ * Assigning jobs to tutors.
+ * Realtime messages.
+ * Monetization (handling payments.)
 
