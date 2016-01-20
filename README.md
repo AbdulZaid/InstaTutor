@@ -15,7 +15,7 @@ When the tutor is finished he/she can post back the files with their helpful not
 
 Why this project is acceptable?
 
-  * Will demonstrate my knowledge on technologies and languages that I like (Javascript)
+  * Will demonstrate my knowledge in technologies and languages that I learned
   * Will allow me to work with Cloud Database.
   * Will be full-stack project frontend/backend.
   * Technical difficulty is moderate (manageable.)
