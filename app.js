@@ -96,25 +96,6 @@ myApp.controller('mainController', ['$scope','Auth','$firebaseArray', function (
 	  $scope.posts = $firebaseArray(refOne);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	// // Attach an asynchronous callback to read the data at our posts reference
 	// 	refOne.on("child_added", function(snapshot) {
 	// 	  $scope.postsToShow = snapshot.val();
@@ -182,11 +163,21 @@ myApp.controller('SignupCtrl', ['$scope','Auth','$location', function ($scope, A
 		var ref = new Firebase("https://homeworkmarket.firebaseio.com");
 		var isNewUser = true
 
+		// assign values for ng-repeat and ng-model for the html selector options
+		$scope.userTypes = [{
+			value: 'user_1',
+		   	label: 'Student'
+		  }, {
+		    value: 'user_2',
+		    label: 'Tutor'
+		}],
+
 		$scope.create = function() {
 			ref.createUser({
-			  // "name": $scope.name,	
+			  "handle": $scope.handle,	
 			  "email": $scope.email,
-			  "password": $scope.password
+			  "password": $scope.password,
+			  "type": $scope.userLists.label
 			}, function(error, userData) {
 			  if (error) {
 			    console.log("Error creating user:", error);
@@ -194,18 +185,20 @@ myApp.controller('SignupCtrl', ['$scope','Auth','$location', function ($scope, A
 			    console.log("Successfully created user account with uid:", userData.uid);
 			  }
 			}),
+
 			ref.onAuth(function(authData) {
 			    if (authData && isNewUser) {
 				    // save the user's profile into the database so we can list users,
 				    // use them in Security and Firebase Rules, and show profiles
 				    ref.child("users").child(authData.uid).set({
 				      provider: authData.provider,
-				      name: getName(authData)
+				      name: getName(authData),
+				      handle: $scope.handle,
+				      type: $scope.userLists.label //from the ng-model and ng-repeat in html file.
 				    });
 			    }
 			})
 	    }
-
 
 		// find a suitable name based on the meta info given by each provider
 		function getName(authData) {
