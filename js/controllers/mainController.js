@@ -4,8 +4,11 @@ myApp.controller('mainController', ['$scope','Auth','$firebaseArray', function (
 
 	var postsRef = ref.child("posts");
 
+	// COLLAPSE =====================
+	$scope.isCollapsed = false;	
+
+
 	$scope.postMessage = function() {
-		// var name = name
 		postsRef.push().set({
     		"authorID": authData.uid,
     		"author": $scope.author,
@@ -22,8 +25,8 @@ myApp.controller('mainController', ['$scope','Auth','$firebaseArray', function (
 	};
 
 	var refOne = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
-	  // create a synchronized array
-	  // click on `index.html` above to see it used in the DOM!
-	  $scope.posts = $firebaseArray(refOne);
+	// create a synchronized array
+	// click on `index.html` above to see it used in the DOM!
+	$scope.posts = $firebaseArray(refOne);
 
 }]);

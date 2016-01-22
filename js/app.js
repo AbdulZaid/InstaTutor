@@ -1,11 +1,11 @@
 // Main MODULE... ui.bootstrap is for dropdown menus of bootstrap etc.. router is for states
-var myApp = angular.module('myApp', ['ngRoute', 'firebase','ui.bootstrap','ui.router']);
+var myApp = angular.module('myApp', ['ngRoute', 'firebase','ui.bootstrap','ngAnimate','ui.router']);
 
 
 //CONFIGURATION using Ui.router instead of ngRoute
 myApp.config(function ($stateProvider, $urlRouterProvider) {
 	// For any unmatched url, redirect to /state1
-	// $urlRouterProvider.otherwise('views/main.html' )
+	// $urlRouterProvider.otherwise('home' )
 	// Now set up the states
 	$stateProvider
 		.state('main', {
@@ -34,4 +34,5 @@ myApp.factory('Auth', ['$firebaseAuth', function ($firebaseAuth) {
 	var ref = new Firebase("https://homeworkmarket.firebaseio.com");
 	return  $firebaseAuth(ref);
 }])
+
 
