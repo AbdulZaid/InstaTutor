@@ -1,5 +1,5 @@
 // MODULE
-var myApp = angular.module('myApp', ['ngRoute', 'firebase']);
+var myApp = angular.module('myApp', ['ngRoute', 'firebase','ui.bootstrap']);
 
 
 

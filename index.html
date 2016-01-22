@@ -15,6 +15,8 @@
     <script src="js/controllers/mainController.js"></script>
     <script src="js/controllers/SignupCtrl.js"></script>
     <script src="additatives.js"></script>
+    <script src="js/lib/angular/angular.min.js"></script>
+    <script src="js/lib/angular-bootstrap/ui-bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 
@@ -30,30 +32,16 @@
 
   <div class="container">
     <div class="row">
-      <div ng-controller="AuthCtrl">
-        <nav class="navbar navbar-default navbar-fixed-top">
-          <ul class="list-inline">
-            <li>
-              <a href="#/main">home</a>
-            </li>
-            <li>
-              <a href="#/login">Login</a>
-            </li>
-            <li>
-              <a href="#/signup">signup</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+      <div ng-include='"views/header.html"' <span class="highlight"></span>></div>
     </div>
-
-
-
-
-    <div id ="form"  class="row">
-      <div ng-view></div>
+    <div class="row">
+        <div id ="form"  class="row">
+          <div ng-view></div>
+        </div>
     </div>
-
+    <div class="row">
+      <div ng-include='"views/footer.html"' <span class="highlight"></span>></div>
+    </div>
   </div>
 
 
