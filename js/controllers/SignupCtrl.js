@@ -1,6 +1,7 @@
-myApp.controller('SignupCtrl', ['$scope','Auth','$location', function ($scope, Auth, $location) {
+myApp.controller('SignupCtrl', ['$scope','Auth','$location','$firebaseAuth', function ($scope, Auth, $location, $firebaseAuth) {
 		var ref = new Firebase("https://homeworkmarket.firebaseio.com");
 		var isNewUser = true
+		$scope.authObj = $firebaseAuth(ref);
 
 		// assign values for ng-repeat and ng-model for the html selector options
 		$scope.userTypes = [{
@@ -12,18 +13,25 @@ myApp.controller('SignupCtrl', ['$scope','Auth','$location', function ($scope, A
 		}],
 
 		$scope.create = function() {
-			ref.createUser({
+
+			$scope.authObj.$createUser({
 			  "handle": $scope.handle,	
 			  "email": $scope.email,
 			  "password": $scope.password,
 			  "type": $scope.userLists.label
-			}, function(error, userData) {
-			  if (error) {
-			    console.log("Error creating user:", error);
-			  } else {
-			    console.log("Successfully created user account with uid:", userData.uid);
-			  }
-			}),
+			}).then(function(userData) {
+			  console.log("User " + userData.uid + " created successfully!");
+
+			  return $scope.authObj.$authWithPassword({
+					    email: $scope.email,
+					    password: $scope.password
+			  		});
+			  
+			}).then(function(authData) {
+			  console.log("Logged in as:", authData.uid);
+			}).catch(function(error) {
+			  console.error("Error: ", error);
+			});
 
 			ref.onAuth(function(authData) {
 			    if (authData && isNewUser) {

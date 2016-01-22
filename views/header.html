@@ -17,9 +17,9 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a ui-sref="main">Home</a>
                 </li>
-                <li><a ui-sref="login">Login</a>
+                <li ng-hide= "authData" ><a ui-sref="login">Login</a>
                 </li>
-                <li><a ui-sref="signup">Signup</a>
+                <li ng-hide= "authData" ><a ui-sref="signup">Signup</a>
                 </li>
                 <li><a href="#/About">About</a>
                 </li>
@@ -33,6 +33,8 @@
                         <li><a href="#/blog/post">Edit Profile</a>
                         </li>
                     </ul>
+                </li>
+                <li ng-click="logout()" ng-show= "authData" ><a ui-sref="main">Logout</a>
                 </li>
             </ul>
         </div>

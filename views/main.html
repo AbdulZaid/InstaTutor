@@ -9,7 +9,7 @@
         <textarea  ng-model="$parent.textModel" class="form-control" rows="3" textarea ngModel="string" name="string" required ngRequired="string" ngMinlength="number" ngMaxlength="number" ngPattern="string" ngChange="string"></textarea>
         <input ng-click="postMessage()"  ng-show= "authData" class="btn btn-default" type="submit" value="Submit">
 
-        <div ng-repeat="post in posts" class="panel-group" id="accordion" >
+        <div ng-repeat="post in posts | filter:name" class="panel-group" id="accordion" >
           <div class="panel panel-default">
               <div class="panel-heading">
                 <h4 class="panel-title">
