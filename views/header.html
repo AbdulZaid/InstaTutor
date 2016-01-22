@@ -26,11 +26,11 @@
                 <li><a href="#/contact">Contact</a>
                 </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#/blog">List of Posts</a>
+                    <a href="" ng-click="isCollapsed = !isCollapsed" >Profile <b class="caret"></b></a>
+                    <ul ng-show="isCollapsed">
+                        <li><a href="#/myPosts">List of Posts</a>
                         </li>
-                        <li><a href="#/blog/post">Edit Profile</a>
+                        <li><a ui-sref="editProfile">Edit Profile</a>
                         </li>
                     </ul>
                 </li>

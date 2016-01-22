@@ -81,3 +81,35 @@
 		line-height: 1.8;
 	}
 }
+
+/*
+This is for the tabs in the profile page.
+*/
+#profileDropDown {
+	color: white
+}
+a {
+    color: white;
+    text-decoration: none;
+}
+
+
+/*
+Tabs in profile
+*/
+.tabsdemoDynamicHeight {
+	    margin-top: 90px;
+
+}
+.tabsdemoDynamicHeight md-content {
+  background-color: transparent !important; 
+}
+  .tabsdemoDynamicHeight md-content md-tabs {
+    background: #f6f6f6;
+    border: 1px solid #e1e1e1; }
+    .tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
+      background: white; }
+  .tabsdemoDynamicHeight md-content h1:first-child {
+    margin-top: 0; }
+
+

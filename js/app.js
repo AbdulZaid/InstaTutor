@@ -1,5 +1,5 @@
 // Main MODULE... ui.bootstrap is for dropdown menus of bootstrap etc.. router is for states
-var myApp = angular.module('myApp', ['ngRoute', 'firebase','ui.bootstrap','ngAnimate','ui.router']);
+var myApp = angular.module('myApp', ['ngRoute', 'firebase','ui.bootstrap','ngAnimate','ui.router','ngMaterial','ngAria','ngMessages']);
 
 
 //CONFIGURATION using Ui.router instead of ngRoute
@@ -26,6 +26,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 	    	url: "/login",
 	    	controller: 'LoginCtrl',
 	    	templateUrl: "views/login.html"
+	    })
+	    .state('editProfile', {
+	    	url: "/editProfile",
+	    	controller: 'ProfileCtrl',
+	    	templateUrl: "views/profile.html"
 	    })
 })
 

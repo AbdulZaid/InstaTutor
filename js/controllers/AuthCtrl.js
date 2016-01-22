@@ -16,4 +16,6 @@ myApp.controller('AuthCtrl', ['$scope','Auth', '$log', function ($scope, Auth, $
 		Auth.$unauth();
 	}
 
+	$scope.isCollapsed = false;
+	
 }])
