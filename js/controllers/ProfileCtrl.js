@@ -10,18 +10,17 @@ myApp.controller('ProfileCtrl', ['$scope','Auth','$location','$firebaseAuth','$f
 
 		ref.on("child_added", function(snapshot, prevChildKey) {
 			$scope.newPost = snapshot.val();
-
 			$scope.user = {
 				title: $scope.newPost.handle,
-				email: '',
+				email: $scope.newPost.profile.email,
 				firstName: $scope.newPost.name,
-				lastName: '',
-				company: '',
-				address: '',
-				city: ' ',
-				state: '',
-				biography: '',
-				postalCode: ''
+				lastName: $scope.newPost.profile.lastName,
+				company: $scope.newPost.profile.company,
+				address: $scope.newPost.profile.address,
+				city: $scope.newPost.profile.city,
+				state: $scope.newPost.profile.state,
+				biography: $scope.newPost.profile.biography,
+				postalCode: $scope.newPost.profile.postalCode
 			};
 		});
 
