@@ -1,12 +1,12 @@
-
-<div ng-controller="SignupCtrl">
-    <h3>This is signup</h3>
-  <form class="form-horizontal">
-  <div class="form-group">
-      <label  for="inputName" class=".col-md-4 control-label">Name</label>
-      <div class=".col-md-4">
-        <input ng-model="handle" type="text" class="form-control" id="inputName" placeholder="full name">
-      </div>
+<div id="signupContainer" class="container">
+  <div ng-controller="SignupCtrl">
+      <h3>This is signup</h3>
+    <form class="form-horizontal">
+    <div class="form-group">
+        <label  for="inputName" class=".col-md-4 control-label">Name</label>
+        <div class=".col-md-4">
+          <input ng-model="handle" type="text" class="form-control" id="inputName" placeholder="full name">
+        </div>
     </div>
     <div class="form-group">
       <label  for="inputEmail3" class=".col-md-4 control-label">Email</label>
@@ -44,5 +44,6 @@
         <button ng-click= "create()" type="submit" class="btn btn-default">Sign up</button>
       </div>
     </div>
-</form>
+    </form>
+  </div>
 </div>

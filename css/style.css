@@ -1,9 +1,24 @@
 #form {
-    margin-left: 400px;
-    margin-right: 400px;
-}
-#row1 {
+	width: 800px;
+	max-width: 90%;
 	margin-top: 100px;
+}
+#mainContainer{
+	width: 800px;
+	max-width: 90%;
+}
+#signupContainer{
+	width: 800px;
+	max-width: 90%;
+	margin-top: 100px;
+}
+#loginContainer{
+	width: 800px;
+	max-width: 90%;
+	margin-top: 100px;
+}
+#form{
+	margin: 0 auto;
 }
 
 /*** Footer section ***/
@@ -112,4 +127,35 @@ Tabs in profile
   .tabsdemoDynamicHeight md-content h1:first-child {
     margin-top: 0; }
 
+.datepicker {
+    background: rgb(246,246,246);
+}
 
+#profileContainer {
+	width: 800px;
+	max-width: 90%;
+}
+
+/* 
+Buttons */
+.buttondemoBasicUsage section {
+  background: #f7f7f7;
+  border-radius: 3px;
+  text-align: center;
+  margin: 1em;
+  position: relative !important;
+  padding-bottom: 10px; }
+
+.buttondemoBasicUsage md-content {
+  margin-right: 7px; }
+
+.buttondemoBasicUsage section .md-button {
+  margin-top: 16px;
+  margin-bottom: 16px; }
+
+.buttondemoBasicUsage .label {
+  position: absolute;
+  bottom: 5px;
+  left: 7px;
+  font-size: 14px;
+  opacity: 0.54; }
