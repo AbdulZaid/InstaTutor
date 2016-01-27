@@ -1,29 +1,48 @@
-myApp.controller('ProfileCtrl', ['$scope','Auth','$location','$firebaseAuth','$firebaseArray',
-	function ($scope, Auth, $location, $firebaseAuth, $firebaseArray) {
-		var ref = new Firebase("https://homeworkmarket.firebaseio.com/users");
+myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseAuth','$firebaseArray','$firebaseObject',
+	function ($scope, Users, Auth, $location, $firebaseAuth, $firebaseArray, $firebaseObject) {
+		// $scope.Users = Users
 		$scope.authData = Auth.$getAuth();
-		var isNewUser = true
-		$scope.users = $firebaseArray(ref);
+		var ref = new Firebase("https://homeworkmarket.firebaseio.com/users")
+		// var usersObject = $firebaseObject(ref.child($scope.authData).child("profile"))
 
+		// var isNewUser = true
+		// $scope.users = $firebaseArray(ref);
 
+		// console.log($scope.authData.uid)
+		console.log(Users.getUser($scope.authData.uid))
+		console.log(Users.getProfile($scope.authData.uid))
+		$scope.usersInfo = Users.getProfile($scope.authData.uid)
+		$scope.user = {
+			title: $scope.usersInfo.handle, 
+			email: $scope.usersInfo.email, //contunue here and retreive data
+			firstName: $scope.usersInfo.name,
+			lastName: $scope.usersInfo.profile.lastName,
+			company: $scope.usersInfo.profile.company,
+			address: $scope.usersInfo.profile.address,
+			city: $scope.usersInfo.profile.city,
+			state: $scope.usersInfo.profile.state,
+			biography: $scope.usersInfo.profile.biography,
+			postalCode: $scope.usersInfo.profile.postalCode,
+		};
 
-
-		ref.on("child_added", function(snapshot, prevChildKey) {
-			$scope.newPost = snapshot.val();
-			$scope.user = {
-				title: $scope.newPost.handle,
-				email: $scope.newPost.profile.email,
-				firstName: $scope.newPost.name,
-				lastName: $scope.newPost.profile.lastName,
-				company: $scope.newPost.profile.company,
-				address: $scope.newPost.profile.address,
-				city: $scope.newPost.profile.city,
-				state: $scope.newPost.profile.state,
-				biography: $scope.newPost.profile.biography,
-				postalCode: $scope.newPost.profile.postalCode
-			};
-		});
-
+		// ref.on("child_added", function(snapshot, previousChild) {
+		// 	$scope.newPost = snapshot.val();
+		// 	$scope.tutorProfileData = snapshot.child("profile").val()
+		// 	// console.log($scope.profileData)
+		// 	// console.log($scope.newPost)
+		// 	$scope.user = {
+		// 		title: $scope.newPost.handle, 
+		// 		email: $scope.newPost.email, //contunue here and retreive data
+		// 		firstName: $scope.newPost.name,
+		// 		lastName: $scope.tutorProfileData.lastName,
+		// 		company: $scope.tutorProfileData.company,
+		// 		address: $scope.tutorProfileData.address,
+		// 		city: $scope.tutorProfileData.city,
+		// 		state: $scope.tutorProfileData.state,
+		// 		biography: $scope.tutorProfileData.biography,
+		// 		postalCode: $scope.tutorProfileData.postalCode,
+		// 	};
+		// });
 
 
   		$scope.title = 'Save';
@@ -34,9 +53,16 @@ myApp.controller('ProfileCtrl', ['$scope','Auth','$location','$firebaseAuth','$f
 	        return {abbrev: state};
 	      })
 
-	    $scope.profileData = ref.child($scope.authData.uid).child("profile");
-	    $scope.updateProfile = function() {
-	    	$scope.profileData.update({
+	    // // $scope.profileData = usersObject.$scope.authData.uid
+	    // // console.log( $scope.profileData )
+	    $scope.profileData = ref.child($scope.authData.uid).child("profile")
+	    var sh = $firebaseObject($scope.profileData)
+	    console.log("IIIDDDDD " + $scope.authData.uid)
+	    // console.log(sh.address)
+	    $scope.updateProfile = function(authData) {
+
+
+	    	$scope.profileData.set({
 	      	  title: $scope.user.title,
 		      email: $scope.user.email,
 		      firstName: $scope.user.firstName,

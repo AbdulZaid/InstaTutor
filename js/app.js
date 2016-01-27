@@ -112,5 +112,20 @@ myApp.factory('Auth', ['$firebaseAuth', function ($firebaseAuth) {
 	var ref = new Firebase("https://homeworkmarket.firebaseio.com");
 	return  $firebaseAuth(ref);
 }])
+myApp.factory('Users', ['$firebaseAuth','$firebaseObject','$firebaseArray', function ($firebaseAuth, $firebaseObject, $firebaseArray) {
+	var usersRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
+	var users = $firebaseArray(usersRef)
+
+	var Users = {
+		getUser: function(uid) {
+			return $firebaseObject(usersRef.child(uid))
+		}, 
+		getProfile: function(uid) {
+			return users.$getRecord(uid)//for retrieving data in profilePage
+		}
+	}
+
+	return  Users;
+}])
 
 

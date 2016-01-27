@@ -22,7 +22,7 @@ myApp.controller('SignupCtrl', ['$scope','Auth','$location','$firebaseAuth', fun
 			}).then(function(userData) {
 			  console.log("User " + userData.uid + " created successfully!");
 
-			  return $scope.authObj.$authWithPassword({
+			  		return $scope.authObj.$authWithPassword({
 					    email: $scope.email,
 					    password: $scope.password
 			  		});
@@ -33,15 +33,28 @@ myApp.controller('SignupCtrl', ['$scope','Auth','$location','$firebaseAuth', fun
 			  console.error("Error: ", error);
 			});
 
-			ref.onAuth(function(authData) {
+			ref.onAuth(function(authData) { //check this function
 			    if (authData && isNewUser) {
 				    // save the user's profile into the database so we can list users,
 				    // use them in Security and Firebase Rules, and show profiles
 				    ref.child("users").child(authData.uid).set({
 				      provider: authData.provider,
+				      email: $scope.email,
 				      name: getName(authData),
 				      handle: $scope.handle,
-				      type: $scope.userLists.label //from the ng-model and ng-repeat in html file.
+				      type: $scope.userLists.label, //from the ng-model and ng-repeat in html file.      
+					  profile: {
+					  		title: " ",
+							email: " ",
+							firstName: " ",
+							lastName: " ",
+							company: " ",
+							address: " ",
+							city: " ",
+							state: " ",
+							biography: " ",
+							postalCode: " "
+					  }
 				    });
 			    }
 			})
