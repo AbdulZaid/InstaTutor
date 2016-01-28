@@ -6,10 +6,10 @@ myApp.controller('SignupCtrl', ['$scope','Auth','$location','$firebaseAuth', fun
 		// assign values for ng-repeat and ng-model for the html selector options
 		$scope.userTypes = [{
 			value: 'user_1',
-		   	label: 'Student'
+			label: 'Student'
 		  }, {
-		    value: 'user_2',
-		    label: 'Tutor'
+			value: 'user_2',
+			label: 'Tutor'
 		}],
 
 		$scope.create = function() {
@@ -18,31 +18,24 @@ myApp.controller('SignupCtrl', ['$scope','Auth','$location','$firebaseAuth', fun
 			  email: $scope.email,
 			  password: $scope.password,
 			}).then(function(userData) {
-			  console.log("User " + userData.uid + " created successfully!");
+				console.log("User " + userData.uid + " created successfully!");
 
-			  		return $scope.authObj.$authWithPassword({
-					    email: $scope.email,
-					    password: $scope.password
-			  		});
+				return $scope.authObj.$authWithPassword({
+					email: $scope.email,
+					password: $scope.password
+				});
 			  
 			}).then(function(authData) {
 			  console.log("Logged in as:", authData.uid);
-			}).catch(function(error) {
-			  console.error("Error: ", error);
-			});
-
-			ref.onAuth(function(authData) { //check this function
-			    if (authData && isNewUser) {
-				    // save the user's profile into the database so we can list users,
-				    // use them in Security and Firebase Rules, and show profiles
-				    ref.child("users").child(authData.uid).set({
-				      provider: authData.provider,
-				      email: $scope.email,
-				      name: getName(authData),
-				      handle: $scope.handle,
-				      type: $scope.userLists.label, //from the ng-model and ng-repeat in html file.      
+				ref.child("users").child(authData.uid).set({
+					  provider: authData.provider,
+					  email: $scope.email,
+					  password: $scope.password,
+					  name: getName(authData),
+					  handle: $scope.handle,
+					  type: $scope.userLists.label, //from the ng-model and ng-repeat in html file.      
 					  profile: {
-					  		title: " ",
+							title: " ",
 							email: " ",
 							firstName: " ",
 							lastName: " ",
@@ -53,23 +46,21 @@ myApp.controller('SignupCtrl', ['$scope','Auth','$location','$firebaseAuth', fun
 							biography: " ",
 							postalCode: " "
 					  }
-				    });
-			    }
-			})
-	    }
+					});
 			}).catch(function(error) {
 			  console.error("Error: ", error);
 			});
+		}
 
 		// find a suitable name based on the meta info given by each provider
 		function getName(authData) {
 		  switch(authData.provider) {
-		     case 'password':
-		       return authData.password.email.replace(/@.*/, '');
-		     case 'twitter':
-		       return authData.twitter.displayName;
-		     case 'facebook':
-		       return authData.facebook.displayName;
+			 case 'password':
+			   return authData.password.email.replace(/@.*/, '');
+			 case 'twitter':
+			   return authData.twitter.displayName;
+			 case 'facebook':
+			   return authData.facebook.displayName;
 		  }
 		}
 }]);
