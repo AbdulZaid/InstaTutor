@@ -15,10 +15,8 @@ myApp.controller('SignupCtrl', ['$scope','Auth','$location','$firebaseAuth', fun
 		$scope.create = function() {
 
 			$scope.authObj.$createUser({
-			  "handle": $scope.handle,	
-			  "email": $scope.email,
-			  "password": $scope.password,
-			  "type": $scope.userLists.label
+			  email: $scope.email,
+			  password: $scope.password,
 			}).then(function(userData) {
 			  console.log("User " + userData.uid + " created successfully!");
 
@@ -59,6 +57,9 @@ myApp.controller('SignupCtrl', ['$scope','Auth','$location','$firebaseAuth', fun
 			    }
 			})
 	    }
+			}).catch(function(error) {
+			  console.error("Error: ", error);
+			});
 
 		// find a suitable name based on the meta info given by each provider
 		function getName(authData) {
