@@ -1,8 +1,8 @@
-#form {
+/*#form {
 	width: 800px;
 	max-width: 90%;
 	margin-top: 100px;
-}
+}*/
 #mainContainer{
 	width: 800px;
 	max-width: 90%;
@@ -18,9 +18,12 @@
 	max-width: 90%;
 	margin-top: 100px;
 }
-#form{
-	margin: 0 auto;
+#headerRow {
+	margin-top: 50px;
 }
+/*#form{
+	margin: 0 auto;
+}*/
 
 /*** Footer section ***/
 .footer-distributed{
@@ -113,10 +116,10 @@ a {
 /*
 Tabs in profile
 */
-.tabsdemoDynamicHeight {
+/*.tabsdemoDynamicHeight {
 	    margin-top: 90px;
 
-}
+}*/
 .tabsdemoDynamicHeight md-content {
   background-color: transparent !important; 
 }
@@ -133,8 +136,10 @@ Tabs in profile
 }
 
 #profileContainer {
-	width: 800px;
-	max-width: 90%;
+	min-width: auto;
+	max-width: 100%;
+	padding-left: 0px;
+    padding-right: 0px;
 }
 
 /* 

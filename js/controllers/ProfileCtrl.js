@@ -1,14 +1,8 @@
 myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseAuth','$firebaseArray','$firebaseObject',
 	function ($scope, Users, Auth, $location, $firebaseAuth, $firebaseArray, $firebaseObject) {
-		// $scope.Users = Users
 		$scope.authData = Auth.$getAuth();
 		var ref = new Firebase("https://homeworkmarket.firebaseio.com/users")
-		// var usersObject = $firebaseObject(ref.child($scope.authData).child("profile"))
 
-		// var isNewUser = true
-		// $scope.users = $firebaseArray(ref);
-
-		// console.log($scope.authData.uid)
 		console.log(Users.getUser($scope.authData.uid))
 		console.log(Users.getProfile($scope.authData.uid))
 		$scope.usersInfo = Users.getProfile($scope.authData.uid)

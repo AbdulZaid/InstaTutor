@@ -45,19 +45,22 @@
   </head>
   <body>
 
-  <div class="container">
-    <div class="row">
+  <!-- <div class="container"> -->
+    <div id="headerRow" class="row">
       <div ng-include='"views/header.html"' <span class="highlight"></span>></div>
     </div>
     <div class="row">
-        <div id ="form"  class="row">
+        <!-- <div class="container"> -->
+        <!-- <div id ="form"  class="row"> -->
           <div ui-view></div>
-        </div>
+        <!-- </div> -->    
+        <!-- </div> -->
+
     </div>
     <div class="row">
       <div ng-include='"views/footer.html"' <span class="highlight"></span>></div>
     </div>
-  </div>
+  <!-- </div> -->
 
 
   </body>

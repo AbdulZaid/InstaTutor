@@ -1,134 +1,153 @@
-<div id="profileContainer" class="container">
- <div ng-cloak="" ng-app="myApp" class="tabsdemoDynamicHeight" ng-controller="ProfileCtrl">
-  <md-content>
-    <md-tabs md-dynamic-height="" md-border-bottom="">
-      <md-tab label="one">
-        <md-content class="md-padding">
-          <h1 class="md-display-2">Profile</h1>
-          
-          <div ng-controller="ProfileCtrl" layout="column" ng-cloak="" class="md-inline-form inputdemoBasicUsage" ng-app="MyApp">
+<div id="profileContainer" class="container" layout="column">
 
-            <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding="">
-              <div >
-                <md-input-container>
-                  <label>Title</label>
-                  <input placeholder="masterBro"  ng-model="user.title">
-                </md-input-container>
+    <!-- Container #1 (see wireframe) -->
+    <md-toolbar  class="md-hue-1" layout="row" >
+      <h1>Tutoring Material - CMSI 402 App</h1>
+    </md-toolbar>
 
-                <md-input-container>
-                  <label>Email</label>
-                  <input placeholder="name@gmail.com"  ng-model="user.email" type="email">
-                </md-input-container>
-              </div>
-            </md-content>
 
-            <md-content layout-padding="">
-              <div>
-                <form name="userForm">
+    <!-- Container #2 -->
+    <div ng-controller="ProfileCtrl" flex layout="row" id="profileContainer" class="container">
 
-                  <div layout-gt-xs="row">
-                    <md-input-container class="md-block" flex-gt-xs="">
-                      <label>Company </label>
-                      <input placeholder="Google" ng-model="user.company">
-                    </md-input-container>
+        <!-- Container #3 -->
+        <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2">
+        
+        <!-- this is the toolbar that holds the avatar and names -->
+          <md-toolbar class="md-tall md-hue-2">
+            <span flex></span>
+              <div layout="column" class="md-toolbar-tools-bottom inset">
+              <user-avatar></user-avatar>
+              <span></span>
+              <div>Firstname Lastname</div>
+              <div>email@domainname.com</div>
+            </div>
+          </md-toolbar>
 
-                    <md-datepicker ng-model="user.submissionDate" class="datepicker" md-placeholder="Enter date">
-                    </md-datepicker>
-                  </div>
+          <md-list ng-model="user">
+                  <!-- List item #1 -->
+                  <md-list-item >
+                      <md-button >
+                        <md-icon md-svg-src="" ng-model="user.firstName" class="avatar"></md-icon>
+                        {{user.firstName}}
+                      </md-button>
+                  </md-list-item>
 
-                  <div layout-gt-sm="row">
-                    <md-input-container class="md-block" flex-gt-sm="">
-                      <label>First name</label>
-                      <input placeholder="Marc"  ng-model="user.firstName">
-                    </md-input-container>
+                  <!-- List item #2 -->
+                  <md-list-item >
+                      <md-button>
+                       <md-icon md-svg-src="" class="avatar"></md-icon>
+                        Lawrence Ray
+                      </md-button>
+                  </md-list-item>
+          </md-list>
+        </md-sidenav>
 
-                    <md-input-container class="md-block" flex-gt-sm="">
-                      <label>Last Name</label>
-                      <input placeholder="Putin" ng-model="user.lastName">
-                    </md-input-container>
-                  </div>
+        <!-- Container #4 -->
+        <md-content flex id="content"> 
+           <div ng-cloak="" ng-app="myApp" class="tabsdemoDynamicHeight" ng-controller="ProfileCtrl">
+            <md-content>
+              <md-tabs md-dynamic-height="" md-border-bottom="">
+                <md-tab label="one">
+                  <md-content class="md-padding">
+                    <h1 class="md-display-2">Profile</h1>
+                    
+                    <div ng-controller="ProfileCtrl" layout="column" ng-cloak="" class="md-inline-form inputdemoBasicUsage" ng-app="MyApp">
 
-                  <md-input-container class="md-block">
-                    <label>Address</label>
-                    <input placeholder="4145 Via Marina"  ng-model="user.address">
-                  </md-input-container>
+                      <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding="">
+                        <div >
+                          <md-input-container>
+                            <label>Title</label>
+                            <input placeholder="masterBro"  ng-model="user.title">
+                          </md-input-container>
 
-                  <md-input-container md-no-float="" class="md-block">
-                    <input placeholder="unit 261"  ng-model="user.address2" placeholder="Address 2">
-                  </md-input-container>
-
-                  <div layout-gt-sm="row">
-                    <md-input-container class="md-block" flex-gt-sm="">
-                      <label>City</label>
-                      <input placeholder="Marina del Rey" ng-model="user.city">
-                    </md-input-container>
-
-                    <md-input-container class="md-block" flex-gt-sm="">
-                      <label>State</label>
-                      <md-select ng-model="user.state">
-                        <md-option ng-repeat="state in states" value="{{state.abbrev}}">
-                          {{state.abbrev}}
-                        </md-option>
-                      </md-select>
-                    </md-input-container>
-
-                    <md-input-container class="md-block" flex-gt-sm="">
-                      <label>Postal Code</label>
-                      <input name="postalCode" ng-model="user.postalCode" placeholder="12345" required="" ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
-
-                      <div ng-messages="userForm.postalCode.$error" role="alert" multiple="">
-                        <div ng-message="required" class="my-message">You must supply a postal code.</div>
-                        <div ng-message="pattern" class="my-message">That doesn't look like a valid postal
-                          code.
+                          <md-input-container>
+                            <label>Email</label>
+                            <input placeholder="name@gmail.com"  ng-model="user.email" type="email">
+                          </md-input-container>
                         </div>
-                        <div ng-message="md-maxlength" class="my-message">
-                          Don't use the long version silly...we don't need to be that specific...
+                      </md-content>
+
+                      <md-content layout-padding="">
+                        <div>
+                          <form name="userForm">
+
+                            <div layout-gt-xs="row">
+                              <md-input-container class="md-block" flex-gt-xs="">
+                                <label>Company </label>
+                                <input placeholder="Google" ng-model="user.company">
+                              </md-input-container>
+
+                              <md-datepicker ng-model="user.submissionDate" class="datepicker" md-placeholder="Enter date">
+                              </md-datepicker>
+                            </div>
+
+                            <div layout-gt-sm="row">
+                              <md-input-container class="md-block" flex-gt-sm="">
+                                <label>First name</label>
+                                <input placeholder="Marc"  ng-model="user.firstName">
+                              </md-input-container>
+
+                              <md-input-container class="md-block" flex-gt-sm="">
+                                <label>Last Name</label>
+                                <input placeholder="Putin" ng-model="user.lastName">
+                              </md-input-container>
+                            </div>
+
+                            <md-input-container class="md-block">
+                              <label>Address</label>
+                              <input placeholder="4145 Via Marina"  ng-model="user.address">
+                            </md-input-container>
+
+                            <md-input-container md-no-float="" class="md-block">
+                              <input placeholder="unit 261"  ng-model="user.address2" placeholder="Address 2">
+                            </md-input-container>
+
+                            <div layout-gt-sm="row">
+                              <md-input-container class="md-block" flex-gt-sm="">
+                                <label>City</label>
+                                <input placeholder="Marina del Rey" ng-model="user.city">
+                              </md-input-container>
+
+                              <md-input-container class="md-block" flex-gt-sm="">
+                                <label>State</label>
+                                <md-select ng-model="user.state">
+                                  <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                                    {{state.abbrev}}
+                                  </md-option>
+                                </md-select>
+                              </md-input-container>
+
+                              <md-input-container class="md-block" flex-gt-sm="">
+                                <label>Postal Code</label>
+                                <input name="postalCode" ng-model="user.postalCode" placeholder="12345" required="" ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+
+                                <div ng-messages="userForm.postalCode.$error" role="alert" multiple="">
+                                  <div ng-message="required" class="my-message">You must supply a postal code.</div>
+                                  <div ng-message="pattern" class="my-message">That doesn't look like a valid postal
+                                    code.
+                                  </div>
+                                  <div ng-message="md-maxlength" class="my-message">
+                                    Don't use the long version silly...we don't need to be that specific...
+                                  </div>
+                                </div>
+                              </md-input-container>
+                            </div>
+
+                            <md-input-container class="md-block">
+                              <label>Biography</label>
+                              <textarea placeholder="Spcialized in Marketing, and Math"  ng-model="user.biography" columns="1" md-maxlength="150" rows="5"></textarea>
+                            </md-input-container>
+                            <md-button class="md-primary" ng-click="updateProfile()">{{title}}</md-button>
+                          </form>
                         </div>
-                      </div>
-                    </md-input-container>
-                  </div>
+                      </md-content>
 
-                  <md-input-container class="md-block">
-                    <label>Biography</label>
-                    <textarea placeholder="Spcialized in Marketing, and Math"  ng-model="user.biography" columns="1" md-maxlength="150" rows="5"></textarea>
-                  </md-input-container>
-
-                  <md-button class="md-primary" ng-click="updateProfile()">{{title}}</md-button>
-
-                </form>
-              </div>
+                    </div>
+                  </md-content>
+                </md-tab>
+              </md-tabs>
             </md-content>
-
           </div>
-
         </md-content>
-      </md-tab>
-
-      <md-tab label="two">
-        <md-content class="md-padding">
-          <h1 class="md-display-2">Tab Two</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor, orci enim rutrum enim, vel tempor sapien arcu a tellus. Vivamus convallis sodales ante varius gravida. Curabitur a purus vel augue ultrices ultricies id a nisl. Nullam malesuada consequat diam, a facilisis tortor volutpat et. Sed urna dolor, aliquet vitae posuere vulputate, euismod ac lorem. Sed felis risus, pulvinar at interdum quis, vehicula sed odio. Phasellus in enim venenatis, iaculis tortor eu, bibendum ante. Donec ac tellus dictum neque volutpat blandit. Praesent efficitur faucibus risus, ac auctor purus porttitor vitae. Phasellus ornare dui nec orci posuere, nec luctus mauris semper.</p>
-          <p>Morbi viverra, ante vel aliquet tincidunt, leo dolor pharetra quam, at semper massa orci nec magna. Donec posuere nec sapien sed laoreet. Etiam cursus nunc in condimentum facilisis. Etiam in tempor tortor. Vivamus faucibus egestas enim, at convallis diam pulvinar vel. Cras ac orci eget nisi maximus cursus. Nunc urna libero, viverra sit amet nisl at, hendrerit tempor turpis. Maecenas facilisis convallis mi vel tempor. Nullam vitae nunc leo. Cras sed nisl consectetur, rhoncus sapien sit amet, tempus sapien.</p>
-          <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
-        </md-content>
-      </md-tab>
-      <md-tab label="three">
-        <md-content class="md-padding">
-          <h1 class="md-display-2">Tab Three</h1>
-          <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
-        </md-content>
-      </md-tab>
-    </md-tabs>
-  </md-content>
+    </div>
 </div>
-
-
-</div>
-
-
-
-
-
-
-
-
