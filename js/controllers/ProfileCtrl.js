@@ -1,7 +1,7 @@
-myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseAuth','$firebaseArray','$firebaseObject',
-	function ($scope, Users, Auth, $location, $firebaseAuth, $firebaseArray, $firebaseObject) {
-		$scope.authData = Auth.$getAuth();
+myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseAuth','$firebaseArray','$firebaseObject','$mdBottomSheet','$mdSidenav','$mdDialog',
+	function ($scope, Users, Auth, $location, $firebaseAuth, $firebaseArray, $firebaseObject, $mdBottomSheet, $mdSidenav, $mdDialog) {
 		var ref = new Firebase("https://homeworkmarket.firebaseio.com/users")
+		$scope.authData = Auth.$getAuth();
 
 		console.log(Users.getUser($scope.authData.uid))
 		console.log(Users.getProfile($scope.authData.uid))
@@ -18,6 +18,50 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
 			biography: $scope.usersInfo.profile.biography,
 			postalCode: $scope.usersInfo.profile.postalCode,
 		};
+		$scope.toggleSidenav = function(menuId) {
+		    $mdSidenav(menuId).toggle();
+		  };
+		  $scope.menu = [
+		    {
+		      link : '',
+		      title: 'Dashboard',
+		      icon: 'dashboard'
+		    },
+		    {
+		      link : '',
+		      title: 'Friends',
+		      icon: 'group'
+		    },
+		    {
+		      link : '',
+		      title: 'Messages',
+		      icon: 'message'
+		    }
+		  ];
+		  $scope.admin = [
+		    {
+		      link : '',
+		      title: 'Trash',
+		      icon: 'delete'
+		    },
+		    {
+		      link : 'showListBottomSheet($event)',
+		      title: 'Settings',
+		      icon: 'settings'
+		    }
+		  ];
+
+		  $scope.showListBottomSheet = function($event) {
+		    $scope.alert = '';
+		    $mdBottomSheet.show({
+		      template: '<md-bottom-sheet class="md-list md-has-header"> <md-subheader>Settings</md-subheader> <md-list> <md-item ng-repeat="item in items"><md-item-content md-ink-ripple flex class="inset"> <a flex aria-label="{{item.name}}" ng-click="listItemClick($index)"> <span class="md-inline-list-icon-label">{{ item.name }}</span> </a></md-item-content> </md-item> </md-list></md-bottom-sheet>',
+		      controller: 'ListBottomSheetCtrl',
+		      targetEvent: $event
+		    }).then(function(clickedItem) {
+		      $scope.alert = clickedItem.name + ' clicked!';
+		    });
+		  };
+
 
 		// ref.on("child_added", function(snapshot, previousChild) {
 		// 	$scope.newPost = snapshot.val();

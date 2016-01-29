@@ -1,5 +1,5 @@
 // Main MODULE... ui.bootstrap is for dropdown menus of bootstrap etc.. router is for states
-var myApp = angular.module('myApp', ['ngRoute', 'firebase','ui.bootstrap','ngAnimate','ui.router','ngMaterial','ngAria','ngMessages']);
+var myApp = angular.module('myApp', ['ngRoute', 'firebase','ui.bootstrap','ngAnimate','ui.router','ngMaterial','ngAria','ngMessages','ngMdIcons']);
 
 // for ui-router
 myApp.run(["$rootScope", "$state","Auth", function($rootScope, $state, Auth) {
