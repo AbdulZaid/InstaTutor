@@ -3,7 +3,7 @@
     <!-- Container #1 (see wireframe) -->
     <md-toolbar  class="md-hue-1" layout="row" ng-controller="ListBottomSheetCtrl" >
       <h1>Tutoring Material - CMSI 402 App</h1>
-      <button class="md-button md-default-theme" ng-transclude="" aria-label="Open Settings" ng-click="showListBottomSheet($event)" tabindex="0">
+      <button class="md-button md-default-theme"  aria-label="Open Settings" ng-click="showListBottomSheet($event)" tabindex="0">
             <ng-md-icon icon="more_vert" class="ng-scope"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"></path><path d="M12 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path><path d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></ng-md-icon>
           <div class="md-ripple-container"></div></button>
     </md-toolbar>
@@ -13,8 +13,7 @@
     <div ng-controller="ProfileCtrl" flex layout="row" id="profileContainer" class="container">
 
         <!-- Container #3 -->
-        <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2" >
-
+    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
         <!-- this is the toolbar that holds the avatar and names -->
           <md-toolbar class="md-tall md-hue-2">
             <span flex></span>
