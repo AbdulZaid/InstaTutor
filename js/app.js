@@ -94,13 +94,22 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 	    	controller: 'ProfileCtrl',
 	    	templateUrl: "views/profile.html",
 	    	module: "private",
-	    	resolve: {
+			resolve: {
+				// controller will not be loaded until $waitForAuth resolves
+				// Auth refers to our $firebaseAuth wrapper in the example above
+				currentAuth: ["Auth", function(Auth) {
+				  // $waitForAuth returns a promise so the resolve waits for it to complete
+				  console.log("waiting for auth you dumbass")
+				  return Auth.$waitForAuth();
+				}]
+			},
+			resolve: {
 			    // controller will not be loaded until $requireAuth resolves
 			    // Auth refers to our $firebaseAuth wrapper in the example above
-			    "currentAuth": ["Auth", function(Auth) {
+			    currentAuth: ["Auth", function(Auth) {
 			      // $requireAuth returns a promise so the resolve waits for it to complete
 			      // If the promise is rejected, it will throw a $stateChangeError (see above)
-			      console.log("requiring auth to use edit profile")
+			      console.log("requiring auth you idiot")
 			      return Auth.$requireAuth();
 			    }]
 			}
@@ -112,6 +121,7 @@ myApp.factory('Auth', ['$firebaseAuth', function ($firebaseAuth) {
 	var ref = new Firebase("https://homeworkmarket.firebaseio.com");
 	return  $firebaseAuth(ref);
 }])
+
 myApp.factory('Users', ['$firebaseAuth','$firebaseObject','$firebaseArray', function ($firebaseAuth, $firebaseObject, $firebaseArray) {
 	var usersRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
 	var users = $firebaseArray(usersRef)

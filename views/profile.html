@@ -13,7 +13,7 @@
     <div ng-controller="ProfileCtrl" flex layout="row" id="profileContainer" class="container">
 
         <!-- Container #3 -->
-    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('min-width: 333px')">
         <!-- this is the toolbar that holds the avatar and names -->
           <md-toolbar class="md-tall md-hue-2">
             <span flex></span>
@@ -26,34 +26,34 @@
           </md-toolbar>
 
           <md-list>
-          <md-item ng-repeat="item in menu">
-            <a>
-              <md-item-content md-ink-ripple layout="row" layout-align="start center">
-                <div class="inset">
-                  <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-                </div>
-                <md-button>
-                  <div class="inset">{{item.title}}
+            <md-item ng-repeat="item in menu">
+              <a>
+                <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                  <div class="inset">
+                    <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
                   </div>
-                </md-button>
-              </md-item-content>
-            </a>
-          </md-item>
+                  <md-button>
+                    <div class="inset">{{item.title}}
+                    </div>
+                  </md-button>
+                </md-item-content>
+              </a>
+            </md-item>
 
-          <md-divider></md-divider>
-          <md-subheader>Management</md-subheader>
+            <md-divider></md-divider>
+            <md-subheader>Management</md-subheader>
           <md-item ng-repeat="item in admin">
-            <a>
-              <md-item-content md-ink-ripple layout="row" layout-align="start center">
-                <div class="inset">
-                  <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-                </div>
-                <md-button>
-                  <div class="inset">{{item.title}}
+              <a>
+                <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                  <div class="inset">
+                    <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
                   </div>
-                </md-button>
-              </md-item-content>
-            </a>
+                  <md-button>
+                    <div class="inset">{{item.title}}
+                    </div>
+                  </md-button>
+                </md-item-content>
+              </a>
           </md-item>
         </md-list>
 

@@ -31,3 +31,4 @@ myApp.controller('mainController', ['$scope','Auth','$firebaseArray', function (
 	$scope.posts = $firebaseArray(refOne);
 
 }]);
+
