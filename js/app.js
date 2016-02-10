@@ -50,8 +50,19 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 	$stateProvider
 		.state('main', {
 	    	url: "/home",
-	    	controller: 'mainController',
-	    	templateUrl: "views/main.html",
+	    	views: {
+		        // the main template will be placed here (relatively named)
+		        '': { 
+		        	templateUrl: 'views/main.html',
+		        	controller: 'mainController'
+		        	},
+		        // the child views will be defined here (absolutely named)
+		        'postArea@main': { 
+		        	templateUrl: 'views/main-post.html',
+		        	controller: 'PostCtrl' 
+		    	}
+		    },
+
 	    	module: "private", //custom attributes will be used later.
 	        data: {
 	            requireLogin: true,
@@ -82,7 +93,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 	    	templateUrl: "views/signup.html",
 	    	module: "public",
 
-	    })
+	    })	    
 	    .state('login', {
 	    	url: "/login",
 	    	controller: 'LoginCtrl',

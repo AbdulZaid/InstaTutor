@@ -63,26 +63,6 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
 		  };
 
 
-		// ref.on("child_added", function(snapshot, previousChild) {
-		// 	$scope.newPost = snapshot.val();
-		// 	$scope.tutorProfileData = snapshot.child("profile").val()
-		// 	// console.log($scope.profileData)
-		// 	// console.log($scope.newPost)
-		// 	$scope.user = {
-		// 		title: $scope.newPost.handle, 
-		// 		email: $scope.newPost.email, //contunue here and retreive data
-		// 		firstName: $scope.newPost.name,
-		// 		lastName: $scope.tutorProfileData.lastName,
-		// 		company: $scope.tutorProfileData.company,
-		// 		address: $scope.tutorProfileData.address,
-		// 		city: $scope.tutorProfileData.city,
-		// 		state: $scope.tutorProfileData.state,
-		// 		biography: $scope.tutorProfileData.biography,
-		// 		postalCode: $scope.tutorProfileData.postalCode,
-		// 	};
-		// });
-
-
   		$scope.title = 'Save';
 
 	    $scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
@@ -124,7 +104,6 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
 	.config(function($mdThemingProvider) {
 
 	    // Configure a dark theme with primary foreground yellow
-
 	    $mdThemingProvider.theme('docs-dark', 'default')
 	      .primaryPalette('blue')
 	      // .dark();

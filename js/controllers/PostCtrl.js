@@ -1,84 +1,55 @@
 myApp.controller('PostCtrl', ['$scope','Auth','$firebaseArray', function ($scope, Auth, $firebaseArray, $location) {
+  var ref = new Firebase("https://homeworkmarket.firebaseio.com/messages");
+  var authData = Auth.$getAuth();
 
-// function PostCtrl ($timeout, $q, $log) {
-    var self = this;
+  var postsRef = ref.child("posts");
 
-    self.simulateQuery = false;
-    self.isDisabled    = false;
+  // COLLAPSE =====================
+  $scope.isCollapsed = false; 
+  // var date = new Date();
 
-    // list of `state` value/display objects
-    self.states        = loadAll();
-    self.querySearch   = querySearch;
-    self.selectedItemChange = selectedItemChange;
-    self.searchTextChange   = searchTextChange;
+  $scope.postMessage = function() {
+    postsRef.push().set({
+        "authorID": authData.uid,
+        "author": $scope.author,
+        "title": $scope.title,
+        "content": $scope.textModel,
+        "field": $scope.field,
+        "dueDate": $scope.dueDate.toJSON()
+      },
+      function(error) {
+        if (error) {
+          alert("Data could not be saved." + error);
+        } else {
+          alert("Data saved successfully.");
+        }
+    });
+  };
 
-    self.newState = newState;
+ 
 
-    function newState(state) {
-      alert("Sorry! You'll need to create a Constituion for " + state + " first!");
-    }
+  $scope.fields = [
+    { category: 'Science', name: 'Math' },
+    { category: 'Science', name: 'CMSI' },
+    { category: 'Science', name: 'Biology' },
+    { category: 'Science', name: 'Physics' },
+    { category: 'Engineering', name: 'Electrical Engineering' },
+    { category: 'Engineering', name: 'Mechanical Engineering' },
+    { category: 'Engineering', name: 'Software Engineering' },
+    { category: 'Engineering', name: 'Industrial Engineering' }
+  ];
 
-    // ******************************
-    // Internal methods
-    // ******************************
 
-    /**
-     * Search for states... use $timeout to simulate
-     * remote dataservice call.
-     */
-    function querySearch (query) {
-      var results = query ? self.states.filter( createFilterFor(query) ) : self.states,
-          deferred;
-      if (self.simulateQuery) {
-        deferred = $q.defer();
-        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
-        return deferred.promise;
-      } else {
-        return results;
-      }
-    }
 
-    function searchTextChange(text) {
-      console.log('Text changed to ' + text);
-    }
-
-    function selectedItemChange(item) {
-      console.log('Item changed to ' + JSON.stringify(item));
-    }
-
-    /**
-     * Build `states` list of key/value pairs
-     */
-    function loadAll() {
-      var allStates = 'Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware,\
-              Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana,\
-              Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana,\
-              Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina,\
-              North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina,\
-              South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia,\
-              Wisconsin, Wyoming';
-
-      return allStates.split(/, +/g).map( function (state) {
-        return {
-          value: state.toLowerCase(),
-          display: state
-        };
-      });
-    }
-
-    /**
-     * Create filter function for a query string
-     */
-    function createFilterFor(query) {
-      var lowercaseQuery = angular.lowercase(query);
-
-      return function filterFn(state) {
-        return (state.value.indexOf(lowercaseQuery) === 0);
-      };
-
-    }
-  // }
-
-}]);
+}])
+.config(function($mdDateLocaleProvider) {
+  $mdDateLocaleProvider.formatDate = function(date) {
+    return moment(date).format('YYYY-MM-DD');
+  };
+  // $mdDateLocaleProvider.parseDate = function(dateString) {
+  //   var m = moment(dateString, 'DD/MM/YYYY', true);
+  //   return m.isValid() ? m.toDate() : new Date(NaN);
+  // };
+});
 
 
