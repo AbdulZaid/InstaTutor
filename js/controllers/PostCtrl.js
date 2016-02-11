@@ -1,21 +1,20 @@
-myApp.controller('PostCtrl', ['$scope','Auth','$firebaseArray', function ($scope, Auth, $firebaseArray, $location) {
-  var ref = new Firebase("https://homeworkmarket.firebaseio.com/messages");
-  var authData = Auth.$getAuth();
-
-  var postsRef = ref.child("posts");
-
+myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseArray', function ($scope, Auth, Users, $firebaseArray ) {
+  var messageRef = new Firebase("https://homeworkmarket.firebaseio.com/messages");
+  $scope.authData = Auth.$getAuth();
+  var postsRef = messageRef.child("posts");
+  var authorName = Users.getName($scope.authData.uid)
   // COLLAPSE =====================
   $scope.isCollapsed = false; 
-  // var date = new Date();
 
   $scope.postMessage = function() {
     postsRef.push().set({
-        "authorID": authData.uid,
-        "author": $scope.author,
-        "title": $scope.title,
+        "authorID": $scope.authData.uid,
+        "author": authorName,
+        "question": $scope.question,
         "content": $scope.textModel,
         "field": $scope.field,
-        "dueDate": $scope.dueDate.toJSON()
+        "dueDate": $scope.dueDate.toJSON(),
+        "amount": $scope.moneyAmount
       },
       function(error) {
         if (error) {
@@ -50,6 +49,14 @@ myApp.controller('PostCtrl', ['$scope','Auth','$firebaseArray', function ($scope
   //   var m = moment(dateString, 'DD/MM/YYYY', true);
   //   return m.isValid() ? m.toDate() : new Date(NaN);
   // };
+})  
+.config(function($mdThemingProvider) {
+
+      // Configure a dark theme with primary foreground yellow
+      $mdThemingProvider.theme('docs-dark', 'default')
+        .primaryPalette('blue')
+        // .dark();
+
 });
 
 

@@ -1,45 +1,48 @@
 <div id="mainContainer" class="container">
-  	<div ng-show= "authData" ng-controller="PostCtrl" class="row" id="row1">
+	<div ng-show= "authData" ng-controller="PostCtrl" class="row" id="row1">
+		<div layout="row" layout-xs="column" >
+			<md-content flex layout-padding class="autoScroll md-whiteframe-1dp" layout-padding>
+				<form name="userForm" ng-submit="$event.preventDefault()">
+					<div flex>
 
-		<md-content layout-padding="">
+						<md-input-container class="md-block" flex-gt-xs="" >
+						  <label>Question?</label>
+						  <input type="text" ng-model="$parent.question">
+						</md-input-container>
 
-            <form name="userForm" ng-submit="$event.preventDefault()">
+						<md-input-container>
+							<label>Help Catagory</label>
+							<md-select ng-model="field">
+							<md-optgroup label="Science">
+								<md-option ng-value="field.name" ng-repeat="field in fields | filter: {category: 'Science' }">{{field.name}}</md-option>
+							</md-optgroup>
+							<md-optgroup label="Engineering">
+								<md-option ng-value="field.name" ng-repeat="field in fields | filter: {category: 'Engineering' }">{{field.name}}</md-option>
+							</md-optgroup>
+						</md-select>
+					  </md-input-container>
 
-				<div layout-gt-s="row">
-					<md-input-container class="md-block" flex-gt-xs="">
-					  <label>Name</label>
-					  <input type="text" ng-model="$parent.author">
-					</md-input-container>
-					<md-input-container class="md-block" flex-gt-xs="">
-					  <label>Title</label>
-					  <input type="text" ng-model="$parent.title">
-					</md-input-container>
-					<md-input-container class="md-block" flex-gt-xs="">
-					  <label>Content</label>
-					  <input type="text" ng-model="$parent.textModel">
-					</md-input-container>
-				</div>
-              
-				<div>
-				  <md-input-container>
-				    <label>Help Catagory</label>
-				    <md-select ng-model="field">
-				      <md-optgroup label="Science">
-				        <md-option ng-value="field.name" ng-repeat="field in fields | filter: {category: 'Science' }">{{field.name}}</md-option>
-				      </md-optgroup>
-				      <md-optgroup label="Engineering">
-				        <md-option ng-value="field.name" ng-repeat="field in fields | filter: {category: 'Engineering' }">{{field.name}}</md-option>
-				      </md-optgroup>
-				    </md-select>
-				  </md-input-container>
-				  <md-datepicker ng-model="dueDate" md-placeholder="Due date">
-				  </md-datepicker>
-				</div> 
-			  	<md-button class="md-raised" ng-click="postMessage()"  ng-show= "authData">Post</md-button> 
-			  	{{dueDate}}
-            </form>
-        </md-content>
+						<md-input-container class="md-block  md-whiteframe-1z" md-ink-ripple="#FF0000" >
+						  <label>What would you like to be helped with?</label>
+						  <textarea style= "max-height: 25vh; overflow-y: auto; scroll-glue" ng-model="$parent.textModel" md-maxlength="1000" rows="8" md-select-on-focus></textarea>
+						</md-input-container>
+				  	</div>
 
-
-    </div>
+				  	<div flex layout="column">
+					  	<div layout="row">
+					  		<md-datepicker ng-model="dueDate" md-placeholder="Due date">
+						    </md-datepicker>
+						    <ng-md-icon icon="attach_file" style="fill: grey" size="35" input="file" ng-click=""></ng-md-icon> 
+						    <p>Willing to Pay</p>
+					    	<md-input-container>
+					  			<label>$</label>
+					      		<input ng-model="moneyAmount" type="number" step="1.0">
+					    	</md-input-container>
+					  	</div>
+						<md-button class="md-raised" ng-click="postMessage()"  ng-show= "authData">Post</md-button>	
+					</div>
+				</form>
+			</md-content>
+		</div>
+	</div>
 </div>

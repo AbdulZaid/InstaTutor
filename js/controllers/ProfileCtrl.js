@@ -5,6 +5,7 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
 
 		console.log(Users.getUser($scope.authData.uid))
 		console.log(Users.getProfile($scope.authData.uid))
+		console.log(Users.getName($scope.authData.uid))
 		$scope.usersInfo = Users.getProfile($scope.authData.uid)
 		$scope.user = {
 			title: $scope.usersInfo.handle, 
@@ -104,8 +105,8 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
 	.config(function($mdThemingProvider) {
 
 	    // Configure a dark theme with primary foreground yellow
-	    $mdThemingProvider.theme('docs-dark', 'default')
-	      .primaryPalette('blue')
-	      // .dark();
+	    $mdThemingProvider.theme('default')
+    	.primaryPalette('pink')
+   	 	.accentPalette('orange');
 
 	  });

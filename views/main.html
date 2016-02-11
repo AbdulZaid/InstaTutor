@@ -5,22 +5,8 @@
       <div ui-view="postArea">
       </div>
 
-      <div ng-repeat="post in posts | filter:name" class="panel-group" id="accordion" >
-        <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                <a href="" ng-click="isCollapsed = !isCollapsed">
-                  Assignment help in {{ post.title }} By {{ post.author }}
-                </a>
-              </h4>
-            </div>
-            <div ng-show="isCollapsed">
-              <div class="panel-body">
-                {{ post.content }}
-              </div>
-            </div>
-        </div>
+      <div ui-view="assignmentsArea">        
       </div>
-
+      
     </div>
 </div>

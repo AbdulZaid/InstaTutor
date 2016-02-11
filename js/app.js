@@ -60,6 +60,10 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 		        'postArea@main': { 
 		        	templateUrl: 'views/main-post.html',
 		        	controller: 'PostCtrl' 
+		    	},
+		    	'assignmentsArea@main': {
+		    		templateUrl: 'views/main-assignments.html',
+		    		controller: 'AssignmentCtrl'
 		    	}
 		    },
 
@@ -141,6 +145,9 @@ myApp.factory('Users', ['$firebaseAuth','$firebaseObject','$firebaseArray', func
 		getUser: function(uid) {
 			return $firebaseObject(usersRef.child(uid))
 		}, 
+		getName: function(uid) {
+			return users.$getRecord(uid).name
+		},
 		getProfile: function(uid) {
 			return users.$getRecord(uid)//for retrieving data in profilePage
 		}
