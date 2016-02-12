@@ -1,8 +1,16 @@
-myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseArray', function ($scope, Auth, Users, $firebaseArray ) {
+myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$firebaseArray', function ($scope, Auth, Users, $firebaseObject, $firebaseArray ) {
   var messageRef = new Firebase("https://homeworkmarket.firebaseio.com/messages");
   $scope.authData = Auth.$getAuth();
   var postsRef = messageRef.child("posts");
-  var authorName = Users.getName($scope.authData.uid)
+
+  var profileObject = $firebaseObject(messageRef);
+  var authorName
+  profileObject.$loaded( //to solve the problem with loading data before using it.
+    function() {
+      authorName = Users.getName($scope.authData.uid)
+
+    });
+
   // COLLAPSE =====================
   $scope.isCollapsed = false; 
 

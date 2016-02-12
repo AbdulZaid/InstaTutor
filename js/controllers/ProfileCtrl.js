@@ -6,19 +6,29 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
 		console.log(Users.getUser($scope.authData.uid))
 		console.log(Users.getProfile($scope.authData.uid))
 		console.log(Users.getName($scope.authData.uid))
-		$scope.usersInfo = Users.getProfile($scope.authData.uid)
-		$scope.user = {
-			title: $scope.usersInfo.handle, 
-			email: $scope.usersInfo.email, //contunue here and retreive data
-			firstName: $scope.usersInfo.name,
-			lastName: $scope.usersInfo.profile.lastName,
-			company: $scope.usersInfo.profile.company,
-			address: $scope.usersInfo.profile.address,
-			city: $scope.usersInfo.profile.city,
-			state: $scope.usersInfo.profile.state,
-			biography: $scope.usersInfo.profile.biography,
-			postalCode: $scope.usersInfo.profile.postalCode,
-		};
+		$scope.usersInfo = {}
+  		var profileObject = $firebaseObject(ref);
+  		/*
+  		* The problem is solved by creating a gloabl object usersInfo, and then assigning it to the 
+  		* object retrived by the method getProfile.
+  		*/
+		profileObject.$loaded( //to solve the problem with loading data before using it.
+		    function() {
+				$scope.usersInfo = Users.getProfile($scope.authData.uid) // here is the problem always
+				$scope.user = {
+					title: $scope.usersInfo.handle, 
+					email: $scope.usersInfo.email,
+					firstName: $scope.usersInfo.name,
+					lastName: $scope.usersInfo.profile.lastName,
+					company: $scope.usersInfo.profile.company,
+					address: $scope.usersInfo.profile.address,
+					city: $scope.usersInfo.profile.city,
+					state: $scope.usersInfo.profile.state,
+					biography: $scope.usersInfo.profile.biography,
+					postalCode: $scope.usersInfo.profile.postalCode,
+				};
+		  });
+
 		$scope.toggleSidenav = function(menuId) {
 		    $mdSidenav(menuId).toggle();
 		  };
