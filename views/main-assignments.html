@@ -1,25 +1,8 @@
 <div id="mainContainer" class="container">
   <div ng-controller="AuthCtrl" ng-show= "authData" ng-controller="AssignmentCtrl" class="row" id="row1">
-<!--       <div ng-repeat="post in posts | filter:name" class="panel-group" id="accordion" >
-        <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                <a href="" ng-click="isCollapsed = !isCollapsed">
-                  Assignment help in {{ post.field }} By {{ post.author }}
-                </a>
-              </h4>
-            </div>
-            <div ng-show="isCollapsed">
-              <div class="panel-body">
-                {{ post.content }}
-              </div>
-            </div>
-        </div>
-      </div> -->
-
       <div ng-repeat="post in posts | filter:name" layout="row" layout-align="center center" flex="100">
         <md-button class="md-primary md-raised" ng-click="showAdvanced(post.$id)" flex="100" flex-gt-md="auto">
-        Assignment help in {{ post.field }} By {{ post.author }}
+        <p class="md-body-1"> <h5 class=".md-title">{{post.field}}</h5>Question:  {{post.question}} <small class="md-caption"> By: {{ post.author }}</small>.</p>
         </md-button>
       </div>
 

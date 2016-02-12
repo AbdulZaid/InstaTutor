@@ -1,34 +1,23 @@
 <div id="loginContainer" class="container">
-  <div ng-controller="LoginCtrl">
-    <h3>This is login</h3>
-    <form class="form-horizontal">
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-          <div class="col-sm-10">
-            <input ng-model="email" type="email" class="form-control" id="inputEmail3" placeholder="Email">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-          <div class="col-sm-10">
-            <input ng-model="password" type="password" class="form-control" id="inputPassword3" placeholder="Password">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <div class="checkbox">
-              <label>
-                <input type="checkbox"> Remember me
-              </label>
-            </div>
-          </div>
-        </div>
-        <div ng-controller="AuthCtrl" class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <button ng-click="login()" ng-hide="authData" type="submit" class="btn btn-default">Log in</button>
-            <button ng-click="logout()" ng-show="authData" type="submit" class="btn btn-default">Log out</button>
-          </div>
-        </div>
+
+    <form class="form-horizontal" > 
+      <md-input-container class="md-block">
+      <!-- Use floating placeholder instead of label -->
+      <md-icon md-svg-src="" class="email"></md-icon>
+      <input ng-model="email" type="email" placeholder="Email (required)" ng-required="true">
+      </md-input-container>
+
+      <md-input-container class="md-block">
+      <!-- Use floating placeholder instead of label -->
+      <md-icon md-svg-src="" class="password"></md-icon>
+      <input ng-model="password" type="password" placeholder="Password (required)" ng-required="true">
+      </md-input-container>
+      <div flex-xs flex="50">
+        <md-checkbox aria-label="Checkbox">
+          Remember Me
+        </md-checkbox>
+      </div>
+      <md-button class="md-raised md-primary" ng-click="login()" ng-hide="authData" type="submit">Login</md-button>
     </form>
   </div>
 </div>

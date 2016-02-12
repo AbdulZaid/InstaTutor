@@ -80,9 +80,9 @@ md-sidenav ng-md-icon {
 #profileDropDown {
   color: white; }
 
-/*a {
-  color: black;
-  text-decoration: none; }*/
+a {
+  color: white;
+  text-decoration: none; }
 
 #profileContainer {
   min-width: auto;
@@ -102,9 +102,6 @@ md-sidenav ng-md-icon {
 
   .footer-distributed .footer-left p.footer-links {
     line-height: 1.8; } }
-
-
-
 /*** Footer section ***/
 .footer-distributed {
   background-color: #292c2f;
