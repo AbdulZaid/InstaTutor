@@ -2,10 +2,6 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
 	function ($scope, Users, Auth, $location, $firebaseAuth, $firebaseArray, $firebaseObject, $mdBottomSheet, $mdSidenav, $mdDialog) {
 		var ref = new Firebase("https://homeworkmarket.firebaseio.com/users")
 		$scope.authData = Auth.$getAuth();
-
-		console.log(Users.getUser($scope.authData.uid))
-		console.log(Users.getProfile($scope.authData.uid))
-		console.log(Users.getName($scope.authData.uid))
 		$scope.usersInfo = {}
   		var profileObject = $firebaseObject(ref);
   		/*
@@ -15,6 +11,9 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
 		profileObject.$loaded( //to solve the problem with loading data before using it.
 		    function() {
 				$scope.usersInfo = Users.getProfile($scope.authData.uid) // here is the problem always
+				console.log(Users.getUser($scope.authData.uid))
+				console.log(Users.getProfile($scope.authData.uid))
+				console.log(Users.getName($scope.authData.uid))
 				$scope.user = {
 					title: $scope.usersInfo.handle, 
 					email: $scope.usersInfo.email,
@@ -37,23 +36,25 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
 		      link : '',
 		      title: 'Profile',
 		      icon: 'dashboard',
-		      direct: 'dashboard'
+		      direct: 'editProfile'
 		    },
 		    {
 		      link : '',
 		      title: 'My Homework',
 		      icon: 'message',
-		      direct: 'dashboard'
+		      direct: 'editProfile'
 		    },
 		   	{
 		      link : '',
 		      title: 'My Work',
-		      icon: 'message'
+		      icon: 'message',
+		      direct: 'editProfile'
 		    },
 		    {
 		      link : '',
 		      title: 'Messages',
-		      icon: 'message'
+		      icon: 'message',
+		      direct: 'editProfile'
 		    }
 		  ];
 		  $scope.admin = [

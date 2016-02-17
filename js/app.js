@@ -106,20 +106,20 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 	    })
 	    .state('editProfile', {
 	    	url: "/editProfile",
-	    	// views: {
-		    //     // the main template will be placed here (relatively named)
-		    //     '': { 
-		    //     	templateUrl: 'views/profile.html',
-		    //     	controller: 'ProfileCtrl'
-		    //     	},
-		    //     // the child views will be defined here (absolutely named)
-		    //     'postArea@main': { 
-		    //     	templateUrl: 'views/messages.html',
-		    //     	controller: 'MessagesListCtrl' 
-		    // 	},
-		    // },
-	    	controller: 'ProfileCtrl',
 	    	templateUrl: "views/profile.html",
+	    	views: {
+		        // the main template will be placed here (relatively named)
+		        '': { 
+		        	templateUrl: 'views/profile.html',
+		        	controller: 'ProfileCtrl'
+		        	},
+		        // the child views will be defined here (absolutely named)
+		        'postArea@main': { 
+		        	templateUrl: 'views/messages.html',
+		        	controller: 'MessagesListCtrl' 
+		    	},
+		    },
+
 	    	module: "private",
 			resolve: {
 				// controller will not be loaded until $waitForAuth resolves
