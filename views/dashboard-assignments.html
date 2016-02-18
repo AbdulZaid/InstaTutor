@@ -1,0 +1,39 @@
+
+<div ng-controller="UserAssignmentCtrl" layout="column" flex layout-fill ng-cloak>
+
+  <md-toolbar md-scroll-shrink>
+    <div class="md-toolbar-tools">My Assignments</div>
+  </md-toolbar>
+
+  <md-content style="height: 600px;" md-theme="altTheme">
+    <section>
+      <md-subheader class="md-primary">Assignements in Progress</md-subheader>
+      <md-list ng-cloak >
+          <md-divider></md-divider>
+          <md-list-item ng-repeat="person in people" ng-click="goToPerson(person.name, $event)">
+            <md-divider></md-divider>
+            <img alt="{{ person.name }}" ng-src="{{ person.img }}" class="md-avatar" />
+            <p>{{person.question}} is by: {{ person.name }}</p>
+            <md-icon md-svg-icon="communication:messenger" ng-click="doSecondaryAction($event)" aria-label="Open Chat" class="md-secondary md-hue-3" ng-class="{'md-primary': person.newMessage}"></md-icon>
+            <ng-md-icon icon="{{person.icon}}">Edit</ng-md-icon>
+          </md-list-item>
+      </md-list>
+    </section>
+
+      <section>
+        <div>
+          <md-subheader class="md-warn">Assignements Completed</md-subheader>
+<!--         </div>
+        <md-list ng-cloak >
+            <md-divider></md-divider>
+            <md-list-item ng-repeat="person in people" ng-click="goToPerson(person.name, $event)">
+              <md-divider></md-divider>
+              <img alt="{{ person.name }}" ng-src="{{ person.img }}" class="md-avatar" />
+              <p>{{ person.name }}</p>
+              <md-icon md-svg-icon="communication:messenger" ng-click="doSecondaryAction($event)" aria-label="Open Chat" class="md-secondary md-hue-3" ng-class="{'md-primary': person.newMessage}"></md-icon>
+              <ng-md-icon icon="{{person.icon}}">Edit</ng-md-icon>
+            </md-list-item>
+        </md-list> -->
+      </section>
+  </md-content>
+</div>

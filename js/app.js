@@ -150,7 +150,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 		})
 		.state('dashboard.myAssignments', {
 			url: "/myAssignments",
-			templateUrl: "views/dashboard-profile.html", 
+			templateUrl: "views/dashboard-assignments.html", 
 			// controller: "ProfileCtrl"
 		})
 		.state('dashboard.myMessages', {
