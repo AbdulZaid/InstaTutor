@@ -104,19 +104,21 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 	    	templateUrl: "views/login.html",
 	    	module: "public",
 	    })
-	    .state('editProfile', {
-	    	url: "/editProfile",
-	    	templateUrl: "views/profile.html",
+	    .state('dashboard', {
+	    	url: "/dashboard",
+	    	// controller: 'ProfileCtrl',
+	    	// templateUrl: "views/dashboard.html",
+
 	    	views: {
 		        // the main template will be placed here (relatively named)
 		        '': { 
-		        	templateUrl: 'views/profile.html',
+		        	templateUrl: 'views/dashboard.html',
 		        	controller: 'ProfileCtrl'
 		        	},
-		        // the child views will be defined here (absolutely named)
-		        'postArea@main': { 
-		        	templateUrl: 'views/messages.html',
-		        	controller: 'MessagesListCtrl' 
+		    //     // the child views will be defined here (absolutely named)
+		        'profile@dashboard': { 
+		        	templateUrl: 'views/dashboard-profile.html',
+		        	controller: 'ProfileCtrl' 
 		    	},
 		    },
 
@@ -141,6 +143,21 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 			    }]
 			}
 	    })
+		.state('dashboard.myProfile', {
+			url: "/myProfile",
+			templateUrl: "views/dashboard-profile.html",
+			// ProfileCtrl: "ProfileCtrl"
+		})
+		.state('dashboard.myAssignments', {
+			url: "/myAssignments",
+			templateUrl: "views/dashboard-profile.html", 
+			// controller: "ProfileCtrl"
+		})
+		.state('dashboard.myMessages', {
+			url: "/myMessages",
+			templateUrl: "views/messages.html", 
+			controller: "MessagesCtrl"
+		})
 })
 
 //FACTORY

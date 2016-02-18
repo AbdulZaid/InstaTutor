@@ -36,25 +36,25 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
 		      link : '',
 		      title: 'Profile',
 		      icon: 'dashboard',
-		      direct: 'editProfile'
+		      direct: 'dashboard.myProfile'
 		    },
 		    {
 		      link : '',
 		      title: 'My Homework',
 		      icon: 'message',
-		      direct: 'editProfile'
+		      direct: 'dashboard.myAssignments'
 		    },
 		   	{
 		      link : '',
 		      title: 'My Work',
 		      icon: 'message',
-		      direct: 'editProfile'
+		      direct: 'dashboard.myProfile'
 		    },
 		    {
 		      link : '',
 		      title: 'Messages',
 		      icon: 'message',
-		      direct: 'editProfile'
+		      direct: 'dashboard.myMessages'
 		    }
 		  ];
 		  $scope.admin = [
