@@ -97,8 +97,6 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
 	    console.log("IIIDDDDD " + $scope.authData.uid)
 	    // console.log(sh.address)
 	    $scope.updateProfile = function(authData) {
-
-
 	    	$scope.profileData.set({
 	      	  title: $scope.user.title,
 		      email: $scope.user.email,

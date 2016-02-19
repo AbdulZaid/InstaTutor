@@ -28,7 +28,7 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','$firebaseArray','$firebaseO
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     var postID = ev
     window.postValue = $scope.posts.$getRecord(postID)
-	$scope.obj = window.postValue
+	  $scope.obj = window.postValue
     console.log($scope.obj)
 
 

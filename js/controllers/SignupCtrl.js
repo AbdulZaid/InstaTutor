@@ -35,16 +35,16 @@ myApp.controller('SignupCtrl', ['$scope','Auth','$location','$firebaseAuth', fun
 					  handle: $scope.handle,
 					  type: $scope.userLists.label, //from the ng-model and ng-repeat in html file.      
 					  profile: {
-							title: " ",
-							email: " ",
-							firstName: " ",
-							lastName: " ",
-							company: " ",
-							address: " ",
-							city: " ",
-							state: " ",
-							biography: " ",
-							postalCode: " "
+						title: " ",
+						email: " ",
+						firstName: " ",
+						lastName: " ",
+						company: " ",
+						address: " ",
+						city: " ",
+						state: " ",
+						biography: " ",
+						postalCode: " "
 					  }
 					});
 			}).catch(function(error) {

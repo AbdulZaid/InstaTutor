@@ -1,21 +1,23 @@
 myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$firebaseArray', function ($scope, Auth, Users, $firebaseObject, $firebaseArray ) {
   var messageRef = new Firebase("https://homeworkmarket.firebaseio.com/messages");
+  var userRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
   $scope.authData = Auth.$getAuth();
   var postsRef = messageRef.child("posts");
-
   var profileObject = $firebaseObject(messageRef);
   var authorName
+  var key //new post's key
+
+
   profileObject.$loaded( //to solve the problem with loading data before using it.
     function() {
       authorName = Users.getName($scope.authData.uid)
-
-    });
+  });
 
   // COLLAPSE =====================
   $scope.isCollapsed = false; 
 
   $scope.postMessage = function() {
-    postsRef.push().set({
+    postsRef.push({
         "authorID": $scope.authData.uid,
         "author": authorName,
         "question": $scope.question,
@@ -30,10 +32,12 @@ myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$fireba
         } else {
           alert("Data saved successfully.");
         }
+      })
+      postsRef.orderByKey().limitToLast(1).on('child_added', function(snapshot) {
+      key = snapshot.key()  //get a snapshot of the post's key
     });
+      userRef.child($scope.authData.uid).child("posts").push(key) //add new post to user's posts.
   };
-
- 
 
   $scope.fields = [
     { category: 'Science', name: 'Math' },
