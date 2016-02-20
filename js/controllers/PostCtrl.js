@@ -25,18 +25,27 @@ myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$fireba
         "field": $scope.field,
         "dueDate": $scope.dueDate.toJSON(),
         "amount": $scope.moneyAmount
-      },
-      function(error) {
-        if (error) {
-          alert("Data could not be saved." + error);
-        } else {
-          alert("Data saved successfully.");
-        }
-      })
-      postsRef.orderByKey().limitToLast(1).on('child_added', function(snapshot) {
+    },
+    function(error) {
+      if (error) {
+        alert("Data could not be saved." + error);
+      } else {
+        alert("Data saved successfully.");
+      }
+    })
+    postsRef.orderByKey().limitToLast(1).on('child_added', function(snapshot) {
       key = snapshot.key()  //get a snapshot of the post's key
     });
-      userRef.child($scope.authData.uid).child("posts").push(key) //add new post to user's posts.
+    userRef.child($scope.authData.uid).child("posts").push({  
+      "key": key,
+      "authorID": $scope.authData.uid,
+      "author": authorName,
+      "question": $scope.question,
+      "content": $scope.textModel,
+      "field": $scope.field,
+      "dueDate": $scope.dueDate.toJSON(),
+      "amount": $scope.moneyAmount
+    }) //add new post to user's posts.
   };
 
   $scope.fields = [

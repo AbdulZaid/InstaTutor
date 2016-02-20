@@ -21,7 +21,7 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','$firebaseArray','$firebaseO
  //  	});
 	// console.log($scope.posts.$keyAt(0))
 
-    $scope.status = '  ';
+  $scope.status = ' ';
 	$scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 
   $scope.showAdvanced = function(ev) {
@@ -61,19 +61,19 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','$firebaseArray','$firebaseO
 
 
 
-function DialogController($scope, $mdDialog, items) {
-  $scope.items = items //these are the items inside the object obtained by $getRecord.
-  $scope.hide = function() {
-    $mdDialog.hide();
-  };
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
-  $scope.answer = function(answer) {
-    $mdDialog.hide(answer);
-  };
+  function DialogController($scope, $mdDialog, items) {
+    $scope.items = items //these are the items inside the object obtained by $getRecord.
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+    $scope.answer = function(answer) {
+      $mdDialog.hide(answer);
+    };
 
-}
+  }
 
 
 

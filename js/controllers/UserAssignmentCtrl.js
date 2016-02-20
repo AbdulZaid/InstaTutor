@@ -1,14 +1,16 @@
 myApp.controller('UserAssignmentCtrl', ['$scope','Auth','Users','$firebaseObject','$firebaseArray','$mdDialog', function ($scope, Auth, Users, $firebaseObject, $firebaseArray, $mdDialog) {
-  var userRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
-  $scope.userAssignment = $firebaseObject(userRef);
+  var userRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
   $scope.userAuth = Auth.$getAuth()
   $scope.userID = $scope.userAuth.uid
+  $scope.userAssignment = $firebaseObject(userRef.child($scope.userID).child("posts"));
+  $scope.myAssignments
   $scope.userAssignment.$loaded().then(function(assignmentsRef){
-    console.log(assignmentsRef)
-    console.log("Get you soon")
-    console.log($scope.userID)
+    $scope.myAssignments = $scope.userAssignment
   })
-
+    userRef.orderByKey().on('value', function(snapshot) {
+      var key = snapshot.key()  //get a snapshot of the post's key
+      alert(key)
+    });
 
 
 
