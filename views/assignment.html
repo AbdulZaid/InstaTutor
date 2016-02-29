@@ -1,4 +1,4 @@
-<md-dialog aria-label=""   ng-controller="AssignmentCtrl">
+<md-dialog aria-label="" ng-controller="AssignmentCtrl">
   <form>
     <md-toolbar>
       <div ng-model="$parent.items" class="md-toolbar-tools" >
@@ -16,15 +16,9 @@
           {{items.content}}
         </p>
         <img style="margin: auto; max-width: 100%;" alt="Lush mango tree" src="">
-        <p>
-          {{items.content}}
-        </p>
-        <p>
-          It originated in Indian subcontinent (present day India and Pakistan) and Burma. It is the national fruit of India, Pakistan, and the Philippines, and the national tree of Bangladesh. In several cultures, its fruit and leaves are ritually used as floral decorations at weddings, public celebrations, and religious ceremonies.
-        </p>
       </div>
     </md-dialog-content>
-    <md-dialog-actions layout="row">
+    <md-dialog-actions layout="row" ng-model="$parent.items">
       <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
         More
       </md-button>
@@ -32,7 +26,7 @@
       <md-button ng-click="answer('Message')">
        Message
       </md-button>
-      <md-button ng-click="answer('Propose')" style="margin-right:20px;">
+      <md-button ng-click="propose(items.authorID)"style="margin-right:20px;">
         Propose
       </md-button>
     </md-dialog-actions>

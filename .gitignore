@@ -1,2 +1,10 @@
 .sass-cache/
 *.css.map
+
+*.map
+
+css/css
+
+css/style.css.map
+
+*.map

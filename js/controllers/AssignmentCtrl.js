@@ -1,6 +1,7 @@
 myApp.controller('AssignmentCtrl', ['$scope','Auth','$firebaseArray','$firebaseObject','$mdDialog', '$mdMedia', function ($scope, Auth, $firebaseArray, $firebaseObject, $mdDialog, $mdMedia, $location) {
 
 	var refOne = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
+
 	// create a synchronized array
 	// click on `index.html` above to see it used in the DOM!
 	// var query = refOne.orderByChild("timestamp").limitToLast(10);
@@ -8,30 +9,13 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','$firebaseArray','$firebaseO
 	$scope.authData = Auth.$getAuth()
 	window.postValue = {}
 	$scope.obj = {}
-	// $scope.posts.$loaded().then(function(tasks) {
-
-	// 	// alert(tasks.$getRecord($id))
-	//     var key1 = '-KADtO3UPeM4k2KTobSX';
-	//     var key2 = '-JyPlaj72Hyo6T3aJchM';
-	//     var key3 = '-JyPlbmtt86NVwFTkTY6';
-
-	//     console.log(tasks.$getRecord(key1));
-	//     // console.log(tasks.$getRecord(key2));
-	//     // console.log(tasks.$getRecord(key3));
- //  	});
-	// console.log($scope.posts.$keyAt(0))
-
   $scope.status = ' ';
 	$scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
-
   $scope.showAdvanced = function(ev) {
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
-    var postID = ev
-    window.postValue = $scope.posts.$getRecord(postID)
+    window.postValue = $scope.posts.$getRecord(ev)
 	  $scope.obj = window.postValue
     console.log($scope.obj)
-
-
 
     $mdDialog.show({
       controller: DialogController,
@@ -58,7 +42,14 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','$firebaseArray','$firebaseO
   };
 
 
+  $scope.propose = function(authorID) {
+    //do if statements here.
+    var tutorID =  $scope.authData.uid
+    var authorID = authorID
 
+    console.log("tutor ID" + tutorID)
+    console.log(authorID)
+  }
 
 
   function DialogController($scope, $mdDialog, items) {
@@ -71,6 +62,7 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','$firebaseArray','$firebaseO
     };
     $scope.answer = function(answer) {
       $mdDialog.hide(answer);
+      console.log(answer)
     };
 
   }

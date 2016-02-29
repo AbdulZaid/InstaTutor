@@ -221,4 +221,13 @@ md-sidenav ng-md-icon {
 #headerRow {
   margin-top: 50px;
 }
-
+md-badge{
+  margin: 0 0 0 8px;
+  background-color: #259b24;
+  color: white;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+md-warn{
+  background-color: #259b24;
+}

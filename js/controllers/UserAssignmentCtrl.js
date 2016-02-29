@@ -6,11 +6,14 @@ myApp.controller('UserAssignmentCtrl', ['$scope','Auth','Users','$firebaseObject
   $scope.myAssignments
   $scope.userAssignment.$loaded().then(function(assignmentsRef){
     $scope.myAssignments = $scope.userAssignment
-  })
-    userRef.orderByKey().on('value', function(snapshot) {
+    //this needs to be changed to order data correctly.
+    userRef.child($scope.userID).child("posts").orderByKey().on('child_added', function(snapshot) {
       var key = snapshot.key()  //get a snapshot of the post's key
       alert(key)
     });
+
+  })
+
 
 
 
@@ -32,7 +35,7 @@ myApp.controller('UserAssignmentCtrl', ['$scope','Auth','Users','$firebaseObject
         .title('Navigating')
         .textContent('Inspect ' + person)
         .ariaLabel('Person inspect demo')
-        .ok('Neat!')
+        .ok('Edit')
         .targetEvent(event)
     );
   };

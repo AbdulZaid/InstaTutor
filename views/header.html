@@ -13,7 +13,7 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <div class="collapse navbar-collapse navbar-ex1-collapse" ng-controller="NotifyCtrl">
             <ul class="nav navbar-nav navbar-right">
                 <li><a ui-sref="main">Home</a>
                 </li>
@@ -21,8 +21,13 @@
                 </li>
                 <li ng-hide= "authData" ><a ui-sref="signup">Signup</a>
                 </li>
-                <li><a href="#/About">About</a>
+                <li>
+                    <md-content>
+                        <md-button class="md-raised md-primary">{{title}}<md-badge ng-class="{'md-warn': warn()}">{{badgeNum}}</md-badge></md-button>
+                    </md-content>
                 </li>
+
+
                 <li><a ui-sref="dashboard">Dashboard</a>
                 </li>
                 <li class="dropdown">
