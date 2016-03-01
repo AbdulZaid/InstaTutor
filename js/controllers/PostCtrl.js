@@ -36,7 +36,7 @@ myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$fireba
     postsRef.orderByKey().limitToLast(1).on('child_added', function(snapshot) {
       key = snapshot.key()  //get a snapshot of the post's key
     });
-    userRef.child($scope.authData.uid).child("posts").push({  
+    userRef.child($scope.authData.uid).child("posts").child(key).set({  
       "key": key,
       "authorID": $scope.authData.uid,
       "author": authorName,

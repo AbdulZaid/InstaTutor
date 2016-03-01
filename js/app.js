@@ -179,6 +179,12 @@ myApp.factory('Users', ['$firebaseAuth','$firebaseObject','$firebaseArray', func
 		},
 		getProfile: function(uid) {
 			return usersArray.$getRecord(uid)//for retrieving data in profilePage
+		},
+		getPosts: function(uid) {
+			return $firebaseObject(usersRef.child(uid).child("posts"))
+		},
+		getSpecificPost: function(uid, postID) {
+			return $firebaseObject(usersRef.child(uid).child("posts").child(postID))
 		}
 	}
 

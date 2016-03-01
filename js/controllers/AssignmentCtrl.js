@@ -1,12 +1,14 @@
-myApp.controller('AssignmentCtrl', ['$scope','Auth','$firebaseArray','$firebaseObject','$mdDialog', '$mdMedia', function ($scope, Auth, $firebaseArray, $firebaseObject, $mdDialog, $mdMedia, $location) {
+myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','$firebaseArray','$firebaseObject','$mdDialog', '$mdMedia', function ($scope, Auth, Users, $firebaseArray, $firebaseObject, $mdDialog, $mdMedia, $location) {
 
-	var refOne = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
+  var postRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
+  var authorRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
 
 	// create a synchronized array
 	// click on `index.html` above to see it used in the DOM!
 	// var query = refOne.orderByChild("timestamp").limitToLast(10);
-	$scope.posts = $firebaseArray(refOne);
+	$scope.posts = $firebaseArray(postRef);
 	$scope.authData = Auth.$getAuth()
+  $scope.author = $firebaseObject(authorRef);
 	window.postValue = {}
 	$scope.obj = {}
   $scope.status = ' ';
@@ -42,13 +44,29 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','$firebaseArray','$firebaseO
   };
 
 
-  $scope.propose = function(authorID) {
-    //do if statements here.
+  $scope.propose = function(authorID, postID) {
     var tutorID =  $scope.authData.uid
     var authorID = authorID
+    var postID = postID
+    $scope.author.$loaded(
+      function() {
+        authorPosts = Users.getPosts(authorID) //to get all the posts of a certain author
+        authorCurrentPost = Users.getSpecificPost(authorID, postID)
+        tutorName = Users.getName(tutorID)
 
-    console.log("tutor ID" + tutorID)
-    console.log(authorID)
+        authorRef.child(authorID).child("posts").child(authorCurrentPost.$id).child("proposals").push({
+          "tutorID": tutorID,
+          "tutorName": tutorName,
+          "amount": tutorID
+        })
+
+        console.log("tutor ID" + tutorID)
+        console.log("Author ID" + authorID)
+        console.log($scope.author)
+        console.log(authorPosts)
+        console.log(authorCurrentPost)
+        console.log(tutorName)
+      })
   }
 
 
