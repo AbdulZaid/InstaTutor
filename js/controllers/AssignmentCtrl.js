@@ -43,11 +43,11 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','$firebaseArray','$f
     });
   };
 
-
   $scope.propose = function(authorID, postID) {
     var tutorID =  $scope.authData.uid
     var authorID = authorID
     var postID = postID
+    var time = Firebase.ServerValue.TIMESTAMP
     $scope.author.$loaded(
       function() {
         authorPosts = Users.getPosts(authorID) //to get all the posts of a certain author
@@ -57,15 +57,27 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','$firebaseArray','$f
         authorRef.child(authorID).child("posts").child(authorCurrentPost.$id).child("proposals").push({
           "tutorID": tutorID,
           "tutorName": tutorName,
-          "amount": tutorID
+          "amount": tutorID,
+          ".priority": Firebase.ServerValue.TIMESTAMP,
         })
 
-        console.log("tutor ID" + tutorID)
-        console.log("Author ID" + authorID)
-        console.log($scope.author)
-        console.log(authorPosts)
-        console.log(authorCurrentPost)
-        console.log(tutorName)
+        authorRef.child(authorID).child("notifications").push({
+          "tutorID": tutorID,
+          "tutorName": tutorName,
+          "amount": tutorID,
+          ".priority": Firebase.ServerValue.TIMESTAMP,
+          "time": time
+        })
+        //function to check priorities. 
+        authorRef.child(authorID).child("notifications").on('child_added', function(snapshot) { 
+          console.log(snapshot.getPriority());
+        });
+        // console.log("tutor ID" + tutorID)
+        // console.log("Author ID" + authorID)
+        // console.log($scope.author)
+        // console.log(authorPosts)
+        // console.log(authorCurrentPost)
+        // console.log(tutorName)
       })
   }
 
