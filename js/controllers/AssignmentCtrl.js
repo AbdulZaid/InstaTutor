@@ -59,9 +59,14 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','$firebaseArray','$f
           "tutorName": tutorName,
           "amount": tutorID,
           ".priority": Firebase.ServerValue.TIMESTAMP,
+          "time": time
         })
-
-        authorRef.child(authorID).child("notifications").push({
+        //get the key of the proposal to store it in the user notifications.
+        authorRef.child(authorID).child("posts").child(authorCurrentPost.$id).child("proposals").orderByKey().limitToLast(1).on('child_added', function(snapshot) {
+          key = snapshot.key()  //get a snapshot of the post's key
+        });
+        //use the above to set with the same proposal key.
+        authorRef.child(authorID).child("notifications").child(key).set({
           "tutorID": tutorID,
           "tutorName": tutorName,
           "amount": tutorID,
@@ -72,15 +77,8 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','$firebaseArray','$f
         authorRef.child(authorID).child("notifications").on('child_added', function(snapshot) { 
           console.log(snapshot.getPriority());
         });
-        // console.log("tutor ID" + tutorID)
-        // console.log("Author ID" + authorID)
-        // console.log($scope.author)
-        // console.log(authorPosts)
-        // console.log(authorCurrentPost)
-        // console.log(tutorName)
       })
   }
-
 
   function DialogController($scope, $mdDialog, items) {
     $scope.items = items //these are the items inside the object obtained by $getRecord.
@@ -96,12 +94,6 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','$firebaseArray','$f
     };
 
   }
-
-
-
-
-
-
 
 }]);
 

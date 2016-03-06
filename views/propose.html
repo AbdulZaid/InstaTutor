@@ -1,0 +1,18 @@
+<div ng-controller="AssignmentCtrl" layout="column" ng-cloak class="md-inline-form">
+  <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding >
+    <div ng-model="$parent.items">
+        <md-input-container class="md-block">
+        	<label>Proposal Message</label>
+        	<textarea ng-model="proposalMessage" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+        <md-input-container>
+  			<label for="input_87">$</label>
+      		<input ng-model="moneyAmount" type="number" step="1.0" class="ng-pristine ng-valid md-input ng-touched" id="input_87" aria-invalid="false" style=""><div class="md-errors-spacer"></div>
+    	</md-input-container>
+        <span flex></span>
+        <md-button ng-click="propose(items.authorID, items.$id)"style="margin-right:20px;">
+        Propose
+      </md-button>
+	</div>
+  </md-content>
+</div>

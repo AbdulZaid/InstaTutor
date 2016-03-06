@@ -6,7 +6,7 @@ myApp.controller('NotifyCtrl', ['$scope','Auth','Users','$interval','$firebaseOb
 
 		authorRef.child(authorID).child("notifications").on('child_added', function(snapshot) { 
           console.log(snapshot.val());
-          alert("hey you got proposal from ")
+          // alert("hey you got proposal from ")
         });
 
 		$scope.title = 'Title';

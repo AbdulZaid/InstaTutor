@@ -58,10 +58,8 @@ myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$fireba
     { category: 'Engineering', name: 'Software Engineering' },
     { category: 'Engineering', name: 'Industrial Engineering' }
   ];
-
-
-
 }])
+
 .config(function($mdDateLocaleProvider) {
   $mdDateLocaleProvider.formatDate = function(date) {
     return moment(date).format('YYYY-MM-DD');

@@ -4,55 +4,25 @@
   </md-toolbar>
   <md-content style="height: 600px;" md-theme="altTheme">
     <section>
-      <md-subheader class="md-primary">Unread Messages</md-subheader>
+      <md-subheader class="md-primary">New Proposals</md-subheader>
       <md-list layout-padding>
-        <md-list-item class="md-3-line" ng-repeat="message in messages">
-            <img ng-src="{{message.face}}" class="md-avatar" alt="{{message.who}}">
+        <md-list-item class="md-3-line" ng-repeat="message in messages  | reverse">
+            <img ng-src="{{imagePath}}" class="md-avatar" alt="{{message.tutorName}}">
             <div class="md-list-item-text">
-              <h3>{{message.what}}</h3>
-              <h4>{{message.who}}</h4>
+              <h3>{{message.tutorName}}</h3>
+              <h4>{{message.tutorName}}</h4>
               <p>
-                {{message.notes}}
+                {{message.tutorID}}
               </p>
             </div>
         </md-list-item>
       </md-list>
     </section>
     <section>
-      <md-subheader class="md-warn">Late Messages</md-subheader>
+      <md-subheader class="md-warn">Old Proposals</md-subheader>
       <md-list layout="column" layout-padding>
         <md-list-item class="md-3-line" ng-repeat="message in messages">
-          <img ng-src="{{message.face}}" class="md-avatar" alt="{{message.who}}">
-          <div class="md-list-item-text">
-            <h3>{{message.what}}</h3>
-            <h4>{{message.who}}</h4>
-            <p>
-              {{message.notes}}
-            </p>
-          </div>
-        </md-list-item>
-      </md-list>
-    </section>
-    <section>
-      <md-subheader>Read Messages</md-subheader>
-      <md-list layout="column" layout-padding>
-        <md-list-item class="md-3-line" ng-repeat="message in messages">
-          <img ng-src="{{message.face}}" class="md-avatar" alt="{{message.who}}">
-          <div class="md-list-item-text">
-            <h3>{{message.what}}</h3>
-            <h4>{{message.who}}</h4>
-            <p>
-              {{message.notes}}
-            </p>
-          </div>
-        </md-list-item>
-      </md-list>
-    </section>
-    <section>
-      <md-subheader class="md-accent">Archived messages</md-subheader>
-      <md-list layout="column" layout-padding>
-        <md-list-item class="md-3-line" ng-repeat="message in messages">
-          <img ng-src="{{message.face}}" class="md-avatar" alt="{{message.who}}">
+          <img ng-src="{{imagePath}}" class="md-avatar" alt="{{message.who}}">
           <div class="md-list-item-text">
             <h3>{{message.what}}</h3>
             <h4>{{message.who}}</h4>
