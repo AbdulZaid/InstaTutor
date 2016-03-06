@@ -43,6 +43,21 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','$firebaseArray','$f
     });
   };
 
+  $scope.showProposal = function(ev) {
+    window.postValue = $scope.posts.$getRecord(ev)
+    $scope.obj = window.postValue
+    $mdDialog.show({
+      templateUrl: 'views/propose.html',
+      parent: angular.element(document.body),
+      locals: {
+        items: $scope.obj
+      },
+      controller: DialogController,
+      targetEvent: ev,
+      clickOutsideToClose:true,
+    })
+  }
+
   $scope.propose = function(authorID, postID) {
     var tutorID =  $scope.authData.uid
     var authorID = authorID
@@ -53,13 +68,13 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','$firebaseArray','$f
         authorPosts = Users.getPosts(authorID) //to get all the posts of a certain author
         authorCurrentPost = Users.getSpecificPost(authorID, postID)
         tutorName = Users.getName(tutorID)
-
         authorRef.child(authorID).child("posts").child(authorCurrentPost.$id).child("proposals").push({
           "tutorID": tutorID,
           "tutorName": tutorName,
-          "amount": tutorID,
+          // "amount": authorCurrentPost.amount || $scope.counterOffer,
           ".priority": Firebase.ServerValue.TIMESTAMP,
-          "time": time
+          "time": time,
+          "message": $scope.proposalMessage || "New propsal" ,
         })
         //get the key of the proposal to store it in the user notifications.
         authorRef.child(authorID).child("posts").child(authorCurrentPost.$id).child("proposals").orderByKey().limitToLast(1).on('child_added', function(snapshot) {
@@ -71,7 +86,8 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','$firebaseArray','$f
           "tutorName": tutorName,
           "amount": tutorID,
           ".priority": Firebase.ServerValue.TIMESTAMP,
-          "time": time
+          "time": time,
+          "message": $scope.proposalMessage || "new Propsal" 
         })
         //function to check priorities. 
         authorRef.child(authorID).child("notifications").on('child_added', function(snapshot) { 
