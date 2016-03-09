@@ -166,6 +166,17 @@ myApp.factory('Auth', ['$firebaseAuth', function ($firebaseAuth) {
 	return  $firebaseAuth(ref);
 }])
 
+myApp.factory('Posts', ['$firebaseAuth','$firebaseObject','$firebaseArray', function ($firebaseAuth, $firebaseObject, $firebaseArray) {
+	var postRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
+	var postsArray = $firebaseArray(postRef)
+	var Posts = {
+		getSpecificPost: function(postID) {
+			return postsArray.$getRecord(postID)
+		}
+	}
+	return  Posts;
+}])
+
 myApp.factory('Users', ['$firebaseAuth','$firebaseObject','$firebaseArray', function ($firebaseAuth, $firebaseObject, $firebaseArray) {
 	var usersRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
 	var usersArray = $firebaseArray(usersRef)

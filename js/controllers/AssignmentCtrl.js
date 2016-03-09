@@ -1,4 +1,4 @@
-myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','$firebaseArray','$firebaseObject','$mdDialog', '$mdMedia', function ($scope, Auth, Users, $firebaseArray, $firebaseObject, $mdDialog, $mdMedia, $location) {
+myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','Posts', '$firebaseArray','$firebaseObject','$mdDialog', '$mdMedia', function ($scope, Auth, Users, Posts, $firebaseArray, $firebaseObject, $mdDialog, $mdMedia, $location) {
 
   var postRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
   var authorRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
@@ -13,14 +13,19 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','$firebaseArray','$f
 	$scope.obj = {}
   $scope.status = ' ';
 	$scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
-  $scope.showAdvanced = function(ev) {
+  $scope.showAdvanced = function(ev, event) {
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     window.postValue = $scope.posts.$getRecord(ev)
 	  $scope.obj = window.postValue
     console.log($scope.obj)
 
     $mdDialog.show({
-      controller: DialogController,
+      controller: function DialogController($scope, $mdDialog,items) {
+          $scope.items = items //these are the items inside the object obtained by $getRecord.
+          $scope.closeDialog = function() {
+            $mdDialog.hide();
+          }
+      },
       templateUrl: 'views/assignment.html',
       parent: angular.element(document.body),
       //these are the items inside the object obtained by $getRecord.
@@ -29,7 +34,7 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','$firebaseArray','$f
       },
       targetEvent: ev,
       clickOutsideToClose:true,
-      fullscreen: useFullScreen
+      fullscreen: useFullScreen,
     })
     .then(function(answer) {
       $scope.status = 'You said the information was "' + answer + '".';
@@ -43,19 +48,28 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','$firebaseArray','$f
     });
   };
 
-  $scope.showProposal = function(ev) {
+  $scope.showProposal = function(ev, event) {
     window.postValue = $scope.posts.$getRecord(ev)
     $scope.obj = window.postValue
     $mdDialog.show({
+      controller: function DialogController($scope, $mdDialog, items) {
+        $scope.items = items //these are the items inside the object obtained by $getRecord.
+        $scope.closeDialog = function() {
+          $mdDialog.hide();
+        }
+      },
       templateUrl: 'views/propose.html',
       parent: angular.element(document.body),
       locals: {
         items: $scope.obj
       },
-      controller: DialogController,
       targetEvent: ev,
       clickOutsideToClose:true,
-    })
+    }).then(function(answer) {
+      $scope.status = 'You said the information was "' + answer + '".';
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
+    });
   }
 
   $scope.propose = function(authorID, postID) {
@@ -66,12 +80,12 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','$firebaseArray','$f
     $scope.author.$loaded(
       function() {
         authorPosts = Users.getPosts(authorID) //to get all the posts of a certain author
-        authorCurrentPost = Users.getSpecificPost(authorID, postID)
+        authorCurrentPost = Posts.getSpecificPost(postID)
         tutorName = Users.getName(tutorID)
         authorRef.child(authorID).child("posts").child(authorCurrentPost.$id).child("proposals").push({
           "tutorID": tutorID,
           "tutorName": tutorName,
-          // "amount": authorCurrentPost.amount || $scope.counterOffer,
+          "amount": $scope.counterOffer || authorCurrentPost.amount,
           ".priority": Firebase.ServerValue.TIMESTAMP,
           "time": time,
           "message": $scope.proposalMessage || "New propsal" ,
@@ -84,7 +98,7 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','$firebaseArray','$f
         authorRef.child(authorID).child("notifications").child(key).set({
           "tutorID": tutorID,
           "tutorName": tutorName,
-          "amount": tutorID,
+          "amount": $scope.counterOffer || authorCurrentPost.amount,
           ".priority": Firebase.ServerValue.TIMESTAMP,
           "time": time,
           "message": $scope.proposalMessage || "new Propsal" 
