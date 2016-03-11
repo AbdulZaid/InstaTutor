@@ -10,12 +10,21 @@
       <md-subheader class="md-primary">Assignements in Progress</md-subheader>
       <md-list ng-cloak >
           <md-divider></md-divider>
-          <md-list-item ng-repeat="assignment in myAssignments" ng-click="goToPerson(assignment.name, $event)">
+          <md-list-item ng-repeat="assignment in myAssignments" ng-click="goToPerson(assignment, $event)">
             <md-divider></md-divider>
             <img alt="{{ assignment.name }}" ng-src="{{ assignment.img }}" class="md-avatar" />
-            <p>{{assignment.question}}    Assigned to: {{ assignment.name }}</p>
+            <span style="color:red">
+              {{ assignment.field }}: &nbsp&nbsp&nbsp&nbsp
+            </span> 
+            <p style="text-align:left;">{{assignment.question}} </p>
             <md-icon md-svg-icon="communication:messenger" ng-click="doSecondaryAction($event)" aria-label="Open Chat" class="md-secondary md-hue-3" ng-class="{'md-primary': assignment.newMessage}"></md-icon>
-            <ng-md-icon icon="{{assignment.icon}}">Edit</ng-md-icon>
+            <!-- <ng-md-icon icon="assignment"></ng-md-icon> -->
+            <md-button class="md-icon-button" aria-label="view assignment" >
+              <ng-md-icon icon="assignment"></ng-md-icon>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="delete assignment">
+              <ng-md-icon icon="delete"></ng-md-icon>
+            </md-button>
           </md-list-item>
       </md-list>
     </section>

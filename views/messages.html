@@ -6,15 +6,21 @@
     <section>
       <md-subheader class="md-primary">New Proposals</md-subheader>
       <md-list layout-padding>
-        <md-list-item class="md-3-line" ng-repeat="message in messages  | reverse">
+        <md-divider></md-divider>
+        <md-list-item class="md-3-line" ng-repeat="message in messages  | reverse" >
+            <md-divider></md-divider>
             <img ng-src="{{imagePath}}" class="md-avatar" alt="{{message.tutorName}}">
-            <div class="md-list-item-text">
-              <h3>{{message.tutorName}}</h3>
-              <h4>{{message.tutorName}}</h4>
+            <div class="md-list-item-text"  ng-click="goToPerson(message, $event)">
+              <h3 style="color:purple">{{message.tutorName}}</h3>
+              <h4>Is proposing to do your assignment for:<span style="color:red"> &nbsp{{message.amount}}</span></h4>
               <p>
-                {{message.tutorID}}
+                {{message.message}}
               </p>
             </div>
+            <md-button class="md-raised"ng-click=" deal($event)" >View Proposal</md-button>
+            <md-button class="md-raised md-warn"ng-click=" deal($event)">Reject</md-button>
+            <md-button class="md-raised md-primary" ng-click=" deal($event)" >Accept</md-button>
+
         </md-list-item>
       </md-list>
     </section>

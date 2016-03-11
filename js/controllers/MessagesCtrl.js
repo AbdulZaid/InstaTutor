@@ -1,4 +1,4 @@
-myApp.controller('MessagesCtrl', ['$scope','Auth','Users','$firebaseObject','$firebaseArray', function ($scope, Auth, Users, $firebaseObject, $firebaseArray ) {
+myApp.controller('MessagesCtrl', ['$scope','Auth','Users','$firebaseObject','$firebaseArray','$mdDialog', function ($scope, Auth, Users, $firebaseObject, $firebaseArray, $mdDialog ) {
     
   var authorRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
   $scope.authData = Auth.$getAuth()
@@ -6,18 +6,29 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','$firebaseObject','$fi
   $scope.messages = $firebaseArray(authorRef.child($scope.authData.uid).child("notifications"))
 
 
-    $scope.imagePath = 'images/abdul_img.png';
-    // $scope.messages = $scope.proposal
-    // console.log($scope.messages.tutorName + "walla")
-    // $scope.messages = [
-    //   {
-    //     face : imagePath,
-    //     what: 'Brunch this weekend?',
-    //     who: 'Min Li Chan',
-    //     when: '3:08PM',
-    //     notes: " I'll be in your neighborhood doing errands"
-    //   }
-    //]
+  $scope.imagePath = 'images/abdul_img.png';
+
+  $scope.goToPerson = function(message, event) {
+    $mdDialog.show(
+      $mdDialog.alert()
+        .title("Message/Proposal from: " + message.tutorName)
+        .textContent(message.message)
+        .ok('Got It')
+        .targetEvent(event)
+    );
+  };
+
+  $scope.deal = function(event) {
+    $mdDialog.show(
+      $mdDialog.alert()
+        .title('Secondary Action')
+        .textContent('Secondary actions can be used for one click actions')
+        .ariaLabel('Secondary click demo')
+        .ok('Counter')
+        .targetEvent(event)
+    );
+  };
+
 }])
 
 .filter('reverse', function() {

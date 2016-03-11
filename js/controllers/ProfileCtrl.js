@@ -52,9 +52,9 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
 		    },
 		    {
 		      link : '',
-		      title: 'Messages',
+		      title: 'Proposals',
 		      icon: 'message',
-		      direct: 'dashboard.myMessages'
+		      direct: 'dashboard.myProposals'
 		    }
 		  ];
 		  $scope.admin = [

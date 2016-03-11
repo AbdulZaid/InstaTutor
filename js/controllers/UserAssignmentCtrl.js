@@ -29,24 +29,28 @@ myApp.controller('UserAssignmentCtrl', ['$scope','Auth','Users','$firebaseObject
     { name: 'Mary Johnson', question:'How the hell is this?', icon: 'description', img: 'images/abdul_img.png', newMessage: false },
     { name: 'Peter Carlsson', question:'How the hell is this?', icon: 'assignment', img: 'images/abdul_img.png', newMessage: false }
   ];
-  $scope.goToPerson = function(person, event) {
+  $scope.goToPerson = function(assignment, event) {
     $mdDialog.show(
       $mdDialog.alert()
-        .title('Navigating')
-        .textContent('Inspect ' + person)
+        .title(assignment.question)
+        .textContent(assignment.content)
         .ariaLabel('Person inspect demo')
         .ok('Edit')
         .targetEvent(event)
     );
   };
-  $scope.doSecondaryAction = function(event) {
+  $scope.doSecondaryAction = function(event) { //show like an main page and remove post.
     $mdDialog.show(
       $mdDialog.alert()
-        .title('Secondary Action')
-        .textContent('Secondary actions can be used for one click actions')
+        .title('DELETE')
+        .textContent('Are you sure you want to delete this assignment?')
         .ariaLabel('Secondary click demo')
-        .ok('Neat!')
+        .ok("Delete")
         .targetEvent(event)
     );
   };
+
+  $scope.deletePost = function() {
+    console.log("deleted")
+  }
 }]);

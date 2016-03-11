@@ -24,7 +24,8 @@ myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$fireba
         "content": $scope.textModel,
         "field": $scope.field,
         "dueDate": $scope.dueDate.toJSON(),
-        "amount": $scope.moneyAmount
+        "amount": $scope.moneyAmount,
+        "assigned": false
     },
     function(error) {
       if (error) {
@@ -44,7 +45,8 @@ myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$fireba
       "content": $scope.textModel,
       "field": $scope.field,
       "dueDate": $scope.dueDate.toJSON(),
-      "amount": $scope.moneyAmount
+      "amount": $scope.moneyAmount,
+      "assigned": " "
     }) //add new post to user's posts.
   };
 
