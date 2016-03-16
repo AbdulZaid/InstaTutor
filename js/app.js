@@ -11,6 +11,7 @@ myApp.run(["$rootScope", "$state","Auth", function($rootScope, $state, Auth) {
 		  if (authData) {
 		    console.log("Authenticated with uiiiiiiid:", authData.uid);
 		    authData = authData;
+
 		    $state.go("main");
 			// event.preventDefault();
 		  } else {
@@ -48,6 +49,13 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 	// $urlRouterProvider.otherwise('home' )
 	// Now set up the states
 	$stateProvider
+		// .state('landing', {
+	 //    	url: "/landing",
+	 //    	// controller: '',
+	 //    	templateUrl: "www/index.html",
+	 //    	module: "public",
+
+	 //    })	
 		.state('main', {
 	    	url: "/home",
 	    	views: {

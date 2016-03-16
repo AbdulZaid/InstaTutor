@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="theme-color" content="#2196F3">
+    <title>School Tutoring</title>
+
+    <!-- CSS  -->
+    <link href="min/plugin-min.css" type="text/css" rel="stylesheet">
+<!--    <link href="min/custom-min.css" type="text/css" rel="stylesheet" >-->
+    <link href="css/style.css" type="text/css" rel="stylesheet" >
+    <script src="js/jquery-2.2.1.min.js"></script>
+    <script src="js/parallax.min.js"></script>
+    <script type="text/javascript">
+    $(window).scroll(function() {
+    if ($(".nav-wrapper").offset().top > 50) {
+        $(".transparent").addClass("top-nav-scrolled");
+    } else {
+        $(".transparent").removeClass("top-nav-scrolled");
+    }
+});
+    
+    </script>
+</head>
+<body id="top" class="scrollspy">
+
+<!-- Pre Loader -->
+<div id="loader-wrapper">
+    <div id="loader"></div>
+ 
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+ 
+</div>
+
+<!--Navigation-->
+ <div class="navbar-fixed">
+    <nav id="nav-top" class="transparent" role="navigation">
+        <div class="container">
+            <div class="nav-wrapper">
+            <a href="#" id="logo-container" class="brand-logo">Tutarina</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#team">Login</a></li>
+                    <li><a href="#contact">Signup</a></li>
+                    <li><a href="https://github.com/joashp/material-design-template" target="_blank">Student?</a></li>
+                </ul>
+                <ul id="nav-mobile" class="side-nav">
+                    <li><a href="../school-tutoring/index.html/#">Login</a></li>
+                    <li><a href="#contact">Signup</a></li>
+                    <li><a href="https://github.com/joashp/material-design-template" target="_blank">Student?</a></li>
+                </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!--Hero-->
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <div class="tutor-header center header cd-headline letters type">
+            <p class="tutor-q">"Education is the key to success in life, and teachers make a lasting impact in the lives of their students" <span>Solomon Ortiz</span>
+            </p> 
+
+            <a class="waves-effect waves-light btn"><i class="right"></i>Become a tutor for free</a>
+
+        </div>
+
+    </div>
+    <div class="read-more-arrow animated pulse forever"><span class="mdi-navigation-expand-more"></span></div>
+</div>
+
+    
+<!--About being a tutor -->
+<div id="intro" class="section scrollspy" data-parallax="scroll" data-position="top" data-bleed="0" data-speed="0.7" data-image-src="img/about-bg.jpg" data-natural-width="1366" data-natural-height="700">
+    <div class="container">
+        <div class="row">
+            <div  class="col s12">
+                <h2 class="center header text_h2"> Everyone has something to teach <hr class="h2-line"/></h2>
+                <p class="flow-text light about-us">Whatever your level of education is. we all have something to teach from what we learn or from our experience. professor, teacher, professionals, or still a student there is someone of need to your knowledge.
+</p>
+            </div>     
+        </div>
+    </div>
+</div>
+
+
+
+<!-- why to be a tutor -->
+<div id="steps" class="section scrollspy">
+    <div class="container">
+        <div class="row">
+            <div  class="col s12">
+                <h2 class="center header text_h2">Why to be a tutor in School Tutoring?</h2>
+            </div>
+
+            <div  class="col s12 m6 l4">
+                <div class="center promo">
+                   <!-- mdi-communication-message  -->
+                    <i id="step1" class="mdi-action-account-balance"></i>
+                    <h5 class="promo-caption">Building the future</h5>
+                    <p class="light center">The satisfaction of teaching students and helping in shaping someone’s life.</p>
+                </div>
+            </div>
+            <div class="col s12 m6 l4">
+                <div class="center promo">
+                    <i id="step2" class="mdi-image-timer"></i>
+                    <h5 class="promo-caption">Work your own time</h5>
+                    <p class="light center">You can work on you free time, control your day and work whenever you want.</p>
+                </div>
+            </div>
+            <div class="col s12 m6 l4">
+                <div class="center promo">
+                   <!-- mdi-action-done-all mdi-action-thumb-up mdi-action-verified-user mdi-maps-local-shipping mdi-notification-event-available -->
+                    <i id="step3" class="mdi-editor-attach-money"></i>
+                    <h5 class="promo-caption">Great pay</h5>
+                    <p class="light center">get paid while at home, with a little effort and a generate money fast and easy.</p>
+                </div>
+            </div>
+            <div class="col s12 m6 l4">
+                <div class="center promo">
+                   <!-- mdi-action-done-all mdi-action-thumb-up mdi-action-verified-user mdi-maps-local-shipping mdi-notification-event-available -->
+                    <i id="step3" class="mdi-action-verified-user"></i>
+                    <h5 class="promo-caption">Secure payment</h5>
+                    <p class="light center">Be safe, let us deal with collecting the money the right way, no need to bother anymore.</p>
+                </div>
+            </div>
+            <div class="col s12 m6 l4">
+                <div class="center promo">
+                   <!-- mdi-action-done-all mdi-action-thumb-up mdi-action-verified-user mdi-maps-local-shipping mdi-notification-event-available -->
+                    <i id="step3" class="mdi-action-add-shopping-cart"></i>
+                    <h5 class="promo-caption">Work is always available</h5>
+                    <p class="light center">No need to go search for students, we will bring the students for you online.</p>
+                </div>
+            </div>
+            <div class="col s12 m6 l4">
+                <div class="center promo">
+                   <!-- mdi-action-done-all mdi-action-thumb-up mdi-action-verified-user mdi-maps-local-shipping mdi-notification-event-available -->
+                    <i id="step3" class="mdi-content-add-box"></i>
+                    <h5 class="promo-caption">Add to your knowledge</h5>
+                    <p class="light center">The best way of learning is teaching. improve your knowledge and skills.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="parallax-container">
+    <div class="parallax" data-parallax="scroll" data-position="top" data-bleed="10" data-speed = "0.5" data-image-src="img/apple-iphone-books-desk.jpg" data-natural-width="3670" data-natural-height="2462">
+    
+    </div>
+</div>
+
+
+<!--featrues  us-->
+<div id="tutor-steps" class="section scrollspy step1">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h2 class="center header text_h2">How it works <hr class="h2-line"/></h2>
+            </div>
+            <div  class="col s12 m4 l4">
+                <div class="center promo tutor-promo2">
+                    <i class="mdi-action-list"></i>                
+                </div>
+            </div>
+            <div  class="col s12 m8 l8">
+                <div class="features">
+                   <h4 class="text_h4">See a listing of all jobs required</h4>
+                    <p class="light left">
+Students will submit a post of jobs. You will be notified if something posted in your field of interest. and you can see all request of jobs in live as they are posted.
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<div id="tutor-steps" class="section scrollspy step2">
+    <div class="container">
+        <div class="row">
+            <div  class="col s12 m4 l4">
+                <div class="center promo tutor-promo">
+                    <i class="mdi-action-note-add"></i>                
+                </div>
+            </div>
+
+            <div  class="col s12 m8 l8">
+                <div class="features">
+                   <h4>Submit your proposal</h4>
+                    <p class="light left">
+                        If you see a job you like, write your proposal on how you can help and how much you will charge.
+</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="tutor-steps" class="section scrollspy step3">
+    <div class="container">
+        <div class="row">
+            <div  class="col s12 m4 l4">
+                <div class="center promo tutor-promo2">
+                    <i class="mdi-action-work"></i>                
+                </div>
+            </div>
+            <div  class="col s12 m8 l8">
+                <div class="features">
+                   <h4>Do the job the best way possible</h4>
+                    <p class="light left">Communicate with the student directly through chat, get the detailed requirements, receive files if any, help with what ever is required.
+</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<div id="tutor-steps" class="section scrollspy step2">
+    <div class="container">
+        <div class="row">
+            <div  class="col s12 m4 l4">
+                <div class="center promo tutor-promo">
+                    <i class="mdi-action-payment"></i>                
+                </div>
+            </div>
+            <div  class="col s12 m8 l8">
+                <div class="features">
+                   <h4>Get Paid &#38; Get reviewed</h4>
+                    <p class="light left">
+                        Once you submit the work, the student will have time to review and give feedback if there any. after that you will be paid.
+</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<div class="section scrollspy" id="signup-for-free">
+    <div class="container">
+        <div class="center">
+            <h4 class="signup-section light">Start Earning Money</h4>
+            <a class="waves-effect waves-light center btn-large">
+                Signup now for free
+            </a>
+        </div>
+    </div>
+</div>
+<!--Footer-->
+<footer id="contact" class="page-footer gray scrollspy">
+    <div class="container">  
+        <div class="row">
+            <div class="col l6 s12">
+                <form class="col s12" action="contact.php" method="post">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="mdi-action-account-circle prefix white-text"></i>
+                            <input id="icon_prefix" name="name" type="text" class="validate white-text">
+                            <label for="icon_prefix" class="white-text">First Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="mdi-communication-email prefix white-text"></i>
+                            <input id="icon_email" name="email" type="email" class="validate white-text">
+                            <label for="icon_email" class="white-text">Email-id</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="mdi-editor-mode-edit prefix white-text"></i>
+                            <textarea id="icon_prefix2" name="message" class="materialize-textarea white-text"></textarea>
+                            <label for="icon_prefix2" class="white-text">Message</label>
+                        </div>
+                        <div class="col offset-s7 s5">
+                            <button class="waves-effect waves-light btn" type="submit">Submit
+                                <i class="mdi-content-send right white-text"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col l3 s12">
+                <h5 class="white-text">Tutors.com</h5>
+                <ul>
+                    <li><a class="white-text" href="#">Home</a></li>
+                    <li><a class="white-text" href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="col l3 s12">
+                <h5 class="white-text">Social</h5>
+                <ul>
+                    <li>
+                        <a class="white-text" href="https://www.behance.net/">
+                            <i class="small fa fa-twitter-square white-text"></i> Twitter
+                        </a>
+                    </li>
+                    <li>
+                        <a class="white-text" href="https://www.facebook.com/">
+                            <i class="small fa fa-facebook-square white-text"></i> Facebook
+                        </a>
+                    </li>
+                    <li>
+                        <a class="white-text" href="https://github.com/">
+                            <i class="small fa fa-github-square white-text"></i> Github
+                        </a>
+                    </li>
+                    <li>
+                        <a class="white-text" href="https://www.linkedin.com/in/">
+                            <i class="small fa fa-linkedin-square white-text"></i> Linkedin
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright darker-gray">
+        <div class="container">
+            All right reserved for Tutoarina 2015
+        </div>
+    </div>
+</footer>
+
+
+    <!--  Scripts-->
+    <script src="min/plugin-min.js"></script>
+    <script src="min/custom-min.js"></script>
+    </body>
+</html>
