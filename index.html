@@ -7,16 +7,16 @@
     <meta name="theme-color" content="#2196F3">
     <title>School Tutoring</title>
 
+    <!-- AngularJS Dependencies  -->
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
-    <!-- Angular ui-bootstrap Library -->
-    <script src="js/lib/angular-bootstrap/ui-bootstrap.min.js"></script>
     <!-- Angular ui-router Library -->
     <script src="js/lib/angular-ui-router/angular-ui-router.min.js"></script> 
     <!-- Angular animate Library -->
     <script src="js/lib/angular-animate/bower_components/angular-animate/angular-animate.js"></script>
-    
+
+
     <!-- Angular Material Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.6/angular-material.min.js"></script>
     <!-- angular material dependency -->
@@ -26,11 +26,31 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/SVG-Morpheus/0.1.8/svg-morpheus.js"></script>
 
     <script src="js/lib/bower_components/moment-with-locales.min.js" type="text/javascript" ></script>
+    <!-- Include Angular Material -->
+    <link rel="stylesheet" href="js/lib/bower_components/angular-material/angular-material.min.css" type="text/css">
+
+
+    <!-- Angular ui-bootstrap Library -->
+    <script src="js/lib/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    
+
+    <!-- landing Page new!-->
+    <!-- materialize stuff -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <!-- <link href="min/plugin-min.css" type="text/css" rel="stylesheet"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <!-- use paralx landing page -->
+    <script src="js/parallax.min.js"></script>
+
+
 
     <!-- Firebase -->
     <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
     <!-- AngularFire -->
     <script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
+
 
 
 
@@ -54,24 +74,12 @@
     <script src="additatives.js"></script>
 
 
-    <link rel="stylesheet" href="js/lib/bower_components/angular-material/angular-material.min.css" type="text/css">
 
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-
-
-    <!-- landing new!-->
-    <!-- materialize stuff -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-    <!-- <link href="min/plugin-min.css" type="text/css" rel="stylesheet"> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-    <!-- use paralx landing page -->
-    <script src="js/parallax.min.js"></script>
-
-    <!-- from other doc-->
+    <!-- Font Awesome-->
     <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
-    <!-- from other doc-->
+    <!-- CSS Stylesheet-->
     <link rel="stylesheet" type="text/css" href="css/style.css">
+
   </head>
 
   <body id="top" class="scrollspy">
@@ -80,17 +88,13 @@
       <div ng-include='"views/header.html"' <span class="highlight"></span>></div>
     </div>
     <div class="row">
-        <!-- <div class="container"> -->
-        <!-- <div id ="form"  class="row"> -->
+
           <div ui-view></div>
-        <!-- </div> -->    
-        <!-- </div> -->
+
 
     </div>
     <div class="row">
       <div ng-include='"views/footer.html"' <span class="highlight"></span>></div>
     </div>
-
-
   </body>
 </html>
