@@ -1,51 +1,28 @@
 <div ng-controller="AuthCtrl">
-<nav class="navbar navbar-inverse navbar-fixed-top ng-scope" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
-            <a class="navbar-brand" ui-sref="main">Tutorial +</a>
-        </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse" ng-controller="NotifyCtrl">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a ui-sref="main">Home</a>
-                </li>
-                <li ng-hide= "authData" ><a ui-sref="login">Login</a>
-                </li>
-                <li ng-hide= "authData" ><a ui-sref="signup">Signup</a>
-                </li>
-                <li>
-                    <md-content>
-                        <md-button class="md-raised md-primary">{{title}}<md-badge ng-class="{'md-warn': warn()}">{{badgeNum}}</md-badge></md-button>
-                    </md-content>
-                </li>
-
-
-                <li><a ui-sref="dashboard">Dashboard</a>
-                </li>
-                <li class="dropdown">
-                    <a href="" ng-click="isCollapsed = !isCollapsed" >Profile <b class="caret"></b></a>
-                    <ul ng-show="isCollapsed">
-                        <li><a href="#/myPosts">List of Posts</a>
-                        </li>
-                        <li><a ui-sref="dashboard">Edit Profile</a>
-                        </li>
+    <!--Navigation-->
+     <div class="navbar-fixed">
+        <nav id="nav-top" class="top-nav-scrolled" role="navigation">
+            <div class="container">
+                <div class="nav-wrapper">
+                <a ui-sref="main" id="logo-container" class="brand-logo">School Tutoring</a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a ng-show= "authData" ui-sref="dashboard">Dashboard</a></li>
+                        <li><a ng-hide= "authData" ui-sref="login">Login</a></li>
+                        <li><a ng-hide= "authData" ui-sref="signup">Signup</a></li>
+                        <li><a ui-sref="become-tutor">become a tutor</a></li>
+                        <li><a ng-click="logout()" ng-show= "authData" ui-sref="main">Logout</a>
                     </ul>
-                </li>
-                <li ng-click="logout()" ng-show= "authData" ><a ui-sref="main">Logout</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
+                    <ul id="nav-mobile" class="side-nav">
+                        <li><a ng-hide= "authData" ui-sref="login">Login</a></li>
+                        <li><a ng-hide= "authData" ui-sref="signup">Signup</a></li>
+                        <li><a href="https://github.com/joashp/material-design-template" target="_blank">become a tutor</a></li>
+                    </ul>
+                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+                </div>
+            </div>
+        </nav>
     </div>
-    <!-- /.container -->
-</nav>
+
 </div>
 

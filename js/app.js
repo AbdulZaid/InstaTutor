@@ -1,6 +1,7 @@
 // Main MODULE... ui.bootstrap is for dropdown menus of bootstrap etc.. router is for states
 var myApp = angular.module('myApp', ['ngRoute', 'firebase','ui.bootstrap','ngAnimate','ui.router','ngMaterial','ngAria','ngMessages','ngMdIcons']);
 
+
 // for ui-router
 myApp.run(["$rootScope", "$state","Auth", function($rootScope, $state, Auth) {
 		var ref = new Firebase("https://homeworkmarket.firebaseio.com");
@@ -17,7 +18,7 @@ myApp.run(["$rootScope", "$state","Auth", function($rootScope, $state, Auth) {
 		  } else {
 		    console.log("Clienttttttttt unauthenticated.")
 		    authData = authData;
-		    $state.go("login")
+		    $state.go("landing")
 		   }
 		})
 
@@ -49,13 +50,6 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 	// $urlRouterProvider.otherwise('home' )
 	// Now set up the states
 	$stateProvider
-		// .state('landing', {
-	 //    	url: "/landing",
-	 //    	// controller: '',
-	 //    	templateUrl: "www/index.html",
-	 //    	module: "public",
-
-	 //    })	
 		.state('main', {
 	    	url: "/home",
 	    	views: {
@@ -98,6 +92,16 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 			      return Auth.$requireAuth();
 			    }]
 			}
+	    })
+	    .state('landing', {
+	    	url: "/landing",
+	    	templateUrl: "views/landing.html",
+	    	module: "public",
+	    })
+	    .state('become-tutor', {
+	    	url: "/become-tutor",
+	    	templateUrl: "views/become-tutor.html",
+	    	module: "public",
 	    })
 	    .state('signup', {
 	    	url: "/signup",
@@ -168,46 +172,6 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 		})
 })
 
-//FACTORY
-myApp.factory('Auth', ['$firebaseAuth', function ($firebaseAuth) {
-	var ref = new Firebase("https://homeworkmarket.firebaseio.com");
-	return  $firebaseAuth(ref);
-}])
 
-myApp.factory('Posts', ['$firebaseAuth','$firebaseObject','$firebaseArray', function ($firebaseAuth, $firebaseObject, $firebaseArray) {
-	var postRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
-	var postsArray = $firebaseArray(postRef)
-	var Posts = {
-		getSpecificPost: function(postID) {
-			return postsArray.$getRecord(postID)
-		}
-	}
-	return  Posts;
-}])
-
-myApp.factory('Users', ['$firebaseAuth','$firebaseObject','$firebaseArray', function ($firebaseAuth, $firebaseObject, $firebaseArray) {
-	var usersRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
-	var usersArray = $firebaseArray(usersRef)
-
-	var Users = {
-		getUser: function(uid) {
-			return $firebaseObject(usersRef.child(uid))
-		},
-		getName: function(uid) {
-			return usersArray.$getRecord(uid).name
-		},
-		getProfile: function(uid) {
-			return usersArray.$getRecord(uid)//for retrieving data in profilePage
-		},
-		getPosts: function(uid) {
-			return $firebaseObject(usersRef.child(uid).child("posts"))
-		},
-		getSpecificPost: function(uid, postID) {
-			return $firebaseObject(usersRef.child(uid).child("posts").child(postID))
-		}
-	}
-
-	return  Users;
-}])
 
 
