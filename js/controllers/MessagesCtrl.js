@@ -34,12 +34,12 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','$firebaseObject','$fi
   $scope.reject = function(notificationID, postID) {
     var notificationID = notificationID
     var postID = postID
-    alert(postID)
     authorRef.child($scope.authData.uid).child("notifications").child(notificationID).remove()
     authorRef.child($scope.authData.uid).child("posts").child(postID).child("proposals").child(notificationID).remove()
     // $scope.isDisabled = true;
     return false
   }
+
 }])
 
 .filter('reverse', function() {

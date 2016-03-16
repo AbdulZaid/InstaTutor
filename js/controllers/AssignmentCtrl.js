@@ -89,7 +89,8 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','Posts', '$firebaseA
           ".priority": Firebase.ServerValue.TIMESTAMP,
           "time": time,
           "message": $scope.proposalMessage || "New propsal",
-          "postID": authorCurrentPost.$id
+          "postID": authorCurrentPost.$id,
+          "postField": authorCurrentPost.field
         })
         //get the key of the proposal to store it in the user notifications.
         authorRef.child(authorID).child("posts").child(authorCurrentPost.$id).child("proposals").orderByKey().limitToLast(1).on('child_added', function(snapshot) {
@@ -103,7 +104,8 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','Posts', '$firebaseA
           ".priority": Firebase.ServerValue.TIMESTAMP,
           "time": time,
           "message": $scope.proposalMessage || "new Propsal",
-          "postID": authorCurrentPost.$id
+          "postID": authorCurrentPost.$id,
+          "postField": authorCurrentPost.field
         })
         //function to check priorities. 
         authorRef.child(authorID).child("notifications").on('child_added', function(snapshot) { 

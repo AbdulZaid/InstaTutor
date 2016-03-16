@@ -2,16 +2,18 @@ myApp.controller('UserAssignmentCtrl', ['$scope','Auth','Users','$firebaseObject
   var userRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
   $scope.userAuth = Auth.$getAuth()
   $scope.userID = $scope.userAuth.uid
-  $scope.userAssignment = $firebaseObject(userRef.child($scope.userID).child("posts"));
+  $scope.userAssignment = $firebaseArray(userRef.child($scope.userID).child("posts"));
+  
+
+  //the below code is useless.
   $scope.myAssignments
   $scope.userAssignment.$loaded().then(function(assignmentsRef){
     $scope.myAssignments = $scope.userAssignment
     //this needs to be changed to order data correctly.
     userRef.child($scope.userID).child("posts").orderByKey().on('child_added', function(snapshot) {
       var key = snapshot.key()  //get a snapshot of the post's key
-      alert(key)
-    });
 
+    });
   })
 
 
@@ -53,4 +55,10 @@ myApp.controller('UserAssignmentCtrl', ['$scope','Auth','Users','$firebaseObject
   $scope.deletePost = function() {
     console.log("deleted")
   }
-}]);
+}])
+
+.filter('reverse', function() {
+  return function(userAssignment) {
+    return userAssignment.slice().reverse();
+  };
+})
