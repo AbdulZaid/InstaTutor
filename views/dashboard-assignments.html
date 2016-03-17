@@ -1,5 +1,5 @@
 
-<div ng-controller="UserAssignmentCtrl" layout="column" flex layout-fill ng-cloak>
+<div layout="column" flex layout-fill ng-cloak>
 
   <md-toolbar md-scroll-shrink>
     <div class="md-toolbar-tools">My Assignments</div>
@@ -33,7 +33,7 @@
         <div>
           <md-subheader class="md-warn">Assignements Completed</md-subheader>
         </div>
-        <md-list ng-cloak >
+        <md-list ng-cloak>
             <md-divider></md-divider>
             <md-list-item ng-repeat="assignment in assignments" ng-click="goToPerson(assignment.name, $event)">
               <md-divider></md-divider>

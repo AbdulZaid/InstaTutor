@@ -128,10 +128,10 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 		        	controller: 'ProfileCtrl'
 		        	},
 		    //     // the child views will be defined here (absolutely named)
-		        'profile@dashboard': { 
-		        	templateUrl: 'views/dashboard-profile.html',
-		        	controller: 'ProfileCtrl' 
-		    	},
+		     //    'profile@dashboard': { 
+		     //    	templateUrl: 'views/dashboard-profile.html',
+		     //    	controller: 'ProfileCtrl' 
+		    	// },
 		    },
 
 	    	module: "private",
@@ -158,12 +158,12 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 		.state('dashboard.myProfile', {
 			url: "/myProfile",
 			templateUrl: "views/dashboard-profile.html",
-			// ProfileCtrl: "ProfileCtrl"
+			ProfileCtrl: "ProfileCtrl"
 		})
 		.state('dashboard.myAssignments', {
 			url: "/myAssignments",
 			templateUrl: "views/dashboard-assignments.html", 
-			// controller: "ProfileCtrl"
+			controller: "UserAssignmentCtrl"
 		})
 		.state('dashboard.myProposals', {
 			url: "/myProposals",

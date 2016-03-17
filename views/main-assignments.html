@@ -1,5 +1,5 @@
 <div id="mainContainer" class="container">
-  <div ng-controller="AuthCtrl" ng-show= "authData" ng-controller="AssignmentCtrl" class="row" id="row1">
+  <div  ng-show= "authData" class="row" id="row1">
       <div ng-repeat="post in posts | reverse" layout="row" layout-align="center center" flex="100">
         <md-button class="md-primary md-raised" ng-click="showAdvanced(post.$id)" flex="100" flex-gt-md="auto">
         <p class="md-body-1"> <h5 class=".md-title">{{post.field}}</h5>Question:  {{post.question}} <small class="md-caption"> By: {{ post.author }}</small>.</p>
