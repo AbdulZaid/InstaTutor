@@ -19,7 +19,7 @@
             </div>
             <md-button class="md-raised" ng-click="deal($event)" ng-disabled="isDisabled">View Proposal</md-button>
             <md-button class="md-raised md-warn" ng-click="reject(message.$id, message.postID)" ng-disabled="isDisabled" ng-model="isDisabled">Reject</md-button>
-            <md-button class="md-raised md-primary" ng-click="deal($event)" ng-disabled="isDisabled"> Accept</md-button>
+            <md-button class="md-raised md-primary" ng-click="deal(message.tutorID, message.$id, message.postID, message.tutorName)" ng-disabled="isDisabled"> Accept</md-button>
 
         </md-list-item>
       </md-list>

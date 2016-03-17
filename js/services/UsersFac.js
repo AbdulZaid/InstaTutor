@@ -20,6 +20,9 @@ myApp.factory('Users', ['$firebaseAuth','$firebaseObject','$firebaseArray', func
 		},
 		getSpecificPost: function(uid, postID) {
 			return $firebaseObject(usersRef.child(uid).child("posts").child(postID))
+		},
+		getTutorProposlas: function(uid, proposalID) {
+			return $firebaseObject(usersRef.child(uid).child("tutorProposlas").child(proposalID))
 		}
 	}
 

@@ -92,7 +92,8 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','Posts', '$firebaseA
           "time": time,
           "message": $scope.proposalMessage || "New propsal",
           "postID": authorCurrentPost.$id,
-          "postField": authorCurrentPost.field
+          "postField": authorCurrentPost.field,
+          "assigned": false
         })
 
         //get the key of the proposal to store it in the user notifications.
@@ -109,7 +110,8 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','Posts', '$firebaseA
           "time": time,
           "message": $scope.proposalMessage || "new Propsal",
           "postID": authorCurrentPost.$id,
-          "postField": authorCurrentPost.field
+          "postField": authorCurrentPost.field,
+          "assigned": false
         })
 
         //checks if the user type is a tutor then store the propsal as his/her.
@@ -122,7 +124,8 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','Posts', '$firebaseA
             "time": time,
             "message": $scope.proposalMessage || "new Propsal",
             "postID": authorCurrentPost.$id,
-            "postField": authorCurrentPost.field
+            "postField": authorCurrentPost.field,
+            "assigned": false
           })
           alert("tutor notification has been added.")
         }

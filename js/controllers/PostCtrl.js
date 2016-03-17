@@ -16,6 +16,7 @@ myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$fireba
   // COLLAPSE =====================
   $scope.isCollapsed = false; 
 
+  // Do an if condition to see if the user is a student or not.
   $scope.postMessage = function() {
     postsRef.push({
         "authorID": $scope.authData.uid,
@@ -25,7 +26,8 @@ myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$fireba
         "field": $scope.field,
         "dueDate": $scope.dueDate.toJSON(),
         "amount": $scope.moneyAmount,
-        "assigned": false
+        "assigned": false,
+        "assignedTo": false
     },
     function(error) {
       if (error) {
@@ -46,7 +48,8 @@ myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$fireba
       "field": $scope.field,
       "dueDate": $scope.dueDate.toJSON(),
       "amount": $scope.moneyAmount,
-      "assigned": " "
+      "assigned": false,
+      "assignedTo": false
     }) //add new post to user's posts.
   };
 

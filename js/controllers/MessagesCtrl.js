@@ -1,6 +1,7 @@
 myApp.controller('MessagesCtrl', ['$scope','Auth','Users','$firebaseObject','$firebaseArray','$mdDialog', function ($scope, Auth, Users, $firebaseObject, $firebaseArray, $mdDialog ) {
     
   var authorRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
+  var postsRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
   $scope.authData = Auth.$getAuth()
 
   $scope.messages = $firebaseArray(authorRef.child($scope.authData.uid).child("notifications"))
@@ -18,8 +19,38 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','$firebaseObject','$fi
     );
   };
 
-  $scope.deal = function(event) {
+  //Assign a certain tutor to do the job
+  $scope.deal = function(tutorID, proposalID, postID, tutorName) {
+    var tutorID = tutorID
+    var proposalID = proposalID
+    var tutorName = tutorName
+    //Change status of proposal to assigned in tutor proposals
+    authorRef.child(tutorID).child("tutorProposals").child(proposalID).update({
+      "assigned": true
+    })
+    //Change status of proposal to assigned in students notifications
+    authorRef.child($scope.authData.uid).child("notifications").child(proposalID).update({
+      "assigned": true
+    })
+
+    //Change the status of the proposal in student's posts to assigned 
+    authorRef.child($scope.authData.uid).child("posts").child(postID).child("proposals").child(proposalID).update({
+      "assigned": true,
+    })
+
+    //Change the status of the assignment (post) to assigned 
+    authorRef.child($scope.authData.uid).child("posts").child(postID).update({
+      "assigned": true,
+      "assignedTo": tutorName
+    })
     
+    //update the posts for public views.
+    postsRef.child(postID).update({
+      "assigned": true,
+      "assignedTo": tutorName
+    })
+
+    console.log("hey you, you got a deal on your proposal" + proposalID)
   };
 
   //reject and remove proposals from DB in both paths.
