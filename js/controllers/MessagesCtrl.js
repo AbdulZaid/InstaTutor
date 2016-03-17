@@ -19,14 +19,7 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','$firebaseObject','$fi
   };
 
   $scope.deal = function(event) {
-    $mdDialog.show(
-      $mdDialog.alert()
-        .title('Secondary Action')
-        .textContent('Secondary actions can be used for one click actions')
-        .ariaLabel('Secondary click demo')
-        .ok('Counter')
-        .targetEvent(event)
-    );
+    
   };
 
   //reject and remove proposals from DB in both paths.

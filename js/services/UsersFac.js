@@ -9,6 +9,9 @@ myApp.factory('Users', ['$firebaseAuth','$firebaseObject','$firebaseArray', func
 		getName: function(uid) {
 			return usersArray.$getRecord(uid).name
 		},
+		getUserType: function(uid) {
+			return usersArray.$getRecord(uid).type
+		},
 		getProfile: function(uid) {
 			return usersArray.$getRecord(uid)//for retrieving data in profilePage
 		},

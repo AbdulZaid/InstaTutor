@@ -82,6 +82,8 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','Posts', '$firebaseA
         authorPosts = Users.getPosts(authorID) //to get all the posts of a certain author
         authorCurrentPost = Posts.getSpecificPost(postID)
         tutorName = Users.getName(tutorID)
+
+        //stores the new  tutor proposal inside the current post list of proposals.
         authorRef.child(authorID).child("posts").child(authorCurrentPost.$id).child("proposals").push({
           "tutorID": tutorID,
           "tutorName": tutorName,
@@ -92,11 +94,13 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','Posts', '$firebaseA
           "postID": authorCurrentPost.$id,
           "postField": authorCurrentPost.field
         })
+
         //get the key of the proposal to store it in the user notifications.
         authorRef.child(authorID).child("posts").child(authorCurrentPost.$id).child("proposals").orderByKey().limitToLast(1).on('child_added', function(snapshot) {
           key = snapshot.key()  //get a snapshot of the post's key
         });
-        //use the above to set with the same proposal key.
+
+        //Stores the proposal as notifications for the student to see anb check.
         authorRef.child(authorID).child("notifications").child(key).set({
           "tutorID": tutorID,
           "tutorName": tutorName,
@@ -107,6 +111,22 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','Posts', '$firebaseA
           "postID": authorCurrentPost.$id,
           "postField": authorCurrentPost.field
         })
+
+        //checks if the user type is a tutor then store the propsal as his/her.
+        if(Users.getUserType(tutorID) === "Tutor") {
+          authorRef.child(tutorID).child("tutorProposals").child(key).set({
+            "tutorID": tutorID,
+            "tutorName": tutorName,
+            "amount": $scope.counterOffer || authorCurrentPost.amount,
+            ".priority": Firebase.ServerValue.TIMESTAMP,
+            "time": time,
+            "message": $scope.proposalMessage || "new Propsal",
+            "postID": authorCurrentPost.$id,
+            "postField": authorCurrentPost.field
+          })
+          alert("tutor notification has been added.")
+        }
+
         //function to check priorities. 
         authorRef.child(authorID).child("notifications").on('child_added', function(snapshot) { 
           console.log(snapshot.getPriority());
