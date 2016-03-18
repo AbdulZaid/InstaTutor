@@ -111,7 +111,8 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','Posts', '$firebaseA
           "message": $scope.proposalMessage || "new Propsal",
           "postID": authorCurrentPost.$id,
           "postField": authorCurrentPost.field,
-          "assigned": false
+          "assigned": false,
+          "viewed": false
         })
 
         //checks if the user type is a tutor then store the propsal as his/her.
