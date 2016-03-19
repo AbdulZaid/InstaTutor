@@ -1,4 +1,4 @@
-myApp.controller('MessagesCtrl', ['$scope','Auth','Users','$firebaseObject','$firebaseArray','$mdDialog', function ($scope, Auth, Users, $firebaseObject, $firebaseArray, $mdDialog ) {
+myApp.controller('MessagesCtrl', ['$scope','Auth','Users','Posts','$firebaseObject','$firebaseArray','$mdDialog', function ($scope, Auth, Users, Posts, $firebaseObject, $firebaseArray, $mdDialog ) {
     
   var authorRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
   var postsRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
@@ -9,21 +9,16 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','$firebaseObject','$fi
 
   $scope.imagePath = 'images/abdul_img.png';
 
-  $scope.goToPerson = function(message, event) {
-    $mdDialog.show(
-      $mdDialog.alert()
-        .title("Message/Proposal from: " + message.tutorName)
-        .textContent(message.message)
-        .ok('Got It')
-        .targetEvent(event)
-    );
-  };
 
   //Assign a certain tutor to do the job
   $scope.deal = function(tutorID, proposalID, postID, tutorName) {
     var tutorID = tutorID
     var proposalID = proposalID
     var tutorName = tutorName
+    var postID = postID
+    // get the post to add it to tutor work after being assigned.
+    var postAssigned = Posts.getSpecificPost(postID) 
+
     //Change status of proposal to assigned in tutor proposals
     authorRef.child(tutorID).child("tutorProposals").child(proposalID).update({
       "assigned": true
@@ -31,6 +26,18 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','$firebaseObject','$fi
     //Change status of proposal to assigned in students notifications
     authorRef.child($scope.authData.uid).child("notifications").child(proposalID).update({
       "assigned": true
+    })
+    //add to tutor work now it has been assignd to him/her
+    authorRef.child(tutorID).child("myWork").child(postID).set({
+        "authorID": $scope.authData.uid,
+        "author": postAssigned.author,
+        "question": postAssigned.question,
+        "content": postAssigned.content,
+        "field": postAssigned.field,
+        "dueDate": postAssigned.dueDate,
+        "amount": postAssigned.amount,
+        "assigned": true,
+        "assignedTo": tutorName
     })
 
     //Change the status of the proposal in student's posts to assigned 

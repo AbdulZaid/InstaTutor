@@ -9,14 +9,14 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','Posts', '$firebaseA
 	$scope.posts = $firebaseArray(postRef);
 	$scope.authData = Auth.$getAuth()
   $scope.author = $firebaseObject(authorRef);
-	window.postValue = {}
-	$scope.obj = {}
+  window.postValue = {}
+  $scope.obj = {}
   $scope.status = ' ';
-	$scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+  $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
   $scope.showAdvanced = function(ev, event) {
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     window.postValue = $scope.posts.$getRecord(ev)
-	  $scope.obj = window.postValue
+    $scope.obj = window.postValue
     console.log($scope.obj)
 
     $mdDialog.show({
@@ -25,9 +25,9 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','Posts', '$firebaseA
           $scope.closeDialog = function() {
             $mdDialog.hide();
           }
-      },
-      templateUrl: 'views/assignment.html',
-      parent: angular.element(document.body),
+        },
+        templateUrl: 'views/assignment.html',
+        parent: angular.element(document.body),
       //these are the items inside the object obtained by $getRecord.
       locals: {
       	items: $scope.obj
@@ -136,9 +136,9 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','Posts', '$firebaseA
           console.log(snapshot.getPriority());
         });
       })
-  }
+}
 
-  function DialogController($scope, $mdDialog, items) {
+function DialogController($scope, $mdDialog, items) {
     $scope.items = items //these are the items inside the object obtained by $getRecord.
     $scope.hide = function() {
       $mdDialog.hide();

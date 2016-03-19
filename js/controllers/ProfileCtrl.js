@@ -48,7 +48,7 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
 		      link : '',
 		      title: 'My Work',
 		      icon: 'message',
-		      direct: 'dashboard.myProfile'
+		      direct: 'dashboard.myJobs'
 		    },
 		    {
 		      link : '',

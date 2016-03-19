@@ -1,0 +1,28 @@
+<div layout="column" flex layout-fill ng-cloak>
+  <md-toolbar md-scroll-shrink>
+    <div class="md-toolbar-tools">My Jobs</div>
+  </md-toolbar>
+  <md-content style="height: 600px;" md-theme="altTheme">
+    <section>
+      <md-subheader class="md-primary">My Work</md-subheader>
+      <md-list layout-padding>
+        <md-divider></md-divider>
+        <md-list-item class="md-3-line" ng-repeat="job in jobs | reverse" ng-model = "$parent.jobs">
+            <md-divider></md-divider>
+            <img ng-src="{{imagePath}}" class="md-avatar" alt="{{job.tutorName}}">
+            <div class="md-list-item-text"  >
+              <h3 style="color:purple">{{job.author}}</h3>
+              <h4>Job Title:  <span style="color:blue">{{job.question}}</span> in  <span style="color:blue">{{job.field}} </span> for:<span style="color:red"> &nbsp{{job.amount}}</span></h4>
+              <p>
+                {{job.message}}
+              </p>
+            </div>
+            <md-button class="md-raised" ng-click="view($event)" ng-disabled="isDisabled">View Job</md-button>
+            <md-button class="md-raised" ng-click="message(job.$id, job.postID)" ng-disabled="isDisabled" ng-model="isDisabled">Message</md-button>
+            <md-button class="md-raised md-primary" ng-click="submit(job.tutorID, job.$id, job.postID, job.tutorName)" ng-disabled="isDisabled"> Submit</md-button>
+
+        </md-list-item>
+      </md-list>
+    </section>
+  </md-content>
+</div>
