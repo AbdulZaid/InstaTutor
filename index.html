@@ -81,19 +81,44 @@
 
   </head>
 
-  <body id="top" class="scrollspy">
+  <body id="top" class="scrollspy" layout="column">
+  
+  <md-toolbar>
+      <div class="md-toolbar-tools top-nav content-padding">
+          <md-button class="md-icon-button" aria-label="Settings">
+              <ng-md-icon icon="menu"></ng-md-icon>
+          </md-button>
+          <h2>
+              <span>Tutoring App</span>
+          </h2>
+          <md-button>item1</md-button>
+          <span flex></span>
+          <md-button class="md-icon-button" aria-label="notification">
+              <ng-md-icon icon="notifications"></ng-md-icon>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="avatar">
+              <ng-md-icon icon="avatar"></ng-md-icon>
+          </md-button>
+      </div>
+  </md-toolbar>
+  <md-content flex>
+<!--
 
     <div id="headerRow" class="row">
       <div ng-include='"views/header.html"' <span class="highlight"></span>></div>
     </div>
     <div class="row">
+-->
 
-          <div ui-view></div>
+          <div class="content-padding" ui-view></div>
 
+<!--
 
     </div>
     <div class="row">
       <div ng-include='"views/footer.html"' <span class="highlight"></span>></div>
     </div>
+-->
+ </md-content>
   </body>
 </html>

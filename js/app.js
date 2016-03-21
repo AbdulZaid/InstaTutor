@@ -175,6 +175,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 			templateUrl: "views/dashboard-jobs.html", 
 			controller: "JobsCtrl"
 		})
+		.state('jobPost', {
+			url: "/job",
+			templateUrl: "views/job-page.html", 
+			controller: ""
+		})
 })
 
 
