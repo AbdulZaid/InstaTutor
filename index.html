@@ -83,17 +83,21 @@
 
   <body id="top" class="scrollspy" layout="column">
   
-  <md-toolbar>
-      <div class="md-toolbar-tools top-nav content-padding">
+  <md-toolbar ng-controller="AuthCtrl">
+      <div class="md-toolbar-tools top-nav content-padding" >
           <md-button class="md-icon-button" aria-label="Settings">
               <ng-md-icon icon="menu"></ng-md-icon>
           </md-button>
           <h2>
-              <span>Tutoring App</span>
+              <a ui-sref="main" >School Tutoring</a>
           </h2>
-          <md-button>item1</md-button>
+          <md-button ng-show= "authData" ui-sref="dashboard.myProfile">Dashboard</md-button>
+          <md-button ng-hide= "authData" ui-sref="login">Login</md-button>
+          <md-button ng-hide= "authData" ui-sref="signup">Signup</md-button>
+          <md-button ui-sref="become-tutor">become a tutor</md-button>
+          <md-button ng-show= "authData" ng-click="logout()" ui-sref="main">Logout</md-button>
           <span flex></span>
-          <md-button class="md-icon-button" aria-label="notification">
+          <md-button class="md-icon-button"  style="font-size:32px;" aria-label="notification" ng-style="{ 'color' : alertColor} " >
               <ng-md-icon icon="notifications"></ng-md-icon>
           </md-button>
           <md-button class="md-icon-button" aria-label="avatar">
@@ -102,13 +106,13 @@
       </div>
   </md-toolbar>
   <md-content flex>
-<!--
 
-    <div id="headerRow" class="row">
+
+<!--     <div id="headerRow" class="row">
       <div ng-include='"views/header.html"' <span class="highlight"></span>></div>
-    </div>
+    </div> -->
     <div class="row">
--->
+
 
           <div class="content-padding" ui-view></div>
 
