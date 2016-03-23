@@ -65,7 +65,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             // Auth refers to our $firebaseAuth wrapper in the example above
             "currentAuth": ["Auth", function(Auth) {
               // $waitForAuth returns a promise so the resolve waits for it to complete
-              console.log("waiting for auth")
+              // console.log("waiting for auth")
               return Auth.$waitForAuth();
             }]
         },
@@ -75,7 +75,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             "currentAuth": ["Auth", function(Auth) {
               // $requireAuth returns a promise so the resolve waits for it to complete
               // If the promise is rejected, it will throw a $stateChangeError (see above)
-              console.log("requiring auth")
+              // console.log("requiring auth")
               return Auth.$requireAuth();
             }]
         }
@@ -127,7 +127,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             // Auth refers to our $firebaseAuth wrapper in the example above
             currentAuth: ["Auth", function(Auth) {
               // $waitForAuth returns a promise so the resolve waits for it to complete
-              console.log("waiting for auth you dumbass")
+              // console.log("waiting for auth you dumbass")
               return Auth.$waitForAuth();
             }]
         },
@@ -137,7 +137,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             currentAuth: ["Auth", function(Auth) {
               // $requireAuth returns a promise so the resolve waits for it to complete
               // If the promise is rejected, it will throw a $stateChangeError (see above)
-              console.log("requiring auth you idiot")
+              // console.log("requiring auth you idiot")
               return Auth.$requireAuth();
             }]
         }

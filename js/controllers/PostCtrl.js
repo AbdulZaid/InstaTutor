@@ -17,7 +17,6 @@ myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$fireba
   $scope.isCollapsed = false; 
 
     $scope.myDate = new Date();
-    console.log($scope.myDate)
     $scope.minDate = new Date(
         $scope.myDate.getFullYear(),
         $scope.myDate.getDay() - 1,

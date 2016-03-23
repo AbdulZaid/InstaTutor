@@ -11,9 +11,9 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
 		profileObject.$loaded( //to solve the problem with loading data before using it.
 		    function() {
 				$scope.usersInfo = Users.getProfile($scope.authData.uid) // here is the problem always
-				console.log(Users.getUser($scope.authData.uid))
-				console.log(Users.getProfile($scope.authData.uid))
-				console.log(Users.getName($scope.authData.uid))
+				// console.log(Users.getUser($scope.authData.uid))
+				// console.log(Users.getProfile($scope.authData.uid))
+				// console.log(Users.getName($scope.authData.uid))
 				$scope.user = {
 					title: $scope.usersInfo.handle, 
 					email: $scope.usersInfo.email,
@@ -94,7 +94,7 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
 	    // // console.log( $scope.profileData )
 	    $scope.profileData = ref.child($scope.authData.uid).child("profile")
 	    var sh = $firebaseObject($scope.profileData)
-	    console.log("IIIDDDDD " + $scope.authData.uid)
+	    // console.log("IIIDDDDD " + $scope.authData.uid)
 	    // console.log(sh.address)
 	    $scope.updateProfile = function(authData) {
 	    	$scope.profileData.set({
