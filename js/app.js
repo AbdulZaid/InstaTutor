@@ -88,7 +88,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     .state('become-tutor', {
         url: "/become-tutor",
         templateUrl: "views/become-tutor.html",
-        module: "public",
+        // module: "public",
     })
     .state('signup', {
         url: "/signup",
@@ -163,9 +163,9 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
         controller: "JobsCtrl"
     })
     .state('jobPost', {
-        url: "/job",
+        url: "/job/:jobID",
         templateUrl: "views/job-page.html", 
-        controller: ""
+        controller: "JobPageCtrl"
     })
 
     // For any unmatched url, redirect to /state1

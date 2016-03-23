@@ -8,15 +8,15 @@
 <div layout="row" layout-wrap>
     <div flex="70" layout="column">
           <div md-whiteframe="3" layout-padding layout-margin flex>
-               <h2 class="md-headline">Tutoring help with Algorithmic Analysis for computer science (c++ , Data Structures )</h2>
+               <h2 class="md-headline">{{question}} ({{field}} )</h2>
                 <md-list flex layout="row" layout-align="center center">
                   <md-list-item>
                       <ng-md-icon icon="access_time"></ng-md-icon>
-                      <span>21 March 2016</span>
+                      <span>{{dueDate}}</span>
                   </md-list-item>
                   <md-list-item>
                       <ng-md-icon icon="attach_money"></ng-md-icon>
-                      <span>25$</span>
+                      <span>{{amount}}$</span>
                   </md-list-item>
                   <md-list-item>
                       <ng-md-icon icon="mood"></ng-md-icon>
@@ -31,25 +31,14 @@
             <div class="details">
                 <h4 class="md-title">Details</h4>
                 <p class="md-body-1">
-                    hello, i need help with algorithm subject for computer science topics include:
-                    -time complexity of algorithms in Big O, Big omega. Big Theta
-                    -Proofs in Big O, Big omega. Big Theta.
-                    -Asymptotic Notation
-                    - Average/ Worst Case
-                    - Tress
-                    -Heaps
-                    -Greedy Algorithms
-                    -Divide and Conquer
-                    -Dynamic Programming
-
-                    need freelancer with strong skills in the above topics. the session will only take two hours of your time so please no offers over a 100 dollars. will test your skills before making a deal 
+                    {{content}}
                 </p>
             </div>
             <div class="attachments">
                 <div><ng-md-icon icon="office"></ng-md-icon></div>
             </div>
             <div class="options-footer">
-                <span class="md-caption">Posted 2 hours ago</span>
+                <span class="md-caption">Posted {{postedWhen}} ago</span>
                 <ng-md-icon icon="more_horiz"></ng-md-icon>
             </div>
         </div>

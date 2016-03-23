@@ -1,49 +1,57 @@
 <div id="mainContainer" class="container">
-	<div ng-show= "authData" class="row" id="row1">
-		<div layout="row" layout-xs="column" >
-			<md-content flex layout-padding class="autoScroll md-whiteframe-1dp" layout-padding>
-				<form name="userForm" ng-submit="$event.preventDefault()">
-					<div flex>
+    <div ng-show= "authData" class="row" id="row1">
+        <div layout="row" layout-xs="column" >
+            <md-content flex layout-padding class="autoScroll md-whiteframe-1dp" layout-padding>
+                <form name="userForm" ng-submit="$event.preventDefault()">
+                    <div flex>
 
-						<md-input-container class="md-block" flex-gt-xs="" >
-						  <label>Question?</label>
-						  <input type="text" ng-model="$parent.question">
-						</md-input-container>
+                        <md-input-container class="md-block" flex-gt-xs="" >
+                          <label>Question?</label>
+                          <input type="text" ng-model="$parent.question">
+                        </md-input-container>
 
-						<md-input-container>
-							<label>Help Catagory</label>
-							<md-select ng-model="field">
-							<md-optgroup label="Science">
-								<md-option ng-value="field.name" ng-repeat="field in fields | filter: {category: 'Science' }">{{field.name}}</md-option>
-							</md-optgroup>
-							<md-optgroup label="Engineering">
-								<md-option ng-value="field.name" ng-repeat="field in fields | filter: {category: 'Engineering' }">{{field.name}}</md-option>
-							</md-optgroup>
-						</md-select>
-					  </md-input-container>
+                        <md-input-container>
+                            <label>Help Catagory</label>
+                            <md-select ng-model="field">
+                            <md-optgroup label="Science">
+                                <md-option ng-value="field.name" ng-repeat="field in fields | filter: {category: 'Science' }">{{field.name}}</md-option>
+                            </md-optgroup>
+                            <md-optgroup label="Engineering">
+                                <md-option ng-value="field.name" ng-repeat="field in fields | filter: {category: 'Engineering' }">{{field.name}}</md-option>
+                            </md-optgroup>
+                        </md-select>
+                      </md-input-container>
 
-						<md-input-container class="md-block  md-whiteframe-1z" md-ink-ripple="#FF0000" >
-						  <label>What would you like to be helped with?</label>
-						  <textarea style= "max-height: 25vh; overflow-y: auto; scroll-glue" ng-model="$parent.textModel" md-maxlength="1000" rows="8" md-select-on-focus></textarea>
-						</md-input-container>
-				  	</div>
+                        <md-input-container class="md-block  md-whiteframe-1z" md-ink-ripple="#FF0000" >
+                          <label>What would you like to be helped with?</label>
+                          <textarea style= "max-height: 25vh; overflow-y: auto; scroll-glue" ng-model="$parent.textModel" md-maxlength="1000" rows="8" md-select-on-focus></textarea>
+                        </md-input-container>
+                    </div>
 
-				  	<div flex layout="column">
-					  	<div layout="row">
- 					  		<md-datepicker ng-model="dueDate" md-placeholder="Due date">
-						    </md-datepicker> 
-<!--						    <input ng-model="dueDate" type="date" class="datepicker">-->
-						    <ng-md-icon icon="attach_file" style="fill: grey" size="35" input="file" ng-click=""></ng-md-icon> 
-						    <p>Willing to Pay</p>
-					    	<md-input-container>
-					  			<label>$</label>
-					      		<input ng-model="moneyAmount" type="number" step="1.0">
-					    	</md-input-container>
-					  	</div>
-						<md-button class="md-raised" ng-click="postMessage()"  ng-show= "authData">Post</md-button>	
-					</div>
-				</form>
-			</md-content>
-		</div>
-	</div>
+                    <div flex layout="column">
+                        <div layout="row">
+                            <md-content>
+                              <md-datepicker name="dateField" ng-model="dueDate" md-placeholder="Enter date"
+                                  required md-min-date="minDate"></md-datepicker>
+                              <div class="validation-messages" ng-messages="userForm.dateField.$error" role="alert">
+                                <div ng-message="valid">The entered value is not a date!</div>
+                                <div ng-message="required">This date is required!</div>
+                                <div ng-message="mindate">Date is too early!</div>
+                                <div ng-message="maxdate">Date is too late!</div>
+                                <div ng-message="filtered">Only weekends are allowed!</div>
+                              </div>
+                              </md-content>
+                            <ng-md-icon icon="attach_file" style="fill: grey" size="35" input="file" ng-click=""></ng-md-icon> 
+                            <p>Willing to Pay</p>
+                            <md-input-container>
+                                <label>$</label>
+                                <input ng-model="moneyAmount" type="number" step="1.0">
+                            </md-input-container>
+                        </div>
+                        <md-button class="md-raised" ng-click="postMessage()"  ng-show= "authData">Post</md-button> 
+                    </div>
+                </form>
+            </md-content>
+        </div>
+    </div>
 </div>

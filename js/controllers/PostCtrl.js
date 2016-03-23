@@ -16,8 +16,17 @@ myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$fireba
   // COLLAPSE =====================
   $scope.isCollapsed = false; 
 
+    $scope.myDate = new Date();
+    console.log($scope.myDate)
+    $scope.minDate = new Date(
+        $scope.myDate.getFullYear(),
+        $scope.myDate.getDay() - 1,
+        $scope.myDate.getDate());
+
   // Do an if condition to see if the user is a student or not.
   $scope.postMessage = function() {
+    var time = Firebase.ServerValue.TIMESTAMP
+
     postsRef.push({
         "authorID": $scope.authData.uid,
         "author": authorName,
@@ -27,7 +36,8 @@ myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$fireba
         "dueDate": $scope.dueDate.toJSON(),
         "amount": $scope.moneyAmount,
         "assigned": false,
-        "assignedTo": false
+        "assignedTo": false,
+        "time": time
     },
     function(error) {
       if (error) {
@@ -49,7 +59,8 @@ myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$fireba
       "dueDate": $scope.dueDate.toJSON(),
       "amount": $scope.moneyAmount,
       "assigned": false,
-      "assignedTo": false
+      "assignedTo": false,
+      "time": time
     }) //add new post to user's posts.
   };
 
