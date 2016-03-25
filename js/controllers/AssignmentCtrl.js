@@ -77,47 +77,35 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','Posts', '$firebaseA
     var authorID = authorID
     var postID = postID
     var time = Firebase.ServerValue.TIMESTAMP
-    $scope.author.$loaded(
-      function() {
-        authorPosts = Users.getPosts(authorID) //to get all the posts of a certain author
-        authorCurrentPost = Posts.getSpecificPost(postID)
-        tutorName = Users.getName(tutorID)
+    if(Users.getUserType(tutorID) === "Tutor") {
+      console.log("I'm a tutor")
 
-        //stores the new  tutor proposal inside the current post list of proposals.
-        authorRef.child(authorID).child("posts").child(authorCurrentPost.$id).child("proposals").push({
-          "tutorID": tutorID,
-          "tutorName": tutorName,
-          "amount": $scope.counterOffer || authorCurrentPost.amount,
-          ".priority": Firebase.ServerValue.TIMESTAMP,
-          "time": time,
-          "message": $scope.proposalMessage || "New propsal",
-          "postID": authorCurrentPost.$id,
-          "postField": authorCurrentPost.field,
-          "assigned": false
-        })
+      $scope.author.$loaded(
+        function() {
+          authorPosts = Users.getPosts(authorID) //to get all the posts of a certain author
+          authorCurrentPost = Posts.getSpecificPost(postID)
+          tutorName = Users.getName(tutorID)
 
-        //get the key of the proposal to store it in the user notifications.
-        authorRef.child(authorID).child("posts").child(authorCurrentPost.$id).child("proposals").orderByKey().limitToLast(1).on('child_added', function(snapshot) {
-          key = snapshot.key()  //get a snapshot of the post's key
-        });
+          //stores the new  tutor proposal inside the current post list of proposals.
+          authorRef.child(authorID).child("posts").child(authorCurrentPost.$id).child("proposals").push({
+            "tutorID": tutorID,
+            "tutorName": tutorName,
+            "amount": $scope.counterOffer || authorCurrentPost.amount,
+            ".priority": Firebase.ServerValue.TIMESTAMP,
+            "time": time,
+            "message": $scope.proposalMessage || "New propsal",
+            "postID": authorCurrentPost.$id,
+            "postField": authorCurrentPost.field,
+            "assigned": false
+          })
 
-        //Stores the proposal as notifications for the student to see anb check.
-        authorRef.child(authorID).child("notifications").child(key).set({
-          "tutorID": tutorID,
-          "tutorName": tutorName,
-          "amount": $scope.counterOffer || authorCurrentPost.amount,
-          ".priority": Firebase.ServerValue.TIMESTAMP,
-          "time": time,
-          "message": $scope.proposalMessage || "new Propsal",
-          "postID": authorCurrentPost.$id,
-          "postField": authorCurrentPost.field,
-          "assigned": false,
-          "viewed": false
-        })
+          //get the key of the proposal to store it in the user notifications.
+          authorRef.child(authorID).child("posts").child(authorCurrentPost.$id).child("proposals").orderByKey().limitToLast(1).on('child_added', function(snapshot) {
+            key = snapshot.key()  //get a snapshot of the post's key
+          });
 
-        //checks if the user type is a tutor then store the propsal as his/her.
-        if(Users.getUserType(tutorID) === "Tutor") {
-          authorRef.child(tutorID).child("tutorProposals").child(key).set({
+          //Stores the proposal as notifications for the student to see anb check.
+          authorRef.child(authorID).child("notifications").child(key).set({
             "tutorID": tutorID,
             "tutorName": tutorName,
             "amount": $scope.counterOffer || authorCurrentPost.amount,
@@ -126,16 +114,34 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','Posts', '$firebaseA
             "message": $scope.proposalMessage || "new Propsal",
             "postID": authorCurrentPost.$id,
             "postField": authorCurrentPost.field,
-            "assigned": false
+            "assigned": false,
+            "viewed": false
           })
-          alert("tutor notification has been added.")
-        }
 
-        //function to check priorities. 
-        authorRef.child(authorID).child("notifications").on('child_added', function(snapshot) { 
-          console.log(snapshot.getPriority());
-        });
-      })
+          //checks if the user type is a tutor then store the propsal as his/her.
+          if(Users.getUserType(tutorID) === "Tutor") {
+            authorRef.child(tutorID).child("tutorProposals").child(key).set({
+              "tutorID": tutorID,
+              "tutorName": tutorName,
+              "amount": $scope.counterOffer || authorCurrentPost.amount,
+              ".priority": Firebase.ServerValue.TIMESTAMP,
+              "time": time,
+              "message": $scope.proposalMessage || "new Propsal",
+              "postID": authorCurrentPost.$id,
+              "postField": authorCurrentPost.field,
+              "assigned": false
+            })
+            alert("tutor notification has been added.")
+          }
+
+          //function to check priorities. 
+          authorRef.child(authorID).child("notifications").on('child_added', function(snapshot) { 
+            console.log(snapshot.getPriority());
+          });
+        })
+      } else {
+            console.log("I'm not a tutor")
+    }
 }
 
 function DialogController($scope, $mdDialog, items) {
