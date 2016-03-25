@@ -3,17 +3,25 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
 		var ref = new Firebase("https://homeworkmarket.firebaseio.com/users")
 		$scope.authData = Auth.$getAuth();
 		$scope.usersInfo = {}
-  		var profileObject = $firebaseObject(ref);
+  		$scope.profileObject = $firebaseObject(ref);
+  		$scope.isTutor = false
+  		$scope.isStudent = false
+  		console.log($scope.authData.uid)
   		/*
   		* The problem is solved by creating a gloabl object usersInfo, and then assigning it to the 
   		* object retrived by the method getProfile.
   		*/
-		profileObject.$loaded( //to solve the problem with loading data before using it.
+		$scope.profileObject.$loaded( //to solve the problem with loading data before using it.
 		    function() {
 				$scope.usersInfo = Users.getProfile($scope.authData.uid) // here is the problem always
 				// console.log(Users.getUser($scope.authData.uid))
 				// console.log(Users.getProfile($scope.authData.uid))
 				// console.log(Users.getName($scope.authData.uid))
+				if(Users.getUserType($scope.authData.uid) === "Tutor") {
+		  			$scope.isTutor = true
+		  		}  else {
+  					$scope.isStudent = true
+		  		}
 				$scope.user = {
 					title: $scope.usersInfo.handle, 
 					email: $scope.usersInfo.email,
@@ -26,49 +34,53 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
 					biography: $scope.usersInfo.profile.biography,
 					postalCode: $scope.usersInfo.profile.postalCode,
 				};
+				$scope.menu = [
+			    {
+			      link : '',
+			      title: 'Profile',
+			      icon: 'dashboard',
+			      direct: 'dashboard.myProfile',
+			      show: true
+			    },
+			    {
+			      link : '',
+			      title: 'My Homework',
+			      icon: 'message',
+			      direct: 'dashboard.myAssignments',
+			      show: $scope.isStudent
+			    },
+			   	{
+			      link : '',
+			      title: 'My Work',
+			      icon: 'message',
+			      direct: 'dashboard.myJobs',
+			      show: $scope.isTutor 
+			    },
+			    {
+			      link : '',
+			      title: 'Proposals',
+			      icon: 'message',
+			      direct: 'dashboard.myProposals',
+			      show: $scope.isStudent
+			    }
+			  ];
+			  $scope.admin = [
+			    {
+			      link : '',
+			      title: 'Trash',
+			      icon: 'delete'
+			    },
+			    {
+			      link : 'showListBottomSheet($event)',
+			      title: 'Settings',
+			      icon: 'settings'
+			    }
+			  ];
 		  });
 
 		$scope.toggleSidenav = function(menuId) {
 		    $mdSidenav(menuId).toggle();
 		  };
-		  $scope.menu = [
-		    {
-		      link : '',
-		      title: 'Profile',
-		      icon: 'dashboard',
-		      direct: 'dashboard.myProfile'
-		    },
-		    {
-		      link : '',
-		      title: 'My Homework',
-		      icon: 'message',
-		      direct: 'dashboard.myAssignments'
-		    },
-		   	{
-		      link : '',
-		      title: 'My Work',
-		      icon: 'message',
-		      direct: 'dashboard.myJobs'
-		    },
-		    {
-		      link : '',
-		      title: 'Proposals',
-		      icon: 'message',
-		      direct: 'dashboard.myProposals'
-		    }
-		  ];
-		  $scope.admin = [
-		    {
-		      link : '',
-		      title: 'Trash',
-		      icon: 'delete'
-		    },
-		    {
-		      link : 'showListBottomSheet($event)',
-		      title: 'Settings',
-		      icon: 'settings'
-		    }
-		  ];
 
 		  $scope.showListBottomSheet = function($event) {
 		    $scope.alert = '';
