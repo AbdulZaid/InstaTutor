@@ -25,7 +25,8 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','Posts','$firebaseObje
     })
     //Change status of proposal to assigned in students notifications
     authorRef.child($scope.authData.uid).child("notifications").child(proposalID).update({
-      "assigned": true
+      "assigned": true,
+      "viewed": true
     })
     //add to tutor work now it has been assignd to him/her
     authorRef.child(tutorID).child("myWork").child(postID).set({
@@ -72,7 +73,7 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','Posts','$firebaseObje
     authorRef.child($scope.authData.uid).child("posts").child(postID).child("proposals").child(notificationID).remove()
     // $scope.isDisabled = true;
     ngToast.create({
-      className: 'warning',
+      className: 'danger',
       content: 'hey you, you just rejected a proposal from ' + tutorName,
     })
     return false

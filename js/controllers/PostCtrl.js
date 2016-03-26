@@ -1,4 +1,4 @@
-myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$firebaseArray', function ($scope, Auth, Users, $firebaseObject, $firebaseArray ) {
+myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$firebaseArray','ngToast', function ($scope, Auth, Users, $firebaseObject, $firebaseArray, ngToast ) {
   var messageRef = new Firebase("https://homeworkmarket.firebaseio.com/messages");
   var userRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
   $scope.authData = Auth.$getAuth();
@@ -44,7 +44,10 @@ myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$fireba
       if (error) {
         alert("Data could not be saved." + error);
       } else {
-        alert("Data saved successfully.");
+        ngToast.create({
+          className: 'success',
+          content: 'you just posted a new job successfully' 
+        })  
       }
     })
     postsRef.orderByKey().limitToLast(1).on('child_added', function(snapshot) {

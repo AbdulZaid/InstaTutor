@@ -1,4 +1,4 @@
-myApp.controller('UserAssignmentCtrl', ['$scope','Auth','Users','$firebaseObject','$firebaseArray','$mdDialog', function ($scope, Auth, Users, $firebaseObject, $firebaseArray, $mdDialog) {
+myApp.controller('UserAssignmentCtrl', ['$scope','Auth','Users','$firebaseObject','$firebaseArray','$mdDialog','ngToast', function ($scope, Auth, Users, $firebaseObject, $firebaseArray, $mdDialog, ngToast) {
   var userRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
   var postRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
   $scope.userAuth = Auth.$getAuth()
@@ -28,12 +28,21 @@ myApp.controller('UserAssignmentCtrl', ['$scope','Auth','Users','$firebaseObject
           .ok('Please do it!')
           .cancel('Aoh no');
     $mdDialog.show(confirm).then(function() {
-      console.log("deleted")
+      ngToast.create({
+        className: 'success',
+        content: 'hey you, you just deleted your job successfully' 
+      })      
       userRef.child(authorID).child("posts").child(postID).remove()
       postRef.child(postID).remove()
     }, function() {
+      ngToast.create({
+        className: 'warning',
+        content: 'Unfortunately you attempt to delete was not successful' 
+      })
       $scope.status = 'You decided to keep your debt.';
     });
+
+
   };
 
 
