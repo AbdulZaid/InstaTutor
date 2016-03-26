@@ -44,7 +44,7 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
 			    },
 			    {
 			      link : '',
-			      title: 'My Homework',
+			      title: 'My Jobs',
 			      icon: 'message',
 			      direct: 'dashboard.myAssignments',
 			      show: $scope.isStudent

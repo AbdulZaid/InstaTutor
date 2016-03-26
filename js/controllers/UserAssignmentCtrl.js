@@ -1,9 +1,11 @@
 myApp.controller('UserAssignmentCtrl', ['$scope','Auth','Users','$firebaseObject','$firebaseArray','$mdDialog', function ($scope, Auth, Users, $firebaseObject, $firebaseArray, $mdDialog) {
   var userRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
+  var postRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
   $scope.userAuth = Auth.$getAuth()
   $scope.userID = $scope.userAuth.uid
   $scope.userAssignment = $firebaseArray(userRef.child($scope.userID).child("posts"));
-  
+  $scope.imagePath = 'images/abdul_img.png';
+
 
   //the below code is useless.
   $scope.myAssignments
@@ -16,45 +18,25 @@ myApp.controller('UserAssignmentCtrl', ['$scope','Auth','Users','$firebaseObject
     });
   })
 
-
-
-
-  $scope.assignments = [
-    {
-      name: 'Janet Perkins', 
-      question: 'How the hell is this?', 
-      icon: 'message', 
-      img: 'images/abdul_img.png', 
-      newMessage: true 
-    },
-
-    { name: 'Mary Johnson', question:'How the hell is this?', icon: 'description', img: 'images/abdul_img.png', newMessage: false },
-    { name: 'Peter Carlsson', question:'How the hell is this?', icon: 'assignment', img: 'images/abdul_img.png', newMessage: false }
-  ];
-  $scope.goToPerson = function(assignment, event) {
-    $mdDialog.show(
-      $mdDialog.alert()
-        .title(assignment.question)
-        .textContent(assignment.content)
-        .ariaLabel('Person inspect demo')
-        .ok('Edit')
-        .targetEvent(event)
-    );
-  };
-  $scope.doSecondaryAction = function(event) { //show like an main page and remove post.
-    $mdDialog.show(
-      $mdDialog.alert()
-        .title('DELETE')
-        .textContent('Are you sure you want to delete this assignment?')
-        .ariaLabel('Secondary click demo')
-        .ok("Delete")
-        .targetEvent(event)
-    );
+  $scope.deletePost = function(postID, authorID) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    var confirm = $mdDialog.confirm()
+          .title('Would you like to delete your Job?')
+          .textContent('If you delete your job you will not be able to see it again')
+          .ariaLabel('Lucky day')
+          .targetEvent(postID)
+          .ok('Please do it!')
+          .cancel('Aoh no');
+    $mdDialog.show(confirm).then(function() {
+      console.log("deleted")
+      userRef.child(authorID).child("posts").child(postID).remove()
+      postRef.child(postID).remove()
+    }, function() {
+      $scope.status = 'You decided to keep your debt.';
+    });
   };
 
-  $scope.deletePost = function() {
-    console.log("deleted")
-  }
+
 }])
 
 .filter('reverse', function() {
