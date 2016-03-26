@@ -1,4 +1,4 @@
-myApp.controller('MessagesCtrl', ['$scope','Auth','Users','Posts','$firebaseObject','$firebaseArray','$mdDialog', function ($scope, Auth, Users, Posts, $firebaseObject, $firebaseArray, $mdDialog ) {
+myApp.controller('MessagesCtrl', ['$scope','Auth','Users','Posts','$firebaseObject','$firebaseArray','$mdDialog','ngToast', function ($scope, Auth, Users, Posts, $firebaseObject, $firebaseArray, $mdDialog, ngToast ) {
     
   var authorRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
   var postsRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
@@ -58,16 +58,23 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','Posts','$firebaseObje
     })
 
     console.log("hey you, you got a deal on your proposal" + proposalID)
+    ngToast.create('hey you, you just agreed on a deal with ' + " " +  tutorName );
+
   };
 
   //reject and remove proposals from DB in both paths.
   $scope.isDisabled = false;
-  $scope.reject = function(notificationID, postID) {
+  $scope.reject = function(notificationID, postID, tutorName) {
     var notificationID = notificationID
     var postID = postID
+    var tutorName = tutorName
     authorRef.child($scope.authData.uid).child("notifications").child(notificationID).remove()
     authorRef.child($scope.authData.uid).child("posts").child(postID).child("proposals").child(notificationID).remove()
     // $scope.isDisabled = true;
+    ngToast.create({
+      className: 'warning',
+      content: 'hey you, you just rejected a proposal from ' + tutorName,
+    })
     return false
   }
 
