@@ -9,20 +9,24 @@
     <div flex="70" layout="column">
           <div md-whiteframe="3" layout-padding layout-margin flex>
                <h2 class="md-headline">{{question}} ({{field}} )</h2>
-                <md-list flex layout="row" layout-align="center center">
-                  <md-list-item>
-                      <ng-md-icon icon="access_time"></ng-md-icon>
-                      <span>{{dueDate}}</span>
-                  </md-list-item>
-                  <md-list-item>
-                      <ng-md-icon icon="attach_money"></ng-md-icon>
+                <div flex layout="row" layout-align="center center">
+                  <div flex>
+<!--                      <ng-md-icon icon="access_time" class="about-icon"></ng-md-icon>-->
+                      <span><md-icon class="material-icons about-icon">access_time</md-icon></span>
+                        <span>{{dueDate}}</span>
+<!--                      <span>{{dueDate}}</span>-->
+                  </div>
+                  <div flex>
+                      <span><md-icon class="material-icons about-icon">attach_money</md-icon></span>
+<!--                      <ng-md-icon icon="attach_money" class="about-icon"></ng-md-icon>-->
                       <span>{{amount}}$</span>
-                  </md-list-item>
-                  <md-list-item>
-                      <ng-md-icon icon="mood"></ng-md-icon>
+                  </div>
+                  <div flex>
+<!--                      <ng-md-icon icon="mood" class="about-icon"></ng-md-icon>-->
+                      <span><md-icon class="material-icons about-icon">mood</md-icon></span>
                       <span>Open</span>
-                  </md-list-item>
-                </md-list>
+                  </div>
+                </div>
                 <md-chips>
                     <md-chip>Math</md-chip>
                     <md-chip>KFUPM</md-chip>
@@ -37,8 +41,9 @@
             <div class="attachments">
                 <div><ng-md-icon icon="office"></ng-md-icon></div>
             </div>
-            <div class="options-footer">
+            <div class="options-footer" layout="row">
                 <span class="md-caption">Posted {{postedWhen}} ago</span>
+                <span flex=""></span>
                 <ng-md-icon icon="more_horiz"></ng-md-icon>
             </div>
         </div>
@@ -92,8 +97,80 @@
         <div layout-margin md-whiteframe="3" flex layout="column">
                 <md-button class="md-raised md-primary">Propose</md-button>
                 <md-button class="md-raised">Bookmark</md-button>
-                <div class="user-info" layout-align="center center">
-<!--                    <img src="../images/abdul_img.png" class="md-avatar" />-->
+                <md-divider></md-divider>
+                <div class="md-title" style="text-align:center">User Details</div>
+                <div class="user-info" style="text-align:center">
+                    <img src="../images/abdul_img.png" class="md-avatar profile-image" />
+                    <div class="md-title">Abdul zaid</div>
+                    <div>
+<!--                        <ng-md-icon icon="star"></ng-md-icon>-->
+                        <span><md-icon class="material-icons start-icon-color">star</md-icon></span>
+                        <span><md-icon class="material-icons start-icon-color">star</md-icon></span>
+                        <span><md-icon class="material-icons start-icon-color">star</md-icon></span>
+                        <span><md-icon class="material-icons start-icon-color">star</md-icon></span>
+                        <span><md-icon class="material-icons">star</md-icon></span>
+<!--
+                        <ng-md-icon icon="star"></ng-md-icon>
+                        <ng-md-icon icon="star"></ng-md-icon>
+                        <ng-md-icon icon="star"></ng-md-icon>
+                        <ng-md-icon icon="star_half"></ng-md-icon>
+-->
+                    </div>
+                    <div class="md-subhead">16 reviews</div>
+                </div>
+                <md-divider></md-divider>
+                <div class="md-title">About:</div>
+                <md-list>
+<!--
+                <md-list-item class="md-1-line">
+                  <md-icon class="material-icons no-margin-left"> star </md-icon>
+                  <div class="md-list-item-text">
+                    <p class="md-subhead">5 Jobs done</p>
+                  </div>
+                </md-list-item>
+                <md-list-item class="md-1-line">
+                  <ng-md-icon icon="location" class="md-avatar-icon"></ng-md-icon>
+                  <div class="md-list-item-text">
+                    <p class="md-subhead">From Saudi Arabia</p>
+                  </div>
+                </md-list-item>
+                <md-list-item class="md-1-line">
+                 
+                  <ng-md-icon icon="university" class="md-avatar-icon"></ng-md-icon>
+                  <div class="md-list-item-text">
+                    <p class="md-subhead">Student at KFUPM</p>
+                  </div>
+                </md-list-item>
+-->
+                <md-list-item class="md-1-line">
+                <span><md-icon class="material-icons about-icon">work</md-icon></span>
+                  <div class="md-list-item-text">
+                    <p>5 Jobs done</p>
+                  </div>
+                </md-list-item>
+                <md-list-item class="md-1-line">
+                <span><md-icon class="material-icons about-icon">location_on</md-icon></span>
+                  <div class="md-list-item-text">
+                    <p>From Saudi Arabia</p>
+                  </div>
+                </md-list-item>
+                <md-list-item class="md-1-line">
+                 <span><md-icon class="material-icons about-icon">school</md-icon></span>
+                  <div class="md-list-item-text">
+                    <p>Student at KFUPM</p>
+                  </div>
+                </md-list-item>
+                <md-list-item class="md-1-line">
+                 <span><md-icon class="material-icons about-icon">book</md-icon></span>
+<!--                  <ng-md-icon icon="book" class="about-icon"></ng-md-icon>-->
+                  <div class="md-list-item-text">
+                    <p>Studying Software Engineering</p>
+                  </div>
+                </md-list-item>
+                </md-list>
+                <div layout="row">
+                   <span flex=""></span>
+                    <span><md-button class="md-raised"><md-icon class="material-icons" style="color: darkgreen">check</md-icon> Verified</md-button></span>
                 </div>
         </div>
     </div>

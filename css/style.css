@@ -734,3 +734,28 @@ footer.page-footer {
     max-width: 1200px;
     margin: 0 auto;
 }
+
+.profile-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 2px;
+}
+
+.round-circle {
+    border: solid 1 black;
+    
+}
+.no-margin-left {
+    margin-left: 0px;
+}
+
+.about-icon {
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+
+.start-icon-color {
+    color: #000;
+}
