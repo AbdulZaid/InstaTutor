@@ -1,4 +1,4 @@
-myApp.controller('SignupCtrl', ['$scope','Auth','$location','$firebaseAuth', function ($scope, Auth, $location, $firebaseAuth) {
+myApp.controller('SignupCtrl', ['$scope','Auth','$location','$firebaseAuth','$state', function ($scope, Auth, $location, $firebaseAuth, $state) {
 		var ref = new Firebase("https://homeworkmarket.firebaseio.com");
 		var isNewUser = true
 		$scope.authObj = $firebaseAuth(ref);
@@ -27,6 +27,8 @@ myApp.controller('SignupCtrl', ['$scope','Auth','$location','$firebaseAuth', fun
 			  
 			}).then(function(authData) {
 			  console.log("Logged in as:", authData.uid);
+			  $state.go("main")
+
 				ref.child("users").child(authData.uid).set({
 					  provider: authData.provider,
 					  email: $scope.email,
