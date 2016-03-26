@@ -7,6 +7,7 @@ myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$fireba
   var authorName
   var key //new post's key
 
+  $scope.tags = [];
 
   profileObject.$loaded( //to solve the problem with loading data before using it.
     function() {
@@ -36,7 +37,8 @@ myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$fireba
         "amount": $scope.moneyAmount,
         "assigned": false,
         "assignedTo": false,
-        "time": time
+        "time": time,
+        "tags": $scope.tags
     },
     function(error) {
       if (error) {
@@ -59,7 +61,8 @@ myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$fireba
       "amount": $scope.moneyAmount,
       "assigned": false,
       "assignedTo": false,
-      "time": time
+      "time": time,
+      "tags": $scope.tags
     }) //add new post to user's posts.
   };
 

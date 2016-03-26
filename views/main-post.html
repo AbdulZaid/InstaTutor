@@ -26,6 +26,17 @@
                           <label>What would you like to be helped with?</label>
                           <textarea style= "max-height: 25vh; overflow-y: auto; scroll-glue" ng-model="$parent.textModel" md-maxlength="1000" rows="8" md-select-on-focus></textarea>
                         </md-input-container>
+
+                        <h2 class="md-title">Enter Tags for Your job.</h2>
+                        <md-chips
+                            ng-model="tags"
+                            readonly="readonly"
+                            placeholder="Enter a tag "
+                            delete-button-label="Remove Tag"
+                            delete-hint="Press delete to remove tag"
+                            secondary-placeholder="+Tag"></md-chips>
+                        <br/>
+
                     </div>
 
                     <div flex layout="column">
