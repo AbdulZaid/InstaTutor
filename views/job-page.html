@@ -5,7 +5,7 @@
     <br/>
     <br/>
  </div>
-<div layout="row" layout-wrap>
+<div layout="row" layout-wrap ng-controller="AssignmentCtrl">
     <div flex="70" layout="column">
           <div md-whiteframe="3" layout-padding layout-margin flex>
                <h2 class="md-headline">{{question}} ({{field}} )</h2>
@@ -52,7 +52,7 @@
         <form name="userForm">
                    <div layout-gt-sm="row">
                     <md-input-container class="md-block" flex-gt-sm>
-                        <label>$</label>
+                        <label>${{amount}}</label>
                         <input required type="number" step="1.0">
                     </md-input-container>
                     <md-input-container class="md-block" flex-gt-sm>
@@ -89,13 +89,14 @@
                     <label>Proposal comment</label>
                     <textarea rows="5"></textarea>
                 </md-input-container>
-                    <md-button class="md-raised">Propose</md-button>	
+                <md-button class="md-raised" ng-click="propose(authorID, jobID)">Propose</md-button>	
+
 </form>
         </div>
     </div>
     <div flex="30">
         <div layout-margin md-whiteframe="3" flex layout="column">
-                <md-button class="md-raised md-primary">Propose</md-button>
+                <md-button class="md-raised md-primary" ng-click="propose(authorID, jobID)">Propose</md-button>
                 <md-button class="md-raised">Bookmark</md-button>
                 <md-divider></md-divider>
                 <div class="md-title" style="text-align:center">User Details</div>

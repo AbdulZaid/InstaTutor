@@ -10,7 +10,7 @@ myApp.controller('JobPageCtrl', ['$scope','Auth','Users','Posts','$firebaseObjec
       var job = Posts.getSpecificPost($scope.jobID)
       var dueDate = job.dueDate
       var datePosted = job.time
-
+      $scope.authorID = job.authorID
       $scope.amount = job.amount
       $scope.author = job.author
       $scope.question = job.question
