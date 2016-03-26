@@ -17,7 +17,7 @@
                 {{message.message}}
               </p>
             </div>
-            <md-button class="md-raised" ng-click="deal($event)" ng-disabled="isDisabled">View Proposal</md-button>
+            <md-button class="md-raised" ng-click="showProposal(message.tutorName, message.amount, message.message, message.postField )" ng-disabled="isDisabled">View Proposal</md-button>
             <md-button class="md-raised md-warn" ng-click="reject(message.$id, message.postID)" ng-disabled="isDisabled" ng-model="isDisabled">Reject</md-button>
             <md-button class="md-raised md-primary" ng-click="deal(message.tutorID, message.$id, message.postID, message.tutorName)" ng-disabled="isDisabled"> Accept</md-button>
 

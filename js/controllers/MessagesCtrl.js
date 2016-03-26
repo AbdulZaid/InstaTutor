@@ -71,7 +71,25 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','Posts','$firebaseObje
     return false
   }
 
+
+  $scope.showProposal = function(tutorName, amount, message, jobTitle) {
+    $mdDialog.show(
+      $mdDialog.alert()
+        .clickOutsideToClose(true)
+        .title('Proposal sent by' +  tutorName + "for job tited " + jobTitle)
+        .textContent('Message:' + message + " with amount of" + amount)
+        .ariaLabel('Alert Dialog Demo')
+        .ok('Got it!')
+        .targetEvent(tutorName)
+    );
+  };
+
+
 }])
+
+
+
+
 
 .filter('reverse', function() {
   return function(messages) {
