@@ -759,3 +759,13 @@ footer.page-footer {
 .start-icon-color {
     color: #000;
 }
+
+/*login container*/
+.loginContainer {
+    padding: 40px;
+}
+.flex-40, .layout-row>.flex-40 {
+      margin-top: 70px;
+
+  }
+}
