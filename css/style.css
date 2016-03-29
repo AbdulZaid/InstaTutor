@@ -759,3 +759,111 @@ footer.page-footer {
 .start-icon-color {
     color: #000;
 }
+.post-tags {
+    margin-top: -9px;
+    padding-top: 0px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.post-header-info {
+    text-align: center;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.attachment-item {
+    width: 110px;
+    height: 90px;
+    float: left;
+    position: relative;
+    border: solid 1pt #777777;
+    margin: 5px;
+    border-radius: 4px;
+}
+
+.attachments-list {
+    overflow: hidden;
+}
+
+.attachment-item-footer > div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-spacing: normal;
+    margin: 4px;
+}
+.attachment-item-footer {
+    bottom: 0;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 30px;
+    color: #000;
+    background: #F9F9F9;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.attachment-item-content {
+    padding-bottom: 20px;
+    height: 100%;
+}
+.attachment-item-content > i{
+/*    color: #D80000;*/
+    font-size: 25px;
+}
+.attachment-item-content > .fa-file-word-o{
+    color: #2C5898;
+}
+.attachment-item-content > .fa-file-pdf-o{
+    color: #DA473E;
+}
+.attachment-item-content > .fa-file-powerpoint-o{
+    color: #D04727;
+}
+.attachment-item-content > .fa-file-excel-o{
+    color: #207347;
+}
+.attachment-item-content > .fa-file-image-o{
+    color: #FFD13C;
+}
+.attachment-item-content > .fa-file-o{
+    color: #FFD13C;
+}
+.attachment-item-download
+{
+    display: none;
+    height: 100%;
+    margin: 0;
+    width: 100%;
+}
+
+.attachment-item:hover .attachment-item-content
+{
+    display: none;
+}
+.attachment-item:hover .attachment-item-footer
+{
+    display: none;
+}
+.attachment-item:hover .attachment-item-download
+{
+    display: flex;
+}
+.gray-text {
+    color: gray;
+}

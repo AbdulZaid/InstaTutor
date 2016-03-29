@@ -1,45 +1,71 @@
 
- <div>
-
-    <br/>
-    <br/>
-    <br/>
- </div>
 <div layout="row" layout-wrap ng-controller="AssignmentCtrl">
     <div flex="70" layout="column">
           <div md-whiteframe="3" layout-padding layout-margin flex>
-               <h2 class="md-headline">{{question}} ({{field}} )</h2>
-                <div flex layout="row" layout-align="center center">
-                  <div flex>
+               <h1 class="md-headline">{{question}} ({{field}} )</h1>
+                               <div class="post-tags">Math, KFUPM, Math101</div>
+
+                <div  class="post-header-info" flex layout="row" layout-align="center center">
+                  <div flex class="post-header-info2">
 <!--                      <ng-md-icon icon="access_time" class="about-icon"></ng-md-icon>-->
                       <span><md-icon class="material-icons about-icon">access_time</md-icon></span>
                         <span>{{dueDate}}</span>
 <!--                      <span>{{dueDate}}</span>-->
                   </div>
-                  <div flex>
-                      <span><md-icon class="material-icons about-icon">attach_money</md-icon></span>
+                  <div flex class="post-header-info2">
+                      <span><md-icon class="material-icons about-icon">payment</md-icon></span>
 <!--                      <ng-md-icon icon="attach_money" class="about-icon"></ng-md-icon>-->
-                      <span>{{amount}}$</span>
+                      <span>{{amount}} $</span>
                   </div>
-                  <div flex>
+                  <div flex class="post-header-info2">
 <!--                      <ng-md-icon icon="mood" class="about-icon"></ng-md-icon>-->
                       <span><md-icon class="material-icons about-icon">mood</md-icon></span>
                       <span>Open</span>
                   </div>
                 </div>
+<!--
                 <md-chips>
                     <md-chip>Math</md-chip>
                     <md-chip>KFUPM</md-chip>
                     <md-chip>Math101</md-chip>
                 </md-chips>
-            <div class="details">
-                <h4 class="md-title">Details</h4>
+-->
+           <hr/>
+                <h1 class="md-title">Details</h1>
                 <p class="md-body-1">
                     {{content}}
                 </p>
-            </div>
-            <div class="attachments">
-                <div><ng-md-icon icon="office"></ng-md-icon></div>
+            <div class="attachments" flex>
+              <h1 class="md-title">Attachments</h1>
+               <div class="attachments-list">
+                    <div class="attachment-item" layout-align="center center">
+                        <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="More">
+                            <md-icon class="material-icons">file_download</md-icon>
+                        </md-button>
+                        <div class="attachment-item-content" flex layout="column" layout-align="center center">
+                            <i class="fa fa-file-pdf-o"></i>
+                        </div>
+                        <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
+                    </div>
+                    <div class="attachment-item" layout-align="center center">
+                        <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="More">
+                            <md-icon class="material-icons">file_download</md-icon>
+                        </md-button>
+                        <div class="attachment-item-content" flex layout="column" layout-align="center center">
+                            <i class="fa fa-file-powerpoint-o"></i>
+                        </div>
+                        <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
+                    </div>
+                    <div class="attachment-item" layout-align="center center">
+                        <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="More">
+                            <md-icon class="material-icons">file_download</md-icon>
+                        </md-button>
+                        <div class="attachment-item-content" flex layout="column" layout-align="center center">
+                            <i class="fa fa-file-word-o"></i>
+                        </div>
+                        <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
+                    </div>
+                </div>
             </div>
             <div class="options-footer" layout="row">
                 <span class="md-caption">Posted {{postedWhen}} ago</span>
