@@ -759,6 +759,7 @@ footer.page-footer {
 .start-icon-color {
     color: #000;
 }
+<<<<<<< HEAD
 .post-tags {
     margin-top: -9px;
     padding-top: 0px;
@@ -866,4 +867,15 @@ footer.page-footer {
 }
 .gray-text {
     color: gray;
+=======
+
+/*login container*/
+.loginContainer {
+    padding: 40px;
+}
+.flex-40, .layout-row>.flex-40 {
+      margin-top: 70px;
+
+  }
+>>>>>>> origin/master
 }

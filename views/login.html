@@ -1,5 +1,22 @@
-<div id="loginContainer" class="container">
-    <form class="form-horizontal" > 
+
+<div layout="row" layout-wrap>
+  <div flex="30">
+  </div>
+
+  <div flex="40" class= "md-hue-1 md-whiteframe-z2">
+    <div>
+        <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2>
+            <span>Login</span>
+          </h2>
+          <span flex></span>
+        </div>
+      </md-toolbar>
+    </div>
+
+    <md-content class="loginContainer">
+      <form class="form-horizontal" > 
       <md-input-container class="md-block">
       <!-- Use floating placeholder instead of label -->
       <md-icon md-svg-src="" class="email"></md-icon>
@@ -18,5 +35,7 @@
       </div>
       <md-button class="md-raised md-primary" ng-click="login()"  type="submit">Login</md-button>
     </form>
+    </md-content>
   </div>
-</div>
+  <div flex="30">
+  </div
