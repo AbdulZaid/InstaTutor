@@ -5,10 +5,8 @@ myApp.controller('SignupCtrl', ['$scope','Auth','$location','$firebaseAuth','$st
 
 		// assign values for ng-repeat and ng-model for the html selector options
 		$scope.userTypes = [{
-			value: 'user_1',
 			label: 'Student'
 		  }, {
-			value: 'user_2',
 			label: 'Tutor'
 		}],
 
@@ -35,7 +33,7 @@ myApp.controller('SignupCtrl', ['$scope','Auth','$location','$firebaseAuth','$st
 					  password: $scope.password,
 					  name: getName(authData),
 					  handle: $scope.handle,
-					  type: $scope.userLists.label, //from the ng-model and ng-repeat in html file.      
+					  type: $scope.userType, //from the ng-model and ng-repeat in html file.      
 					  profile: {
 						title: " ",
 						email: " ",
