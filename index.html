@@ -38,7 +38,7 @@
 
     <script src="js/lib/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
     <script src="js/lib/bower_components/ngtoast/dist/ngToast.min.js"></script>
-    
+
     <!-- landing Page new!-->
     <!-- materialize stuff -->
 <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">-->
@@ -46,7 +46,7 @@
 <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>-->
     <!-- use paralx landing page -->
     <script src="js/parallax.min.js"></script>
-    
+
 
 
     <!-- Firebase -->
@@ -81,8 +81,8 @@
 
 
     <!-- Font Awesome-->
-<!--    <link rel="stylesheet" type="text/css" href="css/font-awesome.css">-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<!--    <link rel="stylesheet" type="text/css" href="css/font-awesome.css"> Not working-->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- CSS Stylesheet-->
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
@@ -113,25 +113,12 @@
           </md-button>
       </div>
   </md-toolbar>
-  <md-content flex>
+  <md-content style="background-color:#F5F5F5" flex>
 
-
-<!--     <div id="headerRow" class="row">
-      <div ng-include='"views/header.html"' <span class="highlight"></span>></div>
-    </div> -->
     <div class="row" ng-controller="NotifyCtrl">
     <toast></toast>
-
-
+    </div>
           <div class="content-padding" ui-view></div>
-
-<!--
-
-    </div>
-    <div class="row">
-      <div ng-include='"views/footer.html"' <span class="highlight"></span>></div>
-    </div>
--->
  </md-content>
   </body>
 </html>

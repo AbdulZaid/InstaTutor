@@ -759,7 +759,6 @@ footer.page-footer {
 .start-icon-color {
     color: #000;
 }
-<<<<<<< HEAD
 .post-tags {
     margin-top: -9px;
     padding-top: 0px;
@@ -867,15 +866,32 @@ footer.page-footer {
 }
 .gray-text {
     color: gray;
-=======
-
-/*login container*/
-.loginContainer {
-    padding: 40px;
 }
-.flex-40, .layout-row>.flex-40 {
-      margin-top: 70px;
 
-  }
->>>>>>> origin/master
+.start-icon-tutors {
+    color: #000;
+    font-size: 17px;
+    width: 12px;
+    height: 18px;
+}
+
+
+
+md-list-item.proposals-item {
+    padding: 25px 16px;
+}
+
+img.proposals-item-img {
+    width: 68px;
+    height: 68px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.proposals-item-comment {
+    margin-top: 4px;
+}
+
+md-whiteframe {
+    background-color: #fff;
 }
