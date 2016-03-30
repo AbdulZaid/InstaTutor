@@ -25,9 +25,7 @@
                 </div>
 <!--
                 <md-chips>
-                    <md-chip>Math</md-chip>
-                    <md-chip>KFUPM</md-chip>
-                    <md-chip>Math101</md-chip>
+                    <md-chip ng-repeat="tag in tags">{{tag}}</md-chip>
                 </md-chips>
 -->
            <hr/>
@@ -77,9 +75,9 @@
         <h4 class="md-title">Proposal</h4>
         <form name="userForm">
                    <div layout-gt-sm="row">
-                    <md-input-container class="md-block" flex-gt-sm>
-                        <label>${{amount}}</label>
-                        <input required type="number" step="1.0">
+                    <md-input-container class="md-block" flex-gt-sm >
+                        <label>$</label>
+                        <input placeholder="{{amount}}" required type="number" step="1.0" ng-model="counterOffer">
                     </md-input-container>
                     <md-input-container class="md-block" flex-gt-sm>
                         <label>Time to complete</label>
@@ -113,7 +111,7 @@
                     </div>
                 <md-input-container class="md-block">
                     <label>Proposal comment</label>
-                    <textarea rows="5"></textarea>
+                    <textarea rows="5" ng-model="proposalMessage"></textarea>
                 </md-input-container>
                 <md-button class="md-raised" ng-click="propose(authorID, jobID)">Propose</md-button>	
 

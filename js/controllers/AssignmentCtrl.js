@@ -1,4 +1,4 @@
-myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','Posts', '$firebaseArray','$firebaseObject','$mdDialog', '$mdMedia', function ($scope, Auth, Users, Posts, $firebaseArray, $firebaseObject, $mdDialog, $mdMedia, $location) {
+myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','Posts', '$firebaseArray','$firebaseObject','ngToast','$mdDialog', '$mdMedia', function ($scope, Auth, Users, Posts, $firebaseArray, $firebaseObject, ngToast, $mdDialog, $mdMedia, $location) {
 
   var postRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
   var authorRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
@@ -131,7 +131,10 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','Posts', '$firebaseA
               "postField": authorCurrentPost.field,
               "assigned": false
             })
-            alert("tutor notification has been added.")
+            ngToast.create({
+              className: 'success',
+              content: 'you just propsed to do ' + authorCurrentPost.author
+            })  
           }
 
           //function to check priorities. 
@@ -140,7 +143,11 @@ myApp.controller('AssignmentCtrl', ['$scope','Auth','Users','Posts', '$firebaseA
           });
         })
       } else {
-            console.log("I'm not a tutor")
+          console.log("I'm not a tutor")
+          ngToast.create({
+            className: 'danger',
+            content: 'you are not authorised to propose. '
+          })  
     }
 }
 

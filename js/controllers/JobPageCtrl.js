@@ -20,6 +20,8 @@ myApp.controller('JobPageCtrl', ['$scope','Auth','Users','Posts','$firebaseObjec
       $scope.assigned = job.assigned
       $scope.assignedTo = job.assignedTo
       $scope.postedWhen = moment(datePosted).fromNow(true)
+      $scope.tags = job.tags
+      // console.log($scope.tags)
     })
     .catch(function(error) {
       console.error("Error:", error);

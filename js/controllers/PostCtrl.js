@@ -26,8 +26,36 @@ myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$fireba
   // Do an if condition to see if the user is a student or not.
   $scope.postMessage = function() {
     var time = Firebase.ServerValue.TIMESTAMP
+    if(Users.getUserType($scope.authData.uid) === "Student") {
 
-    postsRef.push({
+      postsRef.push({
+          "authorID": $scope.authData.uid,
+          "author": authorName,
+          "question": $scope.question,
+          "content": $scope.textModel,
+          "field": $scope.field,
+          "dueDate": $scope.dueDate.toJSON(),
+          "amount": $scope.moneyAmount,
+          "assigned": false,
+          "assignedTo": false,
+          "time": time,
+          "tags": $scope.tags
+      },
+      function(error) {
+        if (error) {
+          alert("Data could not be saved." + error);
+        } else {
+          ngToast.create({
+            className: 'success',
+            content: 'you just posted a new job successfully' 
+          })  
+        }
+      })
+      postsRef.orderByKey().limitToLast(1).on('child_added', function(snapshot) {
+        key = snapshot.key()  //get a snapshot of the post's key
+      });
+      userRef.child($scope.authData.uid).child("posts").child(key).set({  
+        "key": key,
         "authorID": $scope.authData.uid,
         "author": authorName,
         "question": $scope.question,
@@ -39,34 +67,14 @@ myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$fireba
         "assignedTo": false,
         "time": time,
         "tags": $scope.tags
-    },
-    function(error) {
-      if (error) {
-        alert("Data could not be saved." + error);
-      } else {
-        ngToast.create({
-          className: 'success',
-          content: 'you just posted a new job successfully' 
-        })  
-      }
-    })
-    postsRef.orderByKey().limitToLast(1).on('child_added', function(snapshot) {
-      key = snapshot.key()  //get a snapshot of the post's key
-    });
-    userRef.child($scope.authData.uid).child("posts").child(key).set({  
-      "key": key,
-      "authorID": $scope.authData.uid,
-      "author": authorName,
-      "question": $scope.question,
-      "content": $scope.textModel,
-      "field": $scope.field,
-      "dueDate": $scope.dueDate.toJSON(),
-      "amount": $scope.moneyAmount,
-      "assigned": false,
-      "assignedTo": false,
-      "time": time,
-      "tags": $scope.tags
-    }) //add new post to user's posts.
+      }) //add new post to user's posts.
+    } else {
+      alert("you not a student.")
+      ngToast.create({
+        className: 'danger',
+        content: 'you are not authorised to post a job. '
+      })  
+    }
   };
 
   $scope.fields = [
