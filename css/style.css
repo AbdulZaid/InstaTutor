@@ -871,7 +871,6 @@ footer.page-footer {
 .gray-text {
     color: gray;
 }
-<<<<<<< HEAD
 
 .start-icon-tutors {
     color: #000;
@@ -900,14 +899,8 @@ img.proposals-item-img {
 md-whiteframe {
     background-color: #fff;
 }
-=======
-/*login container*/
 
 .loginContainer {
   padding: 40px;
 }
-.flex-40, .layout-row>.flex-40 {
-  margin-top: 70px;
 
-  }
->>>>>>> origin/master
