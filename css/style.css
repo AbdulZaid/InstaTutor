@@ -733,6 +733,7 @@ footer.page-footer {
 .content-padding {
     max-width: 1200px;
     margin: 0 auto;
+    padding-bottom: 20px;
 }
 
 .profile-image {
@@ -756,8 +757,8 @@ footer.page-footer {
 }
 
 
-.start-icon-color {
-    color: #000;
+.star-icon-colored {
+    color: #5C6BC0;
 }
 <<<<<<< HEAD
 =======
@@ -873,7 +874,6 @@ footer.page-footer {
 }
 
 .start-icon-tutors {
-    color: #000;
     font-size: 17px;
     width: 12px;
     height: 18px;
@@ -904,3 +904,27 @@ md-whiteframe {
   padding: 40px;
 }
 
+
+.proposals-number {
+    margin-right: 5px;
+}
+
+.proposals-header:focus {
+    outline: none;
+    border: 0;
+}
+
+.options-footer {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+md-input-container.dense-form {
+    margin-bottom: 0;
+}
+
+.star-icon {
+    color:#C5C5C5;
+}

@@ -65,21 +65,133 @@
                     </div>
                 </div>
             </div>
-            <div class="options-footer" layout="row">
+            <div class="options-footer" layout="row" layout-align="center center">
                 <span class="md-caption">Posted {{postedWhen}} ago</span>
                 <span flex=""></span>
-                <ng-md-icon icon="more_horiz"></ng-md-icon>
+                
+                <md-menu md-position-mode="target-right target" md-offset="0 40">
+                  <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                    <ng-md-icon icon="more_horiz"></ng-md-icon>
+                  </md-button>
+                  <md-menu-content width="3">
+                    <md-menu-item>
+                      <md-button>
+                        <md-icon class="material-icons start-icon-tutors">remove_circle</md-icon>
+                        Remove
+                      </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                      <md-button>
+                        <md-icon class="material-icons start-icon-tutors">report</md-icon>
+                        Report
+                      </md-button>
+                    </md-menu-item>
+                  </md-menu-content>
+                </md-menu>
             </div>
         </md-whiteframe>
+        
         <md-whiteframe md-whiteframe="3" layout-padding flex layout-margin>
-        <h4 class="md-title">Proposal</h4>
+            
+            <div class="proposals-header" ng-click="toggleProposalsPanel()" layout="row" layout-align="center center">
+                <h1 class="md-title">Proposals</h1>
+                <span flex></span>
+                <div class="md-subhead proposals-number">15 Proposals</div>
+                <md-icon ng-hide="proposalsPanel" class="material-icons">expand_more</md-icon>
+                <md-icon ng-show="proposalsPanel" class="material-icons">expand_less</md-icon>
+            </div>
+            <md-list ng-show="proposalsPanel" layout-padding>
+            <md-divider></md-divider>
+            <md-list-item class="proposals-item"  ng-click="">
+                <md-divider></md-divider>
+                <img src="../images/abdul_img.png" class="md-avatar proposals-item-img" alt="">
+                <div>
+                  <div class="md-title">Hamad Almuqbel</div>
+                  <div>
+                       <md-tooltip md-direction="left">
+                              4.8
+                      </md-tooltip>
+                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                        <span>(5 reviews)</span>
+                  </div>
+                  <div class="md-body-1 proposals-item-comment">
+                    this is the comment and it will be long message if wanted later.
+                  </div>
+                </div>
+                <div layout="column" class="md-secondary" layout-align="center center">
+                    <div class="md-headline">50 $</div>
+                    <div class="md-subhead">in 1 day</div>
+                </div>
+            </md-list-item>
+
+            <md-list-item class="proposals-item"  ng-click="">
+                <md-divider></md-divider>
+                <img src="../images/abdul_img.png" class="md-avatar proposals-item-img" alt="">
+                <div>
+                  <div class="md-title">Hamad Almuqbel</div>
+                  <div>
+                       <md-tooltip md-direction="left">
+                              4.8
+                      </md-tooltip>
+                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                        <span>(5 reviews)</span>
+                  </div>
+                  <div class="md-body-1 proposals-item-comment">
+                    this is the comment and it will be long message if wanted later.
+                  </div>
+                </div>
+                <div layout="column" class="md-secondary" layout-align="center center">
+                    <div class="md-headline">50 $</div>
+                    <div class="md-subhead">in 1 day</div>
+                </div>
+            </md-list-item>
+            
+            <md-list-item class="proposals-item"  ng-click="">
+                <md-divider></md-divider>
+                <img src="../images/abdul_img.png" class="md-avatar proposals-item-img" alt="">
+                <div>
+                  <div class="md-title">Hamad Almuqbel</div>
+                  <div>
+                       <md-tooltip md-direction="left">
+                              4.4
+                      </md-tooltip>
+                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                        <span>(5 reviews)</span>
+                  </div>
+                  <div class="md-body-1 proposals-item-comment">
+                    this is the comment and it will be long message if wanted later.
+                  </div>
+                </div>
+                <div layout="column" class="md-secondary" layout-align="center center">
+                    <div class="md-headline">
+                    50 $
+                    </div>
+                    <div class="md-subhead">in 1 day</div>
+                </div>
+            </md-list-item>
+          </md-list>
+        </md-whiteframe>
+        <md-whiteframe id="propose" md-whiteframe="3" layout-padding flex layout-margin>
+        <h4 class="md-title">Propose</h4>
         <form name="userForm">
                    <div layout-gt-sm="row">
-                    <md-input-container class="md-block" flex-gt-sm >
-                        <label>$</label>
-                        <input placeholder="{{amount}}" required type="number" step="1.0" ng-model="counterOffer">
+                    <md-input-container class="md-block dense-form" flex-gt-sm >
+                        <label>Price</label>
+                        <input value="{{amount}}" required type="number" step="1.0" ng-model="counterOffer">
                     </md-input-container>
-                    <md-input-container class="md-block" flex-gt-sm>
+                    <md-input-container class="md-block dense-form" flex-gt-sm>
                         <label>Time to complete</label>
                         <input required type="number" step="1.0">
 
@@ -109,101 +221,18 @@
     
                     </md-input-container>
                     </div>
-                <md-input-container class="md-block">
+                <md-input-container class="md-block dense-form">
                     <label>Proposal comment</label>
                     <textarea rows="5" ng-model="proposalMessage"></textarea>
                 </md-input-container>
-                <md-button class="md-raised" ng-click="propose(authorID, jobID)">Propose</md-button>	
+                <div layout="row">
+                   <span flex></span>
+                    <md-button class="md-raised md-primary" ng-click="propose(authorID, jobID)">Propose</md-button>	
+                </div>
+                
 
 </form>
         </md-whiteframe>
-        
-        <md-whiteframe md-whiteframe="3" layout-padding flex layout-margin>
-            <h4 class="md-title">Proposal</h4>
-            <md-list layout-padding>
-            <md-divider></md-divider>
-            <md-list-item class="proposals-item"  ng-click="">
-                <md-divider></md-divider>
-                <img src="../images/abdul_img.png" class="md-avatar proposals-item-img" alt="">
-                <div>
-                  <div class="md-title">Hamad Almuqbel</div>
-                  <div>
-                       <md-tooltip md-direction="left">
-                              4.8
-                      </md-tooltip>
-                        <span><md-icon class="material-icons start-icon-tutors">star</md-icon></span>
-                        <span><md-icon class="material-icons start-icon-tutors">star</md-icon></span>
-                        <span><md-icon class="material-icons start-icon-tutors">star</md-icon></span>
-                        <span><md-icon class="material-icons start-icon-tutors">star</md-icon></span>
-                        <span><md-icon class="material-icons start-icon-tutors">star</md-icon></span>
-                        <span>(5 reviews)</span>
-                  </div>
-                  <div class="md-body-1 proposals-item-comment">
-                    this is the comment and it will be long message if wanted later.
-                  </div>
-                </div>
-                <div layout="column" class="md-secondary" layout-align="center center">
-                    <div class="md-headline">50 $</div>
-                    <div class="md-subhead">in 1 day</div>
-                </div>
-            </md-list-item>
-
-            <md-list-item class="proposals-item"  ng-click="">
-                <md-divider></md-divider>
-                <img src="../images/abdul_img.png" class="md-avatar proposals-item-img" alt="">
-                <div>
-                  <div class="md-title">Hamad Almuqbel</div>
-                  <div>
-                       <md-tooltip md-direction="left">
-                              4.8
-                      </md-tooltip>
-                        <span><md-icon class="material-icons start-icon-tutors">star</md-icon></span>
-                        <span><md-icon class="material-icons start-icon-tutors">star</md-icon></span>
-                        <span><md-icon class="material-icons start-icon-tutors">star</md-icon></span>
-                        <span><md-icon class="material-icons start-icon-tutors">star</md-icon></span>
-                        <span><md-icon class="material-icons start-icon-tutors">star</md-icon></span>
-                        <span>(5 reviews)</span>
-                  </div>
-                  <div class="md-body-1 proposals-item-comment">
-                    this is the comment and it will be long message if wanted later.
-                  </div>
-                </div>
-                <div layout="column" class="md-secondary" layout-align="center center">
-                    <div class="md-headline">50 $</div>
-                    <div class="md-subhead">in 1 day</div>
-                </div>
-            </md-list-item>
-            
-            <md-list-item class="proposals-item"  ng-click="">
-                <md-divider></md-divider>
-                <img src="../images/abdul_img.png" class="md-avatar proposals-item-img" alt="">
-                <div>
-                  <div class="md-title">Hamad Almuqbel</div>
-                  <div>
-                       <md-tooltip md-direction="left">
-                              4.4
-                      </md-tooltip>
-                        <span><md-icon class="material-icons start-icon-tutors">star</md-icon></span>
-                        <span><md-icon class="material-icons start-icon-tutors">star</md-icon></span>
-                        <span><md-icon class="material-icons start-icon-tutors">star</md-icon></span>
-                        <span><md-icon class="material-icons start-icon-tutors">star</md-icon></span>
-                        <span><md-icon class="material-icons start-icon-tutors">star</md-icon></span>
-                        <span>(5 reviews)</span>
-                  </div>
-                  <div class="md-body-1 proposals-item-comment">
-                    this is the comment and it will be long message if wanted later.
-                  </div>
-                </div>
-                <div layout="column" class="md-secondary" layout-align="center center">
-                    <div class="md-headline">
-                    50 $
-                    </div>
-                    <div class="md-subhead">in 1 day</div>
-                </div>
-            </md-list-item>
-          </md-list>
-        </md-whiteframe>
-
         
     </div>
     <div flex="30">
@@ -216,11 +245,11 @@
                     <img src="../images/abdul_img.png" class="md-avatar profile-image" />
                     <div class="md-title">Abdul zaid</div>
                     <div>
-                        <span><md-icon class="material-icons start-icon-color">star</md-icon></span>
-                        <span><md-icon class="material-icons start-icon-color">star</md-icon></span>
-                        <span><md-icon class="material-icons start-icon-color">star</md-icon></span>
-                        <span><md-icon class="material-icons start-icon-color">star</md-icon></span>
-                        <span><md-icon class="material-icons">star</md-icon></span>
+                        <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons star-icon">star</md-icon></span>
                     </div>
                     <div class="md-subhead">16 reviews</div>
                 </div>
@@ -247,7 +276,6 @@
                 </md-list-item>
                 <md-list-item class="md-1-line">
                  <span><md-icon class="material-icons about-icon">book</md-icon></span>
-<!--                  <ng-md-icon icon="book" class="about-icon"></ng-md-icon>-->
                   <div class="md-list-item-text">
                     <p>Studying Software Engineering</p>
                   </div>

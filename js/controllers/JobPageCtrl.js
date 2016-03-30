@@ -27,6 +27,14 @@ myApp.controller('JobPageCtrl', ['$scope','Auth','Users','Posts','$firebaseObjec
       console.error("Error:", error);
   });
   $scope.imagePath = 'images/abdul_img.png';
+    
+    
+    // proposal panel control
+    $scope.proposalsPanel = false;
+    $scope.toggleProposalsPanel = function()
+    {
+        $scope.proposalsPanel = !$scope.proposalsPanel;
+    }
 }])
 
 .config(function($mdDateLocaleProvider) {
