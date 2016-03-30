@@ -1,49 +1,55 @@
-<div id="signupContainer" class="container">
-  <div ng-controller="SignupCtrl">
-      <h3>This is signup</h3>
-    <form class="form-horizontal">
-    <div class="form-group">
-        <label  for="inputName" class=".col-md-4 control-label">Name</label>
-        <div class=".col-md-4">
-          <input ng-model="handle" type="text" class="form-control" id="inputName" placeholder="full name">
-        </div>
-    </div>
-    <div class="form-group">
-      <label  for="inputEmail3" class=".col-md-4 control-label">Email</label>
-      <div class=".col-md-4">
-        <input ng-model="email" type="text" class="form-control" id="inputEmail3" placeholder="Email">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputPassword3" class=".col-md-4 control-label">Password</label>
-      <div class=".col-md-4">
-        <input ng-model="password"  type="password" class="form-control" id="inputPassword3" placeholder="Password">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class=".col-md-4">
-        <label for="selectUserType" class=".col-md-4 control-label">Type of User</label>
-        <select ng-model="userLists" 
-                  ng-options="userType as userType.label for userType in userTypes" class="form-control" id="selectUserType">
-          <option value="">---Please select User Type---</option> <!-- not selected / blank option -->           
-        </select>
-        <p>Ordered by: {{userLists.label}}</p>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox"> Remember me
-          </label>
-        </div>
-      </div>
-    </div>
-    <div  class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button ng-click= "create()" type="submit" class="btn btn-default">Sign up</button>
-      </div>
-    </div>
-    </form>
+<div layout="row" layout-wrap>
+  <div flex="30">
   </div>
-</div>
+
+  <div flex="40" class= "md-hue-1 md-whiteframe-z2">
+    <div>
+        <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2>
+            <span>Sign up</span>
+          </h2>
+          <span flex></span>
+        </div>
+      </md-toolbar>
+    </div>
+
+    <md-content class="loginContainer">
+      <form class="form-horizontal" > 
+
+        <md-input-container class="md-block">
+        <!-- Use floating placeholder instead of label -->
+        <md-icon md-svg-src="" class="handle"></md-icon>
+        <input ng-model="handle" type="text" placeholder="handle (required)" ng-required="true">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+        <!-- Use floating placeholder instead of label -->
+        <md-icon md-svg-src="" class="email"></md-icon>
+        <input ng-model="email" type="email" placeholder="Email (required)" ng-required="true">
+        </md-input-container>
+
+        <label>User Type</label>
+          <md-select ng-model="userType">
+          <md-optgroup label="User Type">
+              <md-option ng-value="userType.label" ng-repeat="userType in userTypes">{{userType.label}}</md-option>
+          </md-optgroup>
+          </md-select>
+
+        <md-input-container class="md-block">
+        <!-- Use floating placeholder instead of label -->
+        <md-icon md-svg-src="" class="password"></md-icon>
+        <input ng-model="password" type="password" placeholder="Password (required)" ng-required="true">
+        </md-input-container>
+        <div flex-xs flex="50">
+          <md-checkbox aria-label="Checkbox">
+            Remember Me
+          </md-checkbox>
+        </div>
+        <md-button class="md-raised md-primary" ng-click="create()"  type="submit">Sign up</md-button>
+        <span>Already have an account login <a href="#/login"> here</a></span>
+    </form>
+    </md-content>
+  </div>
+  <div flex="30">
+  </div>
