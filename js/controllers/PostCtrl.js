@@ -1,4 +1,4 @@
-myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$firebaseArray','ngToast', function ($scope, Auth, Users, $firebaseObject, $firebaseArray, ngToast ) {
+myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$firebaseArray','ngToast','Upload', function ($scope, Auth, Users, $firebaseObject, $firebaseArray, ngToast, Upload ) {
   var messageRef = new Firebase("https://homeworkmarket.firebaseio.com/messages");
   var userRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
   $scope.authData = Auth.$getAuth();
