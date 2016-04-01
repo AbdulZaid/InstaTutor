@@ -75,6 +75,7 @@
     <script src="js/controllers/NotifyCtrl.js"></script>
     <script src="js/controllers/JobsCtrl.js"></script>
     <script src="js/controllers/JobPageCtrl.js"></script>
+    <script src="js/controllers/tutorPageCtrl.js"></script>
     <script src="js/directives/parallax.js"></script>
     <script src="js/services/UsersFac.js"></script>
     <script src="js/services/AuthFac.js"></script>
@@ -105,6 +106,7 @@
           <md-button ng-hide= "authData" ui-sref="login">Login</md-button>
           <md-button ng-hide= "authData" ui-sref="signup">Signup</md-button>
           <md-button ui-sref="become-tutor">become a tutor</md-button>
+          <md-button ui-sref="tutorProfile">view tutor</md-button>
           <!-- <md-button ui-sref="jobPost">Jop Page</md-button> -->
           <md-button ng-show= "authData" ng-click="logout()" ui-sref="main">Logout</md-button>
           <span flex></span>

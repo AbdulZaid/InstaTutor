@@ -167,7 +167,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
         templateUrl: "views/job-page.html", 
         controller: "JobPageCtrl"
     })
-
+    .state('tutorProfile', {
+        url: "/tutor/:jobID",
+        templateUrl: "views/tutor-profile.html", 
+        controller: "tutorPageCtrl"
+    })
     // For any unmatched url, redirect to /state1
     $urlRouterProvider.otherwise('/home' )
 })

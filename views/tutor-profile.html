@@ -1,0 +1,97 @@
+
+<div layout="row" layout-wrap>
+    
+
+<div flex="30">
+        <md-whiteframe layout-margin md-whiteframe="3" flex layout="column">
+                <md-divider></md-divider>
+                <div class="md-title" style="text-align:center">User Details</div>
+                <div class="user-info" style="text-align:center">
+                    <img src="../images/abdul_img.png" class="md-avatar profile-image" />
+                    <div class="md-title">Abdul zaid</div>
+                    <div>
+                        <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons star-icon">star</md-icon></span>
+                    </div>
+                    <div class="md-subhead">16 reviews</div>
+                </div>
+                <md-divider></md-divider>
+                <md-button class="md-raised md-primary" ng-click="propose(authorID, jobID)">Send Tutor a Message</md-button>
+                <md-button class="md-raised">Invite to a Job</md-button>
+                <div class="md-title">About:</div>
+                <md-list>
+                <md-list-item class="md-1-line">
+                <span><md-icon class="material-icons about-icon">work</md-icon></span>
+                  <div class="md-list-item-text">
+                    <p>5 Jobs done</p>
+                  </div>
+                </md-list-item>
+                <md-list-item class="md-1-line">
+                <span><md-icon class="material-icons about-icon">location_on</md-icon></span>
+                  <div class="md-list-item-text">
+                    <p>From Saudi Arabia</p>
+                  </div>
+                </md-list-item>
+                <md-list-item class="md-1-line">
+                 <span><md-icon class="material-icons about-icon">school</md-icon></span>
+                  <div class="md-list-item-text">
+                    <p>Student at KFUPM</p>
+                  </div>
+                </md-list-item>
+                <md-list-item class="md-1-line">
+                 <span><md-icon class="material-icons about-icon">book</md-icon></span>
+                  <div class="md-list-item-text">
+                    <p>Studying Software Engineering</p>
+                  </div>
+                </md-list-item>
+                </md-list>
+                <div layout="row">
+                   <span flex=""></span>
+                    <span><md-button class="md-raised"><md-icon class="material-icons" style="color: darkgreen">check</md-icon> Verified</md-button></span>
+                </div>
+        </md-whiteframe>
+    </div>
+
+    <div flex="70" layout="column">
+          <md-whiteframe md-whiteframe="3" layout-padding layout-margin flex>
+               <h1 class="md-headline">About</h1>
+
+                <div  class="post-header-info" flex layout="row" layout-align="center center">
+                  <div flex class="post-header-info2">
+                            <md-tooltip md-direction="top">
+                              Due Date
+                            </md-tooltip>
+                      <span><md-icon class="material-icons about-icon">access_time</md-icon></span>
+                        <span>{{dueDate}}</span>
+                  </div>
+                  <div flex class="post-header-info2">
+                     <md-tooltip md-direction="top">
+                              Expected Job Price
+                    </md-tooltip>
+                      <span><md-icon class="material-icons about-icon">payment</md-icon></span>
+                      <span>{{amount}} $</span>
+                  </div>
+                  <div flex class="post-header-info2">
+                      <md-tooltip md-direction="top">
+                              Job Status
+                      </md-tooltip>
+                      <span><md-icon class="material-icons about-icon">mood</md-icon></span>
+                      <span>Open</span>
+                  </div>
+                </div>
+                <hr/>
+                <h1 class="md-title">Ratings</h1>
+                <p class="md-body-1">
+                    {{content}}
+                </p>
+            <div class="Reviews" flex>
+              <h1 class="md-title">Reviews</h1>
+            </div>
+        </md-whiteframe>
+        
+    </div>
+    
+</div>
