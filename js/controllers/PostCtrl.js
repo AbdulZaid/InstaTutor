@@ -14,6 +14,36 @@ myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$fireba
       authorName = Users.getName($scope.authData.uid)
   });
 
+
+
+    // upload later on form submit or something similar
+    $scope.submit = function() {
+      // if ($scope.form.file.$valid && $scope.file) {
+        $scope.upload($scope.file);
+      // }
+    };
+
+    $scope.upload = function(file) {
+          Upload.upload({
+            url: "http://tutoring-images.s3.amazonaws.com/", //S3 upload url including bucket name
+            method: 'POST',
+            data: {
+                key: $scope.file, // the key to store the file on S3, could be file name or customized
+                AWSAccessKeyId: $scope.AWSAccessKeyId,
+                acl: $scope.acl, // sets the access to the uploaded file in the bucket: private, public-read, ...
+                policy: $scope.policy, // base64-encoded json policy (see article below)
+                signature: $scope.signature, // base64-encoded signature based on policy string (see article below)
+                "Content-Type": $scope.file != '' ? $scope.file : 'application/octet-stream', // content type of the file (NotEmpty)
+                filename: $scope.file, // this is needed for Flash polyfill IE8-9
+                file: $scope.file
+            }
+        });
+    }
+
+
+
+
+
   // COLLAPSE =====================
   $scope.isCollapsed = false; 
 
