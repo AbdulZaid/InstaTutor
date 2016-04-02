@@ -18,14 +18,14 @@ myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$fireba
 
     // upload later on form submit or something similar
     $scope.submit = function() {
-      // if ($scope.form.file.$valid && $scope.file) {
+      if ($scope.form.file.$valid && $scope.file) {
         $scope.upload($scope.file);
-      // }
+      }
     };
 
     $scope.upload = function(file) {
           Upload.upload({
-            url: "http://tutoring-images.s3.amazonaws.com/", //S3 upload url including bucket name
+            url: "https://tutoring-images.s3.amazonaws.com/", //S3 upload url including bucket name
             method: 'POST',
             data: {
                 key: $scope.file, // the key to store the file on S3, could be file name or customized
@@ -37,6 +37,13 @@ myApp.controller('PostCtrl', ['$scope','Auth','Users','$firebaseObject','$fireba
                 filename: $scope.file, // this is needed for Flash polyfill IE8-9
                 file: $scope.file
             }
+        }).then(function (resp) {
+            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+        }, function (resp) {
+            console.log('Error status: ' + resp.status);
+        }, function (evt) {
+            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
         });
     }
 

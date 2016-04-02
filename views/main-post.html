@@ -64,16 +64,19 @@
                         <md-button class="md-raised" ng-click="postMessage()"  ng-show= "authData">Post</md-button> 
                     </div>
                 </form>
-                <form action="http://tutoring-images.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
+                <form action="https://tutoring-images.s3.amazonaws.com/" method="post" enctype="multipart/form-data"  name="form">
                     <input type="hidden" name="key" value="uploads/${filename}" />
                     <input type="hidden" name="acl" value="public-read" />
                     <input type="hidden" name="content-type" value="image/png" />
                     <input type="hidden" name="AWSAccessKeyId" value="AKIAIVXWPHX7GO3MKQ4Q" />
                     <input type="hidden" name="policy" value="ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMTI6MDA6MDAuMDAwWiIsCiAgImNvbmRpdGlvbnMiOiBbCiAgICB7ImJ1Y2tldCI6ICJ0dXRvcmluZy1pbWFnZXMiIH0sCiAgICB7ImFjbCI6ICJwdWJsaWMtcmVhZCIgfSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICJ1cGxvYWRzLyJdLAogICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgImltYWdlL3BuZyJdLAogIF0KfQo=" />
                     <input type="hidden" name="signature" value="8qt7zsHOO+Aa5mrvwbDB20/ljLs=" />
-                    <input name="file" type="file" />
+
+                    <input name="file" type="file" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"  ngf-resize="{width: 100, height: 100}" />
 
                    <md-button type="submit" class="md-raised" ng-click="submit()">submit</md-button> 
+                   Image thumbnail: <img ngf-thumbnail="file || ''">
+
                 </form>
             </md-content>
         </div>
