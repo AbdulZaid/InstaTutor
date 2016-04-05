@@ -733,7 +733,6 @@ footer.page-footer {
 .content-padding {
     max-width: 1200px;
     margin: 0 auto;
-    padding-bottom: 20px;
 }
 
 .profile-image {
@@ -927,4 +926,69 @@ md-input-container.dense-form {
 
 .star-icon {
     color:#C5C5C5;
+}
+/*
+.chat .md-list-item-text:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: -40px;
+	right: auto;
+  top: -8px;
+	bottom: auto;
+	border: 32px solid;
+	border-color: #666 transparent transparent transparent;
+}
+*/
+.chat > div:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+    left: -12px;
+    right: auto;
+    top: 0px;
+    bottom: auto;
+    border: 12px solid;
+    border-color: #F5F5F5 transparent transparent transparent;
+}
+md-list-item.chat > div {
+    background-color: #F5F5F5;
+    padding: 8px;
+    position: relative;
+    margin-bottom: 6px;
+}
+md-list-item.chat {
+    min-height: 70px;
+}
+
+
+
+.chat > div.personal-chat:after{
+    border-color: #5C6BC0 transparent transparent transparent;
+}
+md-list-item.chat > div.personal-chat {
+    background-color: #5C6BC0;
+}
+
+md-list md-list-item.md-3-line .md-list-item-text p {
+    color: rgba(0,0,0,0.84);
+    padding: 3px 0px;
+}
+md-list md-list-item.md-3-line .personal-chat p {
+    color: rgba(255,255,255,0.84);
+}
+md-list-item.md-3-line .md-list-item-text
+{
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+.chat-container , .send-chat-container
+{
+    border: solid 1px #E1E1E1;
+}
+.send-chat-container
+{
+    border-top: none;
 }
