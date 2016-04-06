@@ -29,17 +29,18 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', '$firebaseObject', '$fi
             url: "https://tutoring-images.s3.amazonaws.com/", //S3 upload url including bucket name
             method: 'POST',
             data: {
-                key: $scope.file, // the key to store the file on S3, could be file name or customized
+                key: $scope.file.name, // the key to store the file on S3, could be file name or customized
                 AWSAccessKeyId: $scope.AWSAccessKeyId,
                 acl: $scope.acl, // sets the access to the uploaded file in the bucket: private, public-read, ...
                 policy: $scope.policy, // base64-encoded json policy (see article below)
                 signature: $scope.signature, // base64-encoded signature based on policy string (see article below)
-                "Content-Type": $scope.file != '' ? $scope.file : 'application/octet-stream', // content type of the file (NotEmpty)
-                filename: $scope.file, // this is needed for Flash polyfill IE8-9
+                "Content-Type": $scope.file.type != '' ? $scope.file.type : 'application/octet-stream', // content type of the file (NotEmpty)
+                filename: $scope.file.name, // this is needed for Flash polyfill IE8-9
                 file: $scope.file
             }
         }).then(function(resp) {
             console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+            console.log(resp);
         }, function(resp) {
             console.log('Error status: ' + resp.data);
         }, function(evt) {

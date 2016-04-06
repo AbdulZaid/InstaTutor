@@ -58,10 +58,24 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
 			    },
 			    {
 			      link : '',
+			      title: 'My Bookmarks',
+			      icon: 'bookmark',
+			      direct: 'dashboard.myJobs',
+			      show: $scope.isTutor 
+			    },
+			    {
+			      link : '',
 			      title: 'Proposals',
 			      icon: 'message',
 			      direct: 'dashboard.myProposals',
 			      show: $scope.isStudent
+			    },
+			    {
+			      link : '',
+			      title: 'Messages',
+			      icon: 'message',
+			      direct: 'dashboard.myProfile',
+			      show: true
 			    }
 			  ];
 			  $scope.admin = [
