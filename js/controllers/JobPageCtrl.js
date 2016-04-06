@@ -23,7 +23,7 @@ myApp.controller('JobPageCtrl', ['$scope','Auth','Users','Posts','$firebaseObjec
       $scope.assignedTo = $scope.job.assignedTo
       $scope.postedWhen = moment(datePosted).fromNow(true)
       $scope.tags = $scope.job.tags
-      
+      $scope.imageURL = $scope.job.images
 
       //user profile
       var user = Users.getProfile($scope.job.authorID)

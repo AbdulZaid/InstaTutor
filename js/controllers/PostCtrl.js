@@ -40,6 +40,11 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', '$firebaseObject', '$fi
             }
         }).then(function(resp) {
             console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+            console.log('https://'+ 's3.amazonaws.com/'+ 'tutoring-images/uploads/'+ resp.config.data.file.name);
+            $scope.imageUrl = 'https://'+ 's3.amazonaws.com/'+ 'tutoring-images/uploads/'+ resp.config.data.file.name
+            $scope.imageName = resp.config.data.file.name
+            $scope.imageType = resp.config.data.file.type
+            $scope.imageSize = resp.config.data.file.size
             console.log(resp);
         }, function(resp) {
             console.log('Error status: ' + resp.data);
@@ -79,7 +84,8 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', '$firebaseObject', '$fi
                     "assignedTo": false,
                     "time": time,
                     "tags": $scope.tags,
-                    "status": 'open'
+                    "status": 'open',
+                    "images": $scope.imageUrl
                 },
                 function(error) {
                     if (error) {
@@ -107,7 +113,8 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', '$firebaseObject', '$fi
                     "assignedTo": false,
                     "time": time,
                     "tags": $scope.tags,
-                    "status": 'open'
+                    "status": 'open',
+                    "images": $scope.imageUrl
                 }) //add new post to user's posts.
         } else {
             alert("you not a student.")
