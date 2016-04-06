@@ -21,6 +21,14 @@ myApp.factory('Users', ['$firebaseAuth','$firebaseObject','$firebaseArray', func
         getSpecificPost: function(uid, postID) {
             return $firebaseObject(usersRef.child(uid).child("posts").child(postID))
         },
+        getSpecificPostProposals: function(uid, postID) {
+            var proposalsRef = new Firebase("https://homeworkmarket.firebaseio.com/users/" + uid +"/posts/" + postID +"/proposals/");
+            var proposalsArray = $firebaseArray(proposalsRef)
+            proposalsArray.$loaded(function() {
+                console.log(proposalsArray.length); // data is loaded here
+            })
+            return proposalsArray
+        },
         // getTutorProposlas: function(uid, proposalID) {
         //  return $firebaseObject(usersRef.child(uid).child("tutorProposlas").child(proposalID))
         // },

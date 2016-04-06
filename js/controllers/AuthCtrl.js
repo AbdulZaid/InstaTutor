@@ -27,7 +27,7 @@ myApp.controller('AuthCtrl', ['$scope','Auth', '$log','$rootScope','$state', fun
 		  if (!authData) {
 		    console.log("User is unauthenticated");
 		    $scope.authData = authData;
-			$state.go("landing")
+			$state.go("login")
 		  } 
 		})
 		Auth.$unauth();
