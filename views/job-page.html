@@ -18,7 +18,7 @@
                               Expected Job Price
                     </md-tooltip>
                       <span><md-icon class="material-icons about-icon">payment</md-icon></span>
-                      <span>{{amount}} $</span>
+                      <span>${{amount}}</span>
                   </div>
                   <div flex class="post-header-info2">
                       <md-tooltip md-direction="top">
@@ -74,6 +74,7 @@
                     <ng-md-icon icon="more_horiz"></ng-md-icon>
                   </md-button>
                   <md-menu-content width="3">
+                   <!--(Note) Show only for the owner of the post (the student) -->
                     <md-menu-item>
                       <md-button>
                         <md-icon class="material-icons start-icon-tutors">remove_circle</md-icon>
@@ -96,16 +97,18 @@
             <div class="proposals-header" ng-click="toggleProposalsPanel()" layout="row" layout-align="center center">
                 <h1 class="md-title">Proposals</h1>
                 <span flex></span>
-                <div class="md-subhead proposals-number" ng-model="numOfProposals">{{numOfProposals}} Proposals</div>
+                <div class="md-subhead proposals-number" ng-model="numOfProposals">({{numOfProposals}})</div>
                 <md-icon ng-hide="proposalsPanel" class="material-icons">expand_more</md-icon>
                 <md-icon ng-show="proposalsPanel" class="material-icons">expand_less</md-icon>
             </div>
             <md-list ng-show="proposalsPanel" layout-padding>
             <md-divider></md-divider>
+            <div ng-show="!proposalsArray">No proposals have been submitted</div>
             <md-list-item class="proposals-item"  ng-click="" ng-repeat= "proposal in proposalsArray">
                 <md-divider></md-divider>
                 <img src="../images/abdul_img.png" class="md-avatar proposals-item-img" alt="">
-                <div>
+                <div flex layout="row">
+                <div flex>
                   <div class="md-title">{{proposal.tutorName}}</div>
                   <div>
                        <md-tooltip md-direction="left">
@@ -122,9 +125,19 @@
                     {{proposal.message}}
                   </div>
                 </div>
-                <div layout="column" class="md-secondary" layout-align="center center">
-                    <div class="md-headline">{{proposal.amount}} $</div>
+                <div flex="15" layout="column"  layout-align="center center">
+                    <div class="md-headline">${{proposal.amount}}</div>
                     <div class="md-subhead">in 1 day</div>
+                </div>
+                <!--(Note) Show for the owner of the post (the student)-->
+                <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="!userType">
+                    <md-button class="md-primary">Accept</md-button>
+                    <md-button class="md-warn">Reject</md-button>
+                </div>
+                <!--(Note) Show for the tutor who submited the proposal (should show on top of the proposalsArray list)-->
+                <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center">
+                    <md-button class="md-warn">Delete</md-button>
+                </div>
                 </div>
             </md-list-item>
 
@@ -136,13 +149,13 @@
                    <div layout-gt-sm="row">
                     <md-input-container class="md-block dense-form" flex-gt-sm >
                         <label>Price</label>
-                        <input value="{{amount}}" required type="number" step="1.0" ng-model="counterOffer">
+                        <input id="price" value="{{amount}}" required type="number" step="1.0" ng-model="counterOffer">
                     </md-input-container>
                     <md-input-container class="md-block dense-form" flex-gt-sm>
                         <label>Time to complete</label>
                         <input required type="number" step="1.0">
 
-    
+    <!--(Note) please but a menu of the time estimation insted of just text field suggested list is bellow -->
 <!--
                         <md-select>
                             <md-option value="less than an hour">
@@ -169,7 +182,7 @@
                     </md-input-container>
                     </div>
                 <md-input-container class="md-block dense-form">
-                    <label>Proposal comment</label>
+                    <label>Proposal comment (optional)</label>
                     <textarea rows="5" ng-model="proposalMessage"></textarea>
                 </md-input-container>
                 <div layout="row">
@@ -184,7 +197,7 @@
     </div>
     <div flex="30">
         <md-whiteframe layout-margin md-whiteframe="3" flex layout="column">
-                <md-button class="md-raised md-primary" ng-click="propose(authorID, jobID)" ng-show="userType">Propose</md-button>
+                <md-button class="md-raised md-primary" ng-click="proposalFocus()" ng-show="userType">Propose</md-button>
                 <md-button class="md-raised" ng-show="userType" ng-click="bookmark()">Bookmark</md-button>
                 <md-divider></md-divider>
                 <div class="md-title" style="text-align:center">User Details</div>
@@ -235,3 +248,21 @@
         </md-whiteframe>
     </div>
 </div>
+<!--
+     <script type-"text/javascript">
+
+       function mylinkfunction(e) {
+
+       window.location.href="#propose";
+
+       /* need to stop the form sending of the form
+
+        UPDATE as comment: This may not be exactly correct syntax 
+        for stopping a form , look up preventing form submission */
+
+       e.preventDefault();
+       e.stopPropagation(); 
+
+       }
+
+     </script>-->

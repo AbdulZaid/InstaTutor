@@ -992,3 +992,7 @@ md-list-item.md-3-line .md-list-item-text
 {
     border-top: none;
 }
+.proposal-item-action-menu > .md-button {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
