@@ -41,10 +41,10 @@ myApp.controller('JobPageCtrl', ['$scope','Auth','Users','Posts','$firebaseObjec
       //show or hide the propose form based on user type.
       var currentUser = Users.getProfile($scope.authData.uid);
       if(currentUser.type == "Tutor") {
-        console.log(currentUser.type);
-        $scope.userType = true;
+        console.log(currentUser.tutorProposals);
+        $scope.isTutor = true;
       } else {
-        $scope.userType = false;
+        $scope.isTutor = false;
       }
       
       // proposal panel control

@@ -130,7 +130,7 @@
                     <div class="md-subhead">in 1 day</div>
                 </div>
                 <!--(Note) Show for the owner of the post (the student)-->
-                <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="!userType">
+                <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="!isTutor">
                     <md-button class="md-primary">Accept</md-button>
                     <md-button class="md-warn">Reject</md-button>
                 </div>
@@ -143,7 +143,7 @@
 
           </md-list>
         </md-whiteframe>
-        <md-whiteframe id="propose" ng-show="userType" md-whiteframe="3" layout-padding flex layout-margin>
+        <md-whiteframe id="propose" ng-show="isTutor" md-whiteframe="3" layout-padding flex layout-margin>
         <h4 class="md-title">Propose</h4>
         <form name="userForm">
                    <div layout-gt-sm="row">
@@ -196,9 +196,9 @@
         
     </div>
     <div flex="30">
-        <md-whiteframe layout-margin md-whiteframe="3" flex layout="column" ng-show="userType">
-                <md-button class="md-raised md-primary" ng-click="proposalFocus()" ng-show="userType">Propose</md-button>
-                <md-button class="md-raised" ng-show="userType" ng-click="bookmark()">Bookmark</md-button>
+        <md-whiteframe layout-margin md-whiteframe="3" flex layout="column" ng-show="isTutor">
+                <md-button class="md-raised md-primary" ng-click="proposalFocus()" ng-show="isTutor">Propose</md-button>
+                <md-button class="md-raised" ng-show="isTutor" ng-click="bookmark()">Bookmark</md-button>
                 <md-divider></md-divider>
                 <div class="md-title" style="text-align:center">User Details</div>
                 <div class="user-info" style="text-align:center">
@@ -248,7 +248,7 @@
         </md-whiteframe>
         
         <!-- Student View -->
-        <md-whiteframe layout-margin md-whiteframe="3" flex layout="column" ng-show="!userType">
+        <md-whiteframe layout-margin md-whiteframe="3" flex layout="column" ng-show="!isTutor">
                 <md-list>
                 <md-list-item class="md-1-line">
                 <span><md-icon class="material-icons about-icon">work</md-icon></span>

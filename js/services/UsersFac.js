@@ -32,6 +32,7 @@ myApp.factory('Users', ['$firebaseAuth','$firebaseObject','$firebaseArray', func
         // getTutorProposlas: function(uid, proposalID) {
         //  return $firebaseObject(usersRef.child(uid).child("tutorProposlas").child(proposalID))
         // },
+        //tutor can't propose to more than one assingment. must Fix.
         hasNotProposed: function(tutorID) {
             var notProposed = true
 
