@@ -6,6 +6,7 @@ myApp.controller('JobPageCtrl', ['$scope','Auth','Users','Posts','$firebaseObjec
   $scope.postsRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
   $scope.jobRef = $firebaseObject($scope.postsRef);
   $scope.usersRef = $firebaseArray($scope.authorRef);
+  $scope.proposalsPanel = false;
   $scope.jobRef.$loaded()
     .then(function() {
       $scope.job = Posts.getSpecificPost($scope.jobID);
@@ -45,7 +46,18 @@ myApp.controller('JobPageCtrl', ['$scope','Auth','Users','Posts','$firebaseObjec
       } else {
         $scope.userType = false;
       }
-
+      
+      // proposal panel control
+        
+        if(currentUser.type == "Student")
+            {
+                $scope.proposalsPanel = true;
+            }
+        $scope.toggleProposalsPanel = function()
+        {
+            $scope.proposalsPanel = !$scope.proposalsPanel;
+        }
+      
       //proposals handler
       var proposalsRef = new Firebase("https://homeworkmarket.firebaseio.com/users/" + $scope.job.authorID +"/posts/" + $scope.jobID +"/proposals/");
       $scope.proposalsArray = $firebaseArray(proposalsRef)
@@ -70,12 +82,7 @@ myApp.controller('JobPageCtrl', ['$scope','Auth','Users','Posts','$firebaseObjec
   $scope.imagePath = 'images/abdul_img.png';
     
     
-    // proposal panel control
-    $scope.proposalsPanel = false;
-    $scope.toggleProposalsPanel = function()
-    {
-        $scope.proposalsPanel = !$scope.proposalsPanel;
-    }
+    
 }])
 
 .config(function($mdDateLocaleProvider) {

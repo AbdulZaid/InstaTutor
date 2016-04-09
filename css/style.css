@@ -757,7 +757,7 @@ footer.page-footer {
 
 
 .star-icon-colored {
-    color: #5C6BC0;
+    color: #00897B;
 }
 <<<<<<< HEAD
 =======
@@ -995,4 +995,9 @@ md-list-item.md-3-line .md-list-item-text
 .proposal-item-action-menu > .md-button {
     margin-top: 0px;
     margin-bottom: 0px;
+}
+
+md-list-item.suggested-tutors-item {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }

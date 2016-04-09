@@ -103,8 +103,8 @@
             </div>
             <md-list ng-show="proposalsPanel" layout-padding>
             <md-divider></md-divider>
-            <div ng-show="!proposalsArray">No proposals have been submitted</div>
-            <md-list-item class="proposals-item"  ng-click="" ng-repeat= "proposal in proposalsArray">
+            <div ng-show="proposalsArray.length == 0">No proposals have been submitted</div>
+            <md-list-item class="proposals-item" ng-repeat= "proposal in proposalsArray">
                 <md-divider></md-divider>
                 <img src="../images/abdul_img.png" class="md-avatar proposals-item-img" alt="">
                 <div flex layout="row">
@@ -196,7 +196,7 @@
         
     </div>
     <div flex="30">
-        <md-whiteframe layout-margin md-whiteframe="3" flex layout="column">
+        <md-whiteframe layout-margin md-whiteframe="3" flex layout="column" ng-show="userType">
                 <md-button class="md-raised md-primary" ng-click="proposalFocus()" ng-show="userType">Propose</md-button>
                 <md-button class="md-raised" ng-show="userType" ng-click="bookmark()">Bookmark</md-button>
                 <md-divider></md-divider>
@@ -246,23 +246,110 @@
                     <span><md-button class="md-raised"><md-icon class="material-icons" style="color: darkgreen">check</md-icon> Verified</md-button></span>
                 </div>
         </md-whiteframe>
+        
+        <!-- Student View -->
+        <md-whiteframe layout-margin md-whiteframe="3" flex layout="column" ng-show="!userType">
+                <md-list>
+                <md-list-item class="md-1-line">
+                <span><md-icon class="material-icons about-icon">work</md-icon></span>
+                  <div class="md-list-item-text">
+                    <p>5 Proposals submited</p>
+                  </div>
+                </md-list-item>
+                <md-list-item class="md-1-line">
+                <span><md-icon class="material-icons about-icon">payment</md-icon></span>
+                  <div class="md-list-item-text">
+                    <p>$25 is the average price</p>
+                  </div>
+                </md-list-item>
+                <md-list-item class="md-1-line">
+                 <span><md-icon class="material-icons about-icon">timer</md-icon></span>
+                  <div class="md-list-item-text">
+                    <p>5 days is average time to complete</p>
+                  </div>
+                </md-list-item>
+                <md-list-item class="md-1-line">
+                 <span><md-icon class="material-icons about-icon">access_time</md-icon></span>
+                  <div class="md-list-item-text">
+                    <p>8 days until your due date</p>
+                  </div>
+                </md-list-item>
+                </md-list>
+                <md-divider></md-divider>
+                <div layout="column">
+                <md-list layout-padding>
+                    <div class="md-title">Suggested Tutors</div>
+                    <md-list-item class="suggested-tutors-item">
+                        <md-divider></md-divider>
+                        <img src="../images/abdul_img.png" class="md-avatar" alt="">
+                        <div class="md-list-item-text">
+                          <div class="md-subhead">Hamad M</div>
+                          <div>
+                               <md-tooltip md-direction="left">
+                                      4.8
+                              </md-tooltip>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span class="md-caption">(5 reviews)</span>
+                          </div>
+                        </div>
+                        <md-button class="md-secondary md-icon-button"><md-tooltip md-direction="top">
+                                      invite
+                              </md-tooltip><md-icon class="material-icons star-icon-colored">add</md-icon></md-button>
+
+                    </md-list-item>                    
+                    <md-list-item class="suggested-tutors-item">
+                        <md-divider></md-divider>
+                        <img src="../images/abdul_img.png" class="md-avatar" alt="">
+                        <div class="md-list-item-text">
+                          <div class="md-subhead">Hamad M</div>
+                          <div>
+                               <md-tooltip md-direction="left">
+                                      4.8
+                              </md-tooltip>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span class="md-caption">(5 reviews)</span>
+                          </div>
+                        </div>
+                        <md-button class="md-secondary md-icon-button"><md-tooltip md-direction="top">
+                                      invite
+                              </md-tooltip><md-icon class="material-icons star-icon-colored">add</md-icon></md-button>
+
+                    </md-list-item>                    
+                    <md-list-item class="suggested-tutors-item">
+                        <md-divider></md-divider>
+                        <img src="../images/abdul_img.png" class="md-avatar" alt="">
+                        <div class="md-list-item-text">
+                          <div class="md-subhead">Hamad M</div>
+                          <div>
+                               <md-tooltip md-direction="left">
+                                      4.8
+                              </md-tooltip>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span class="md-caption">(5 reviews)</span>
+                          </div>
+                        </div>
+                        <md-button class="md-secondary md-icon-button"><md-tooltip md-direction="top">
+                                      invite
+                              </md-tooltip><md-icon class="material-icons star-icon-colored">add</md-icon></md-button>
+
+                    </md-list-item>                    
+
+                  </md-list>
+
+                    
+                </div>
+        </md-whiteframe>
     </div>
 </div>
-<!--
-     <script type-"text/javascript">
-
-       function mylinkfunction(e) {
-
-       window.location.href="#propose";
-
-       /* need to stop the form sending of the form
-
-        UPDATE as comment: This may not be exactly correct syntax 
-        for stopping a form , look up preventing form submission */
-
-       e.preventDefault();
-       e.stopPropagation(); 
-
-       }
-
-     </script>-->
