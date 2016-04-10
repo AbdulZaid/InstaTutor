@@ -5,7 +5,7 @@
             <div layout="row" layout-align="center center">
                 <h1 class="md-headline">Tile of the project</h1>
                 <span flex=""></span>
-                <span><md-button class="md-raised">Read full post</md-button></span>
+                <span><md-button class="md-raised" ui-sref= "jobPost({jobID: jobID})">Read full post</md-button></span>
             </div>
             <div ng-cloak>
                 <md-tabs md-dynamic-height md-border-bottom>
@@ -16,7 +16,7 @@
                                     <section>
                                         <md-subheader>Messages</md-subheader>
                                         <md-list layout-padding>
-                                            <md-list-item class="md-3-line chat">
+                                        <md-list-item class="md-3-line chat">
                                                 <img ng-src="../images/abdul_img.png" class="md-avatar" alt="">
                                                 <div class="md-list-item-text">
                                                     <p class="md-body-2">
@@ -63,7 +63,7 @@
                                                     </div>
                                                     </p>
                                                 </div>
-                                            </md-list-item>
+                                        </md-list-item>
                                         <md-list-item class="md-3-line chat">
                                             <img ng-src="../images/abdul_img.png" class="md-avatar" alt="">
                                             <div class="md-list-item-text personal-chat">
@@ -170,9 +170,9 @@
                         <md-button aria-label="Send" class="md-icon-button" md-no-focus-style><md-icon class="material-icons about-icon">attach_file</md-icon></md-button>
                         <md-input-container class="md-block dense-form" flex-gt-sm>
                             <label>Text</label>
-                            <input required type="text">
+                            <input required type="text" ng-model="message">
                         </md-input-container>
-                        <md-button aria-label="Send" class="md-icon-button" md-no-focus-style><md-icon class="material-icons about-icon">send</md-icon></md-button>
+                        <md-button aria-label="Send" class="md-icon-button" md-no-focus-style><md-icon class="material-icons about-icon" ng-click="sendMessage()">send</md-icon></md-button>
                     </div>
 
                     <!-- Show on attachment added -->

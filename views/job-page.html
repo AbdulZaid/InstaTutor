@@ -208,7 +208,7 @@
     </div>
     <div flex="30">
         <md-whiteframe layout-margin md-whiteframe="3" flex layout="column" ng-show="isTutor">
-                <md-button class="md-warn md-raised md-hue-2" ng-show="assignedTo == currentUser.name" ng-click="">Submit</md-button>
+                <md-button class="md-warn md-raised md-hue-2" ng-show="assignedTo == currentUser.name"  ui-sref="submissionPage({jobID: submissionPageID})">Submit</md-button>
                 <md-button class="md-raised md-primary" ng-click="proposalFocus()" ng-show="isTutor">Propose</md-button>
                 <md-button class="md-raised" ng-show="isTutor" ng-click="bookmark()">Bookmark</md-button>
                 <md-divider></md-divider>

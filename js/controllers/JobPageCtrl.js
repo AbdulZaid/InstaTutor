@@ -16,6 +16,7 @@ myApp.controller('JobPageCtrl', ['$scope','Auth','Users','Posts','$firebaseObjec
       var dueDate = $scope.job.dueDate;
       var datePosted = $scope.job.time;
       //job details
+      $scope.submissionPageID = $scope.jobID.split("").reverse().join("");
       $scope.authorID = $scope.job.authorID;
       $scope.amount = $scope.job.amount;
       $scope.author = $scope.job.author;
