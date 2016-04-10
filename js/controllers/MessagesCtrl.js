@@ -65,12 +65,20 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','Posts','$firebaseObje
 
   //reject and remove proposals from DB in both paths.
   $scope.isDisabled = false;
-  $scope.reject = function(notificationID, postID, tutorName) {
+  $scope.reject = function(notificationID, postID, tutorName, tutorID) {
     var notificationID = notificationID
     var postID = postID
     var tutorName = tutorName
+    var tutorID = tutorID
+    //remove info from user and post database
     authorRef.child($scope.authData.uid).child("notifications").child(notificationID).remove()
     authorRef.child($scope.authData.uid).child("posts").child(postID).child("proposals").child(notificationID).remove()
+    // authorRef.child($scope.authData.uid).child("posts").child(postID).update({
+    //   "status": "open"
+    // })
+    //remove data from tutor database.
+    authorRef.child(tutorID).child("tutorProposals").child(notificationID).remove()
+    authorRef.child(tutorID).child("myWork").child(postID).remove()
     // $scope.isDisabled = true;
     ngToast.create({
       className: 'danger',

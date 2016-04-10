@@ -1,9 +1,9 @@
-
-<div layout="row" layout-wrap ng-controller="AssignmentCtrl">
+<div ng-hide="isStudentPost">You are not authorized to access this page, if you are a tutor please sign up or login</div>  
+<div layout="row" layout-wrap ng-controller="AssignmentCtrl" ng-show="isStudentPost">
     <div flex="70" layout="column">
           <md-whiteframe md-whiteframe="3" layout-padding layout-margin flex>
                <h1 class="md-headline">{{question}} ({{field}} )</h1>
-                               <div class="post-tags">Math, KFUPM, Math101</div>
+
 
                 <div  class="post-header-info" flex layout="row" layout-align="center center">
                   <div flex class="post-header-info2">
@@ -25,7 +25,7 @@
                               Job Status
                       </md-tooltip>
                       <span><md-icon class="material-icons about-icon">mood</md-icon></span>
-                      <span>Open</span>
+                      <span>{{postStatus}}</span>
                   </div>
                 </div>
                 <hr/>
@@ -65,6 +65,14 @@
                     </div>
                 </div>
             </div>
+                <!-- <md-divider></md-divider> -->
+                <div class="post-tags" ng-model="tags">
+                  <h3>Tags</h3>
+                  <div ng-show="tags.length == 0">No tags available for this post</div>  
+                  <md-chips>
+                    <md-chip ng-repeat="tag in tags">{{tag}}</md-chip>
+                  </md-chips>
+                </div>
             <div class="options-footer" layout="row" layout-align="center center">
                 <span class="md-caption">Posted {{postedWhen}} ago</span>
                 <span flex=""></span>
@@ -75,13 +83,13 @@
                   </md-button>
                   <md-menu-content width="3">
                    <!--(Note) Show only for the owner of the post (the student) -->
-                    <md-menu-item>
-                      <md-button>
+                    <md-menu-item ng-show="!isTutor">
+                      <md-button ng-click="removePost(jobID)">
                         <md-icon class="material-icons start-icon-tutors">remove_circle</md-icon>
                         Remove
                       </md-button>
                     </md-menu-item>
-                    <md-menu-item>
+                    <md-menu-item ng-show="isTutor">
                       <md-button>
                         <md-icon class="material-icons start-icon-tutors">report</md-icon>
                         Report
@@ -130,13 +138,16 @@
                     <div class="md-subhead">in 1 day</div>
                 </div>
                 <!--(Note) Show for the owner of the post (the student)-->
-                <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="!isTutor">
-                    <md-button class="md-primary">Accept</md-button>
+                <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="!isTutor && !proposal.assigned">
+                    <md-button class="md-primary" ng-click="deal(proposal.tutorID, proposal.$id, proposal.postID, proposal.tutorName, proposal.amount)">Accept</md-button>
                     <md-button class="md-warn">Reject</md-button>
                 </div>
                 <!--(Note) Show for the tutor who submited the proposal (should show on top of the proposalsArray list)-->
-                <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center">
-                    <md-button class="md-warn">Delete</md-button>
+                <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="proposal.tutorID == authData.uid">
+                    <md-button class="md-warn" ng-click="deleteProposal(proposal.$id, proposal.postID)" >Delete</md-button>
+                </div>
+                <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="proposal.assigned">
+                    <md-button class="md-warn" ng-disabled="true">Assigned</md-button>
                 </div>
                 </div>
             </md-list-item>
@@ -197,6 +208,7 @@
     </div>
     <div flex="30">
         <md-whiteframe layout-margin md-whiteframe="3" flex layout="column" ng-show="isTutor">
+                <md-button class="md-warn md-raised md-hue-2" ng-show="assignedTo == currentUser.name" ng-click="">Submit</md-button>
                 <md-button class="md-raised md-primary" ng-click="proposalFocus()" ng-show="isTutor">Propose</md-button>
                 <md-button class="md-raised" ng-show="isTutor" ng-click="bookmark()">Bookmark</md-button>
                 <md-divider></md-divider>
