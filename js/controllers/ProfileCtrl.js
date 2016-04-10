@@ -154,6 +154,6 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
 		      'hue-2': '600', // use shade 600 for the <code>md-hue-2</code> class
 		      'hue-3': 'A100' // use shade A100 for the <code>md-hue-3</code> class
 		    })
-		    .accentPalette('indigo');
+		    .accentPalette('deep-purple');
 
 	  });

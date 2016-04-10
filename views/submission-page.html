@@ -210,6 +210,59 @@
                 </md-tab>
             <md-tab label="Submission">
                 <div class="md-padding">
+                <div flex class="list-of-work">
+                    <md-list flex>
+                        <md-whiteframe class="md-whiteframe-1dp" flex layout="column" layout-padding layout-align="">
+                        <md-list-item flex class="md-3-line">
+<!--                          <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />-->
+                          <div class="md-list-item-text" layout="column">
+                            <h1 class="md-title">test</h1>
+<!--                            <h4></h4>-->
+                            <p>verdsfsdf sdl;fs fdsla; fdsf l;asdfk ;lsf sd fl;sdf sd;lf sadf sdfl sdflds;a 'lksdfadsl; fs;fl'a sd</p>
+                            <div class="attachments" flex>
+              
+               <div class="attachments-list">
+                    <div class="attachment-item" layout-align="center center">
+                        <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
+                            <md-icon class="material-icons">file_download</md-icon>
+                        </md-button>
+                        <div class="attachment-item-content" flex layout="column" layout-align="center center">
+                            <i class="fa fa-file-pdf-o"></i>
+                        </div>
+                        <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
+                    </div>
+                    <div class="attachment-item" layout-align="center center">
+                        <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
+                            <md-icon class="material-icons">file_download</md-icon>
+                        </md-button>
+                        <div class="attachment-item-content" flex layout="column" layout-align="center center">
+                            <i class="fa fa-file-powerpoint-o"></i>
+                        </div>
+                        <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
+                    </div>
+                    <div class="attachment-item" layout-align="center center">
+                        <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
+                            <md-icon class="material-icons">file_download</md-icon>
+                        </md-button>
+                        <div class="attachment-item-content" flex layout="column" layout-align="center center">
+                            <i class="fa fa-file-word-o"></i>
+                        </div>
+                        <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
+                    </div>
+                </div>
+            </div>
+                         
+                          </div>
+                        </md-list-item>
+                        <div layout="row" layout-align="center center">
+                         
+                         <md-button class="md-primary md-raised">Accept</md-button>
+                         <md-button class="md-warn md-raised">Reject</md-button>
+                         </div>
+                        </md-whiteframe>
+                    </md-list>
+                    
+                </div>
                 <h1 class="md-title">Submit final work</h1>
                 <p class="md-body-1">Here you will submit the final work to the client so he can accepte it and you will get your money</p>
         <form name="userForm">
@@ -295,20 +348,3 @@
     </md-whiteframe>
 </div>
 </div>
-<script>
-    //    function updateChatScroll()
-    //    {
-    //        $('#chat').scrollTop($('#chat')[0].scrollHeight);    
-    //        $("#chat").animate({ scrollTop: $('#chat').attr("scrollHeight")}, 1000);
-    //        console.log(element.scrollHeight);
-    //    }
-    //    updateChatScroll();
-    $( document ).ready(function() {
-        $("#chat").scrollTo(700);
-    });
-
-</script>
-<!--
-<script>
-$(".chat-container").prop({ scrollTop: $(".chat-container").prop("scrollHeight") });
-</script>-->

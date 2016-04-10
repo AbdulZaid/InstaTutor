@@ -170,7 +170,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     .state('submissionPage', {
         url: "/submission",
         templateUrl: "views/submission-page.html", 
-        controller: ""
+        controller: "submissionPageCtrl"
     })
     .state('tutorProfile', {
         url: "/tutor/:jobID",
