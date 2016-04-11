@@ -2,6 +2,7 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
 
    	$scope.jobID = $stateParams.jobID.split("").reverse().join("");
     $scope.postsRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts/"+ $scope.jobID);
+  	$scope.authData = Auth.$getAuth();
     $scope.postObject = $firebaseObject($scope.postsRef)
 
     $scope.postObject.$loaded().then(function() {
@@ -17,6 +18,7 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
     			"authorName": $scope.authorName,
     			"time": messageTime
     		})
+    		$scope.message = null
     	}
 
     })

@@ -21,6 +21,8 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', '$firebaseObject', '$fi
     $scope.submit = function() {
         if ($scope.form.file.$valid && $scope.file) {
             $scope.upload($scope.file);
+        } else {
+            $scope.postMessage();
         }
     };
 
@@ -46,8 +48,13 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', '$firebaseObject', '$fi
             $scope.imageType = resp.config.data.file.type
             $scope.imageSize = resp.config.data.file.size
             console.log(resp);
+            $scope.postMessage();
         }, function(resp) {
             console.log('Error status: ' + resp.data);
+            ngToast.create({
+                className: 'danger',
+                content: 'You must upload and image, or your image was not uploaded successfully'
+            })
         }, function(evt) {
             var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
             console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
@@ -85,7 +92,7 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', '$firebaseObject', '$fi
                     "time": time,
                     "tags": $scope.tags,
                     "status": 'open',
-                    "images": $scope.imageUrl
+                    // "images": $scope.imageUrl || ""
                 },
                 function(error) {
                     if (error) {
@@ -114,10 +121,19 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', '$firebaseObject', '$fi
                     "time": time,
                     "tags": $scope.tags,
                     "status": 'open',
-                    "images": $scope.imageUrl
+                    // "images": $scope.imageUrl || ""
                 }) //add new post to user's posts.
+            //check if the user uploaded an image to push it to the post DB.
+            if($scope.imageUrl != null) {
+                postsRef.child(key).child("images").push({
+                    "imageUrl": $scope.imageUrl,
+                    "imageName":  $scope.imageName,
+                    "imageType": $scope.imageType,
+                    "imageSize": $scope.imageSize
+                }) //add new post to user's posts.
+            }
         } else {
-            alert("you not a student.")
+            alert("you are not a student.")
             ngToast.create({
                 className: 'danger',
                 content: 'you are not authorised to post a job. '

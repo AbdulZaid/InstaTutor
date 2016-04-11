@@ -17,6 +17,9 @@
               {{ assignment.field }}: &nbsp&nbsp&nbsp&nbsp
             </span> 
             <p style="text-align:left;">{{assignment.question}} </p>
+          <md-button class="md-icon-button" aria-label="review submission" ui-sref="submissionPage({jobID: assignment.$id})">
+            <ng-md-icon icon="assignment_turned_in" ></ng-md-icon>
+          </md-button>
           <md-button class="md-icon-button" aria-label="view assignment" ui-sref="jobPost({jobID: assignment.$id})" ng-click="showConfirm()">
             <ng-md-icon icon="assignment" ></ng-md-icon>
           </md-button>

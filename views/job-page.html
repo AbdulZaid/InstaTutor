@@ -149,6 +149,9 @@
                 <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="proposal.assigned">
                     <md-button class="md-warn" ng-disabled="true">Assigned</md-button>
                 </div>
+                <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="proposal.assigned  && authorID == currentUser.$id">
+                    <md-button class="md-warn" ui-sref="submissionPage({jobID: submissionPageID}) ">Message</md-button>
+                </div>
                 </div>
             </md-list-item>
 
@@ -261,17 +264,18 @@
         
         <!-- Student View -->
         <md-whiteframe layout-margin md-whiteframe="3" flex layout="column" ng-show="!isTutor">
+                <md-button class="md-warn md-raised md-hue-2" ng-show="assigned  && authorID == currentUser.$id"  ui-sref="submissionPage({jobID: submissionPageID})">Go to Submission</md-button>
                 <md-list>
                 <md-list-item class="md-1-line">
                 <span><md-icon class="material-icons about-icon">work</md-icon></span>
                   <div class="md-list-item-text">
-                    <p>5 Proposals submited</p>
+                    <p>{{numOfProposals}} Proposals submited</p>
                   </div>
                 </md-list-item>
                 <md-list-item class="md-1-line">
                 <span><md-icon class="material-icons about-icon">payment</md-icon></span>
                   <div class="md-list-item-text">
-                    <p>$25 is the average price</p>
+                    <p>${{amount}} is the average price</p>
                   </div>
                 </md-list-item>
                 <md-list-item class="md-1-line">
@@ -283,7 +287,7 @@
                 <md-list-item class="md-1-line">
                  <span><md-icon class="material-icons about-icon">access_time</md-icon></span>
                   <div class="md-list-item-text">
-                    <p>8 days until your due date</p>
+                    <p>{{dueFromNow}} until your due date</p>
                   </div>
                 </md-list-item>
                 </md-list>
@@ -295,17 +299,17 @@
                         <md-divider></md-divider>
                         <img src="../images/abdul_img.png" class="md-avatar" alt="">
                         <div class="md-list-item-text">
-                          <div class="md-subhead">Hamad M</div>
+                          <div class="md-subhead">Toal R</div>
                           <div>
                                <md-tooltip md-direction="left">
-                                      4.8
+                                      5.0
                               </md-tooltip>
                                 <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
                                 <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
                                 <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
                                 <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
                                 <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
-                                <span class="md-caption">(5 reviews)</span>
+                                <span class="md-caption">(51 reviews)</span>
                           </div>
                         </div>
                         <md-button class="md-secondary md-icon-button"><md-tooltip md-direction="top">
@@ -317,7 +321,7 @@
                         <md-divider></md-divider>
                         <img src="../images/abdul_img.png" class="md-avatar" alt="">
                         <div class="md-list-item-text">
-                          <div class="md-subhead">Hamad M</div>
+                          <div class="md-subhead">Abdul Alzaid</div>
                           <div>
                                <md-tooltip md-direction="left">
                                       4.8
@@ -327,7 +331,7 @@
                                 <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
                                 <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
                                 <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
-                                <span class="md-caption">(5 reviews)</span>
+                                <span class="md-caption">(12 reviews)</span>
                           </div>
                         </div>
                         <md-button class="md-secondary md-icon-button"><md-tooltip md-direction="top">
@@ -339,7 +343,7 @@
                         <md-divider></md-divider>
                         <img src="../images/abdul_img.png" class="md-avatar" alt="">
                         <div class="md-list-item-text">
-                          <div class="md-subhead">Hamad M</div>
+                          <div class="md-subhead">BJohnson</div>
                           <div>
                                <md-tooltip md-direction="left">
                                       4.8

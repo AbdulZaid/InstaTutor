@@ -61,7 +61,7 @@
                                 <input ng-model="moneyAmount" type="number" step="1.0">
                             </md-input-container>
                         </div>
-                        <md-button class="md-raised" ng-click="postMessage()"  ng-show= "authData">Post</md-button> 
+                        <!-- <md-button class="md-raised" ng-click="postMessage()"  ng-show= "authData">Post</md-button>  -->
                     </div>
                 </form>
                 <form action="https://tutoring-images.s3.amazonaws.com/" method="post" enctype="multipart/form-data"  name="form">
@@ -75,8 +75,9 @@
 
                     <input type="file" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"  ngf-resize="{width: 100, height: 100}" />
 
-                   <md-button type="submit" class="md-raised" ng-click="submit()">submit</md-button> 
-                   Image thumbnail: <img ngf-thumbnail="file || ''">
+                   <!-- <md-button type="submit" class="md-raised" ng-click="submit()">submit</md-button>  -->
+                    Image thumbnail: <img ngf-thumbnail="file || ''"> 
+                    <md-button class="md-raised" ng-click="submit()"  ng-show= "authData">Post</md-button>
 
                 </form>
             </md-content>

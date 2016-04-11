@@ -27,6 +27,7 @@ myApp.controller('JobPageCtrl', ['$scope','Auth','Users','Posts','$firebaseObjec
       $scope.assigned = $scope.job.assigned;
       $scope.assignedTo = $scope.job.assignedTo;
       $scope.postedWhen = moment(datePosted).fromNow(true);
+      $scope.dueFromNow = moment(dueDate).fromNow(true);
       $scope.tags = $scope.job.tags;
       $scope.imageURL = $scope.job.images;
       $scope.postStatus = $scope.job.status
