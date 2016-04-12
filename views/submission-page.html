@@ -64,17 +64,19 @@
                                                     </p>
                                                 </div>
                                         </md-list-item>
-                                        <md-list-item class="md-3-line chat">
-                                            <img ng-src="../images/abdul_img.png" class="md-avatar" alt="">
-                                            <div class="md-list-item-text personal-chat">
+                                        <md-list-item class="md-3-line chat" ng-repeat="message in messagesArray | orderBy:'-messageTime'" >
+                                        <!-- work on these to assign images to users correctly -->
+                                            <img ng-src="../images/angular-avatars/avatar-03.png" ng-show="currentUserImage"  class="md-avatar" alt="">
+                                            <img ng-src="../images/angular-avatars/avatar-05.png" ng-show="!currentUserImage"class="md-avatar" alt="">
+                                            <div ng-class="{'md-list-item-text personal-chat': message.authorName == currentUserName, 'md-list-item-text chat': message.authorName != currentUserName} " >
                                                 <p>
-                                                    This is my message to you
+                                                    {{message.messageContent}}
                                                 </p>
                                             </div>
                                         </md-list-item>
-                                        <md-list-item class="md-3-line chat">
+<!--                                         <md-list-item class="md-3-line chat">
                                             <img ng-src="../images/abdul_img.png" class="md-avatar" alt="">
-                                            <div class="md-list-item-text personal-chat">
+                                            <div class="md-list-item-text ">
                                                 <p>
                                                     This is my message to you
                                                 </p>
@@ -87,10 +89,10 @@
                                                 </p>
 
                                             </div>
-                                        </md-list-item>
+                                        </md-list-item> -->
                                         </md-list>
                                     </section>
-                                <section>
+<!--                                 <section>
                                     <md-subheader class="md-primary">Unread Messages</md-subheader>
                                     <md-list layout="column" layout-padding>
                                         <md-list-item class="md-3-line chat">
@@ -141,11 +143,11 @@
                                                 </p>
                                             </div>
                                         </md-list-item>
-                                    <md-list-item class="md-3-line chat">
+                                    <md-list-item class="md-3-line chat" ng-repeat="reply in messagesArray | orderBy:'-messageTime'" ng-show="reply.authorName != currentUserName">
                                         <img ng-src="../images/abdul_img.png" class="md-avatar" alt="">
                                         <div class="md-list-item-text">
                                             <p>
-                                                This is my message to you
+                                                {{reply.messageContent}}
                                             </p>
                                         </div>
                                     </md-list-item>
@@ -161,7 +163,7 @@
                                         </div>
                                     </md-list-item>
                                     </md-list>
-                                </section>
+                                </section> -->
                             </md-content>
                         </md-content>
                     </div>
@@ -374,13 +376,14 @@
 </div>
 <div flex="30">
     <md-whiteframe layout-margin md-whiteframe="3" flex layout="column">
-        <md-button class="md-raised md-primary" ng-click="propose(authorID, jobID)">Propose</md-button>
+<!--         <md-button class="md-raised md-primary" ng-click="propose(authorID, jobID)">Propose</md-button>
         <md-button class="md-raised">Bookmark</md-button>
-        <md-divider></md-divider>
+        <md-divider></md-divider> -->
         <div class="md-title" style="text-align:center">User Details</div>
         <div class="user-info" style="text-align:center">
-            <img src="../images/abdul_img.png" class="md-avatar profile-image" />
-            <div class="md-title">Abdul zaid</div>
+            <img src="../images/angular-avatars/avatar-03.png" ng-show="!currentUserImage" class="md-avatar profile-image" />
+            <img src="../images/angular-avatars/avatar-05.png" ng-show="currentUserImage" class="md-avatar profile-image" />
+            <div class="md-title">{{otherUserName}}</div>
             <div>
                 <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
                 <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
@@ -388,15 +391,22 @@
                 <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
                 <span><md-icon class="material-icons star-icon">star</md-icon></span>
             </div>
-            <div class="md-subhead">16 reviews</div>
+            <div class="md-subhead" ng-show="isTutor">16 reviews</div>
         </div>
         <md-divider></md-divider>
-        <div class="md-title">About:</div>
+        <div class="md-title" ng-show="isStudent">About Student:</div>
+        <div class="md-title" ng-show="isTutor">About Tutor:</div>
         <md-list>
-            <md-list-item class="md-1-line">
+            <md-list-item class="md-1-line" ng-show="isStudent">
                 <span><md-icon class="material-icons about-icon">work</md-icon></span>
                 <div class="md-list-item-text">
-                    <p>5 Jobs done</p>
+                    <p>5 Jobs posted</p>
+                </div>
+            </md-list-item>
+            <md-list-item class="md-1-line" ng-show="isTutor">
+                <span><md-icon class="material-icons about-icon">work</md-icon></span>
+                <div class="md-list-item-text">
+                    <p>5 Jobs submitted</p>
                 </div>
             </md-list-item>
             <md-list-item class="md-1-line">
@@ -405,22 +415,32 @@
                     <p>From Los Angeles</p>
                 </div>
             </md-list-item>
-            <md-list-item class="md-1-line">
+            <md-list-item class="md-1-line" ng-show="isStudent">
                 <span><md-icon class="material-icons about-icon">school</md-icon></span>
                 <div class="md-list-item-text">
                     <p>Student at LMU</p>
                 </div>
             </md-list-item>
-            <md-list-item class="md-1-line">
+            <md-list-item class="md-1-line" ng-show="isTutor">
+                <span><md-icon class="material-icons about-icon">poll</md-icon></span>
+                <div class="md-list-item-text">
+                    <p>3 years of experince in Math, CMSI, Physics</p>
+                </div>
+            </md-list-item>
+            <md-list-item class="md-1-line" ng-show="isStudent">
                 <span><md-icon class="material-icons about-icon">book</md-icon></span>
                 <div class="md-list-item-text">
                     <p>Computer Science</p>
                 </div>
             </md-list-item>
         </md-list>
-        <div layout="row">
+        <div layout="row" ng-show="isStudent">
             <span flex=""></span>
-            <span><md-button class="md-raised"><md-icon class="material-icons" style="color: darkgreen">check</md-icon> Verified</md-button></span>
+            <span><md-button class="md-raised"><md-icon class="material-icons" style="color: darkgreen">fingerprint</md-icon> Payment Verified</md-button></span>
+        </div>
+        <div layout="row" ng-show="isTutor">
+            <span flex=""></span>
+            <span><md-button class="md-raised"><md-icon class="material-icons" style="color: darkgreen">fingerprint</md-icon> Tutor is Verfied</md-button></span>
         </div>
     </md-whiteframe>
 </div>

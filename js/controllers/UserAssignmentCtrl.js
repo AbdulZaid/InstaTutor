@@ -5,7 +5,8 @@ myApp.controller('UserAssignmentCtrl', ['$scope','Auth','Users','$firebaseObject
   $scope.userID = $scope.userAuth.uid
   $scope.userAssignment = $firebaseArray(userRef.child($scope.userID).child("posts"));
   $scope.imagePath = 'images/abdul_img.png';
-
+  $scope.studentImagePath = 'images/angular-avatars/avatar-03.png';
+  $scope.tutorImagePath = 'images/angular-avatars/avatar-05.png';
 
   //the below code is useless.
   $scope.myAssignments

@@ -4,10 +4,12 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','Posts','$firebaseObje
   var postsRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
   $scope.authData = Auth.$getAuth()
 
-  $scope.messages = $firebaseArray(authorRef.child($scope.authData.uid).child("notifications"))
+  $scope.notifications = $firebaseArray(authorRef.child($scope.authData.uid).child("notifications"))
 
 
-  $scope.imagePath = 'images/abdul_img.png';
+  // $scope.imagePath = 'images/abdul_img.png';
+  $scope.studentImagePath = 'images/angular-avatars/avatar-03.png';
+  $scope.tutorImagePath = 'images/angular-avatars/avatar-05.png';
 
 
   //Assign a certain tutor to do the job
@@ -71,7 +73,12 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','Posts','$firebaseObje
     var tutorName = tutorName
     var tutorID = tutorID
     //remove info from user and post database
-    authorRef.child($scope.authData.uid).child("notifications").child(notificationID).remove()
+    authorRef.child($scope.authData.uid).child("notifications").child(notificationID).update({
+      "viewed": true
+    })
+    authorRef.child($scope.authData.uid).child("notifications").child(notificationID).update({
+      "viewed": true
+    })
     authorRef.child($scope.authData.uid).child("posts").child(postID).child("proposals").child(notificationID).remove()
     // authorRef.child($scope.authData.uid).child("posts").child(postID).update({
     //   "status": "open"
@@ -87,6 +94,11 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','Posts','$firebaseObje
     return false
   }
 
+  $scope.markAsViewed = function(notificationID) {
+    authorRef.child($scope.authData.uid).child("notifications").child(notificationID).update({
+      "viewed": true
+    })
+  }
 
   $scope.showProposal = function(tutorName, amount, message, jobTitle) {
     $mdDialog.show(
@@ -108,8 +120,8 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','Posts','$firebaseObje
 
 
 .filter('reverse', function() {
-  return function(messages) {
-    return messages.slice().reverse();
+  return function(notifications) {
+    return notifications.slice().reverse();
   };
 })
 

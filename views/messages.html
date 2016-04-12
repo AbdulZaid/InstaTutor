@@ -7,17 +7,17 @@
       <md-subheader class="md-primary">New Proposals</md-subheader>
       <md-list layout-padding>
         <md-divider></md-divider>
-        <md-list-item class="md-3-line" ng-repeat="message in messages | reverse" ng-model = "$parent.messages">
+        <md-list-item class="md-3-line" ng-repeat="message in notifications | reverse" ng-model = "$parent.messages" ng-if="message.viewed == false">
             <md-divider></md-divider>
-            <img ng-src="{{imagePath}}" class="md-avatar" alt="{{message.tutorName}}">
-            <div class="md-list-item-text"  >
+            <img ng-src="{{tutorImagePath}}" class="md-avatar" alt="{{message.tutorName}}">
+            <div class="md-list-item-text">
               <h3 style="color:purple">{{message.tutorName}}</h3>
-              <h4>Is proposing to do your assignment in <span style="color:blue">{{message.postField}} </span> for:<span style="color:red"> &nbsp{{message.amount}}</span></h4>
+              <h4>Is proposing to do your assignment in <span style="color:blue">{{message.postField}}</span> for:<span style="color:red"> &nbsp{{message.amount}}</span></h4>
               <p>
                 {{message.message}}
               </p>
             </div>
-            <md-button class="md-raised" ng-click="showProposal(message.tutorName, message.amount, message.message, message.postField )" ng-disabled="isDisabled">View Proposal</md-button>
+            <md-button class="md-raised" ng-click="showProposal(message.tutorName, message.amount, message.message, message.postField ); markAsViewed(message.$id)" ng-disabled="isDisabled">View Proposal</md-button>
             <md-button class="md-raised md-warn" ng-click="reject(message.$id, message.postID, message.tutorName, message.tutorID)" ng-disabled="isDisabled" ng-model="isDisabled">Reject</md-button>
             <md-button class="md-raised md-primary" ng-click="deal(message.tutorID, message.$id, message.postID, message.tutorName)" ng-disabled="isDisabled"> Accept</md-button>
 
@@ -27,15 +27,19 @@
     <section>
       <md-subheader class="md-warn">Old Proposals</md-subheader>
       <md-list layout="column" layout-padding>
-        <md-list-item class="md-3-line" ng-repeat="message in messages">
-          <img ng-src="{{imagePath}}" class="md-avatar" alt="{{message.who}}">
-          <div class="md-list-item-text">
-            <h3>{{message.what}}</h3>
-            <h4>{{message.who}}</h4>
-            <p>
-              {{message.notes}}
-            </p>
-          </div>
+        <md-list-item class="md-3-line" ng-repeat="message in notifications | reverse" ng-if="message.viewed == true"> 
+          <md-divider></md-divider>
+          <img ng-src="{{tutorImagePath}}" class="md-avatar" alt="{{message.who}}">
+            <div class="md-list-item-text">
+              <h3 style="color:purple">{{message.tutorName}}</h3>
+              <h4>Is proposing to do your assignment in <span style="color:blue">{{message.postField}} </span> for:<span style="color:red"> &nbsp{{message.amount}}</span></h4>
+              <p>
+                {{message.message}}
+              </p>
+            </div>
+            <md-button class="md-raised" ng-click="showProposal(message.tutorName, message.amount, message.message, message.postField ); markAsViewed(message.$id)" ng-disabled="isDisabled">View Proposal</md-button>
+            <md-button class="md-raised md-warn" ng-click="reject(message.$id, message.postID, message.tutorName, message.tutorID)" ng-disabled="isDisabled" ng-model="isDisabled">Reject</md-button>
+            <md-button class="md-raised md-primary" ng-click="deal(message.tutorID, message.$id, message.postID, message.tutorName)" ng-disabled="isDisabled"> Accept</md-button>
         </md-list-item>
       </md-list>
     </section>

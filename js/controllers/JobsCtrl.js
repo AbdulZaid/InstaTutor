@@ -8,7 +8,8 @@ myApp.controller('JobsCtrl', ['$scope','Auth','Users','Posts','$firebaseObject',
 
 
   $scope.imagePath = 'images/abdul_img.png';
-
+  $scope.studentImagePath = 'images/angular-avatars/avatar-03.png';
+  $scope.tutorImagePath = 'images/angular-avatars/avatar-05.png';
 
   //Assign a certain tutor to do the job
   $scope.submit = function(tutorID, proposalID, postID, tutorName) {

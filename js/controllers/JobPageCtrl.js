@@ -10,6 +10,8 @@ myApp.controller('JobPageCtrl', ['$scope','Auth','Users','Posts','$firebaseObjec
   $scope.proposalsPanel = false;
   $scope.isStudentPost = false
   $scope.imagePath = 'images/abdul_img.png';
+  $scope.studentImagePath = 'images/angular-avatars/avatar-03.png';
+  $scope.tutorImagePath = 'images/angular-avatars/avatar-05.png';
   $scope.jobRef.$loaded()
     .then(function() {
       $scope.job = Posts.getSpecificPost($scope.jobID);
@@ -136,14 +138,16 @@ myApp.controller('JobPageCtrl', ['$scope','Auth','Users','Posts','$firebaseObjec
     $scope.authorRef.child($scope.authData.uid).child("posts").child(postID).update({
       "assigned": true,
       "assignedTo": tutorName,
-      "status": "Assigned" 
+      "status": "Assigned",
+      "tutorID": tutorID
     })
     
     //update the posts for public views.
     $scope.postsRef.child(postID).update({
       "assigned": true,
       "assignedTo": tutorName,
-      "status": "Assigned"
+      "status": "Assigned",
+      "tutorID": tutorID
     })
 
     console.log("hey you, you got a deal on your proposal" + proposalID)
