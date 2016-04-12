@@ -1,10 +1,60 @@
 
-<div layout="row" layout-wrap>
+<div layout="column" layout-wrap>
     
 
-<div flex="30">
-        <md-whiteframe layout-margin md-whiteframe="3" flex layout="column">
-                <md-divider></md-divider>
+<div flex>
+        <md-whiteframe layout-margin md-whiteframe="3" flex layout="row">
+<!--                <md-divider></md-divider>-->
+               <div flex="60" layout="row" layout-align="center center">
+                   <div flex="30"><img style="height:160px;width:160px;margin-left: 20px;" src="../images/abdul_img.png" class="md-avatar profile-image" /></div>
+                   <div flex="70">
+                       <h1 class="md-headline" style="margin-bottom: 8px;">Abdul Alzaid</h1>
+<!--                       <div class="md-secondary">online</div>-->
+                       <div>
+                            <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
+                            <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
+                            <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
+                            <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
+                            <span><md-icon class="material-icons star-icon">star</md-icon></span>
+                        </div>
+                        <div class="md-subhead">16 reviews</div>
+                        <div>
+                            <md-button class="md-raised md-primary" ng-click="propose(authorID, jobID)">Send Tutor a Message</md-button>
+                <md-button class="md-raised">Invite to a Job</md-button>
+                        </div>
+                   </div>
+               </div>
+               <div flex="40">
+<!--                <div class="md-title">About:</div>-->
+                <md-list>
+                <md-list-item class="md-1-line">
+                <span><md-icon class="material-icons about-icon">work</md-icon></span>
+                  <div class="md-list-item-text">
+                    <p>5 Jobs Purchased</p>
+                  </div>
+                </md-list-item>
+                <md-list-item class="md-1-line">
+                <span><md-icon class="material-icons about-icon">location_on</md-icon></span>
+                  <div class="md-list-item-text">
+                    <p>From Los Angeles</p>
+                  </div>
+                </md-list-item>
+                <md-list-item class="md-1-line">
+                 <span><md-icon class="material-icons about-icon">school</md-icon></span>
+                  <div class="md-list-item-text">
+                    <p>Student at LMU</p>
+                  </div>
+                </md-list-item>
+                <md-list-item class="md-1-line">
+                 <span><md-icon class="material-icons about-icon">book</md-icon></span>
+                  <div class="md-list-item-text">
+                    <p>Studying Software Engineering</p>
+                  </div>
+                </md-list-item>
+                </md-list>
+
+               </div>
+<!--
                 <div class="md-title" style="text-align:center">User Details</div>
                 <div class="user-info" style="text-align:center">
                     <img src="../images/abdul_img.png" class="md-avatar profile-image" />
@@ -52,14 +102,14 @@
                    <span flex=""></span>
                     <span><md-button class="md-raised"><md-icon class="material-icons" style="color: darkgreen">check</md-icon> Verified</md-button></span>
                 </div>
+-->
         </md-whiteframe>
     </div>
-
-    <div flex="70" layout="column">
+    <div flex layout="row">
+    <div flex layout="column">
           <md-whiteframe md-whiteframe="3" layout-padding layout-margin flex>
-               <h1 class="md-headline">About</h1>
-
-                <div  class="post-header-info" flex layout="row" layout-align="center center">
+<!--
+                              <div  class="post-header-info" flex layout="row" layout-align="center center">
                   <div flex class="post-header-info2">
                             <md-tooltip md-direction="top">
                               Due Date
@@ -82,16 +132,102 @@
                       <span>Open</span>
                   </div>
                 </div>
+-->
                 <hr/>
+               <h1 class="md-headline">About</h1>
+                <p class="md-body-1">I have studied computer science at LMU</p>
                 <h1 class="md-title">Ratings</h1>
-                <p class="md-body-1">
-                    {{content}}
-                </p>
-            <div class="Reviews" flex>
+                <div>
+                    <label>Criteria1</label>
+                </div>
+                <div>
+                    <label>Criteria1</label>
+                </div>
               <h1 class="md-title">Reviews</h1>
-            </div>
+              <div md-whiteframe="1" layout="row">
+                  <div flex>
+                      <h1 class="md-subhead">From: HamadM In: Math <span>rate: 4.6</span></h1>
+                      <p>
+                          this is the review 
+                      </p>
+                  </div>
+              </div>
         </md-whiteframe>
         
     </div>
-    
+    <div flex="30" layout="column">
+        <md-whiteframe md-whiteframe="3" layout-padding layout-margin flex>
+                           <md-list layout-padding>
+                    <h1 class="md-title">Similar Tutors</h1>
+                    <md-list-item class="suggested-tutors-item">
+                        <md-divider></md-divider>
+                        <img src="../images/abdul_img.png" class="md-avatar" alt="">
+                        <div class="md-list-item-text">
+                          <div class="md-subhead">Toal R</div>
+                          <div>
+                               <md-tooltip md-direction="left">
+                                      5.0
+                              </md-tooltip>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span class="md-caption">(51 reviews)</span>
+                          </div>
+                        </div>
+                        <md-button class="md-secondary md-icon-button"><md-tooltip md-direction="top">
+                                      invite
+                              </md-tooltip><md-icon class="material-icons star-icon-colored">add</md-icon></md-button>
+
+                    </md-list-item>                    
+                    <md-list-item class="suggested-tutors-item">
+                        <md-divider></md-divider>
+                        <img src="../images/abdul_img.png" class="md-avatar" alt="">
+                        <div class="md-list-item-text">
+                          <div class="md-subhead">Abdul Alzaid</div>
+                          <div>
+                               <md-tooltip md-direction="left">
+                                      4.8
+                              </md-tooltip>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span class="md-caption">(12 reviews)</span>
+                          </div>
+                        </div>
+                        <md-button class="md-secondary md-icon-button"><md-tooltip md-direction="top">
+                                      invite
+                              </md-tooltip><md-icon class="material-icons star-icon-colored">add</md-icon></md-button>
+
+                    </md-list-item>                    
+                    <md-list-item class="suggested-tutors-item">
+                        <md-divider></md-divider>
+                        <img src="../images/abdul_img.png" class="md-avatar" alt="">
+                        <div class="md-list-item-text">
+                          <div class="md-subhead">BJohnson</div>
+                          <div>
+                               <md-tooltip md-direction="left">
+                                      4.8
+                              </md-tooltip>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                                <span class="md-caption">(5 reviews)</span>
+                          </div>
+                        </div>
+                        <md-button class="md-secondary md-icon-button"><md-tooltip md-direction="top">
+                                      invite
+                              </md-tooltip><md-icon class="material-icons star-icon-colored">add</md-icon></md-button>
+
+                    </md-list-item>                    
+
+                  </md-list>
+        </md-whiteframe>
+    </div>
+    </div>
 </div>
