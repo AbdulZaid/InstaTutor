@@ -5,8 +5,8 @@
 <div flex>
         <md-whiteframe layout-margin md-whiteframe="3" flex layout="row">
 <!--                <md-divider></md-divider>-->
-               <div flex="60" layout="row" layout-align="center center">
-                   <div flex="30"><img style="height:160px;width:160px;margin-left: 20px;" src="../images/angular-avatars/avatar-02.png" class="md-avatar profile-image" /></div>
+               <div flex="60" layout="row" style="    border-right: solid 2px #EEEEEE; "layout-align="center center">
+                   <div flex="30"><img style="height:160px;width:160px;" src="../images/angular-avatars/avatar-02.png" class="md-avatar profile-image tutor-profile-image" /></div>
                    <div flex="70">
                        <h1 class="md-headline" style="margin-bottom: 8px;">Abdul Alzaid</h1>
 <!--                       <div class="md-secondary">online</div>-->
@@ -133,32 +133,90 @@
                   </div>
                 </div>
 -->
-                <hr/>
-               <h1 class="md-headline">About</h1>
-                <p class="md-body-1">I have studied computer science at LMU</p>
-                <h1 class="md-title">Ratings</h1>
-                <div>
-                    <label>Criteria1</label>
-                </div>
-                <div>
-                    <label>Criteria1</label>
-                </div>
-              <h1 class="md-title">Reviews</h1>
+                <div ng-cloak>
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="About">
+        <md-content class="md-padding">
+          <h1 class="md-headline">About</h1>
+          <p class="md-body-1">I have studied computer science at LMU</p>
+          <h1 style="margin-top:50px;" class="md-headline">Skills and Expertise</h1>
+          <p class="md-body-1">
+              <md-chips>
+      <md-chip>Hockey</md-chip>
+      <md-chip>Lacrosse</md-chip>
+      <md-chip>Baseball</md-chip>
+      <!-- Static chips are transcluded -->
+      <md-chip>Math</md-chip>
+    </md-chips>
+              
+          </p>
+        </md-content>
+      </md-tab>
+      <md-tab label="Reviews(16)">
+        <md-content class="md-padding">
+          <h1 class="md-title">Reviews</h1>
               <div md-whiteframe="1" layout="row">
-                  <div flex>
+                  <div flex class="md-padding">
                       <h1 class="md-subhead">From: HamadM In: Math <span>rate: 4.6</span></h1>
                       <p>
                           this is the review 
                       </p>
                   </div>
               </div>
+        </md-content>
+      </md-tab>
+      <md-tab label="Ratings">
+        <md-content class="md-padding">
+          <h1 class="md-title">Ratings</h1>
+                <div>
+                    <div layout>
+      <div flex="20" layout layout-align="center center">
+        <span class="md-body-1">Knowledgeability</span>
+      </div>
+      <md-slider flex md-discrete ng-model="89" step="1" min="1" max="100" aria-label="rating 1" ng-readonly="true" >
+      </md-slider>
+    </div>
+                    <div layout layout-align="center center">
+      <div flex="20" layout layout-align="center center">
+        <span class="md-body-1">Clarity of Response</span>
+      </div>
+      <md-slider flex md-discrete="false" ng-model="85" step="1" min="1" max="100" aria-label="rating 1" ng-readonly="true" >
+      </md-slider>
+<!--      <span flex="10" >(8.2)</span>-->
+    </div>
+               
+                </div>
+                <div>
+                    <div layout>
+      <div flex="20" layout layout-align="center center">
+        <span class="md-body-1">Politeness</span>
+      </div>
+      <md-slider flex md-discrete ng-model="95" step="1" min="1" max="100" aria-label="rating 1" ng-readonly="true">
+      </md-slider>
+    </div>
+               <div layout>
+      <div flex="20" layout layout-align="center center">
+        <span class="md-body-1">Speed to Response</span>
+      </div>
+      <md-slider flex md-discrete ng-model="86" step="1" min="1" max="100" aria-label="rating 1" ng-readonly="true">
+      </md-slider>
+    </div>
+                </div>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>
+               
         </md-whiteframe>
         
     </div>
     <div flex="30" layout="column">
-        <md-whiteframe md-whiteframe="3" layout-padding layout-margin flex>
-                           <md-list layout-padding>
-                    <h1 class="md-title">Similar Tutors</h1>
+        <md-whiteframe md-whiteframe="3" layout-padding layout-margin>
+                <h1 class="md-title">Similar Tutors</h1>
+                <md-list layout-padding>
+                    
                     <md-list-item class="suggested-tutors-item">
                         <md-divider></md-divider>
                         <img src="../images/angular-avatars/avatar-03.png" class="md-avatar" alt="">

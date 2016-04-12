@@ -1012,3 +1012,9 @@ md-list-item.suggested-tutors-item {
     padding-right: 20px;
     padding-left: 70px;
 }
+
+.tutor-profile-image
+{
+/*        box-shadow: 0 1px 8px 0 rgba(0,0,0,.2),0 3px 4px 0 rgba(0,0,0,.14),0 3px 3px -2px rgba(0,0,0,.12);*/
+        margin-left: 27px;
+}
