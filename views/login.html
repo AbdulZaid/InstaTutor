@@ -28,13 +28,13 @@
       <md-icon md-svg-src="" class="password"></md-icon>
       <input ng-model="password" type="password" placeholder="Password (required)" ng-required="true">
       </md-input-container>
-      <div flex-xs flex="50">
+      <div flex-xs flex="50" class="rememberMe">
         <md-checkbox aria-label="Checkbox">
           Remember Me
         </md-checkbox>
       </div>
-      <md-button class="md-raised md-primary" ng-click="login()"  type="submit">Login</md-button>
-        <span>You don't have an account sign up for free <a href="#/signup"> here</a></span>
+      <md-button class="md-raised md-primary loginButton" ng-click="login()"  type="submit">Login</md-button>
+      <p class="dontHaveAccount">You don't have an account sign up for free <a href="#/signup"> here</a></p>
 
     </form>
     </md-content>

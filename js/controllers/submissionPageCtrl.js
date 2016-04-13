@@ -12,6 +12,7 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
         $scope.currentUser = Users.getProfile($scope.authData.uid);
         $scope.currentUserName = $scope.currentUser.name
         $scope.currentUserType = $scope.currentUser.type
+        $scope.projectTitle = $scope.postObject.question
         if($scope.currentUser.type == "Student") {
             $scope.otherUser = Users.getProfile($scope.postObject.tutorID);
             $scope.otherUserName = $scope.otherUser.name;

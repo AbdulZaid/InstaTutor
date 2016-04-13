@@ -28,9 +28,9 @@
         <md-icon md-svg-src="" class="email"></md-icon>
         <input ng-model="email" type="email" placeholder="Email (required)" ng-required="true">
         </md-input-container>
-
-        <label>User Type</label>
-          <md-select ng-model="userType">
+          
+          <label class="userTypeField">User Type</label>
+          <md-select ng-model="userType" class="userTypeField">
           <md-optgroup label="User Type">
               <md-option ng-value="userType.label" ng-repeat="userType in userTypes">{{userType.label}}</md-option>
           </md-optgroup>
@@ -41,12 +41,12 @@
         <md-icon md-svg-src="" class="password"></md-icon>
         <input ng-model="password" type="password" placeholder="Password (required)" ng-required="true">
         </md-input-container>
-        <div flex-xs flex="50">
+        <div flex-xs flex="50" class="rememberMe">
           <md-checkbox aria-label="Checkbox">
             Remember Me
           </md-checkbox>
         </div>
-        <md-button class="md-raised md-primary" ng-click="create()"  type="submit">Sign up</md-button>
+        <md-button class="md-raised md-primary loginButton"  ng-click="create()"  type="submit">Sign up</md-button>
         <span>Already have an account login <a href="#/login"> here</a></span>
     </form>
     </md-content>
