@@ -17,12 +17,12 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
             $scope.otherUser = Users.getProfile($scope.postObject.tutorID);
             $scope.otherUserName = $scope.otherUser.name;
             $scope.currentUserImage = true //true when student false when tutor
-            $scope.isTutor = true;
+            $scope.isStudent = true
         } else {
             $scope.otherUser = Users.getProfile($scope.authData.uid);
             $scope.otherUserName = $scope.otherUser.name;
             $scope.otherUserType = $scope.otherUser.type;
-            $scope.isStudent = true
+            $scope.isTutor = true;
         }
 
 
@@ -35,7 +35,8 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
     		$scope.postsRef.child("messages").push({
     			"messageContent": $scope.messageContent,
     			"authorName": $scope.currentUserName,
-    			"time": messageTime
+    			"time": messageTime,
+                "authorType": $scope.currentUserType
     		})
     		$scope.message = null
     	}
@@ -49,6 +50,7 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
                 $scope.messageTime = messageSnapshot.child("time").val();  // e.g. "6:50pm"
                 $scope.messageContent = messageSnapshot.child("messageContent").val();  // e.g. "Hola la "
                 $scope.authorName = messageSnapshot.child("authorName").val();  // e.g. "Abdul!"
+                $scope.authorType = messageSnapshot.child("authorType").val();  // e.g. "Tutor!"
             });
         });
 

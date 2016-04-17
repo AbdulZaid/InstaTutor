@@ -16,80 +16,65 @@
                                     <section>
                                         <md-subheader>Messages</md-subheader>
                                         <md-list layout-padding>
-                                        <md-list-item class="md-3-line chat">
-                                                <img ng-src="../images/abdul_img.png" class="md-avatar" alt="">
-                                                <div class="md-list-item-text">
-                                                    <p class="md-body-2">
-                                                        This is my message to you
-                                                    </p>
-                                                    <p>
-                                                        this is double content
-                                                    </p>
-                                                    <p class="md-body-2">
-                                                        this is a long content that will wrap around the dive and go to the next line of the chat div this is a long content that will wrap around the dive and go to the next line of the chat div
-                                                    </p>
-                                                    <p>
-                                                        test attachments
-                                                    </p>
-                                                    <p>
-                                                    <div class="attachments-list">
-                                                        <div class="attachment-item" layout-align="center center">
-                                                            <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
-                                                                <md-icon class="material-icons">file_download</md-icon>
-                                                            </md-button>
-                                                            <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                                                                <i class="fa fa-file-pdf-o"></i>
+                                            <md-list-item class="md-3-line chat">
+                                                    <img ng-src="../images/abdul_img.png" class="md-avatar" alt="">
+                                                    <div class="md-list-item-text">
+                                                        <p class="md-body-2">
+                                                            This is my message to you
+                                                        </p>
+                                                        <p>
+                                                            this is double content
+                                                        </p>
+                                                        <p class="md-body-2">
+                                                            this is a long content that will wrap around the dive and go to the next line of the chat div this is a long content that will wrap around the dive and go to the next line of the chat div
+                                                        </p>
+                                                        <p>
+                                                            test attachments
+                                                        </p>
+                                                        <p>
+                                                        <div class="attachments-list">
+                                                            <div class="attachment-item" layout-align="center center">
+                                                                <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
+                                                                    <md-icon class="material-icons">file_download</md-icon>
+                                                                </md-button>
+                                                                <div class="attachment-item-content" flex layout="column" layout-align="center center">
+                                                                    <i class="fa fa-file-pdf-o"></i>
+                                                                </div>
+                                                                <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
                                                             </div>
-                                                            <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
-                                                        </div>
-                                                        <div class="attachment-item" layout-align="center center">
-                                                            <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
-                                                                <md-icon class="material-icons">file_download</md-icon>
-                                                            </md-button>
-                                                            <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                                                                <i class="fa fa-file-powerpoint-o"></i>
+                                                            <div class="attachment-item" layout-align="center center">
+                                                                <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
+                                                                    <md-icon class="material-icons">file_download</md-icon>
+                                                                </md-button>
+                                                                <div class="attachment-item-content" flex layout="column" layout-align="center center">
+                                                                    <i class="fa fa-file-powerpoint-o"></i>
+                                                                </div>
+                                                                <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
                                                             </div>
-                                                            <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
-                                                        </div>
-                                                        <div class="attachment-item" layout-align="center center">
-                                                            <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
-                                                                <md-icon class="material-icons">file_download</md-icon>
-                                                            </md-button>
-                                                            <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                                                                <i class="fa fa-file-word-o"></i>
+                                                            <div class="attachment-item" layout-align="center center">
+                                                                <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
+                                                                    <md-icon class="material-icons">file_download</md-icon>
+                                                                </md-button>
+                                                                <div class="attachment-item-content" flex layout="column" layout-align="center center">
+                                                                    <i class="fa fa-file-word-o"></i>
+                                                                </div>
+                                                                <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
                                                             </div>
-                                                            <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
                                                         </div>
+                                                        </p>
                                                     </div>
+                                            </md-list-item>
+                                            <md-list-item class="md-3-line chat" ng-repeat="message in messagesArray | orderBy:'-messageTime'" >
+                                            <!-- work on these to assign images to users correctly -->
+                                                <!-- <img ng-src="{'../images/angular-avatars/avatar-03.png': isTutor, '../images/angular-avatars/avatar-05.png': isStudent}" ng-show="currentUserImage"  class="md-avatar" alt=""> -->
+                                                <img ng-src="../images/angular-avatars/avatar-05.png" ng-show="message.authorType == 'Tutor' "class="md-avatar" alt="">
+                                                <img ng-src="../images/angular-avatars/avatar-03.png" ng-show="message.authorType == 'Student'"class="md-avatar" alt="">
+                                                <div ng-class="{'md-list-item-text personal-chat': message.authorName == currentUserName, 'md-list-item-text chat': message.authorName != currentUserName} " >
+                                                    <p>
+                                                        {{message.messageContent}}
                                                     </p>
                                                 </div>
-                                        </md-list-item>
-                                        <md-list-item class="md-3-line chat" ng-repeat="message in messagesArray | orderBy:'-messageTime'" >
-                                        <!-- work on these to assign images to users correctly -->
-                                            <img ng-src="../images/angular-avatars/avatar-03.png" ng-show="currentUserImage"  class="md-avatar" alt="">
-                                            <img ng-src="../images/angular-avatars/avatar-05.png" ng-show="!currentUserImage"class="md-avatar" alt="">
-                                            <div ng-class="{'md-list-item-text personal-chat': message.authorName == currentUserName, 'md-list-item-text chat': message.authorName != currentUserName} " >
-                                                <p>
-                                                    {{message.messageContent}}
-                                                </p>
-                                            </div>
-                                        </md-list-item>
-<!--                                         <md-list-item class="md-3-line chat">
-                                            <img ng-src="../images/abdul_img.png" class="md-avatar" alt="">
-                                            <div class="md-list-item-text ">
-                                                <p>
-                                                    This is my message to you
-                                                </p>
-                                                <p>
-                                                    Welcome to the tutoring app i hope you like it
-                                                </p>
-
-                                                <p>
-                                                    what can i help you with?
-                                                </p>
-
-                                            </div>
-                                        </md-list-item> -->
+                                            </md-list-item>
                                         </md-list>
                                     </section>
 <!--                                 <section>
@@ -286,7 +271,7 @@
                         </div>
                     
 <!--                </div>-->
-                <!-- (Note) hide dive when work is already submited -->
+                <!-- (Note) hide div when work is already submited -->
                 <div ng-show="false">
                 <h1 class="md-title">Submit final work</h1>
                 <p class="md-body-1">Here you will submit the final work to the client so he can accepte it and you will get your money</p>
@@ -344,10 +329,10 @@
 </form>
 
                 </div>
-                </div>
+    </div>
             </md-tab>
             <md-tab label="Review">
-               <div class="md-padding">
+               <div class="md-padding" ng-show="isStudent">
                     <h1 class="md-title">Review and Rate the tutor</h1>
                     <p class="md-body-1">Help us in rating the work of the tutor, this will help us in bringing better tutors, and also in selecting the best tutors for you in future work. </p>
                     <div>
@@ -367,9 +352,13 @@
                     </md-input-container>
                     <md-button class="md-primary">Send Review</md-button>
                 </div>
+                <div ng-show="isTutor">
+                    See Student Review on your submission
+                </div>
             </md-tab>
+
             </md-tabs>
-    </div>
+        </div>
 
 
     </md-whiteframe>        
@@ -394,16 +383,16 @@
             <div class="md-subhead" ng-show="isTutor">16 reviews</div>
         </div>
         <md-divider></md-divider>
-        <div class="md-title" ng-show="isStudent">About Student:</div>
-        <div class="md-title" ng-show="isTutor">About Tutor:</div>
+        <div class="md-title" ng-show="isTutor">About Student:</div>
+        <div class="md-title" ng-show="isStudent">About Tutor:</div>
         <md-list>
-            <md-list-item class="md-1-line" ng-show="isStudent">
+            <md-list-item class="md-1-line" ng-show="isTutor">
                 <span><md-icon class="material-icons about-icon">work</md-icon></span>
                 <div class="md-list-item-text">
                     <p>5 Jobs posted</p>
                 </div>
             </md-list-item>
-            <md-list-item class="md-1-line" ng-show="isTutor">
+            <md-list-item class="md-1-line" ng-show="isStudent">
                 <span><md-icon class="material-icons about-icon">work</md-icon></span>
                 <div class="md-list-item-text">
                     <p>5 Jobs submitted</p>
@@ -415,30 +404,30 @@
                     <p>From Los Angeles</p>
                 </div>
             </md-list-item>
-            <md-list-item class="md-1-line" ng-show="isStudent">
+            <md-list-item class="md-1-line" ng-show="isTutor">
                 <span><md-icon class="material-icons about-icon">school</md-icon></span>
                 <div class="md-list-item-text">
                     <p>Student at LMU</p>
                 </div>
             </md-list-item>
-            <md-list-item class="md-1-line" ng-show="isTutor">
+            <md-list-item class="md-1-line" ng-show="isStudent">
                 <span><md-icon class="material-icons about-icon">poll</md-icon></span>
                 <div class="md-list-item-text">
                     <p>3 years of experince in Math, CMSI, Physics</p>
                 </div>
             </md-list-item>
-            <md-list-item class="md-1-line" ng-show="isStudent">
+            <md-list-item class="md-1-line" ng-show="isTutor">
                 <span><md-icon class="material-icons about-icon">book</md-icon></span>
                 <div class="md-list-item-text">
                     <p>Computer Science</p>
                 </div>
             </md-list-item>
         </md-list>
-        <div layout="row" ng-show="isStudent">
+        <div layout="row" ng-show="isTutor">
             <span flex=""></span>
             <span><md-button class="md-raised"><md-icon class="material-icons" style="color: darkgreen">fingerprint</md-icon> Payment Verified</md-button></span>
         </div>
-        <div layout="row" ng-show="isTutor">
+        <div layout="row" ng-show="isStudent">
             <span flex=""></span>
             <span><md-button class="md-raised"><md-icon class="material-icons" style="color: darkgreen">fingerprint</md-icon> Tutor is Verfied</md-button></span>
         </div>
