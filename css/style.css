@@ -1028,3 +1028,21 @@ md-list-item.suggested-tutors-item {
 .userTypeField {
   margin-left: 40px;
 }
+
+
+/*  temp Fix for error spacing */
+md-input-container .md-errors-spacer {
+    min-height: 0;
+}
+.post-pay, .post-time{
+    margin-top: 18px;
+    min-height: 40px;
+}
+
+.post-pay > md-input-container {
+    margin-top: 0px;
+}
+
+.post-submit {
+    margin-top: 25px;
+}

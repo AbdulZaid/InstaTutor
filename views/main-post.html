@@ -3,87 +3,85 @@
         <div layout="row" layout-xs="column" >
             <md-content flex layout-padding class="autoScroll md-whiteframe-1dp" layout-padding>
                 <form name="userForm" ng-submit="$event.preventDefault()">
-                    <div flex>
+                    <div flex layout="column">
+                        <h1 class="md-title">Ask for a Tutor</h1>
+                        <div layout="row">
+                            <md-input-container flex class="dense-form">
+                              <label>Question title?</label>
+                              <input type="text" ng-model="$parent.question" maxlength="70" ng-focus="showQuestion()" ng-blur="showQuestion()">
+                            </md-input-container>
 
-                        <md-input-container class="md-block" flex-gt-xs="" >
-                          <label>Question?</label>
-                          <input type="text" ng-model="$parent.question">
-                        </md-input-container>
-
-                        <md-input-container>
-                            <label>Help Catagory</label>
-                            <md-select ng-model="field">
-                            <md-optgroup label="Science">
-                                <md-option ng-value="field.name" ng-repeat="field in fields | filter: {category: 'Science' }">{{field.name}}</md-option>
-                            </md-optgroup>
-                            <md-optgroup label="Engineering">
-                                <md-option ng-value="field.name" ng-repeat="field in fields | filter: {category: 'Engineering' }">{{field.name}}</md-option>
-                            </md-optgroup>
-                        </md-select>
-                      </md-input-container>
-
-                        <md-input-container class="md-block  md-whiteframe-1z" md-ink-ripple="#FF0000" >
-                          <label>What would you like to be helped with?</label>
+                            <md-input-container ng-show="questionDisplayed" class="dense-form">
+                                <label>Help Catagory</label>
+                                <md-select ng-model="field">
+                                <md-optgroup label="Science">
+                                    <md-option ng-value="field.name" ng-repeat="field in fields | filter: {category: 'Science' }">{{field.name}}</md-option>
+                                </md-optgroup>
+                                <md-optgroup label="Engineering">
+                                    <md-option ng-value="field.name" ng-repeat="field in fields | filter: {category: 'Engineering' }">{{field.name}}</md-option>
+                                </md-optgroup>
+                            </md-select>
+                          </md-input-container>
+                        </div>
+                        <md-input-container ng-show="questionDisplayed"  class="md-block  md-whiteframe-1z dense-form" >
+                          <label>What are the details?</label>
                           <textarea style= "max-height: 25vh; overflow-y: auto; scroll-glue" ng-model="$parent.textModel" md-maxlength="1000" rows="8" md-select-on-focus></textarea>
                         </md-input-container>
+                        <form ng-show="questionDisplayed" action="https://tutoring-images.s3.amazonaws.com/" method="post" enctype="multipart/form-data"  name="form">
+                        <input type="hidden" name="key" value="uploads/${filename}" />
+                        <input type="hidden" name="acl" value="public-read" />
+                        <input type="hidden" name="success_action_redirect" value="">
+                        <input type="hidden" name="content-type" value="image/png" />
+                        <input type="hidden" name="AWSAccessKeyId" value="AKIAIVXWPHX7GO3MKQ4Q" />
+                        <input type="hidden" name="policy" value="ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogInR1dG9yaW5nLWltYWdlcyJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIka2V5IiwgInVwbG9hZHMvIl0sCiAgICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICAgeyJzdWNjZXNzX2FjdGlvbl9yZWRpcmVjdCI6ICIifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJENvbnRlbnQtVHlwZSIsICJpbWFnZS9wbmciXSwKICAgIFsiY29udGVudC1sZW5ndGgtcmFuZ2UiLCAwLCA1MjQyODgwMDBdCiAgXQp9" />
+                        <input type="hidden" name="signature" value="WKRrtjsRe7Wn4pQWSnTuKY4Y364=" />
 
-                        <h2 class="md-title">Enter Tags for Your job.</h2>
-                        <md-chips
+                        <input type="file" ngf-select class="ng-hide" ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" id="file-upload" multiple ngf-max-size="20MB" ngf-min-height="100"  ngf-resize="{width: 100, height: 100}" />
+<!--                        <input  id="input-file-id" multiple type="file" />-->
+                        <label ng-show="questionDisplayed" for="file-upload" class="md-button md-raised">Upload Files</label>
+                       <!-- <md-button type="submit" class="md-raised" ng-click="submit()">submit</md-button>  -->
+                       <div>
+                            <img ngf-thumbnail="file || ''"> 
+                        </div>
+
+                    </form>
+
+                        <div layout="row" layout-align="center center" ng-show="questionDisplayed">
+                           <div flex class="post-pay">
+                           <label>Willing to pay:</label>
+                            <md-input-container class="dense-form">
+                                <label>$</label>
+                                <input ng-model="moneyAmount" class="dense-form" type="number" step="1.0">
+                            </md-input-container>
+                            </div>
+                            <div flex class="post-time">
+                                 <label>Expected due date:</label>
+                                  <md-datepicker name="dateField" ng-model="dueDate" md-placeholder="Enter date"
+                                       md-min-date="minDate"></md-datepicker>
+                                  <div class="validation-messages" ng-messages="userForm.dateField.$error" role="alert">
+                                    <div ng-message="valid">The entered value is not a date!</div>
+                                    <div ng-message="required">This date is required!</div>
+                                    <div ng-message="mindate">Date is too early!</div>
+                                    <div ng-message="maxdate">Date is too late!</div>
+                                    <div ng-message="filtered">Only weekends are allowed!</div>
+                                  </div>
+                            <!--     <ng-md-icon icon="attach_file" style="fill: grey" size="35" input="file" ng-click=""></ng-md-icon>  -->
+                            </div>
+                        </div>
+                        <md-chips class="dense-form" ng-show="questionDisplayed" 
                             ng-model="tags"
                             readonly="readonly"
-                            placeholder="Enter a tag "
+                            placeholder="Enter tags "
                             delete-button-label="Remove Tag"
                             delete-hint="Press delete to remove tag"
                             secondary-placeholder="+Tag"></md-chips>
-                        <br/>
-
+<!--                        <br/>-->
+                           <md-button class="md-raised md-primary post-submit" ng-click="submit()"  ng-show= "authData && questionDisplayed">Post</md-button>    
                     </div>
-
-                    <div flex layout="column">
-                        <div layout="row">
-                            <md-content>
-                                <h4 class="md-title">Willing to pay</h4>
-
-                                <md-input-container>
-                                    <label>$</label>
-                                    <input ng-model="moneyAmount" type="number" step="1.0">
-                                </md-input-container>
-                            </md-content>
-                        </div>
-                        <div layout="row">
-                            <md-content>
-                              <md-datepicker name="dateField" ng-model="dueDate" md-placeholder="Enter date"
-                                  required md-min-date="minDate"></md-datepicker>
-                              <div class="validation-messages" ng-messages="userForm.dateField.$error" role="alert">
-                                <div ng-message="valid">The entered value is not a date!</div>
-                                <div ng-message="required">This date is required!</div>
-                                <div ng-message="mindate">Date is too early!</div>
-                                <div ng-message="maxdate">Date is too late!</div>
-                                <div ng-message="filtered">Only weekends are allowed!</div>
-                              </div>
-                              </md-content>
-                        <!--     <ng-md-icon icon="attach_file" style="fill: grey" size="35" input="file" ng-click=""></ng-md-icon>  -->
-                        </div>
-
+                       
                         <!-- <md-button class="md-raised" ng-click="postMessage()"  ng-show= "authData">Post</md-button>  -->
-                    </div>
                 </form>
-                <form action="https://tutoring-images.s3.amazonaws.com/" method="post" enctype="multipart/form-data"  name="form">
-                    <input type="hidden" name="key" value="uploads/${filename}" />
-                    <input type="hidden" name="acl" value="public-read" />
-                    <input type="hidden" name="success_action_redirect" value="">
-                    <input type="hidden" name="content-type" value="image/png" />
-                    <input type="hidden" name="AWSAccessKeyId" value="AKIAIVXWPHX7GO3MKQ4Q" />
-                    <input type="hidden" name="policy" value="ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogInR1dG9yaW5nLWltYWdlcyJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIka2V5IiwgInVwbG9hZHMvIl0sCiAgICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICAgeyJzdWNjZXNzX2FjdGlvbl9yZWRpcmVjdCI6ICIifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJENvbnRlbnQtVHlwZSIsICJpbWFnZS9wbmciXSwKICAgIFsiY29udGVudC1sZW5ndGgtcmFuZ2UiLCAwLCA1MjQyODgwMDBdCiAgXQp9" />
-                    <input type="hidden" name="signature" value="WKRrtjsRe7Wn4pQWSnTuKY4Y364=" />
-
-                    <input type="file" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"  ngf-resize="{width: 100, height: 100}" />
-
-                   <!-- <md-button type="submit" class="md-raised" ng-click="submit()">submit</md-button>  -->
-                    Image thumbnail: <img ngf-thumbnail="file || ''"> 
-                    <md-button class="md-raised" ng-click="submit()"  ng-show= "authData">Post</md-button>
-
-                </form>
+                
             </md-content>
         </div>
     </div>

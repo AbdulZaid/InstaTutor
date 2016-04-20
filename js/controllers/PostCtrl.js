@@ -9,7 +9,17 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', '$firebaseObject', '$fi
     var key //new post's key
 
     $scope.tags = [];
-
+      
+      // colapse of question panel
+      $scope.questionDisplayed = true;
+      $scope.showQuestion = function()
+      {
+          $scope.questionDisplayed = true;
+      }
+      $scope.hideQuestion = function()
+      {
+          $scope.questionDisplayed = false;
+      }
     profileObject.$loaded( //to solve the problem with loading data before using it.
         function() {
             authorName = Users.getName($scope.authData.uid)
@@ -19,7 +29,7 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', '$firebaseObject', '$fi
 
     // upload later on form submit or something similar
     $scope.submit = function() {
-        if ($scope.form.file.$valid && $scope.file) {
+        if ( $scope.file && $scope.file.$valid) {
             $scope.upload($scope.file);
         } else {
             $scope.postMessage();
