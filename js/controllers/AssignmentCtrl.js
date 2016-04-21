@@ -102,7 +102,8 @@ myApp.controller('AssignmentCtrl', ['$scope', 'Auth', 'Users', 'Posts', '$fireba
                         "message": $scope.proposalMessage || "New propsal",
                         "postID": authorCurrentPost.$id,
                         "postField": authorCurrentPost.field,
-                        "assigned": false
+                        "assigned": false,
+                        "viewed": false
                     })
 
                     //get the key of the proposal to store it in the user notifications.
@@ -121,7 +122,8 @@ myApp.controller('AssignmentCtrl', ['$scope', 'Auth', 'Users', 'Posts', '$fireba
                         "postID": authorCurrentPost.$id,
                         "postField": authorCurrentPost.field,
                         "assigned": false,
-                        "viewed": false
+                        "viewed": false,
+                        "type": "Proposal"
                     })
 
                     //checks if the user type is a tutor then store the propsal as his/her.
@@ -135,7 +137,8 @@ myApp.controller('AssignmentCtrl', ['$scope', 'Auth', 'Users', 'Posts', '$fireba
                             "message": $scope.proposalMessage || "new Propsal",
                             "postID": authorCurrentPost.$id,
                             "postField": authorCurrentPost.field,
-                            "assigned": false
+                            "assigned": false,
+                            "viewed": false,
                         })
                         ngToast.create({
                             className: 'success',

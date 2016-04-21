@@ -4,7 +4,23 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','Posts','$firebaseObje
   var postsRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
   $scope.authData = Auth.$getAuth()
 
-  $scope.notifications = $firebaseArray(authorRef.child($scope.authData.uid).child("notifications"))
+
+  //for hiding buttons when the proposal is viewd
+  // $scope.notifications = $firebaseArray(authorRef.child($scope.authData.uid).child("notifications"));
+  // var notificationRef = new Firebase("https://homeworkmarket.firebaseio.com/users/" + $scope.authData.uid + "/notifications");
+  // $scope.isDisabled = false
+  // $scope.propsalDisable = function() {
+  //     $scope.notifications.$loaded().then(function() {
+  //       notificationRef.on("value", function(allMessagesSnapshot) {
+  //         allMessagesSnapshot.forEach(function(snapshot) { 
+  //           if(snapshot.child("assigned").val() !== true) {
+  //             $scope.isDisabled = true
+  //           }
+  //         })
+  //       })
+  //       return $scope.isDisabled
+  //     })
+  // }
 
 
   // $scope.imagePath = 'images/abdul_img.png';
@@ -18,6 +34,7 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','Posts','$firebaseObje
     var proposalID = proposalID
     var tutorName = tutorName
     var postID = postID
+    var time = Firebase.ServerValue.TIMESTAMP
     // get the post to add it to tutor work after being assigned.
     var postAssigned = Posts.getSpecificPost(postID) 
 
@@ -60,13 +77,31 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','Posts','$firebaseObje
       "assignedTo": tutorName
     })
 
+
+    authorRef.child(tutorID).child("notifications").child(key).set({
+        ".priority": Firebase.ServerValue.TIMESTAMP,
+        "time": time,
+        "authorID": $scope.authData.uid,
+        "author": postAssigned.author,
+        "question": postAssigned.question,
+        "content": postAssigned.content,
+        "field": postAssigned.field,
+        "dueDate": postAssigned.dueDate,
+        "amount": postAssigned.amount,
+        "assigned": true,
+        "assignedTo": tutorName,
+        "viewed": false,
+        "type": "WorkAssigned"
+    })
+
+
+
     console.log("hey you, you got a deal on your proposal" + proposalID)
     ngToast.create('hey you, you just agreed on a deal with ' + " " +  tutorName );
 
   };
 
   //reject and remove proposals from DB in both paths.
-  $scope.isDisabled = false;
   $scope.reject = function(notificationID, postID, tutorName, tutorID) {
     var notificationID = notificationID
     var postID = postID
@@ -74,10 +109,8 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','Posts','$firebaseObje
     var tutorID = tutorID
     //remove info from user and post database
     authorRef.child($scope.authData.uid).child("notifications").child(notificationID).update({
-      "viewed": true
-    })
-    authorRef.child($scope.authData.uid).child("notifications").child(notificationID).update({
-      "viewed": true
+      "viewed": true,
+      // "rejected": true, use this when you implement reject.
     })
     authorRef.child($scope.authData.uid).child("posts").child(postID).child("proposals").child(notificationID).remove()
     // authorRef.child($scope.authData.uid).child("posts").child(postID).update({
