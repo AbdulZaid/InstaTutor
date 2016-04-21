@@ -5,23 +5,31 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','Posts','$firebaseObje
   $scope.authData = Auth.$getAuth()
 
 
-  //for hiding buttons when the proposal is viewd
-  // $scope.notifications = $firebaseArray(authorRef.child($scope.authData.uid).child("notifications"));
-  // var notificationRef = new Firebase("https://homeworkmarket.firebaseio.com/users/" + $scope.authData.uid + "/notifications");
-  // $scope.isDisabled = false
-  // $scope.propsalDisable = function() {
-  //     $scope.notifications.$loaded().then(function() {
-  //       notificationRef.on("value", function(allMessagesSnapshot) {
-  //         allMessagesSnapshot.forEach(function(snapshot) { 
-  //           if(snapshot.child("assigned").val() !== true) {
-  //             $scope.isDisabled = true
-  //           }
-  //         })
-  //       })
-  //       return $scope.isDisabled
-  //     })
-  // }
+  // for hiding buttons when the proposal is viewd
+  $scope.notifications = $firebaseArray(authorRef.child($scope.authData.uid).child("notifications"));
+  $scope.studentPosts = $firebaseArray(authorRef.child($scope.authData.uid).child("posts"));
+  var studentProposalsRef = new Firebase("https://homeworkmarket.firebaseio.com/users/" + $scope.authData.uid + "/posts");
+  $scope.proposalsArray = [] 
+      $scope.studentPosts.$loaded().then(function() {
+        studentProposalsRef.on("value", function(allMessagesSnapshot) {
+          allMessagesSnapshot.forEach(function(snapshot) { 
+            if(snapshot.hasChild("proposals")) {
+              snapshot.child("proposals").forEach(function(childSnapshot) {
+                $scope.proposalsArray.push(childSnapshot.val())
+                  console.log($scope.proposalsArray)
+                console.log("theres are your proposals")
+            })
 
+            } 
+            else {
+              $scope.proposalsArray.push(null)
+              console.log("You don't have any proposals")
+            }
+          })
+        })
+        return $scope.proposalsArray
+      })
+  
 
   // $scope.imagePath = 'images/abdul_img.png';
   $scope.studentImagePath = 'images/angular-avatars/avatar-03.png';
@@ -47,6 +55,7 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','Posts','$firebaseObje
       "assigned": true,
       "viewed": true
     })
+
     //add to tutor work now it has been assignd to him/her
     authorRef.child(tutorID).child("myWork").child(postID).set({
         "authorID": $scope.authData.uid,
@@ -77,8 +86,8 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','Posts','$firebaseObje
       "assignedTo": tutorName
     })
 
-
-    authorRef.child(tutorID).child("notifications").child(key).set({
+    //notify tutor
+    authorRef.child(tutorID).child("notifications").child(proposalID).set({
         ".priority": Firebase.ServerValue.TIMESTAMP,
         "time": time,
         "authorID": $scope.authData.uid,
@@ -128,6 +137,7 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','Posts','$firebaseObje
   }
 
   $scope.markAsViewed = function(notificationID) {
+    console.log(notificationID)
     authorRef.child($scope.authData.uid).child("notifications").child(notificationID).update({
       "viewed": true
     })

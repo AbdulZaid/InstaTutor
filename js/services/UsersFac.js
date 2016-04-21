@@ -39,14 +39,14 @@ myApp.factory('Users', ['$firebaseAuth','$firebaseObject','$firebaseArray', func
             usersRef.child(tutorID).child("tutorProposals").once("value", function(snapshot) {
                 if(snapshot.hasChildren()) {
                     snapshot.forEach(function(childSnapshot) {
-                      // var zag = childSnapshot.val().tutorID.localeCompare(tutorID)
-                      console.log(childSnapshot.val().tutorID)
-                      if(childSnapshot.val().tutorID.localeCompare(tutorID) == 0) {
-                        notProposed = false
-                    } else {
-                        notProposed = true
-                    }
-                })
+                        // var zag = childSnapshot.val().tutorID.localeCompare(tutorID)
+                        console.log(childSnapshot.val().tutorID)
+                        if(childSnapshot.val().tutorID.localeCompare(tutorID) == 0) {
+                            notProposed = false
+                        } else {
+                            notProposed = true
+                        }
+                    })
                 } else {
                     notProposed = true
                 }

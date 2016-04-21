@@ -103,13 +103,18 @@ myApp.controller('AssignmentCtrl', ['$scope', 'Auth', 'Users', 'Posts', '$fireba
                         "postID": authorCurrentPost.$id,
                         "postField": authorCurrentPost.field,
                         "assigned": false,
-                        "viewed": false
+                        "viewed": false,
+                        "key": null
                     })
 
                     //get the key of the proposal to store it in the user notifications.
                     authorRef.child(authorID).child("posts").child(authorCurrentPost.$id).child("proposals").orderByKey().limitToLast(1).on('child_added', function(snapshot) {
                         key = snapshot.key() //get a snapshot of the post's key
                     });
+                    //add the key to the stored values. This to be used when forEach is used and there's no access to item.$id
+                    authorRef.child(authorID).child("posts").child(authorCurrentPost.$id).child("proposals").child(key).update({
+                        "key": key
+                    })
 
                     //Stores the proposal as notifications for the student to see anb check.
                     authorRef.child(authorID).child("notifications").child(key).set({

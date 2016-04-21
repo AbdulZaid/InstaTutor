@@ -2,12 +2,12 @@
   <md-toolbar md-scroll-shrink>
     <div class="md-toolbar-tools">My Messages</div>
   </md-toolbar>
-  <md-content style="height: 600px;" md-theme="altTheme">
+  <md-content style="height: 600px;" md-theme="altTheme" >
     <section>
       <md-subheader class="md-primary">New Proposals</md-subheader>
       <md-list layout-padding>
         <md-divider></md-divider>
-        <md-list-item class="md-3-line" ng-repeat="message in notifications | reverse" ng-model = "$parent.messages" ng-if="message.viewed == false">
+        <md-list-item class="md-3-line" ng-repeat="message in proposalsArray | reverse" ng-model = "$parent.messages" ng-if="message.assigned == false">
             <md-divider></md-divider>
             <img ng-src="{{tutorImagePath}}" class="md-avatar" alt="{{message.tutorName}}">
             <div class="md-list-item-text">
@@ -17,9 +17,9 @@
                 {{message.message}}
               </p>
             </div>
-            <md-button class="md-raised" ng-click="showProposal(message.tutorName, message.amount, message.message, message.postField ); markAsViewed(message.$id)">View Proposal</md-button>
-            <md-button class="md-raised md-warn" ng-click="reject(message.$id, message.postID, message.tutorName, message.tutorID)"  >Reject</md-button>
-            <md-button class="md-raised md-primary" ng-click="deal(message.tutorID, message.$id, message.postID, message.tutorName)" > Accept</md-button>
+            <md-button class="md-raised" ng-click="showProposal(message.tutorName, message.amount, message.message, message.postField ); markAsViewed(message.key)">View Proposal</md-button>
+            <md-button class="md-raised md-warn" ng-click="reject(message.key, message.postID, message.tutorName, message.tutorID)"> Reject</md-button>
+            <md-button class="md-raised md-primary" ng-click="deal(message.tutorID, message.key, message.postID, message.tutorName)"> Accept</md-button>
 
         </md-list-item>
       </md-list>
@@ -27,7 +27,7 @@
     <section>
       <md-subheader class="md-warn">Old Proposals</md-subheader>
       <md-list layout="column" layout-padding>
-        <md-list-item class="md-3-line" ng-repeat="message in notifications | reverse" ng-if="message.viewed == true"> 
+        <md-list-item class="md-3-line" ng-repeat="message in proposalsArray | reverse" ng-if="message.assigned == true"> 
           <md-divider></md-divider>
           <img ng-src="{{tutorImagePath}}" class="md-avatar" alt="{{message.who}}">
             <div class="md-list-item-text">
@@ -38,8 +38,8 @@
               </p>
             </div>
             <md-button class="md-raised" ng-click="showProposal(message.tutorName, message.amount, message.message, message.postField )">View Proposal</md-button>
-            <md-button class="md-raised md-warn" ng-click="reject(message.$id, message.postID, message.tutorName, message.tutorID)"  ng-if="message.assigned != true">Reject</md-button>
-            <md-button class="md-raised md-primary" ng-click="deal(message.tutorID, message.$id, message.postID, message.tutorName)"  ng-if="message.assigned != true"> Accept</md-button>
+            <md-button class="md-raised md-warn" ng-click="reject(message.key, message.postID, message.tutorName, message.tutorID)"  ng-if="message.assigned != true">Reject</md-button>
+            <md-button class="md-raised md-primary" ng-click="deal(message.tutorID, message.key, message.postID, message.tutorName)"  ng-if="message.assigned != true"> Accept</md-button>
         </md-list-item>
       </md-list>
     </section>
