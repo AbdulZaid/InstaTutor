@@ -83,6 +83,7 @@
     <script src="js/services/UsersFac.js"></script>
     <script src="js/services/AuthFac.js"></script>
     <script src="js/services/PostsFac.js"></script>
+    <script src="js/controllers/appCtrl.js"></script>
     <script src="additatives.js"></script>
 
     <script src="//cdn.jsdelivr.net/jquery.scrollto/2.1.2/jquery.scrollTo.min.js"></script>
@@ -95,32 +96,207 @@
 
   </head>
 
-  <body id="top" class="scrollspy" layout="column">
+  <body id="top" class="scrollspy" layout="column" ng-controller="appCtrl">
   
   <md-toolbar ng-controller="AuthCtrl">
-      <div class="md-toolbar-tools top-nav content-padding" >
-          <md-button class="md-icon-button" aria-label="Settings">
+      <div class="md-toolbar-tools top-nav" >
+          <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleMenu()">
               <ng-md-icon icon="menu"></ng-md-icon>
           </md-button>
           <h2>
-              <a ui-sref="main" >School Tutoring</a>
+              <a ui-sref="main" class="md-accent logo">InstaTutor</a>
           </h2>
+<!--
           <md-button ng-show= "authData" ui-sref="dashboard.myProfile">Dashboard</md-button>
           <md-button ng-hide= "authData" ui-sref="login">Login</md-button>
           <md-button ng-hide= "authData" ui-sref="signup">Signup</md-button>
           <md-button ui-sref="become-tutor">become a tutor</md-button>
           <md-button ui-sref="tutorProfile">view tutor</md-button>
+-->
           <!-- <md-button ui-sref="jobPost">Jop Page</md-button> -->
-          <md-button ng-show= "authData" ng-click="logout()" ui-sref="main">Logout</md-button>
+<!--          <md-button ng-show= "authData" ng-click="logout()" ui-sref="main">Logout</md-button>-->
           <span flex></span>
-          <md-button class="md-icon-button"  style="font-size:32px;" aria-label="notification" ng-style="{ 'color' : alertColor} " >
+          <md-menu md-position-mode="target-right target" md-offset="0 64">
+          <md-button class="md-icon-button"  style="font-size:32px;" aria-label="notification" ng-style="{ 'color' : alertColor} " ng-click="$mdOpenMenu($event)" >
               <ng-md-icon icon="notifications"></ng-md-icon>
           </md-button>
-          <md-button class="md-icon-button" aria-label="avatar">
-              <ng-md-icon icon="avatar"></ng-md-icon>
-          </md-button>
+          <md-menu-content width="4" >
+              <md-subheader class="md-primary">Notifications</md-subheader>
+<!--
+            <p class="md-body-1">Abdul Alzaid</p>
+            <md-menu-divider></md-menu-divider>
+-->
+            <md-menu-item>
+                <md-button>
+                  <div layout="row" flex>
+                    <md-icon class="material-icons" icon="avatar">message</md-icon>
+                    <p flex>New Messages from Abdul</p>
+                  </div>
+                </md-button>
+            </md-menu-item>
+              <md-menu-item>
+                <md-button>
+                  <div layout="row" flex>
+                    <md-icon class="material-icons" icon="avatar">work</md-icon>
+                    <p flex>new proposal on "Math help needed"</p>
+                  </div>
+                </md-button>
+            </md-menu-item>
+              <md-menu-item>
+                <md-button>
+                  <div layout="row" flex>
+                    <md-icon class="material-icons" icon="avatar">subject</md-icon>
+                    <p flex>final submission on "Math help needed"</p>
+                  </div>
+                </md-button>
+            </md-menu-item>
+            <md-menu-divider></md-menu-divider>
+            <md-menu-item>
+                <md-button>
+                  <div layout="row" flex>
+<!--                    <md-icon class="material-icons" icon="avatar">subject</md-icon>-->
+                    <p flex>Read all notifications</p>
+                  </div>
+                </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+          
+          <md-menu md-position-mode="target-right target" md-offset="0 64">
+            <a class="md-button md-icon-button nav-avatar" aria-label="User Menu" ng-click="$mdOpenMenu($event)">
+<!--              <div layout="row">-->
+<!--              <span>Abdul</span>-->
+              <img src="../images/abdul_img.png"/>
+<!--              <md-icon class="material-icons" icon="avatar">keyboard_arrow_down</md-icon>-->
+<!--              </div>-->
+            </a>
+          <md-menu-content width="4" >
+<!--
+            <p class="md-body-1">Abdul Alzaid</p>
+            <md-menu-divider></md-menu-divider>
+-->
+            <md-menu-item>
+              <md-button>
+                  <div layout="row" flex>
+                    <md-icon class="material-icons" icon="avatar">settings</md-icon>
+                    <p flex>go to settings</p>
+                  </div>
+              </md-button>
+            </md-menu-item>
+              <md-menu-item>
+              <md-button>
+                  <div layout="row" flex>
+                    <md-icon class="material-icons" icon="avatar">person</md-icon>
+                    <p flex>edit profile</p>
+                  </div>
+              </md-button>
+            </md-menu-item>
+              <md-menu-item>
+              <md-button>
+                  <div layout="row" flex>
+                    <md-icon class="material-icons" icon="avatar">arrow_back</md-icon>
+                    <p flex>Logout</p>
+                  </div>
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+          
+          
       </div>
   </md-toolbar>
+  <div layout="row" flex>
+          <md-sidenav layout="column" class="md-sidenav-left md-primary md-whiteframe-z2 main-menu" md-component-id="left" md-is-locked-open="$mdMedia('gt-md') && navIsOpen">
+        <!-- this is the toolbar that holds the avatar and names -->
+<!--
+          <md-toolbar>
+            <span flex></span>
+              <div layout="column" class="md-toolbar-tools-bottom inset">
+                <div class="user-info" style="text-align:center">
+                    <img src="../images/angular-avatars/avatar-01.png" class="md-avatar profile-image" />
+                     <h4>Abdul Alzaid</h4>
+                     <h4>amzaid92@gmail.com</h4>
+                </div>
+            </div>
+          </md-toolbar>
+-->
+          <md-subheader>Navigation</md-subheader>
+          <md-list>
+            <md-item>
+                <md-item-content layout="row" layout-align="start center">
+                    <a flex md-ink-ripple ui-sref-active="active" class="menu-button md-button md-ink-ripple" ui-sref="main">
+                        <md-icon class="material-icons about-icon">home</md-icon>
+                      Dashboard
+                    </a>
+                </md-item-content>
+            </md-item>
+            <md-item>
+                <md-item-content layout="row" layout-align="start center">
+                    <a flex md-ink-ripple ui-sref-active="active" class="menu-button md-button md-ink-ripple" ui-sref="dashboard.myJobs">
+                        <md-icon class="material-icons about-icon">view_list</md-icon>
+                      List of posted jobs
+                    </a>
+                </md-item-content>
+            </md-item>
+            <md-item>
+                <md-item-content layout="row" layout-align="start center">
+                    <a flex md-ink-ripple ui-sref-active="active" class="menu-button md-button md-ink-ripple" ui-sref="tutorProfile">
+                        <md-icon class="material-icons about-icon">explore</md-icon>
+                      Explore Tutors
+                    </a>
+                </md-item-content>
+            </md-item>
+            <md-item>
+                <md-item-content layout="row" layout-align="start center">
+                    <a flex md-ink-ripple ui-sref-active="active" class="menu-button md-button md-ink-ripple" ui-sref="dashboard.myProposals">
+                        <md-icon class="material-icons about-icon">work</md-icon>
+                      Proposals
+                    </a>
+                </md-item-content>
+            </md-item>
+            <md-item>
+                <md-item-content layout="row" layout-align="start center">
+                    <a flex md-ink-ripple ui-sref-active="active" class="menu-button md-button md-ink-ripple" ui-sref="">
+                        <md-icon class="material-icons about-icon">message</md-icon>
+                      Messages
+                    </a>
+                </md-item-content>
+            </md-item>
+        </md-list>
+              <md-divider></md-divider>
+            <md-subheader class="menu-subheader hue-1">Management</md-subheader>
+              <md-list>
+                <md-item>
+                    <md-item-content layout="row" layout-align="start center">
+                        <a flex md-ink-ripple ui-sref-active="active" class="menu-button md-button md-ink-ripple" ui-sref="">
+                            <md-icon class="material-icons about-icon">message</md-icon>
+                          Profile
+                        </a>
+                    </md-item-content>
+                </md-item>
+                <md-item>
+                    <md-item-content layout="row" layout-align="start center">
+                        <a flex md-ink-ripple ui-sref-active="active" class="menu-button md-button md-ink-ripple" ui-sref="">
+                            <md-icon class="material-icons about-icon">message</md-icon>
+                          Settings
+                        </a>
+                    </md-item-content>
+                </md-item>
+            </md-list>
+
+          <md-list class="menu-footer">
+                  <!-- List item #1 -->
+                  <md-item>
+                    <md-item-content layout="row" layout-align="start center">
+                        <a flex md-ink-ripple ui-sref-active="active" class="menu-button md-button md-ink-ripple" ui-sref="">
+                            <md-icon class="material-icons about-icon">help</md-icon>
+                          Need any help?
+                        </a>
+                    </md-item-content>
+                </md-item>
+          </md-list>
+        </md-sidenav>
+
   <md-content style="background-color:#F5F5F5" flex>
 
     <div class="row" ng-controller="NotifyCtrl">
@@ -170,5 +346,6 @@
               <div style="text-align:center;padding-bottom: 10px;margin-top:25px;"> &#169; Copyright 2016 InstaTutor.</div>
           </div>
  </md-content>
+      </div>
   </body>
 </html>

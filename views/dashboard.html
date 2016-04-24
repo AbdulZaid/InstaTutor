@@ -2,71 +2,7 @@
 
     <!-- Container #2 -->
     <div flex layout="row" id="profileContainer" class="dahsboardContainer">
-
-        <!-- Container #3 -->
-    <md-sidenav layout="column" class="md-sidenav-left md-primary md-hue-1 md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('min-width: 333px')">
-        <!-- this is the toolbar that holds the avatar and names -->
-          <md-toolbar>
-            <span flex></span>
-              <div layout="column" class="md-toolbar-tools-bottom inset">
-                <div class="user-info" style="text-align:center">
-                    <img src="../images/angular-avatars/avatar-01.png" class="md-avatar profile-image" />
-                     <h4>Abdul Alzaid</h4>
-                     <h4>amzaid92@gmail.com</h4>
-                </div>
-            </div>
-          </md-toolbar>
-
-          <md-list>
-            <md-item ng-repeat="item in menu">
-                <md-item-content md-ink-ripple layout="row" layout-align="start center" ng-show="item.show">
-                  <div class="inset">
-                    <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-                  </div>
-                  <div class="inset">
-                    <md-button class="inset" ui-sref="{{item.direct}}">
-                      {{item.title}}
-                    </md-button>
-                  </div>
-                </md-item-content>
-            </md-item>
-
-            <md-divider></md-divider>
-            <md-subheader>Management</md-subheader>
-            <md-item ng-repeat="item in admin">
-                  <md-item-content md-ink-ripple layout="row" layout-align="start center">
-                    <div class="inset">
-                      <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-                    </div>
-                    <md-button>
-                      <div class="inset">{{item.title}}
-                      </div>
-                    </md-button>
-                  </md-item-content>
-            </md-item>
-        </md-list>
-
-
-
-          <md-list ng-model="user">
-                  <!-- List item #1 -->
-                  <md-list-item >
-                      <md-button >
-                        <md-icon md-svg-src="" ng-model="user.firstName" class="avatar"></md-icon>
-                        {{user.firstName}}
-                      </md-button>
-                  </md-list-item>
-
-                  <!-- List item #2 -->
-                  <md-list-item >
-                      <md-button>
-                       <md-icon md-svg-src="" class="avatar"></md-icon>
-                        Lawrence Ray
-                      </md-button>
-                  </md-list-item>
-          </md-list>
-        </md-sidenav>
-
+    
         <!-- Container #4 -->
         <md-content flex id="content"> 
           <div ui-view="">

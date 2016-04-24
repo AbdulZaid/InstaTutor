@@ -737,6 +737,7 @@ footer.page-footer {
 .content-padding {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 30px;
 }
 
 .profile-image {
@@ -1045,4 +1046,63 @@ md-input-container .md-errors-spacer {
 
 .post-submit {
     margin-top: 25px;
+}
+
+.menu-button {
+    margin: 0;
+    text-align: left;
+    padding-left: 20px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-transform: none;
+    border-radius: 0;
+}
+.menu-button.active
+{
+    background-color: #00897B;
+    color: #fff;
+}
+a.menu-button.active:hover
+{
+    background-color: #00897B;
+    color: #fff;
+}
+.menu-button.active > md-icon
+{
+    color: #fff;
+}
+
+.main-menu {
+    max-width: 230px;
+}
+
+.menu-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0;
+    border-top: solid 1px #E1E1E1;
+}
+
+.top-nav {
+    padding-left: 20px;
+    padding-right: 40px;
+}
+
+a.logo:hover {
+    color: #fff;
+    
+}
+
+.nav-avatar img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.md-button.md-icon-button.nav-avatar
+{
+    height: 40px;
+    width: 40px;
+    padding: 0;
 }
