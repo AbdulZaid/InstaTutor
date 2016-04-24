@@ -1,11 +1,11 @@
-# School Tutoring Web Application
+# InstaTutor
 Loyola Marymount University CMSI 402 Final Project
 
 By Abdul Alzaid
 
 ## Project Description
 
-The School tutoring web appliaction will allow students and tutors to collaborate with each other through the web. 
+The InstaTutor web appliaction will allow students and tutors to collaborate with each other through the web. 
 
  First the student can post a full description of the job, which can be listed as (Math, English, History, etc.,) and upload files when necessary for all tutors to see.  Then, tutors can propose to the student to help him/her with the job, and from there the student after reviewing the tutors profile can assigns the job to the desired tutor.  
  Both the student and tutor can communicate with each other by sending real-time messages.  
