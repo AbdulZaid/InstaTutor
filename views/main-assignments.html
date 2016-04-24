@@ -1,10 +1,79 @@
+<!--
 <div id="mainContainer" class="container">
   <div  ng-show= "authData" class="row" id="row1">
       <div ng-repeat="post in posts | reverse" layout="row" layout-align="center center" flex="100">
         <md-button class="md-primary md-raised"  flex="100" flex-gt-md="auto" ui-sref="jobPost({jobID: post.$id})">
-        <!-- ng-click="showAdvanced(post.$id); postRef(post.$id)" -->
         <p class="md-body-1"> <h5 class=".md-title">{{post.field}}</h5>Question:  {{post.question}} <small class="md-caption"> By: {{ post.author }}</small>.</p>
         </md-button>
       </div>
   </div>
 </div>
+-->
+
+<md-list layout="column">
+            <md-divider></md-divider>
+<!--            <div ng-show="proposalsArray.length == 0">You don't have any open job, post one by asking a tutor</div>-->
+    <md-whiteframe md-whiteframe="1" flex layout-padding><h1 class="md-title">your last Jobs</h1></md-whiteframe>
+    <md-whiteframe md-whiteframe="1" flex ng-repeat="post in posts | reverse">
+            <md-list-item class="jobs-list" ng-click="null" ui-sref="jobPost({jobID: post.$id})">
+<!--                <md-divider></md-divider>-->
+<!--              <img ng-src="../images/angular-avatars/avatar-05.png" class="md-avatar" alt="">               -->
+                <div flex layout="row" class="job-list-content">
+                <div flex>
+                  <div class="md-title"><span><md-icon class="material-icons status-icon">mood</md-icon><md-tooltip md-direction="top">
+                              Status: open
+                      </md-tooltip></span>{{post.question}}</div>
+<!--
+                  <div class="md-subhead">By: {{ post.author }}</div>
+                  <div class="md-subhead">In: {{post.field}}</div>
+-->
+                    
+<!--
+                  <div>
+                       <md-tooltip md-direction="left">
+                              4.8
+                      </md-tooltip>
+                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                        <span>(5 reviews)</span>
+                  </div>
+-->
+                  <div class="md-body-1 proposals-item-comment">
+                    <div>In: {{post.field}}</div>
+                    <md-chips class="small-chips">
+                    <md-chip>math</md-chip>
+                    <md-chip>LMU</md-chip>
+                    <md-chip>University</md-chip>
+                    <md-chip>calculas</md-chip>
+                  </md-chips>
+                  </div>
+                </div>
+                <div flex="15" layout="column"  layout-align="center center">
+                    <div class="md-headline">$15</div>
+                    <div class="md-subhead">in 1 day</div>
+                </div>
+                <!--(Note) Show for the owner of the post (the student)-->
+<!--
+                <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="!isTutor && !proposal.assigned">
+                    <md-button class="md-primary" ng-click="deal(proposal.tutorID, proposal.$id, proposal.postID, proposal.tutorName, proposal.amount)">Accept</md-button>
+                    <md-button class="md-warn">Reject</md-button>
+                </div>
+-->
+                <!--(Note) Show for the tutor who submited the proposal (should show on top of the proposalsArray list)-->
+                <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="proposal.tutorID == authData.uid">
+                    <md-button class="md-warn" ng-click="deleteProposal(proposal.$id, proposal.postID)" >Delete</md-button>
+                </div>
+                <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="proposal.assigned">
+                    <md-button class="md-warn" ng-disabled="true">Assigned</md-button>
+                </div>
+                <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="proposal.assigned  && authorID == currentUser.$id">
+                    <md-button class="md-warn" ui-sref="submissionPage({jobID: submissionPageID}) ">Message</md-button>
+                </div>
+                </div>
+            </md-list-item>
+        </md-whiteframe>
+
+          </md-list>

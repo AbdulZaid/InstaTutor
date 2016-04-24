@@ -181,10 +181,7 @@ md-toolbar:not(.md-hue-1),
     position: relative;
     top: 5px; }
 
-#mainContainer {
-  width: 800px;
-  max-width: 90%;
-  margin-top: 100px; }
+
 
 #signupContainer {
   width: 800px;
@@ -1105,4 +1102,33 @@ a.logo:hover {
     height: 40px;
     width: 40px;
     padding: 0;
+}
+
+.job-list-content {
+    padding: 16px 0;
+}
+
+.small-chips md-chip {
+    font-size: 12px;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 8px;
+}
+.small-chips .md-chips
+{
+    box-shadow: none;
+    padding-bottom: 0;
+}
+
+.status-icon {
+    margin-right: 1px;
+    margin-bottom: 0px;
+    font-size: 20px;
+    color: #00897B;
+}
+
+.jobs-list>.md-no-style.md-button{
+    margin: 0;
+}.jobs-list>.md-no-style.md-button:hover{
+    color: inherit;
 }
