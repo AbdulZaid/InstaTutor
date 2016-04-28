@@ -32,7 +32,7 @@
 
 
 
-<!--    <link rel="stylesheet" href="css/bootstrap.min.css">-->
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
 
     <link rel="stylesheet" href="js/lib/bower_components/ngtoast/dist/ngToast.min.css">
 
@@ -84,6 +84,7 @@
     <script src="js/services/AuthFac.js"></script>
     <script src="js/services/PostsFac.js"></script>
     <script src="js/controllers/appCtrl.js"></script>
+    <script src="js/controllers/SideNavCtrl.js"></script>
     <script src="additatives.js"></script>
 
     <script src="//cdn.jsdelivr.net/jquery.scrollto/2.1.2/jquery.scrollTo.min.js"></script>
@@ -97,7 +98,7 @@
   </head>
 
   <body id="top" class="scrollspy" layout="column" ng-controller="appCtrl">
-  
+
   <md-toolbar ng-controller="AuthCtrl">
       <div class="md-toolbar-tools top-nav" >
           <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleMenu()">
@@ -191,9 +192,9 @@
                   </div>
               </md-button>
             </md-menu-item>
-              <md-menu-item>
-              <md-button>
-                  <div layout="row" flex>
+              <md-menu-item ng-show= "authData">
+              <md-button ng-click="logout()" ui-sref="main">
+                  <div layout="row" flex >
                     <md-icon class="material-icons" icon="avatar">arrow_back</md-icon>
                     <p flex>Logout</p>
                   </div>
@@ -205,8 +206,8 @@
           
       </div>
   </md-toolbar>
-  <div layout="row" flex>
-          <md-sidenav layout="column" class="md-sidenav-left md-primary md-whiteframe-z2 main-menu" md-component-id="left" md-is-locked-open="$mdMedia('gt-md') && navIsOpen">
+  <div layout="row" flex >
+          <md-sidenav layout="column" class="md-sidenav-left md-primary md-whiteframe-z2 main-menu" md-component-id="left" md-is-locked-open="$mdMedia('gt-md') && navIsOpen" >
         <!-- this is the toolbar that holds the avatar and names -->
 <!--
           <md-toolbar>
@@ -221,64 +222,25 @@
           </md-toolbar>
 -->
           <md-subheader>Navigation</md-subheader>
-          <md-list>
-            <md-item>
-                <md-item-content layout="row" layout-align="start center">
-                    <a flex md-ink-ripple ui-sref-active="active" class="menu-button md-button md-ink-ripple" ui-sref="main">
-                        <md-icon class="material-icons about-icon">home</md-icon>
-                      Dashboard
-                    </a>
-                </md-item-content>
-            </md-item>
-            <md-item>
-                <md-item-content layout="row" layout-align="start center">
-                    <a flex md-ink-ripple ui-sref-active="active" class="menu-button md-button md-ink-ripple" ui-sref="dashboard.myJobs">
-                        <md-icon class="material-icons about-icon">view_list</md-icon>
-                      List of posted jobs
-                    </a>
-                </md-item-content>
-            </md-item>
-            <md-item>
-                <md-item-content layout="row" layout-align="start center">
-                    <a flex md-ink-ripple ui-sref-active="active" class="menu-button md-button md-ink-ripple" ui-sref="tutorProfile">
-                        <md-icon class="material-icons about-icon">explore</md-icon>
-                      Explore Tutors
-                    </a>
-                </md-item-content>
-            </md-item>
-            <md-item>
-                <md-item-content layout="row" layout-align="start center">
-                    <a flex md-ink-ripple ui-sref-active="active" class="menu-button md-button md-ink-ripple" ui-sref="dashboard.myProposals">
-                        <md-icon class="material-icons about-icon">work</md-icon>
-                      Proposals
-                    </a>
-                </md-item-content>
-            </md-item>
-            <md-item>
-                <md-item-content layout="row" layout-align="start center">
-                    <a flex md-ink-ripple ui-sref-active="active" class="menu-button md-button md-ink-ripple" ui-sref="">
-                        <md-icon class="material-icons about-icon">message</md-icon>
-                      Messages
+          <md-list ng-controller="SideNavCtrl" >
+            <md-item ng-repeat="item in menu">
+                <md-item-content layout="row" layout-align="start center" ng-show="item.show">
+                    <a flex md-ink-ripple ui-sref-active="active" class="menu-button md-button md-ink-ripple"  ui-sref="{{item.direct}}">
+                        <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                        {{item.title}}
                     </a>
                 </md-item-content>
             </md-item>
         </md-list>
               <md-divider></md-divider>
             <md-subheader class="menu-subheader hue-1">Management</md-subheader>
-              <md-list>
-                <md-item>
+              <md-list ng-controller="SideNavCtrl">
+                <md-item ng-repeat="item in managementList">
                     <md-item-content layout="row" layout-align="start center">
-                        <a flex md-ink-ripple ui-sref-active="active" class="menu-button md-button md-ink-ripple" ui-sref="">
+                        <a flex md-ink-ripple ui-sref-active="active" class="menu-button md-button md-ink-ripple"  ui-sref="{{item.direct}}">
                             <md-icon class="material-icons about-icon">message</md-icon>
-                          Profile
-                        </a>
-                    </md-item-content>
-                </md-item>
-                <md-item>
-                    <md-item-content layout="row" layout-align="start center">
-                        <a flex md-ink-ripple ui-sref-active="active" class="menu-button md-button md-ink-ripple" ui-sref="">
-                            <md-icon class="material-icons about-icon">message</md-icon>
-                          Settings
+                            <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                          {{item.title}}
                         </a>
                     </md-item-content>
                 </md-item>
@@ -288,7 +250,7 @@
                   <!-- List item #1 -->
                   <md-item>
                     <md-item-content layout="row" layout-align="start center">
-                        <a flex md-ink-ripple ui-sref-active="active" class="menu-button md-button md-ink-ripple" ui-sref="">
+                        <a flex md-ink-ripple ui-sref-active="active" class="menu-button md-button md-ink-ripple" ui-sref="dashboard.myProfile">
                             <md-icon class="material-icons about-icon">help</md-icon>
                           Need any help?
                         </a>
@@ -303,6 +265,7 @@
     <toast></toast>
     </div>
           <div class="content-padding" ui-view></div>
+
           <div class="footer content-padding">
              <md-divider></md-divider>
               <div layout="row" layout-align="center center">

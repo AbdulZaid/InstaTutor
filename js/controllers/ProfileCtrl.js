@@ -6,7 +6,6 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
   		$scope.profileObject = $firebaseObject(ref);
   		$scope.isTutor = false
   		$scope.isStudent = false
-  		console.log($scope.authData.uid)
   		/*
   		* The problem is solved by creating a gloabl object usersInfo, and then assigning it to the 
   		* object retrived by the method getProfile.
@@ -34,62 +33,6 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
 					biography: $scope.usersInfo.profile.biography,
 					postalCode: $scope.usersInfo.profile.postalCode,
 				};
-				$scope.menu = [
-			    {
-			      link : '',
-			      title: 'Profile',
-			      icon: 'dashboard',
-			      direct: 'dashboard.myProfile',
-			      show: true
-			    },
-			    {
-			      link : '',
-			      title: 'My Jobs',
-			      icon: 'message',
-			      direct: 'dashboard.myAssignments',
-			      show: $scope.isStudent
-			    },
-			   	{
-			      link : '',
-			      title: 'My Work',
-			      icon: 'message',
-			      direct: 'dashboard.myJobs',
-			      show: $scope.isTutor 
-			    },
-			    {
-			      link : '',
-			      title: 'My Bookmarks',
-			      icon: 'bookmark',
-			      direct: 'dashboard.myJobs',
-			      show: $scope.isTutor 
-			    },
-			    {
-			      link : '',
-			      title: 'Proposals',
-			      icon: 'message',
-			      direct: 'dashboard.myProposals',
-			      show: $scope.isStudent
-			    },
-			    {
-			      link : '',
-			      title: 'Messages',
-			      icon: 'message',
-			      direct: 'dashboard.myProfile',
-			      show: true
-			    }
-			  ];
-			  $scope.admin = [
-			    {
-			      link : '',
-			      title: 'Trash',
-			      icon: 'delete'
-			    },
-			    {
-			      link : 'showListBottomSheet($event)',
-			      title: 'Settings',
-			      icon: 'settings'
-			    }
-			  ];
 		  });
 
 		$scope.toggleSidenav = function(menuId) {
@@ -116,12 +59,7 @@ myApp.controller('ProfileCtrl', ['$scope','Users','Auth','$location','$firebaseA
 	        return {abbrev: state};
 	      })
 
-	    // // $scope.profileData = usersObject.$scope.authData.uid
-	    // // console.log( $scope.profileData )
 	    $scope.profileData = ref.child($scope.authData.uid).child("profile")
-	    var sh = $firebaseObject($scope.profileData)
-	    // console.log("IIIDDDDD " + $scope.authData.uid)
-	    // console.log(sh.address)
 	    $scope.updateProfile = function(authData) {
 	    	$scope.profileData.set({
 	      	  title: $scope.user.title,
