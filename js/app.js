@@ -52,7 +52,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
                 },
                 'assignmentsArea@main': {
                     templateUrl: 'views/main-assignments.html',
-                    controller: 'AssignmentCtrl'
+                    controller: 'StudentAssignmentCtrl'  //the same Controller as the dashboard-myAssignments.
                 }
         },
 
@@ -150,7 +150,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     .state('dashboard.myAssignments', {
         url: "/myAssignments",
         templateUrl: "views/dashboard-assignments.html", 
-        controller: "UserAssignmentCtrl"
+        controller: "StudentAssignmentCtrl"
     })
     .state('dashboard.myProposals', {
         url: "/myProposals",

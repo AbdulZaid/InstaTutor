@@ -14,7 +14,7 @@
             <md-divider></md-divider>
 <!--            <div ng-show="proposalsArray.length == 0">You don't have any open job, post one by asking a tutor</div>-->
     <md-whiteframe md-whiteframe="1" flex layout-padding><h1 class="md-title">your last Jobs</h1></md-whiteframe>
-    <md-whiteframe md-whiteframe="1" flex ng-repeat="post in posts | reverse">
+    <md-whiteframe md-whiteframe="1" flex ng-repeat="post in studentAssignment | reverse">
             <md-list-item class="jobs-list" ng-click="null" ui-sref="jobPost({jobID: post.$id})">
 <!--                <md-divider></md-divider>-->
 <!--              <img ng-src="../images/angular-avatars/avatar-05.png" class="md-avatar" alt="">               -->

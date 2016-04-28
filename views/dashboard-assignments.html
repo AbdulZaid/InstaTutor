@@ -10,7 +10,7 @@
       <md-subheader class="md-primary">Jobs in Progress</md-subheader>
         <md-list ng-cloak>
           <md-divider></md-divider>
-          <md-list-item ng-repeat="assignment in userAssignment | reverse" ng-click="goToPerson(assignment.name, $event)">
+          <md-list-item ng-repeat="assignment in studentAssignment | reverse" ng-click="goToPerson(assignment.name, $event)">
             <md-divider></md-divider>
             <img alt="{{ assignment.name }}" ng-src="{{studentImagePath}}" class="md-avatar" />
             <span style="color:red">
@@ -39,7 +39,7 @@
         </div>
         <md-list ng-cloak>
           <md-divider></md-divider>
-          <md-list-item ng-repeat="assignment in userAssignment | reverse" ng-click="goToPerson(assignment.name, $event)">
+          <md-list-item ng-repeat="assignment in studentAssignment | reverse" ng-click="goToPerson(assignment.name, $event)">
             <md-divider></md-divider>
             <img alt="{{ assignment.name }}" ng-src="{{studentImagePath}}" class="md-avatar" />
             <span style="color:red">
