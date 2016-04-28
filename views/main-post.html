@@ -27,26 +27,10 @@
                           <label>What are the details?</label>
                           <textarea style= "max-height: 25vh; overflow-y: auto; scroll-glue" ng-model="$parent.textModel" md-maxlength="1000" rows="8" md-select-on-focus></textarea>
                         </md-input-container>
-                        <form ng-show="questionDisplayed" action="https://tutoring-images.s3.amazonaws.com/" method="post" enctype="multipart/form-data"  name="form">
-                        <input type="hidden" name="key" value="uploads/${filename}" />
-                        <input type="hidden" name="acl" value="public-read" />
-                        <input type="hidden" name="success_action_redirect" value="">
-                        <input type="hidden" name="content-type" value="image/png" />
-                        <input type="hidden" name="AWSAccessKeyId" value="AKIAIVXWPHX7GO3MKQ4Q" />
-                        <input type="hidden" name="policy" value="ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogInR1dG9yaW5nLWltYWdlcyJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIka2V5IiwgInVwbG9hZHMvIl0sCiAgICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICAgeyJzdWNjZXNzX2FjdGlvbl9yZWRpcmVjdCI6ICIifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJENvbnRlbnQtVHlwZSIsICJpbWFnZS9wbmciXSwKICAgIFsiY29udGVudC1sZW5ndGgtcmFuZ2UiLCAwLCA1MjQyODgwMDBdCiAgXQp9" />
-                        <input type="hidden" name="signature" value="WKRrtjsRe7Wn4pQWSnTuKY4Y364=" />
+                    </div>
 
-                        <input type="file" ngf-select class="ng-hide" ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" id="file-upload" multiple ngf-max-size="20MB" ngf-min-height="100"  ngf-resize="{width: 100, height: 100}" />
-<!--                        <input  id="input-file-id" multiple type="file" />-->
-                        <label ng-show="questionDisplayed" for="file-upload" class="md-button md-raised">Upload Files</label>
-                       <!-- <md-button type="submit" class="md-raised" ng-click="submit()">submit</md-button>  -->
-                       <div>
-                            <img ngf-thumbnail="file || ''"> 
-                        </div>
-
-                    </form>
-
-                        <div layout="row" layout-align="center center" ng-show="questionDisplayed">
+<!--                     <form name="userForm" ng-submit="$event.preventDefault()">
+ -->                    <div layout="row" layout-align="center center" ng-show="questionDisplayed">
                            <div flex class="post-pay">
                            <label>Willing to pay:</label>
                             <md-input-container class="dense-form">
@@ -68,6 +52,7 @@
                             <!--     <ng-md-icon icon="attach_file" style="fill: grey" size="35" input="file" ng-click=""></ng-md-icon>  -->
                             </div>
                         </div>
+                    <div flex layout="column">
                         <md-chips class="dense-form" ng-show="questionDisplayed" 
                             ng-model="tags"
                             readonly="readonly"
@@ -75,12 +60,47 @@
                             delete-button-label="Remove Tag"
                             delete-hint="Press delete to remove tag"
                             secondary-placeholder="+Tag"></md-chips>
-<!--                        <br/>-->
+                    </div>
+                </form>
+
+                        <form action="https://tutoring-images.s3.amazonaws.com/" method="post" enctype="multipart/form-data"  name="form">
+                            <div flex layout="column">
+
+                                <input type="hidden" name="key" value="uploads/${filename}" />
+                                <input type="hidden" name="acl" value="public-read" />
+                                <input type="hidden" name="success_action_redirect" value="">
+                                <input type="hidden" name="content-type" value="image/png" />
+                                <input type="hidden" name="AWSAccessKeyId" value="AKIAIVXWPHX7GO3MKQ4Q" />
+                                <input type="hidden" name="policy" value="ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogInR1dG9yaW5nLWltYWdlcyJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIka2V5IiwgInVwbG9hZHMvIl0sCiAgICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICAgeyJzdWNjZXNzX2FjdGlvbl9yZWRpcmVjdCI6ICIifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJENvbnRlbnQtVHlwZSIsICJpbWFnZS9wbmciXSwKICAgIFsiY29udGVudC1sZW5ndGgtcmFuZ2UiLCAwLCA1MjQyODgwMDBdCiAgXQp9" />
+                                <input type="hidden" name="signature" value="WKRrtjsRe7Wn4pQWSnTuKY4Y364=" />
+
+                                <!-- <input type="file" ngf-select  ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" id="file-upload" multiple ngf-max-size="20MB" ngf-min-height="100"  ngf-resize="{width: 100, height: 100}" /> -->
+                                <label ng-show="questionDisplayed" for="file-upload" class="md-button md-raised" >Upload Files</label>
+
+                                <!-- Single File -->
+                                <!-- <input type="file" id="file-upload" class="ng-hide" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"  ngf-resize="{width: 100, height: 100}" /> -->
+                                <!-- <img ngf-thumbnail="file || ''">  -->
+
+                                <!-- multiple files -->
+                                <input  id="file-upload" multiple type="file" class="ng-hide" ngf-select ng-model="files" name="files" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"  ngf-resize="{width: 100, height: 100}" ngf-select="upload($files)" />
+                                <br>Files:
+                                <ul>
+                                    <li ng-repeat="f in files" style="font:smaller">
+                                        {{f.name}} 
+                                        <img ngf-thumbnail="f || ''"> 
+                                    </li>
+                                </ul>
+
+                           </div>
+                    </form>
+                    <div flex layout="column">
+
+                    <!-- <form name="userForm" ng-submit="$event.preventDefault()"> -->
                            <md-button class="md-raised md-primary post-submit" ng-click="submit()"  ng-show= "authData && questionDisplayed">Post</md-button>    
                     </div>
                        
                         <!-- <md-button class="md-raised" ng-click="postMessage()"  ng-show= "authData">Post</md-button>  -->
-                </form>
+                <!-- </form> -->
                 
             </md-content>
         </div>

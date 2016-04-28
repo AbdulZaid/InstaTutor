@@ -9,6 +9,7 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', '$firebaseObject', '$fi
     var key //new post's key
 
     $scope.tags = [];
+    $scope.imagesArray = [];
       
       // colapse of question panel
       $scope.questionDisplayed = true;
@@ -29,46 +30,60 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', '$firebaseObject', '$fi
 
     // upload later on form submit or something similar
     $scope.submit = function() {
-        if ( $scope.file && $scope.file.$valid) {
-            $scope.upload($scope.file);
+        if ( $scope.form.files.$valid && $scope.files) {
+            $scope.upload($scope.files);
         } else {
             $scope.postMessage();
         }
     };
 
-    $scope.upload = function(file) {
-        Upload.upload({
-            url: "https://tutoring-images.s3.amazonaws.com/", //S3 upload url including bucket name
-            method: 'POST',
-            data: {
-                key: $scope.file.name, // the key to store the file on S3, could be file name or customized
-                AWSAccessKeyId: $scope.AWSAccessKeyId,
-                acl: $scope.acl, // sets the access to the uploaded file in the bucket: private, public-read, ...
-                policy: $scope.policy, // base64-encoded json policy (see article below)
-                signature: $scope.signature, // base64-encoded signature based on policy string (see article below)
-                "Content-Type": $scope.file.type != '' ? $scope.file.type : 'application/octet-stream', // content type of the file (NotEmpty)
-                filename: $scope.file.name, // this is needed for Flash polyfill IE8-9
-                file: $scope.file
+    $scope.upload = function(files) {
+        if (files && files.length) {
+            for (var i = 0; i < files.length; i++) {
+                Upload.upload({
+                    url: "https://tutoring-images.s3.amazonaws.com/", //S3 upload url including bucket name
+                    method: 'POST',
+                    data: {
+                        key: $scope.files[i].name, // the key to store the file on S3, could be file name or customized
+                        AWSAccessKeyId: $scope.AWSAccessKeyId,
+                        acl: $scope.acl, // sets the access to the uploaded file in the bucket: private, public-read, ...
+                        policy: $scope.policy, // base64-encoded json policy (see article below)
+                        signature: $scope.signature, // base64-encoded signature based on policy string (see article below)
+                        "Content-Type": $scope.files[i].type != '' ? $scope.files[i].type : 'application/octet-stream', // content type of the file (NotEmpty)
+                        filename: $scope.files[i].name, // this is needed for Flash polyfill IE8-9
+                        file: $scope.files[i]
+                    }
+                }).then(function(resp) {
+                    console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+                    console.log('https://'+ 's3.amazonaws.com/'+ 'tutoring-images/uploads/'+ resp.config.data.file.name);
+                    $scope.imageUrl = 'https://'+ 's3.amazonaws.com/'+ 'tutoring-images/uploads/'+ resp.config.data.file.name
+                    $scope.imageName = resp.config.data.file.name
+                    $scope.imageType = resp.config.data.file.type
+                    $scope.imageSize = resp.config.data.file.size
+                    $scope.imagesArray.push({
+                            "imageUrl": $scope.imageUrl,
+                            "imageName": $scope.imageName,
+                            "imageType": $scope.imageType,
+                            "imageSize": $scope.imageSize
+                        })
+
+                    console.log(resp);
+
+                    if($scope.imagesArray.length == files.length) {
+                        $scope.postMessage();
+                    }
+                }, function(resp) {
+                    console.log('Error status: ' + resp.data);
+                    ngToast.create({
+                        className: 'danger',
+                        content: 'You must upload and image, or your image was not uploaded successfully'
+                    })
+                }, function(evt) {
+                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                    console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+                });
             }
-        }).then(function(resp) {
-            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-            console.log('https://'+ 's3.amazonaws.com/'+ 'tutoring-images/uploads/'+ resp.config.data.file.name);
-            $scope.imageUrl = 'https://'+ 's3.amazonaws.com/'+ 'tutoring-images/uploads/'+ resp.config.data.file.name
-            $scope.imageName = resp.config.data.file.name
-            $scope.imageType = resp.config.data.file.type
-            $scope.imageSize = resp.config.data.file.size
-            console.log(resp);
-            $scope.postMessage();
-        }, function(resp) {
-            console.log('Error status: ' + resp.data);
-            ngToast.create({
-                className: 'danger',
-                content: 'You must upload and image, or your image was not uploaded successfully'
-            })
-        }, function(evt) {
-            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-        });
+        }
     }
 
 
@@ -136,10 +151,11 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', '$firebaseObject', '$fi
             //check if the user uploaded an image to push it to the post DB.
             if($scope.imageUrl != null) {
                 postsRef.child(key).child("images").push({
-                    "imageUrl": $scope.imageUrl,
-                    "imageName":  $scope.imageName,
-                    "imageType": $scope.imageType,
-                    "imageSize": $scope.imageSize
+                    // "imageUrl": $scope.imageUrl,
+                    // "imageName":  $scope.imageName,
+                    // "imageType": $scope.imageType,
+                    // "imageSize": $scope.imageSize,
+                    "imagesArray": $scope.imagesArray
                 }) //add new post to user's posts.
             }
         } else {

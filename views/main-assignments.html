@@ -44,15 +44,15 @@
                   <div class="md-body-1 proposals-item-comment">
                     <div>In: {{post.field}}</div>
                     <md-chips class="small-chips">
-                    <md-chip>math</md-chip>
+                    <!-- <md-chip ng-repeat="tag in post">{{tag}}</md-chip> -->
                     <md-chip>LMU</md-chip>
                     <md-chip>University</md-chip>
-                    <md-chip>calculas</md-chip>
+                    <!-- <md-chip>calculas</md-chip> -->
                   </md-chips>
                   </div>
                 </div>
                 <div flex="15" layout="column"  layout-align="center center">
-                    <div class="md-headline">$15</div>
+                    <div class="md-headline">${{post.amount}}</div>
                     <div class="md-subhead">in 1 day</div>
                 </div>
                 <!--(Note) Show for the owner of the post (the student)-->

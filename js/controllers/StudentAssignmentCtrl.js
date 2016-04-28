@@ -8,6 +8,12 @@ myApp.controller('StudentAssignmentCtrl', ['$scope','Auth','Users','$firebaseObj
   $scope.studentImagePath = 'images/angular-avatars/avatar-03.png';
   $scope.tutorImagePath = 'images/angular-avatars/avatar-05.png';
 
+  //compelete to get the tags for dashboard main
+  // $scope.studentAssignment.$loaded().then(function(){
+  //   $scope.postTags = $scope.studentAssignment
+  //   console.log($scope.postTags)
+  // })
+
   $scope.deletePost = function(postID, authorID) {
     // Appending dialog to document.body to cover sidenav in docs app
     var confirm = $mdDialog.confirm()
