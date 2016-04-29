@@ -8,24 +8,39 @@
                         <div layout="row">
                             <md-input-container flex class="dense-form">
                               <label>Question title?</label>
-                              <input type="text" ng-model="$parent.question" maxlength="70" ng-focus="showQuestion()" ng-blur="showQuestion()">
+                              <input required name ="title" type="text" ng-model="$parent.question" minlength="10" maxlength="70" ng-focus="showQuestion()" ng-blur="showQuestion()">
+                              <div ng-messages="userForm.title.$error" role="alert">
+                              <div ng-message-exp="['required', 'minlength', 'maxlength']">
+                                Please, Your question must be between 10 and 70 characters long and look like a real question.
+                              </div>
+                            </div>
                             </md-input-container>
 
                             <md-input-container ng-show="questionDisplayed" class="dense-form">
                                 <label>Help Catagory</label>
-                                <md-select ng-model="field">
-                                <md-optgroup label="Science">
-                                    <md-option ng-value="field.name" ng-repeat="field in fields | filter: {category: 'Science' }">{{field.name}}</md-option>
-                                </md-optgroup>
-                                <md-optgroup label="Engineering">
-                                    <md-option ng-value="field.name" ng-repeat="field in fields | filter: {category: 'Engineering' }">{{field.name}}</md-option>
-                                </md-optgroup>
-                            </md-select>
+                                <md-select ng-model="field" required name ="field">
+                                    <md-optgroup label="Science">
+                                        <md-option ng-value="field.name" ng-repeat="field in fields | filter: {category: 'Science' }">{{field.name}}</md-option>
+                                    </md-optgroup>
+                                    <md-optgroup label="Engineering">
+                                        <md-option ng-value="field.name" ng-repeat="field in fields | filter: {category: 'Engineering' }">{{field.name}}</md-option>
+                                    </md-optgroup>
+                                </md-select>
+                             <div ng-messages="userForm.field.$error" role="alert">
+                              <div ng-message-exp="['required']">
+                                Please choose the field where you need help in.
+                              </div>
+                            </div>
                           </md-input-container>
                         </div>
                         <md-input-container ng-show="questionDisplayed"  class="md-block  md-whiteframe-1z dense-form" >
                           <label>What are the details?</label>
-                          <textarea style= "max-height: 25vh; overflow-y: auto; scroll-glue" ng-model="$parent.textModel" md-maxlength="1000" rows="8" md-select-on-focus></textarea>
+                          <textarea style= "max-height: 25vh; overflow-y: auto; scroll-glue" ng-model="$parent.textModel"  minlength= "10" maxlength= "1500" md-maxlength="1500" rows="8" md-select-on-focus required name ="textArea"></textarea>
+                            <div ng-messages="userForm.textArea.$error" role="alert">
+                                <div ng-message-exp="['required', 'minlength', 'maxlength']">
+                                    Your help details must be between 10 and 1500 characters long to help tutors understand you better!.
+                                </div>
+                            </div>
                         </md-input-container>
                     </div>
 
@@ -35,13 +50,18 @@
                            <label>Willing to pay:</label>
                             <md-input-container class="dense-form">
                                 <label>$</label>
-                                <input ng-model="moneyAmount" class="dense-form" type="number" step="1.0">
+                                <input ng-model="moneyAmount" class="dense-form" type="number" step="1.0" required name ="amount">
+                            <div ng-messages="userForm.amount.$error" role="alert">
+                                <div ng-message-exp="['required']">
+                                    Please enter an amount you're willing to pay for tutors to help you.
+                                </div>
+                            </div>
                             </md-input-container>
                             </div>
                             <div flex class="post-time">
                                  <label>Expected due date:</label>
-                                  <md-datepicker name="dateField" ng-model="dueDate" md-placeholder="Enter date"
-                                       md-min-date="minDate"></md-datepicker>
+                                  <md-datepicker required name="dateField" ng-model="dueDate" md-placeholder="Enter date" md-min-date="minDate" required ></md-datepicker>
+
                                   <div class="validation-messages" ng-messages="userForm.dateField.$error" role="alert">
                                     <div ng-message="valid">The entered value is not a date!</div>
                                     <div ng-message="required">This date is required!</div>
@@ -96,7 +116,7 @@
                     <div flex layout="column">
 
                     <!-- <form name="userForm" ng-submit="$event.preventDefault()"> -->
-                           <md-button class="md-raised md-primary post-submit" ng-click="submit()"  ng-show= "authData && questionDisplayed">Post</md-button>    
+                           <md-button class="md-raised md-primary post-submit" ng-click="submit()"  ng-show= "authData && questionDisplayed" ng-disabled="userForm.$invalid">Post</md-button>    
                     </div>
                        
                         <!-- <md-button class="md-raised" ng-click="postMessage()"  ng-show= "authData">Post</md-button>  -->

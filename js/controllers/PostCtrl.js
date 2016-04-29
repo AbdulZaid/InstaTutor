@@ -101,7 +101,17 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', 'Toasts', '$firebaseObj
 
     // Do an if condition to see if the user is a student or not.
     $scope.postMessage = function() {
-        var time = Firebase.ServerValue.TIMESTAMP
+        var time = Firebase.ServerValue.TIMESTAMP;
+        var dueDate
+        if($scope.dueDate  && $scope.authData.uid && $scope.question && $scope.textModel && $scope.field && $scope.moneyAmount
+            != null) {
+            dueDate = $scope.dueDate.toJSON()
+        } else {
+            dueDate = null
+            alert("fix required data please")
+            console.log("fix required data please")
+            return
+        }
         if (Users.getUserType($scope.authData.uid) === "Student") {
 
             postsRef.push({
@@ -110,7 +120,7 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', 'Toasts', '$firebaseObj
                     "question": $scope.question,
                     "content": $scope.textModel,
                     "field": $scope.field,
-                    "dueDate": $scope.dueDate.toJSON(),
+                    "dueDate": dueDate,
                     "amount": $scope.moneyAmount,
                     "assigned": false,
                     "assignedTo": false,
@@ -140,7 +150,7 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', 'Toasts', '$firebaseObj
                     "question": $scope.question,
                     "content": $scope.textModel,
                     "field": $scope.field,
-                    "dueDate": $scope.dueDate.toJSON(),
+                    "dueDate": dueDate,
                     "amount": $scope.moneyAmount,
                     "assigned": false,
                     "assignedTo": false,
@@ -148,6 +158,13 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', 'Toasts', '$firebaseObj
                     "tags": $scope.tags,
                     "status": 'open',
                     // "images": $scope.imageUrl || ""
+                },
+                function(error) {
+                    if (error) {
+                        alert("Data could not be saved." + error);
+                    } else {
+                        Toasts.newPostToast()
+                    }
                 }) //add new post to user's posts.
             //check if the user uploaded an image to push it to the post DB.
             if($scope.imageUrl != null) {
