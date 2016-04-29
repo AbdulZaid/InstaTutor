@@ -1,4 +1,4 @@
-myApp.controller('appCtrl', ['$scope','$mdSidenav', '$mdMedia', function ($scope, $mdSidenav, $mdMedia) {
+myApp.controller('appCtrl', ['$scope','$mdSidenav', '$mdMedia', '$mdDialog', function ($scope, $mdSidenav, $mdMedia, $mdDialog ) {
     $scope.navIsOpen = true;
 	$scope.toggleMenu = function() {
     
@@ -11,6 +11,5 @@ myApp.controller('appCtrl', ['$scope','$mdSidenav', '$mdMedia', function ($scope
             {
                 $mdSidenav('left').toggle();
             }
-  };
-
+    };
 }])

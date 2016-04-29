@@ -22,8 +22,8 @@ myApp.controller('MessagesCtrl', ['$scope','Auth','Users','Posts','$firebaseObje
 
             } 
             else {
-              $scope.proposalsArray.push(null)
-              console.log("You don't have any proposals")
+              // $scope.proposalsArray.push(null)
+              console.log("You don't have any new proposals")
             }
           })
         })

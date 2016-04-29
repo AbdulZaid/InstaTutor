@@ -23,6 +23,8 @@
                   <div class="md-title"><span><md-icon class="material-icons status-icon">mood</md-icon><md-tooltip md-direction="top">
                               Status: open
                       </md-tooltip></span>{{post.question}}</div>
+
+
 <!--
                   <div class="md-subhead">By: {{ post.author }}</div>
                   <div class="md-subhead">In: {{post.field}}</div>
@@ -56,16 +58,16 @@
                     <div class="md-subhead">in 1 day</div>
                 </div>
                 <!--(Note) Show for the owner of the post (the student)-->
-<!--
+<!-- 
                 <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="!isTutor && !proposal.assigned">
                     <md-button class="md-primary" ng-click="deal(proposal.tutorID, proposal.$id, proposal.postID, proposal.tutorName, proposal.amount)">Accept</md-button>
                     <md-button class="md-warn">Reject</md-button>
                 </div>
--->
+ -->
                 <!--(Note) Show for the tutor who submited the proposal (should show on top of the proposalsArray list)-->
-                <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="proposal.tutorID == authData.uid">
+ <!--                <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="proposal.tutorID == authData.uid">
                     <md-button class="md-warn" ng-click="deleteProposal(proposal.$id, proposal.postID)" >Delete</md-button>
-                </div>
+                </div> -->
                 <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="proposal.assigned">
                     <md-button class="md-warn" ng-disabled="true">Assigned</md-button>
                 </div>

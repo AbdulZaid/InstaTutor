@@ -1,5 +1,5 @@
-myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', '$firebaseObject', '$firebaseArray', 'ngToast', 'Upload', 
-  function($scope, Auth, Users, $firebaseObject, $firebaseArray, ngToast, Upload) {
+myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', 'Toasts', '$firebaseObject', '$firebaseArray', 'ngToast', 'Upload', 
+  function($scope, Auth, Users, Toasts, $firebaseObject, $firebaseArray, ngToast, Upload) {
     var messageRef = new Firebase("https://homeworkmarket.firebaseio.com/messages");
     var userRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
     $scope.authData = Auth.$getAuth();
@@ -127,6 +127,7 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', '$firebaseObject', '$fi
                             className: 'success',
                             content: 'you just posted a new job successfully'
                         })
+                        Toasts.newPostToast()
                     }
                 })
             postsRef.orderByKey().limitToLast(1).on('child_added', function(snapshot) {

@@ -7,19 +7,19 @@
       <md-subheader class="md-primary">New Proposals</md-subheader>
       <md-list layout-padding>
         <md-divider></md-divider>
-        <md-list-item class="md-3-line" ng-repeat="message in proposalsArray | reverse" ng-model = "$parent.messages" ng-if="message.assigned == false">
+        <md-list-item class="md-3-line" ng-repeat="proposal in proposalsArray | reverse" ng-model = "$parent.messages" ng-if="proposal.assigned == false">
             <md-divider></md-divider>
-            <img ng-src="{{tutorImagePath}}" class="md-avatar" alt="{{message.tutorName}}">
+            <img ng-src="{{tutorImagePath}}" class="md-avatar" alt="{{proposal.tutorName}}">
             <div class="md-list-item-text">
-              <h3 style="color:purple">{{message.tutorName}}</h3>
-              <h4>Is proposing to do your assignment in <span style="color:blue">{{message.postField}}</span> for:<span style="color:red"> &nbsp{{message.amount}}</span></h4>
+              <h3 style="color:purple">{{proposal.tutorName}}</h3>
+              <h4>Is proposing to do your assignment in <span style="color:blue">{{proposal.postField}}</span> for:<span style="color:red"> &nbsp{{proposal.amount}}</span></h4>
               <p>
-                {{message.message}}
+                {{proposal.message}}
               </p>
             </div>
-            <md-button class="md-raised" ng-click="showProposal(message.tutorName, message.amount, message.message, message.postField ); markAsViewed(message.key)">View Proposal</md-button>
-            <md-button class="md-raised md-warn" ng-click="reject(message.key, message.postID, message.tutorName, message.tutorID)"> Reject</md-button>
-            <md-button class="md-raised md-primary" ng-click="deal(message.tutorID, message.key, message.postID, message.tutorName)"> Accept</md-button>
+            <md-button class="md-raised" ng-click="showProposal(proposal.tutorName, proposal.amount, proposal.message, proposal.postField ); markAsViewed(proposal.key)">View Proposal</md-button>
+            <md-button class="md-raised md-warn" ng-click="reject(proposal.key, proposal.postID, proposal.tutorName, proposal.tutorID)"> Reject</md-button>
+            <md-button class="md-raised md-primary" ng-click="deal(proposal.tutorID, proposal.key, proposal.postID, proposal.tutorName)"> Accept</md-button>
 
         </md-list-item>
       </md-list>
