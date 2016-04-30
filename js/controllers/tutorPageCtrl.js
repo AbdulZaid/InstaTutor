@@ -1,38 +1,38 @@
-myApp.controller('tutorPageCtrl', ['$scope','Users','Auth','$location','$firebaseAuth','$firebaseArray','$firebaseObject','$mdBottomSheet','$mdSidenav','$mdDialog',
-	function ($scope, Users, Auth, $location, $firebaseAuth, $firebaseArray, $firebaseObject, $mdBottomSheet, $mdSidenav, $mdDialog) {
-		var ref = new Firebase("https://homeworkmarket.firebaseio.com/users")
+myApp.controller('tutorPageCtrl', ['$scope','Users','Auth','$location','$firebaseAuth','$firebaseArray','$firebaseObject','$mdSidenav','$timeout',
+	function ($scope, Users, Auth, $location, $firebaseAuth, $firebaseArray, $firebaseObject, $mdSidenav, $timeout) {
+		var tutorRef = new Firebase("https://homeworkmarket.firebaseio.com/users")
 		$scope.authData = Auth.$getAuth();
-		$scope.usersInfo = {}
-  		$scope.profileObject = $firebaseObject(ref);
-  		$scope.isTutor = false
-  		$scope.isStudent = false
-  		console.log($scope.authData.uid)
-  		/*
-  		* The problem is solved by creating a gloabl object usersInfo, and then assigning it to the 
-  		* object retrived by the method getProfile.
-  		*/
-		$scope.profileObject.$loaded( //to solve the problem with loading data before using it.
-		    function() {
-				$scope.usersInfo = Users.getProfile($scope.authData.uid) // here is the problem always
-				// console.log(Users.getUser($scope.authData.uid))
-				// console.log(Users.getProfile($scope.authData.uid))
-				// console.log(Users.getName($scope.authData.uid))
-				if(Users.getUserType($scope.authData.uid) === "Tutor") {
-		  			$scope.isTutor = true
-		  		}  else {
-  					$scope.isStudent = true
-		  		}
-				$scope.user = {
-					title: $scope.usersInfo.handle, 
-					email: $scope.usersInfo.email,
-					firstName: $scope.usersInfo.name,
-					lastName: $scope.usersInfo.profile.lastName,
-					company: $scope.usersInfo.profile.company,
-					address: $scope.usersInfo.profile.address,
-					city: $scope.usersInfo.profile.city,
-					state: $scope.usersInfo.profile.state,
-					biography: $scope.usersInfo.profile.biography,
-					postalCode: $scope.usersInfo.profile.postalCode,
-				};
-		  });
+
+		$scope.tutorsArray = $firebaseArray(tutorRef);
+
+		$scope.user = null;
+		$scope.tutors = [];
+		$scope.name = null;
+		$scope.tutorID = null;
+		//get list of all tutors from DB
+		$scope.tutorsArray.$loaded(function() {
+			tutorRef.orderByChild('type').equalTo('Tutor').on('value', function(snapshot) {
+				snapshot.forEach(function(childSnapshot) {
+					$scope.name = childSnapshot.val().handle;
+					$scope.tutorID = childSnapshot.key();
+					$scope.tutors.push({
+						id: $scope.tutorID,
+						name: $scope.name
+					})
+				})
+			})
+		})
+		//query/load the data for the DOM.
+		$scope.loadUsers = function() {
+			// Use timeout to simulate a 650ms request.
+			return $timeout(function() {
+			  $scope.tutors =  $scope.tutors  || [
+			    { id: 1, name: 'Scooby Doo' },
+			    { id: 2, name: 'Shaggy Rodgers' },
+			    { id: 3, name: 'Fred Jones' },
+			    { id: 4, name: 'Daphne Blake' },
+			    { id: 5, name: 'Velma Dinkley' }
+			  ];
+			}, 650);
+		};
 	}])

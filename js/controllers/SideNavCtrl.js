@@ -40,7 +40,7 @@ myApp.controller('SideNavCtrl', ['$scope','Users','Auth','$location','$firebaseA
 					      link : '',
 					      title: 'Explore Tutors',
 					      icon: 'explore',
-					      direct: 'tutorProfile',
+					      direct: 'dashboard.exploreTutors',
 					      show: $scope.isStudent
 					    },
 					    {
