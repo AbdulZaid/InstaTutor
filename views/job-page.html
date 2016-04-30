@@ -1,41 +1,45 @@
-<div ng-hide="isStudentPost">You are not authorized to access this page, if you are a tutor please sign up or login</div>  
+<div ng-hide="isStudentPost">You are not authorized to access this page, if you are a tutor please sign up or login</div>
 <div layout="row" layout-wrap ng-controller="AssignmentCtrl" ng-show="isStudentPost">
     <div flex="70" layout="column">
-          <md-whiteframe md-whiteframe="3" layout-padding layout-margin flex>
-               <h1 class="md-headline">{{question}} ({{field}} )</h1>
-
-
-                <div  class="post-header-info" flex layout="row" layout-align="center center">
-                  <div flex class="post-header-info2">
-                            <md-tooltip md-direction="top">
-                              Due Date
-                            </md-tooltip>
-                      <span><md-icon class="material-icons about-icon">access_time</md-icon></span>
-                        <span>{{dueDate}}</span>
-                  </div>
-                  <div flex class="post-header-info2">
-                     <md-tooltip md-direction="top">
-                              Expected Job Price
+        <md-whiteframe md-whiteframe="3" layout-padding layout-margin flex>
+            <h1 class="md-headline">{{question}} ({{field}} )</h1>
+            <div  class="post-header-info" flex layout="row" layout-align="center center">
+                <div flex class="post-header-info2">
+                    <md-tooltip md-direction="top">
+                        Due Date
                     </md-tooltip>
-                      <span><md-icon class="material-icons about-icon">payment</md-icon></span>
-                      <span>${{amount}}</span>
-                  </div>
-                  <div flex class="post-header-info2">
-                      <md-tooltip md-direction="top">
-                              Job Status
-                      </md-tooltip>
-                      <span><md-icon class="material-icons about-icon">mood</md-icon></span>
-                      <span>{{postStatus}}</span>
-                  </div>
+                    <span>
+                        <md-icon class="material-icons about-icon">access_time</md-icon>
+                    </span>
+                    <span>{{dueDate}}</span>
                 </div>
-                <hr/>
-                <h1 class="md-title">Details</h1>
-                <p class="md-body-1">
-                    {{content}}
-                </p>
+                <div flex class="post-header-info2">
+                    <md-tooltip md-direction="top">
+                        Expected Job Price
+                    </md-tooltip>
+                    <span>
+                        <md-icon class="material-icons about-icon">payment</md-icon>
+                    </span>
+                    <span>${{amount}}</span>
+                </div>
+                <div flex class="post-header-info2">
+                    <md-tooltip md-direction="top">
+                        Job Status
+                    </md-tooltip>
+                    <span>
+                        <md-icon class="material-icons about-icon">mood</md-icon>
+                    </span>
+                    <span>{{postStatus}}</span>
+                </div>
+            </div>
+            <hr/>
+            <h1 class="md-title">Details</h1>
+            <p class="md-body-1">
+                {{content}}
+            </p>
             <div class="attachments" flex>
-              <h1 class="md-title">Attachments</h1>
-               <div class="attachments-list">
+                <h1 class="md-title">Attachments</h1>
+                <div class="attachments-list">
                     <div class="attachment-item" layout-align="center center">
                         <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
                             <md-icon class="material-icons">file_download</md-icon>
@@ -43,7 +47,9 @@
                         <div class="attachment-item-content" flex layout="column" layout-align="center center">
                             <i class="fa fa-file-pdf-o"></i>
                         </div>
-                        <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
+                        <div class="attachment-item-footer">
+                            <div><span>This is the name of the file</span></div>
+                        </div>
                     </div>
                     <div class="attachment-item" layout-align="center center">
                         <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
@@ -52,7 +58,9 @@
                         <div class="attachment-item-content" flex layout="column" layout-align="center center">
                             <i class="fa fa-file-powerpoint-o"></i>
                         </div>
-                        <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
+                        <div class="attachment-item-footer">
+                            <div><span>This is the name of the file</span></div>
+                        </div>
                     </div>
                     <div class="attachment-item" layout-align="center center">
                         <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
@@ -61,47 +69,46 @@
                         <div class="attachment-item-content" flex layout="column" layout-align="center center">
                             <i class="fa fa-file-word-o"></i>
                         </div>
-                        <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
+                        <div class="attachment-item-footer">
+                            <div><span>This is the name of the file</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
-                <!-- <md-divider></md-divider> -->
-                <div class="post-tags" ng-model="tags">
-                  <h3>Tags</h3>
-                  <div ng-show="tags.length == 0">No tags available for this post</div>  
-                  <md-chips>
+            <!-- <md-divider></md-divider> -->
+            <div class="post-tags" ng-model="tags">
+                <h3>Tags</h3>
+                <div ng-show="tags.length == 0">No tags available for this post</div>
+                <md-chips>
                     <md-chip ng-repeat="tag in tags">{{tag}}</md-chip>
-                  </md-chips>
-                </div>
+                </md-chips>
+            </div>
             <div class="options-footer" layout="row" layout-align="center center">
                 <span class="md-caption">Posted {{postedWhen}} ago</span>
                 <span flex=""></span>
-                
                 <md-menu md-position-mode="target-right target" md-offset="0 40">
-                  <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-                    <ng-md-icon icon="more_horiz"></ng-md-icon>
-                  </md-button>
-                  <md-menu-content width="3">
-                   <!--(Note) Show only for the owner of the post (the student) -->
-                    <md-menu-item ng-show="!isTutor">
-                      <md-button ng-click="removePost(jobID)">
-                        <md-icon class="material-icons start-icon-tutors">remove_circle</md-icon>
-                        Remove
-                      </md-button>
-                    </md-menu-item>
-                    <md-menu-item ng-show="isTutor">
-                      <md-button>
-                        <md-icon class="material-icons start-icon-tutors">report</md-icon>
-                        Report
-                      </md-button>
-                    </md-menu-item>
-                  </md-menu-content>
+                    <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                        <ng-md-icon icon="more_horiz"></ng-md-icon>
+                    </md-button>
+                    <md-menu-content width="3">
+                        <!--(Note) Show only for the owner of the post (the student) -->
+                        <md-menu-item ng-show="!isTutor">
+                            <md-button ng-click="removePost(jobID)">
+                                <md-icon class="material-icons start-icon-tutors">remove_circle</md-icon>
+                                Remove
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item ng-show="isTutor">
+                            <md-button>
+                                <md-icon class="material-icons start-icon-tutors">report</md-icon>
+                                Report
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
                 </md-menu>
             </div>
         </md-whiteframe>
-        
         <md-whiteframe md-whiteframe="3" layout-padding flex layout-margin>
-            
             <div class="proposals-header" ng-click="toggleProposalsPanel()" layout="row" layout-align="center center">
                 <h1 class="md-title">Proposals</h1>
                 <span flex></span>
@@ -110,56 +117,66 @@
                 <md-icon ng-show="proposalsPanel" class="material-icons">expand_less</md-icon>
             </div>
             <md-list ng-show="proposalsPanel" layout-padding>
-            <md-divider></md-divider>
-            <div ng-show="proposalsArray.length == 0">No proposals have been submitted</div>
-            <md-list-item class="proposals-item" ng-repeat= "proposal in proposalsArray">
                 <md-divider></md-divider>
-              <img ng-src="../images/angular-avatars/avatar-05.png" class="md-avatar" alt="">               <div flex layout="row">
-                <div flex>
-                  <div class="md-title">{{proposal.tutorName}}</div>
-                  <div>
-                       <md-tooltip md-direction="left">
-                              4.8
-                      </md-tooltip>
-                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
-                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
-                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
-                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
-                        <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
-                        <span>(5 reviews)</span>
-                  </div>
-                  <div class="md-body-1 proposals-item-comment">
-                    {{proposal.message}}
-                  </div>
-                </div>
-                <div flex="15" layout="column"  layout-align="center center">
-                    <div class="md-headline">${{proposal.amount}}</div>
-                    <div class="md-subhead">in 1 day</div>
-                </div>
-                <!--(Note) Show for the owner of the post (the student)-->
-                <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="!isTutor && !proposal.assigned">
-                    <md-button class="md-primary" ng-click="deal(proposal.tutorID, proposal.$id, proposal.postID, proposal.tutorName, proposal.amount)">Accept</md-button>
-                    <md-button class="md-warn">Reject</md-button>
-                </div>
-                <!--(Note) Show for the tutor who submited the proposal (should show on top of the proposalsArray list)-->
-                <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="proposal.tutorID == authData.uid">
-                    <md-button class="md-warn" ng-click="deleteProposal(proposal.$id, proposal.postID)" >Delete</md-button>
-                </div>
-                <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="proposal.assigned">
-                    <md-button class="md-warn" ng-disabled="true">Assigned</md-button>
-                </div>
-                <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="proposal.assigned  && authorID == currentUser.$id">
-                    <md-button class="md-warn" ui-sref="submissionPage({jobID: submissionPageID}) ">Message</md-button>
-                </div>
-                </div>
-            </md-list-item>
-
-          </md-list>
+                <div ng-show="proposalsArray.length == 0">No proposals have been submitted</div>
+                <md-list-item class="proposals-item" ng-repeat= "proposal in proposalsArray">
+                    <md-divider></md-divider>
+                    <img ng-src="../images/angular-avatars/avatar-05.png" class="md-avatar" alt="">               
+                    <div flex layout="row">
+                        <div flex>
+                            <div class="md-title">{{proposal.tutorName}}</div>
+                            <div>
+                                <md-tooltip md-direction="left">
+                                    4.8
+                                </md-tooltip>
+                                <span>
+                                    <md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon>
+                                </span>
+                                <span>
+                                    <md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon>
+                                </span>
+                                <span>
+                                    <md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon>
+                                </span>
+                                <span>
+                                    <md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon>
+                                </span>
+                                <span>
+                                    <md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon>
+                                </span>
+                                <span>(5 reviews)</span>
+                            </div>
+                            <div class="md-body-1 proposals-item-comment">
+                                {{proposal.message}}
+                            </div>
+                        </div>
+                        <div flex="15" layout="column"  layout-align="center center">
+                            <div class="md-headline">${{proposal.amount}}</div>
+                            <div class="md-subhead">in 1 day</div>
+                        </div>
+                        <!--(Note) Show for the owner of the post (the student)-->
+                        <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="!isTutor && !proposal.assigned">
+                            <md-button class="md-primary" ng-click="deal(proposal.tutorID, proposal.$id, proposal.postID, proposal.tutorName, proposal.amount)">Accept</md-button>
+                            <md-button class="md-warn">Reject</md-button>
+                        </div>
+                        <!--(Note) Show for the tutor who submited the proposal (should show on top of the proposalsArray list)-->
+                        <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="proposal.tutorID == authData.uid">
+                            <md-button class="md-warn" ng-click="deleteProposal(proposal.$id, proposal.postID)" >Delete</md-button>
+                        </div>
+                        <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="proposal.assigned">
+                            <md-button class="md-warn" ng-disabled="true">Assigned</md-button>
+                        </div>
+                        <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="proposal.assigned  && authorID == currentUser.$id">
+                            <md-button class="md-warn" ui-sref="submissionPage({jobID: submissionPageID}) ">Message</md-button>
+                        </div>
+                    </div>
+                </md-list-item>
+            </md-list>
         </md-whiteframe>
         <md-whiteframe id="propose" ng-show="isTutor" md-whiteframe="3" layout-padding flex layout-margin>
-        <h4 class="md-title">Propose</h4>
-        <form name="userForm">
-                   <div layout-gt-sm="row">
+            <h4 class="md-title">Propose</h4>
+            <form name="userForm">
+                <div layout-gt-sm="row">
                     <md-input-container class="md-block dense-form" flex-gt-sm >
                         <label>Price</label>
                         <input id="price" value="{{amount}}" required type="number" step="1.0" ng-model="counterOffer">
@@ -167,205 +184,262 @@
                     <md-input-container class="md-block dense-form" flex-gt-sm>
                         <label>Time to complete</label>
                         <input required type="number" step="1.0">
-
-    <!--(Note) please but a menu of the time estimation insted of just text field suggested list is bellow -->
-<!--
-                        <md-select>
-                            <md-option value="less than an hour">
-                            less than an hour
-                            </md-option>
-                            <md-option value="less than 3 hour">
-                            less than 3 hour
-                            </md-option>
-                            <md-option value="less than a day">
-                            less than a day
-                            </md-option>
-                            <md-option value="less than 3 day">
-                            less than 3 day
-                            </md-option>
-                            <md-option value="less than a week">
-                            less than a week
-                            </md-option>
-                            <md-option value="less than 3 weeks">
-                            less than 3 weeks
-                            </md-option>
-                        </md-select>
--->
-    
+                        <!--(Note) please but a menu of the time estimation insted of just text field suggested list is bellow -->
+                        <!--
+                            <md-select>
+                                <md-option value="less than an hour">
+                                less than an hour
+                                </md-option>
+                                <md-option value="less than 3 hour">
+                                less than 3 hour
+                                </md-option>
+                                <md-option value="less than a day">
+                                less than a day
+                                </md-option>
+                                <md-option value="less than 3 day">
+                                less than 3 day
+                                </md-option>
+                                <md-option value="less than a week">
+                                less than a week
+                                </md-option>
+                                <md-option value="less than 3 weeks">
+                                less than 3 weeks
+                                </md-option>
+                            </md-select>
+                            -->
                     </md-input-container>
-                    </div>
+                </div>
                 <md-input-container class="md-block dense-form">
                     <label>Proposal comment (optional)</label>
                     <textarea rows="5" ng-model="proposalMessage"></textarea>
                 </md-input-container>
                 <div layout="row">
-                   <span flex></span>
-                    <md-button class="md-raised md-primary" ng-click="propose(authorID, jobID)">Propose</md-button>	
+                    <span flex></span>
+                    <md-button class="md-raised md-primary" ng-click="propose(authorID, jobID)">Propose</md-button>
                 </div>
-                
-
-</form>
+            </form>
         </md-whiteframe>
-        
     </div>
     <div flex="30">
         <md-whiteframe layout-margin md-whiteframe="3" flex layout="column" ng-show="isTutor">
-                <md-button class="md-warn md-raised md-hue-2" ng-show="assignedTo == currentUser.name"  ui-sref="submissionPage({jobID: submissionPageID})">Submit</md-button>
-                <md-button class="md-raised md-primary" ng-click="proposalFocus()" ng-show="isTutor">Propose</md-button>
-                <md-button class="md-raised" ng-show="isTutor" ng-click="bookmark()">Bookmark</md-button>
-                <md-divider></md-divider>
-                <div class="md-title" style="text-align:center">User Details</div>
-                <div class="user-info" style="text-align:center">
-                    <img src="../images/angular-avatars/avatar-03.png" class="md-avatar profile-image" />
-                    <div class="md-title">{{userName}}</div>
-                    <div>
-                        <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
-                        <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
-                        <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
-                        <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
-                        <span><md-icon class="material-icons star-icon">star</md-icon></span>
+            <md-button class="md-warn md-raised md-hue-2" ng-show="assignedTo == currentUser.name"  ui-sref="submissionPage({jobID: submissionPageID})">Submit</md-button>
+            <md-button class="md-raised md-primary" ng-click="proposalFocus()" ng-show="isTutor">Propose</md-button>
+            <md-button class="md-raised" ng-show="isTutor" ng-click="bookmark()">Bookmark</md-button>
+            <md-divider></md-divider>
+            <div class="md-title" style="text-align:center">User Details</div>
+            <div class="user-info" style="text-align:center">
+                <img src="../images/angular-avatars/avatar-03.png" class="md-avatar profile-image" />
+                <div class="md-title">{{userName}}</div>
+                <div>
+                    <span>
+                        <md-icon class="material-icons star-icon-colored">star</md-icon>
+                    </span>
+                    <span>
+                        <md-icon class="material-icons star-icon-colored">star</md-icon>
+                    </span>
+                    <span>
+                        <md-icon class="material-icons star-icon-colored">star</md-icon>
+                    </span>
+                    <span>
+                        <md-icon class="material-icons star-icon-colored">star</md-icon>
+                    </span>
+                    <span>
+                        <md-icon class="material-icons star-icon">star</md-icon>
+                    </span>
+                </div>
+                <div class="md-subhead">16 reviews</div>
+            </div>
+            <md-divider></md-divider>
+            <div class="md-title">About:</div>
+            <md-list>
+                <md-list-item class="md-1-line">
+                    <span>
+                        <md-icon class="material-icons about-icon">work</md-icon>
+                    </span>
+                    <div class="md-list-item-text">
+                        <p>5 Jobs done</p>
                     </div>
-                    <div class="md-subhead">16 reviews</div>
-                </div>
-                <md-divider></md-divider>
-                <div class="md-title">About:</div>
-                <md-list>
-                <md-list-item class="md-1-line">
-                <span><md-icon class="material-icons about-icon">work</md-icon></span>
-                  <div class="md-list-item-text">
-                    <p>5 Jobs done</p>
-                  </div>
                 </md-list-item>
                 <md-list-item class="md-1-line">
-                <span><md-icon class="material-icons about-icon">location_on</md-icon></span>
-                  <div class="md-list-item-text">
-                    <p>From Los Angeles</p>
-                  </div>
+                    <span>
+                        <md-icon class="material-icons about-icon">location_on</md-icon>
+                    </span>
+                    <div class="md-list-item-text">
+                        <p>From Los Angeles</p>
+                    </div>
                 </md-list-item>
                 <md-list-item class="md-1-line">
-                 <span><md-icon class="material-icons about-icon">school</md-icon></span>
-                  <div class="md-list-item-text">
-                    <p>Student at LMU</p>
-                  </div>
+                    <span>
+                        <md-icon class="material-icons about-icon">school</md-icon>
+                    </span>
+                    <div class="md-list-item-text">
+                        <p>Student at LMU</p>
+                    </div>
                 </md-list-item>
                 <md-list-item class="md-1-line">
-                 <span><md-icon class="material-icons about-icon">book</md-icon></span>
-                  <div class="md-list-item-text">
-                    <p>Studying Computer Science</p>
-                  </div>
+                    <span>
+                        <md-icon class="material-icons about-icon">book</md-icon>
+                    </span>
+                    <div class="md-list-item-text">
+                        <p>Studying Computer Science</p>
+                    </div>
                 </md-list-item>
-                </md-list>
-                <div layout="row">
-                   <span flex=""></span>
-                    <span><md-button class="md-raised"><md-icon class="material-icons" style="color: darkgreen">check</md-icon> Verified</md-button></span>
-                </div>
+            </md-list>
+            <div layout="row">
+                <span flex=""></span>
+                <span>
+                    <md-button class="md-raised">
+                        <md-icon class="material-icons" style="color: darkgreen">check</md-icon>
+                        Verified
+                    </md-button>
+                </span>
+            </div>
         </md-whiteframe>
-        
         <!-- Student View -->
         <md-whiteframe layout-margin md-whiteframe="3" flex layout="column" ng-show="!isTutor">
-                <md-button class="md-warn md-raised md-hue-2" ng-show="assigned  && authorID == currentUser.$id"  ui-sref="submissionPage({jobID: submissionPageID})">Go to Submission</md-button>
-                <md-list>
+            <md-button class="md-warn md-raised md-hue-2" ng-show="assigned  && authorID == currentUser.$id"  ui-sref="submissionPage({jobID: submissionPageID})">Go to Submission</md-button>
+            <md-list>
                 <md-list-item class="md-1-line">
-                <span><md-icon class="material-icons about-icon">work</md-icon></span>
-                  <div class="md-list-item-text">
-                    <p>{{numOfProposals}} Proposals submited</p>
-                  </div>
+                    <span>
+                        <md-icon class="material-icons about-icon">work</md-icon>
+                    </span>
+                    <div class="md-list-item-text">
+                        <p>{{numOfProposals}} Proposals submited</p>
+                    </div>
                 </md-list-item>
                 <md-list-item class="md-1-line">
-                <span><md-icon class="material-icons about-icon">payment</md-icon></span>
-                  <div class="md-list-item-text">
-                    <p>${{amount}} is the average price</p>
-                  </div>
+                    <span>
+                        <md-icon class="material-icons about-icon">payment</md-icon>
+                    </span>
+                    <div class="md-list-item-text">
+                        <p>${{amount}} is the average price</p>
+                    </div>
                 </md-list-item>
                 <md-list-item class="md-1-line">
-                 <span><md-icon class="material-icons about-icon">timer</md-icon></span>
-                  <div class="md-list-item-text">
-                    <p>5 days is average time to complete</p>
-                  </div>
+                    <span>
+                        <md-icon class="material-icons about-icon">timer</md-icon>
+                    </span>
+                    <div class="md-list-item-text">
+                        <p>5 days is average time to complete</p>
+                    </div>
                 </md-list-item>
                 <md-list-item class="md-1-line">
-                 <span><md-icon class="material-icons about-icon">access_time</md-icon></span>
-                  <div class="md-list-item-text">
-                    <p>{{dueFromNow}} until your due date</p>
-                  </div>
+                    <span>
+                        <md-icon class="material-icons about-icon">access_time</md-icon>
+                    </span>
+                    <div class="md-list-item-text">
+                        <p>{{dueFromNow}} until your due date</p>
+                    </div>
                 </md-list-item>
-                </md-list>
-                <md-divider></md-divider>
-                <div layout="column">
+            </md-list>
+            <md-divider></md-divider>
+            <div layout="column">
                 <md-list layout-padding>
                     <div class="md-title">Suggested Tutors</div>
                     <md-list-item class="suggested-tutors-item">
                         <md-divider></md-divider>
                         <img src="../images/angular-avatars/avatar-07.png" class="md-avatar" alt="">
-
                         <div class="md-list-item-text">
-                          <div class="md-subhead">Toal R</div>
-                          <div>
-                               <md-tooltip md-direction="left">
-                                      5.0
-                              </md-tooltip>
-                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
-                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
-                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
-                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
-                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                            <div class="md-subhead">Toal R</div>
+                            <div>
+                                <md-tooltip md-direction="left">
+                                    5.0
+                                </md-tooltip>
+                                <span>
+                                    <md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon>
+                                </span>
+                                <span>
+                                    <md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon>
+                                </span>
+                                <span>
+                                    <md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon>
+                                </span>
+                                <span>
+                                    <md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon>
+                                </span>
+                                <span>
+                                    <md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon>
+                                </span>
                                 <span class="md-caption">(51 reviews)</span>
-                          </div>
+                            </div>
                         </div>
-                        <md-button class="md-secondary md-icon-button"><md-tooltip md-direction="top">
-                                      invite
-                              </md-tooltip><md-icon class="material-icons star-icon-colored">add</md-icon></md-button>
-
-                    </md-list-item>                    
+                        <md-button class="md-secondary md-icon-button">
+                            <md-tooltip md-direction="top">
+                                invite
+                            </md-tooltip>
+                            <md-icon class="material-icons star-icon-colored">add</md-icon>
+                        </md-button>
+                    </md-list-item>
                     <md-list-item class="suggested-tutors-item">
                         <md-divider></md-divider>
                         <img src="../images/angular-avatars/avatar-10.png" class="md-avatar" alt="">
                         <div class="md-list-item-text">
-                          <div class="md-subhead">Abdul Alzaid</div>
-                          <div>
-                               <md-tooltip md-direction="left">
-                                      4.8
-                              </md-tooltip>
-                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
-                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
-                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
-                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
-                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                            <div class="md-subhead">Abdul Alzaid</div>
+                            <div>
+                                <md-tooltip md-direction="left">
+                                    4.8
+                                </md-tooltip>
+                                <span>
+                                    <md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon>
+                                </span>
+                                <span>
+                                    <md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon>
+                                </span>
+                                <span>
+                                    <md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon>
+                                </span>
+                                <span>
+                                    <md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon>
+                                </span>
+                                <span>
+                                    <md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon>
+                                </span>
                                 <span class="md-caption">(12 reviews)</span>
-                          </div>
+                            </div>
                         </div>
-                        <md-button class="md-secondary md-icon-button"><md-tooltip md-direction="top">
-                                      invite
-                              </md-tooltip><md-icon class="material-icons star-icon-colored">add</md-icon></md-button>
-
-                    </md-list-item>                    
+                        <md-button class="md-secondary md-icon-button">
+                            <md-tooltip md-direction="top">
+                                invite
+                            </md-tooltip>
+                            <md-icon class="material-icons star-icon-colored">add</md-icon>
+                        </md-button>
+                    </md-list-item>
                     <md-list-item class="suggested-tutors-item">
                         <md-divider></md-divider>
                         <img src="../images/angular-avatars/avatar-08.png" class="md-avatar" alt="">
                         <div class="md-list-item-text">
-                          <div class="md-subhead">BJohnson</div>
-                          <div>
-                               <md-tooltip md-direction="left">
-                                      4.8
-                              </md-tooltip>
-                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
-                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
-                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
-                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
-                                <span><md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon></span>
+                            <div class="md-subhead">BJohnson</div>
+                            <div>
+                                <md-tooltip md-direction="left">
+                                    4.8
+                                </md-tooltip>
+                                <span>
+                                    <md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon>
+                                </span>
+                                <span>
+                                    <md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon>
+                                </span>
+                                <span>
+                                    <md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon>
+                                </span>
+                                <span>
+                                    <md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon>
+                                </span>
+                                <span>
+                                    <md-icon class="material-icons start-icon-tutors star-icon-colored">star</md-icon>
+                                </span>
                                 <span class="md-caption">(5 reviews)</span>
-                          </div>
+                            </div>
                         </div>
-                        <md-button class="md-secondary md-icon-button"><md-tooltip md-direction="top">
-                                      invite
-                              </md-tooltip><md-icon class="material-icons star-icon-colored">add</md-icon></md-button>
-
-                    </md-list-item>                    
-
-                  </md-list>
-
-                    
-                </div>
+                        <md-button class="md-secondary md-icon-button">
+                            <md-tooltip md-direction="top">
+                                invite
+                            </md-tooltip>
+                            <md-icon class="material-icons star-icon-colored">add</md-icon>
+                        </md-button>
+                    </md-list-item>
+                </md-list>
+            </div>
         </md-whiteframe>
     </div>
 </div>

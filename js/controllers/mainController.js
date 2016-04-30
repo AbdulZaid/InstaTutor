@@ -1,15 +1,12 @@
-myApp.controller('mainController', ['$scope','Auth','$firebaseArray', function ($scope, Auth, $firebaseArray, $location) {
+myApp.controller('mainController', ['$scope','Auth','Users', '$firebaseArray', function ($scope, Auth, Users, $firebaseArray, $location) {
 
-	var postRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
-	// create a synchronized array
-	// click on `index.html` above to see it used in the DOM!
-	// var query = refOne.orderByChild("timestamp").limitToLast(10);
-	$scope.posts = $firebaseArray(postRef);
+	var usersRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
+  	$scope.authData = Auth.$getAuth()
+
+	$scope.usersArray = $firebaseArray(usersRef);
+
+	$scope.usersArray.$loaded(function() {
+		$scope.currentUserType = Users.getUserType($scope.authData.uid);
+	})
 
 }])
-
-.filter('reverse', function() {
-  return function(postRef) {
-    return postRef.slice().reverse();
-  };
-})

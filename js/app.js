@@ -50,9 +50,13 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
                     templateUrl: 'views/main-post.html',
                     controller: 'PostCtrl' 
                 },
-                'assignmentsArea@main': {
-                    templateUrl: 'views/main-assignments.html',
+                'studentAssignmentsArea@main': {
+                    templateUrl: 'views/student-dashboard-posts.html',
                     controller: 'StudentAssignmentCtrl'  //the same Controller as the dashboard-myAssignments.
+                },
+                'tutorAssignmentsArea@main': {
+                    templateUrl: 'views/tutor-dashboard.html',
+                    controller: 'TutorDashboardCtrl'  //the same Controller as the dashboard-myAssignments.
                 }
         },
 
