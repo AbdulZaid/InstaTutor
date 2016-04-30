@@ -1,4 +1,4 @@
-myApp.controller('MessagesCtrl', ['$scope','Auth','Users','Posts','$firebaseObject','$firebaseArray','$mdDialog','ngToast', function ($scope, Auth, Users, Posts, $firebaseObject, $firebaseArray, $mdDialog, ngToast ) {
+myApp.controller('DashboardProposalCtrl', ['$scope','Auth','Users','Posts','$firebaseObject','$firebaseArray','$mdDialog','ngToast', function ($scope, Auth, Users, Posts, $firebaseObject, $firebaseArray, $mdDialog, ngToast ) {
     
   var authorRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
   var postsRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");

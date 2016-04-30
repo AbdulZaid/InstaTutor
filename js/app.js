@@ -158,8 +158,8 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     })
     .state('dashboard.myProposals', {
         url: "/myProposals",
-        templateUrl: "views/messages.html", 
-        controller: "MessagesCtrl"
+        templateUrl: "views/dashboard-myProposals.html", 
+        controller: "DashboardProposalCtrl"
     })
     .state('dashboard.myJobs', {
         url: "/myJobs",
