@@ -78,7 +78,7 @@ myApp.controller('AssignmentCtrl', ['$scope', 'Auth', 'Users', 'Posts', '$fireba
         var authorID = authorID
         var postID = postID
         var time = Firebase.ServerValue.TIMESTAMP
-        var hasNotProposed = Users.hasNotProposed(tutorID)
+        var hasNotProposed = Users.hasNotProposed(tutorID, authorID, postID)
 
 
         if (Users.getUserType(tutorID) === "Tutor" && hasNotProposed) {

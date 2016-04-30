@@ -102,7 +102,7 @@
                                 <!-- <img ngf-thumbnail="file || ''">  -->
 
                                 <!-- multiple files -->
-                                <input  id="file-upload" multiple type="file" class="ng-hide" ngf-select ng-model="files" name="files" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"  ngf-resize="{width: 100, height: 100}" ngf-select="upload($files)" />
+                                <input  id="file-upload" multiple type="file" class="ng-hide" ngf-select ng-model="files" name="files" ngf-pattern="'.pdf,.jpg,video/*,!.jog'" ngf-accept="'.pdf,.jpg,.png, video/*,!.jog'" ngf-max-size="20MB" ngf-min-height="100"  ngf-resize="{width: 100, height: 100}" ngf-select="upload($files)" />
                                 <br>Files:
                                 <ul>
                                     <li ng-repeat="f in files" style="font:smaller">

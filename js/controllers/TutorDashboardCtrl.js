@@ -4,7 +4,7 @@ myApp.controller('TutorDashboardCtrl', ['$scope','Auth','Users', '$firebaseArray
   	$scope.authData = Auth.$getAuth()
 
 	$scope.postsArray = $firebaseArray(postsRef);
-	
+	$scope.posts = []
 	$scope.postsArray.$loaded(function() {
 		$scope.posts = $scope.postsArray;
 	})

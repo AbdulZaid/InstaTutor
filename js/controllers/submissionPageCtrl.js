@@ -3,11 +3,14 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
    	$scope.jobID = $stateParams.jobID.split("").reverse().join("");
     $scope.postsRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts/"+ $scope.jobID);
     $scope.messagesRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts/"+ $scope.jobID + "/messages");
+    $scope.submissionRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts/"+ $scope.jobID + "/submission");
   	$scope.authData = Auth.$getAuth();
     $scope.postObject = $firebaseObject($scope.postsRef)
     $scope.messagesArray = $firebaseObject($scope.messagesRef)
+    $scope.submissionObject = $firebaseObject($scope.submissionRef)
     $scope.studentImagePath = 'images/angular-avatars/avatar-03.png';
     $scope.tutorImagePath = 'images/angular-avatars/avatar-05.png';
+
     $scope.postObject.$loaded().then(function() {
         $scope.currentUser = Users.getProfile($scope.authData.uid);
         $scope.currentUserName = $scope.currentUser.name
@@ -27,8 +30,7 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
 
 
 
-
-
+        //send a message function.
     	$scope.sendMessage = function() {
     		$scope.messageContent = $scope.message
     		var messageTime  = Firebase.ServerValue.TIMESTAMP
@@ -42,6 +44,7 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
     	}
 
     })
+    //handle messages retreival 
     $scope.messagesArray.$loaded().then(function() {
         $scope.messages = $scope.messagesArray
         $scope.messagesRef.once("value", function(allMessagesSnapshot) {
@@ -54,6 +57,29 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
             });
         });
 
+    })
+    //submit Job by tutor
+    $scope.submitJob = function() {
+        this.comment = $scope.submissionComment;
+        var submissionTime  = Firebase.ServerValue.TIMESTAMP;
+        $scope.postsRef.child("submission").push({
+            "submissionComment": this.comment,
+            "time": submissionTime,
+            "tutorID": $scope.authData.uid,
+            "attachments": ''
+        })
+    }
+
+    //retreive a submission
+    $scope.submissionComment
+    $scope.submissionObject.$loaded().then(function() {
+        $scope.submissionRef.on('value', function(allSubmissionsSnapshot) {
+            allSubmissionsSnapshot.forEach(function(snapshot) {
+                $scope.submissionComment = snapshot.val().submissionComment
+            })
+
+        })
+        console.log($scope.submissionComment)
     })
 
 }])

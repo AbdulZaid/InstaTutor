@@ -40,37 +40,16 @@
             <div class="attachments" flex>
                 <h1 class="md-title">Attachments</h1>
                 <div class="attachments-list">
-                    <div class="attachment-item" layout-align="center center">
-                        <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
+                    <div class="attachment-item" ng-repeat="attachment in attachments" layout-align="center center">
+                        <md-button download="{{ attachment.imageName }}" ng-href="{{ attachment.imageURL }}" class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
                             <md-icon class="material-icons">file_download</md-icon>
                         </md-button>
+
                         <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                            <i class="fa fa-file-pdf-o"></i>
+                            <i ng-class="{'fa fa-file-pdf-o': attachment.imageType == 'application/pdf', 'fa fa-file-image-o': attachment.imageType == 'image/png', 'fa fa-file-photo-o': attachment.imageType == 'image/jpeg', 'fa fa-file-powerpoint-o': attachment.imageType == 'image/powerpoint' , 'fa fa-file-text-o': attachment.imageType == 'image/text' , 'fa fa-file-zip-o': attachment.imageType == 'image/zip' , 'fa fa-file-excel-o': attachment.imageType == 'image/excel' , 'fa fa-file-file-o': attachment.imageType == 'image/file' , 'fa fa-file-word-o': attachment.imageType == 'image/word', 'fa fa-file-code-o': attachment.imageType == 'image/code', 'fa fa-file-movie-o': attachment.imageType == 'image/movie', 'fa fa-file-sound-o': attachment.imageType == 'image/sound', 'fa fa-file-archive-o': attachment.imageType == 'image/archive'} "></i>
                         </div>
                         <div class="attachment-item-footer">
-                            <div><span>This is the name of the file</span></div>
-                        </div>
-                    </div>
-                    <div class="attachment-item" layout-align="center center">
-                        <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
-                            <md-icon class="material-icons">file_download</md-icon>
-                        </md-button>
-                        <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                            <i class="fa fa-file-powerpoint-o"></i>
-                        </div>
-                        <div class="attachment-item-footer">
-                            <div><span>This is the name of the file</span></div>
-                        </div>
-                    </div>
-                    <div class="attachment-item" layout-align="center center">
-                        <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
-                            <md-icon class="material-icons">file_download</md-icon>
-                        </md-button>
-                        <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                            <i class="fa fa-file-word-o"></i>
-                        </div>
-                        <div class="attachment-item-footer">
-                            <div><span>This is the name of the file</span></div>
+                            <div><span>{{attachment.imageName}}</span></div>
                         </div>
                     </div>
                 </div>
@@ -297,7 +276,7 @@
         </md-whiteframe>
         <!-- Student View -->
         <md-whiteframe layout-margin md-whiteframe="3" flex layout="column" ng-show="!isTutor">
-            <md-button class="md-warn md-raised md-hue-2" ng-show="assigned  && authorID == currentUser.$id"  ui-sref="submissionPage({jobID: submissionPageID})">Go to Submission</md-button>
+            <md-button class="md-warn md-raised md-hue-2" ng-show="assigned && assignedTo == tutorName && authorID == currentUser.$id"  ui-sref="submissionPage({jobID: submissionPageID})">Go to Submission</md-button>
             <md-list>
                 <md-list-item class="md-1-line">
                     <span>

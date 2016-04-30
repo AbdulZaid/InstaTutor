@@ -3,8 +3,8 @@
     <md-whiteframe md-whiteframe="1" flex layout-padding>
         <h1 class="md-title">your last Jobs</h1>
     </md-whiteframe>
-    <md-whiteframe md-whiteframe="1" flex ng-repeat="post in posts">
-        <md-list-item class="jobs-list" ng-click="null" ui-sref="jobPost({jobID: post.$id})">
+    <md-whiteframe md-whiteframe="1" flex>
+        <md-list-item class="jobs-list" ng-repeat="post in posts| reverse" ng-click="null" ui-sref="jobPost({jobID: post.$id})">
             <div flex layout="row" class="job-list-content">
                 <div flex>
                     <div class="md-title">

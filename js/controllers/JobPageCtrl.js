@@ -1,17 +1,24 @@
 myApp.controller('JobPageCtrl', ['$scope','Auth','Users','Posts','$firebaseObject','$firebaseArray','$mdDialog','$stateParams','focus', '$location', '$anchorScroll', 'ngToast','$state',  function ($scope, Auth, Users, Posts, $firebaseObject, $firebaseArray, $mdDialog, $stateParams, focus, $location, $anchorScroll, ngToast, $state) {
   
-  $scope.authorRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
-  $scope.generalPostsRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
   $scope.authData = Auth.$getAuth();
   $scope.jobID = $stateParams.jobID;
+
+  $scope.authorRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
+  $scope.generalPostsRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
   $scope.postsRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
+  $scope.attachmentsRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts/"+ $scope.jobID+"/images/");
+
   $scope.jobRef = $firebaseObject($scope.postsRef);
   $scope.usersRef = $firebaseArray($scope.authorRef);
+  $scope.attachmentsArray = $firebaseArray($scope.attachmentsRef);
+  $scope.attachments = []
+
   $scope.proposalsPanel = false;
   $scope.isStudentPost = false
   $scope.imagePath = 'images/abdul_img.png';
   $scope.studentImagePath = 'images/angular-avatars/avatar-03.png';
   $scope.tutorImagePath = 'images/angular-avatars/avatar-05.png';
+
   $scope.jobRef.$loaded()
     .then(function() {
       $scope.job = Posts.getSpecificPost($scope.jobID);
@@ -82,7 +89,36 @@ myApp.controller('JobPageCtrl', ['$scope','Auth','Users','Posts','$firebaseObjec
     })
     .catch(function(error) {
       console.error("Error:", error);
-  });
+    });
+
+    //get attachments for the post
+    $scope.attachmentsArray.$loaded()
+      .then(function() {
+        $scope.attachmentsRef.on('value', function(allAttachmentsSnapshot) {
+          allAttachmentsSnapshot.forEach(function(snapshot) {
+            if(snapshot.hasChild("imagesArray")) {
+              snapshot.child("imagesArray").forEach(function(snapshotOfArray) {
+                $scope.attachments.push({
+                  imageName: snapshotOfArray.val().imageName,
+                  imageSize: snapshotOfArray.val().imageSize,
+                  imageType: snapshotOfArray.val().imageType,
+                  imageURL: snapshotOfArray.val().imageUrl
+                })
+              })
+            } else {
+              $scope.attachments.push({
+                imageName: snapshot.val().imageName,
+                imageSize: snapshot.val().imageSize,
+                imageType: snapshot.val().imageType,
+                imageURL: snapshot.val().imageUrl
+              })
+            }
+          })
+        })
+      })
+      .catch(function(error) {
+        console.error("Error:", error);
+    });
 
   //bookmark a post and add it to Tutor bookmarks
   //do a check to see if tutor has already bookmarked this or not.

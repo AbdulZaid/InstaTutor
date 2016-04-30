@@ -33,15 +33,15 @@ myApp.factory('Users', ['$firebaseAuth','$firebaseObject','$firebaseArray', func
         //  return $firebaseObject(usersRef.child(uid).child("tutorProposlas").child(proposalID))
         // },
         //tutor can't propose to more than one assingment. must Fix.
-        hasNotProposed: function(tutorID) {
-            var notProposed = true
+        hasNotProposed: function(tutorID, authorID, postID) {
+            var notProposed = true;
 
             usersRef.child(tutorID).child("tutorProposals").once("value", function(snapshot) {
                 if(snapshot.hasChildren()) {
                     snapshot.forEach(function(childSnapshot) {
                         // var zag = childSnapshot.val().tutorID.localeCompare(tutorID)
                         console.log(childSnapshot.val().tutorID)
-                        if(childSnapshot.val().tutorID.localeCompare(tutorID) == 0) {
+                        if(childSnapshot.val().postID.localeCompare(postID) == 0) {
                             notProposed = false
                         } else {
                             notProposed = true

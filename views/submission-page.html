@@ -198,136 +198,150 @@
             <md-tab label="Submission">
                 <div class="md-padding">
 <!--                <div class="list-of-work">-->
-                        <div class="md-whiteframe-1dp" layout-padding layout-margin >
+                    <div class="md-whiteframe-1dp" layout-padding layout-margin >
                         <h1  class="md-title">Final work submission</h1>
-                            
-<!--                            <h4></h4>-->
-                            <p ng-show="true" class="md-body-1">verdsfsdf sdl;fs fdsla; fdsf l;asdfk ;lsf sd fl;sdf sd;lf sadf sdfl sdflds;a 'lksdfadsl; fs;fl'a sd</p>
-                             <!-- (note) show only when edit -->
-                            <md-input-container ng-show="false" style="margin-top:20px;" class="md-block dense-form">
-                                <label>comment</label>
-                                <textarea rows="5">verdsfsdf sdl;fs fdsla;fdsf l;asdfk ;lsf sd fl;sdf sd;lf sadf sdfl sdflds;a'lksdfadsl; fs;fl'a sd</textarea>
+                        <!--                            <h4></h4>-->
+                        <p ng-show="true" class="md-body-1">{{submissionComment}}</p>
+                        <!-- (note) show only when edit -->
+                        <md-input-container ng-show="false" style="margin-top:20px;" class="md-block dense-form">
+                            <label>comment</label>
+                            <textarea rows="5">verdsfsdf sdl;fs fdsla;fdsf l;asdfk ;lsf sd fl;sdf sd;lf sadf sdfl sdflds;a'lksdfadsl; fs;fl'a sd</textarea>
+                        </md-input-container>
+                        <div class="attachments" >
+                            <div class="attachments-list">
+                                <h1  class="md-title">Attachments</h1>
+                                <div class="attachment-item" layout-align="center center">
+                                    <md-button ng-show="true" class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
+                                        <md-icon class="material-icons">file_download</md-icon>
+                                    </md-button>
+                                    <!-- (note) show only when edit -->
+                                    <md-button ng-show="false" class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="delete">
+                                        <md-icon class="material-icons">delete</md-icon>
+                                    </md-button>
+                                    <div class="attachment-item-content" flex layout="column" layout-align="center center">
+                                        <i class="fa fa-file-pdf-o"></i>
+                                    </div>
+                                    <div class="attachment-item-footer">
+                                        <div><span>This is the name of the file</span></div>
+                                    </div>
+                                </div>
+                                <div class="attachment-item" layout-align="center center">
+                                    <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
+                                        <md-icon class="material-icons">file_download</md-icon>
+                                    </md-button>
+                                    <div class="attachment-item-content" flex layout="column" layout-align="center center">
+                                        <i class="fa fa-file-powerpoint-o"></i>
+                                    </div>
+                                    <div class="attachment-item-footer">
+                                        <div><span>This is the name of the file</span></div>
+                                    </div>
+                                </div>
+                                <div class="attachment-item" layout-align="center center">
+                                    <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
+                                        <md-icon class="material-icons">file_download</md-icon>
+                                    </md-button>
+                                    <div class="attachment-item-content" flex layout="column" layout-align="center center">
+                                        <i class="fa fa-file-word-o"></i>
+                                    </div>
+                                    <div class="attachment-item-footer">
+                                        <div><span>This is the name of the file</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- (note) show only when edit -->
+                        <div layout="row" layout-align="center center" ng-show="false">
+                            <md-input-container class="md-block dense-form" flex-gt-sm>
+                                <!--                        <label>Add Attachments</label>-->
+                                <md-button aria-label="attach" md-no-focus-style>
+                                    <md-icon class="material-icons about-icon">attach_file</md-icon>
+                                    Attach file
+                                </md-button>
+                                <span>no files attached</span>
                             </md-input-container>
-                            <div class="attachments" >
-              
-               <div class="attachments-list">
-                    <h1  class="md-title">Attachments</h1>
-                    <div class="attachment-item" layout-align="center center">
-                        <md-button ng-show="true" class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
-                            <md-icon class="material-icons">file_download</md-icon>
-                        </md-button>
-                        <!-- (note) show only when edit -->
-                        <md-button ng-show="false" class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="delete">
-                                <md-icon class="material-icons">delete</md-icon>
-                        </md-button>
-                        <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                            <i class="fa fa-file-pdf-o"></i>
+                            <span flex></span>
+                            <md-button class="md-raised md-primary">submit</md-button>
                         </div>
-                        <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
-                    </div>
-                    <div class="attachment-item" layout-align="center center">
-                        <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
-                            <md-icon class="material-icons">file_download</md-icon>
-                        </md-button>
-                        <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                            <i class="fa fa-file-powerpoint-o"></i>
-                        </div>
-                        <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
-                    </div>
-                    <div class="attachment-item" layout-align="center center">
-                        <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
-                            <md-icon class="material-icons">file_download</md-icon>
-                        </md-button>
-                        <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                            <i class="fa fa-file-word-o"></i>
-                        </div>
-                        <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
-                    </div>
-                </div>
-            </div>
-                        <!-- (note) show only when edit -->
-                         <div layout="row" layout-align="center center" ng-show="false">
-                  <md-input-container class="md-block dense-form" flex-gt-sm>
-<!--                        <label>Add Attachments</label>-->
-                         <md-button aria-label="attach" md-no-focus-style><md-icon class="material-icons about-icon">attach_file</md-icon> Attach file</md-button> <span>no files attached</span>
-                    </md-input-container>
-                   <span flex></span>
-                    <md-button class="md-raised md-primary">submit</md-button>	
-                </div>
                         <div layout="row" layout-align="center center" ng-show="true">
-                         <span flex></span>
-                         <!-- (note) show only for the student -->
-                         <div ng-show="true">
-                             <md-button class="md-warn md-raised">Reject</md-button>
-                             <md-button class="md-primary md-raised">Accept</md-button>
-                             <!-- (note) show dialog when accept or reject:
-                             1- accept = accpeting this final submssion will release the paymane, are you sure you want to accept? button: "accept and release payment" or "cancel"
-                             2- rejcet: are you sure you want to reject the submissio? textarea: "write the reason". button: "Reject" or "Cancel"
-                             -->
-                         </div>
-                         <!-- (note) show only for tutor when he submits the job  -->
-                         <md-button class="md-primary md-raised" ng-show="false">Edit</md-button>
-                         </div>
+                            <span flex></span>
+                            <!-- (note) show only for the student -->
+                            <div ng-show="currentUserType == 'Student'">
+                                <md-button class="md-warn md-raised">Reject</md-button>
+                                <md-button class="md-primary md-raised">Accept</md-button>
+                                <!-- (note) show dialog when accept or reject: -->
+                                <!--                              1- accept = accpeting this final submssion will release the paymane, are you sure you want to accept? button: "accept and release payment" or "cancel"
+                                    2- rejcet: are you sure you want to reject the submissio? textarea: "write the reason". button: "Reject" or "Cancel" -->
+                            </div>
+                            <!-- (note) show only for tutor when he submits the job  -->
+                            <md-button class="md-primary md-raised" ng-show="currentUserType == 'Tutor'">Edit</md-button>
                         </div>
+                    </div>
                     
 <!--                </div>-->
                 <!-- (Note) hide div when work is already submited -->
-                <div ng-show="false">
-                <h1 class="md-title">Submit final work</h1>
-                <p class="md-body-1">Here you will submit the final work to the client so he can accepte it and you will get your money</p>
-        <form name="userForm">
-<!--
-                    <md-input-container class="md-block dense-form" flex-gt-sm >
-                        <label>title</label>
-                        <input required type="text">
-                    </md-input-container>
--->
-                <md-input-container class="md-block dense-form">
-                    <label>comment</label>
-                    <textarea rows="5" ng-model="proposalMessage"></textarea>
-                </md-input-container>
-                <!-- (Note) Show on attachment added -->
-                    <div class="attachments-list" ng-hide="true">
-                        <div class="attachment-item" layout-align="center center">
-                            <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="delete">
-                                <md-icon class="material-icons">delete</md-icon>
-                            </md-button>
-                            <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                                <i class="fa fa-file-pdf-o"></i>
+                <div ng-show="currentUserType == 'Tutor'">
+                    <h1 class="md-title">Submit final work</h1>
+                    <p class="md-body-1">Here you will submit the final work to the client so he can accepte it and you will get your money</p>
+                    <form name="userForm">
+                        <!--
+                            <md-input-container class="md-block dense-form" flex-gt-sm >
+                                <label>title</label>
+                                <input required type="text">
+                            </md-input-container>
+                            -->
+                        <md-input-container class="md-block dense-form">
+                            <label>comment</label>
+                            <textarea rows="5" ng-model="submissionComment"></textarea>
+                        </md-input-container>
+                        <!-- (Note) Show on attachment added -->
+                        <div class="attachments-list" ng-hide="true">
+                            <div class="attachment-item" layout-align="center center">
+                                <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="delete">
+                                    <md-icon class="material-icons">delete</md-icon>
+                                </md-button>
+                                <div class="attachment-item-content" flex layout="column" layout-align="center center">
+                                    <i class="fa fa-file-pdf-o"></i>
+                                </div>
+                                <div class="attachment-item-footer">
+                                    <div><span>This is the name of the file</span></div>
+                                </div>
                             </div>
-                            <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
-                        </div>
-                        <div class="attachment-item" layout-align="center center">
-                            <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="delete">
-                                <md-icon class="material-icons">delete</md-icon>
-                            </md-button>
-                            <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                                <i class="fa fa-file-powerpoint-o"></i>
+                            <div class="attachment-item" layout-align="center center">
+                                <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="delete">
+                                    <md-icon class="material-icons">delete</md-icon>
+                                </md-button>
+                                <div class="attachment-item-content" flex layout="column" layout-align="center center">
+                                    <i class="fa fa-file-powerpoint-o"></i>
+                                </div>
+                                <div class="attachment-item-footer">
+                                    <div><span>This is the name of the file</span></div>
+                                </div>
                             </div>
-                            <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
-                        </div>
-                        <div class="attachment-item" layout-align="center center">
-                            <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="delete">
-                                <md-icon class="material-icons">delete</md-icon>
-                            </md-button>
-                            <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                                <i class="fa fa-file-word-o"></i>
+                            <div class="attachment-item" layout-align="center center">
+                                <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="delete">
+                                    <md-icon class="material-icons">delete</md-icon>
+                                </md-button>
+                                <div class="attachment-item-content" flex layout="column" layout-align="center center">
+                                    <i class="fa fa-file-word-o"></i>
+                                </div>
+                                <div class="attachment-item-footer">
+                                    <div><span>This is the name of the file</span></div>
+                                </div>
                             </div>
-                            <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
                         </div>
-                    </div>
-                <div layout="row" layout-align="center center">
-                  <md-input-container class="md-block dense-form" flex-gt-sm>
-<!--                        <label>Add Attachments</label>-->
-                         <md-button aria-label="attach" md-no-focus-style><md-icon class="material-icons about-icon">attach_file</md-icon> Attach file</md-button> <span>no files attached</span>
-                    </md-input-container>
-                   <span flex></span>
-                    <md-button class="md-raised md-primary">submit</md-button>	
-                </div>
-                
-
-</form>
-
+                        <div layout="row" layout-align="center center">
+                            <md-input-container class="md-block dense-form" flex-gt-sm>
+                                <!--                        <label>Add Attachments</label>-->
+                                <md-button aria-label="attach" md-no-focus-style>
+                                    <md-icon class="material-icons about-icon">attach_file</md-icon>
+                                    Attach file
+                                </md-button>
+                                <span>no files attached</span>
+                            </md-input-container>
+                            <span flex></span>
+                            <md-button class="md-raised md-primary" ng-click="submitJob()">submit</md-button>
+                        </div>
+                    </form>
                 </div>
     </div>
             </md-tab>
