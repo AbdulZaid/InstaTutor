@@ -12,7 +12,8 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
     $scope.tutorImagePath = 'images/angular-avatars/avatar-05.png';
 
     $scope.imagesArray = [];
-    var key
+    var keyMessage
+    var keySubmission
 
     $scope.postObject.$loaded().then(function() {
         $scope.currentUser = Users.getProfile($scope.authData.uid);
@@ -32,15 +33,17 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
         }
 
         // upload later on form submit or something similar
-        $scope.submit = function() {
+        $scope.submit = function(sendMessageOrSubmit) {
             if ( $scope.form.files.$valid && $scope.files) {
-                $scope.upload($scope.files);
-            } else {
+                $scope.upload($scope.files, sendMessageOrSubmit);
+            } else if (sendMessageOrSubmit) {
                 $scope.sendMessage();
+            } else {
+                $scope.submitJob();
             }
         };
 
-        $scope.upload = function(files) {
+        $scope.upload = function(files, sendMessageOrSubmit) {
             if (files && files.length) {
                 for (var i = 0; i < files.length; i++) {
                     Upload.upload({
@@ -71,9 +74,14 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
                             })
 
                         console.log(resp);
-
+                        //when attchments are uploaded send the message.
                         if($scope.imagesArray.length == files.length) {
-                            $scope.sendMessage();
+                            if(sendMessageOrSubmit) {
+                                $scope.sendMessage();
+                            }
+                            else {
+                                $scope.submitJob();
+                            }
                         }
                     }, function(resp) {
                         console.log('Error status: ' + resp.data);
@@ -91,34 +99,47 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
 
         //send a message function.
     	$scope.sendMessage = function() {
-    		$scope.messageContent = $scope.message
-    		var messageTime  = Firebase.ServerValue.TIMESTAMP
-    		$scope.postsRef.child("messages").push({
-    			"messageContent": $scope.messageContent,
-    			"authorName": $scope.currentUserName,
-    			"time": messageTime,
-                "authorType": $scope.currentUserType
-    		})
-            //get the key of the last uploaded messages to use for setting up the attachments
-            $scope.postsRef.child("messages").orderByKey().limitToLast(1).on('child_added', function(snapshot) {
-                key = snapshot.key() //get a snapshot of the post's key
-            });
-
-            //check if the user uploaded an attachment to push it to the post DB.
-            if($scope.imageUrl != null) {
-                $scope.postsRef.child("messages").child(key).child("attachments").push({
-                    "imagesArray": $scope.imagesArray
+            //check if message content is written otherwise throw error.
+            if($scope.message) {
+                $scope.messageContent = $scope.message
+                var messageTime  = Firebase.ServerValue.TIMESTAMP
+                $scope.postsRef.child("messages").push({
+                    "messageContent": $scope.messageContent,
+                    "authorName": $scope.currentUserName,
+                    "time": messageTime,
+                    "authorType": $scope.currentUserType
                 })
+                //get the key of the last uploaded messages to use for setting up the attachments
+                $scope.postsRef.child("messages").orderByKey().limitToLast(1).on('child_added', function(snapshot) {
+                    keyMessage = snapshot.key() //get a snapshot of the post's key
+                });
+
+                //check if the user uploaded an attachment to push it to the post DB.
+                if($scope.imageUrl != null) {
+                    $scope.postsRef.child("messages").child(keyMessage).child("attachments").push({
+                        "imagesArray": $scope.imagesArray
+                    })
+                }
+                $scope.message = null;
+                $scope.files = null;
+            } else {
+                console.log("You must include a message")
+                return
             }
-    		$scope.message = null
+
     	}
 
     })
-    //handle messages retreival 
+    //handle messages retreival And attachments if needed to be used in the Ctrl without ng-repeat.
     $scope.messagesArray.$loaded().then(function() {
         $scope.messages = $scope.messagesArray
         $scope.messagesRef.once("value", function(allMessagesSnapshot) {
             allMessagesSnapshot.forEach(function(messageSnapshot) {
+                if(messageSnapshot.hasChild("attachments")) {
+                    messageSnapshot.child("attachments").forEach(function(attachmentSnapshot) {
+                        $scope.attachmentsInMessage = attachmentSnapshot.child("imagesArray").val();
+                    }) 
+                }
                 // Will be called with a messageSnapshot for each child under the /messages/ node
                 $scope.messageTime = messageSnapshot.child("time").val();  // e.g. "6:50pm"
                 $scope.messageContent = messageSnapshot.child("messageContent").val();  // e.g. "Hola la "
@@ -130,26 +151,51 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
     })
     //submit Job by tutor
     $scope.submitJob = function() {
-        this.comment = $scope.submissionComment;
+        var comment = $scope.submissionComment;
+        var submissionTitle = $scope.submissionTitle
         var submissionTime  = Firebase.ServerValue.TIMESTAMP;
-        $scope.postsRef.child("submission").push({
-            "submissionComment": this.comment,
-            "time": submissionTime,
-            "tutorID": $scope.authData.uid,
-            "attachments": ''
-        })
+
+        //check if message content is written otherwise throw error.
+        if($scope.submissionComment && $scope.submissionTitle) {
+            $scope.postsRef.child("submission").push({
+                "submissionTitle": submissionTitle,
+                "submissionComment": comment,
+                "time": submissionTime,
+                "tutorID": $scope.authData.uid,
+                "attachments": ''
+            })
+            //get the key of the last uploaded submission to use for setting up the attachments
+            $scope.postsRef.child("submission").orderByKey().limitToLast(1).on('child_added', function(snapshot) {
+                keySubmission = snapshot.key() //get a snapshot of the post's key
+            });
+            //check if the user uploaded an attachment to push it to the post DB.
+            if($scope.imageUrl != null) {
+                $scope.postsRef.child("submission").child(keySubmission).child("attachments").set({
+                    "helpDocuments": $scope.imagesArray
+                })
+            }
+            $scope.submissionComment = null;
+            $scope.submissionTitle = null;
+            alert(keySubmission)
+        } else {
+            console.log("You must include a title and a comment")
+            return
+        }
+
     }
 
     //retreive a submission
-    $scope.submissionComment
+    $scope.submittedTitle
+    $scope.submittedComment
     $scope.submissionObject.$loaded().then(function() {
         $scope.submissionRef.on('value', function(allSubmissionsSnapshot) {
             allSubmissionsSnapshot.forEach(function(snapshot) {
-                $scope.submissionComment = snapshot.val().submissionComment
+                $scope.submittedComment = snapshot.val().submissionComment,
+                $scope.submittedTitle = snapshot.val().submissionTitle
             })
 
         })
-        console.log($scope.submissionComment)
+        console.log($scope.submittedComment)
     })
 
 
