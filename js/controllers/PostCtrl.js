@@ -56,7 +56,7 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', 'Toasts', '$firebaseObj
                 }).then(function(resp) {
                     console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
                     console.log('https://'+ 's3.amazonaws.com/'+ 'tutoring-images/uploads/'+ resp.config.data.file.name);
-                    $scope.imageUrl = 'https://'+ 's3.amazonaws.com/'+ 'tutoring-images/uploads/'+ resp.config.data.file.name
+                    $scope.imageUrl = 'https://'+ 's3.amazonaws.com/'+ 'tutoring-images/'+ resp.config.data.file.name
                     $scope.imageName = resp.config.data.file.name
                     $scope.imageType = resp.config.data.file.type
                     $scope.imageSize = resp.config.data.file.size
