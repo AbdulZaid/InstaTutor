@@ -149,7 +149,9 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
         });
 
     })
-    //submit Job by tutor
+    //submit Job by tutor: 
+    //Note that it's now pushing to an array of objects. Think if you want to make it set instead of push,
+    //which from now I think it would be better to switch.
     $scope.submitJob = function() {
         var comment = $scope.submissionComment;
         var submissionTitle = $scope.submissionTitle
@@ -165,7 +167,7 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
                 "attachments": ''
             })
             //get the key of the last uploaded submission to use for setting up the attachments
-            $scope.postsRef.child("submission").orderByKey().limitToLast(1).on('child_added', function(snapshot) {
+            $scope.postsRef.child("submission").orderByKey().limitToLast(1).once('child_added', function(snapshot) {
                 keySubmission = snapshot.key() //get a snapshot of the post's key
             });
             //check if the user uploaded an attachment to push it to the post DB.
@@ -176,7 +178,6 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
             }
             $scope.submissionComment = null;
             $scope.submissionTitle = null;
-            alert(keySubmission)
         } else {
             console.log("You must include a title and a comment")
             return
@@ -185,17 +186,22 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
     }
 
     //retreive a submission
-    $scope.submittedTitle
-    $scope.submittedComment
+    $scope.submittedTitle;
+    $scope.submittedComment;
+    $scope.submissionAttachments;
     $scope.submissionObject.$loaded().then(function() {
         $scope.submissionRef.on('value', function(allSubmissionsSnapshot) {
             allSubmissionsSnapshot.forEach(function(snapshot) {
+                if(snapshot.hasChild("attachments")) {
+                    snapshot.child("attachments").forEach(function(attachmentSnapshot) {
+                        $scope.submissionAttachments = attachmentSnapshot.val()
+                    })
+                }
                 $scope.submittedComment = snapshot.val().submissionComment,
                 $scope.submittedTitle = snapshot.val().submissionTitle
             })
 
         })
-        console.log($scope.submittedComment)
     })
 
 

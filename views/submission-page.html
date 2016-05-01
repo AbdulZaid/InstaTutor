@@ -231,42 +231,19 @@
                         <div class="attachments" >
                             <div class="attachments-list">
                                 <h1  class="md-title">Attachments</h1>
-                                <div class="attachment-item" layout-align="center center">
-                                    <md-button ng-show="true" class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
+                                <div class="attachment-item" layout-align="center center" ng-repeat="document in submissionAttachments">
+                                    <md-button download="{{ document.imageName }}" ng-href="{{ document.imageUrl }}" class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
                                         <md-icon class="material-icons">file_download</md-icon>
                                     </md-button>
-                                    <!-- (note) show only when edit -->
-                                    <md-button ng-show="false" class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="delete" ng-click="remove(attachment)">
+                                    <!-- show for delete -->
+<!--                                     <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="delete" ng-click="remove(attachment)">
                                         <md-icon class="material-icons">delete</md-icon>
-                                    </md-button>
+                                    </md-button> -->
+
                                     <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                                        <i class="fa fa-file-pdf-o"></i>
+                                        <i ng-class="{'fa fa-file-pdf-o': document.imageType == 'application/pdf', 'fa fa-file-image-o': document.imageType == 'image/png', 'fa fa-file-photo-o': document.imageType == 'image/jpeg', 'fa fa-file-powerpoint-o': document.imageType == 'image/powerpoint' , 'fa fa-file-text-o': document.imageType == 'image/text' , 'fa fa-file-zip-o': document.imageType == 'image/zip' , 'fa fa-file-excel-o': document.imageType == 'image/excel' , 'fa fa-file-file-o': document.imageType == 'image/file' , 'fa fa-file-word-o': document.imageType == 'image/word', 'fa fa-file-code-o': document.imageType == 'image/code', 'fa fa-file-movie-o': document.imageType == 'image/movie', 'fa fa-file-sound-o': document.imageType == 'image/sound', 'fa fa-file-archive-o': document.imageType == 'image/archive'} "></i>
                                     </div>
-                                    <div class="attachment-item-footer">
-                                        <div><span>This is the name of the file</span></div>
-                                    </div>
-                                </div>
-                                <div class="attachment-item" layout-align="center center">
-                                    <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
-                                        <md-icon class="material-icons">file_download</md-icon>
-                                    </md-button>
-                                    <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                                        <i class="fa fa-file-powerpoint-o"></i>
-                                    </div>
-                                    <div class="attachment-item-footer">
-                                        <div><span>This is the name of the file</span></div>
-                                    </div>
-                                </div>
-                                <div class="attachment-item" layout-align="center center">
-                                    <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
-                                        <md-icon class="material-icons">file_download</md-icon>
-                                    </md-button>
-                                    <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                                        <i class="fa fa-file-word-o"></i>
-                                    </div>
-                                    <div class="attachment-item-footer">
-                                        <div><span>This is the name of the file</span></div>
-                                    </div>
+                                    <div class="attachment-item-footer"><div><span>{{document.imageName}}</span></div></div>
                                 </div>
                             </div>
                         </div>
@@ -349,8 +326,8 @@
                             <span flex></span>
                             <md-button class="md-raised md-primary" ng-click="submit(false)">submit</md-button>
                         </div>
+                    </div>
                 </div>
-    </div>
             </md-tab>
             <md-tab label="Review">
                <div class="md-padding" ng-show="isStudent">
