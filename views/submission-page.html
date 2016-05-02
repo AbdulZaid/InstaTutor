@@ -1,7 +1,8 @@
 
 <div layout="row" layout-wrap>
     <div flex="70" layout="column">
-        <md-whiteframe md-whiteframe="3" layout-padding layout-margin flex>
+            <md-button class="md-warn md-raised md-hue-2" >{{postStatus}}</md-button>       
+            <md-whiteframe md-whiteframe="3" layout-padding layout-margin flex>
             <div layout="row" layout-align="center center">
                 <h1 class="md-headline">{{projectTitle}}</h1>
                 <span flex=""></span>
@@ -260,24 +261,28 @@
                             <span flex></span>
                             <md-button class="md-raised md-primary">submit</md-button>
                         </div>
+
+                        <span ng-if="acceptedOrNot">Thank you, you have already accepted the job.</span>
                         <div layout="row" layout-align="center center" ng-show="true">
                             <span flex></span>
                             <!-- (note) show only for the student -->
                             <div ng-show="currentUserType == 'Student'">
-                                <md-button class="md-warn md-raised">Reject</md-button>
-                                <md-button class="md-primary md-raised">Accept</md-button>
+                                <md-button class="md-warn md-raised" ng-if="acceptedOrNot == false" ng-click="rejectSubmission()">Reject</md-button>
+                                <md-button class="md-primary md-raised" ng-if="acceptedOrNot == false" ng-click="acceptSubmission()">Accept</md-button>                               <md-button class="md-primary md-raised" ng-if="acceptedOrNot" ng-click="acceptSubmission()">Dispute</md-button>
+
                                 <!-- (note) show dialog when accept or reject: -->
                                 <!--                              1- accept = accpeting this final submssion will release the paymane, are you sure you want to accept? button: "accept and release payment" or "cancel"
                                     2- rejcet: are you sure you want to reject the submissio? textarea: "write the reason". button: "Reject" or "Cancel" -->
                             </div>
                             <!-- (note) show only for tutor when he submits the job  -->
-                            <md-button class="md-primary md-raised" ng-show="currentUserType == 'Tutor'">Edit</md-button>
+                            <md-button class="md-primary md-raised" ng-show="currentUserType == 'Tutor' && submittedOrNot" ng-click="edit()">Edit</md-button>
+                            <!-- <md-button class="md-primary md-raised" ng-show="currentUserType == 'Tutor' && !submittedOrNot" ng-click="edit()">Cancel</md-button> -->
                         </div>
                     </div>
                     
 <!--                </div>-->
                 <!-- (Note) hide div when work is already submited -->
-                <div ng-show="currentUserType == 'Tutor'">
+                <div ng-show="currentUserType == 'Tutor' && !submittedOrNot">
                     <h1 class="md-title">Submit final work</h1>
                     <p class="md-body-1">Here you will submit the final work to the client so he can accepte it and you will get your money</p>
                     <form name="userForm">

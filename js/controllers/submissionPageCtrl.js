@@ -1,19 +1,29 @@
 myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$firebaseObject','$firebaseArray','$mdDialog','$stateParams','focus', '$location', '$anchorScroll', 'ngToast','$state','Upload',  function ($scope, Auth, Users, Posts, $firebaseObject, $firebaseArray, $mdDialog, $stateParams, focus, $location, $anchorScroll, ngToast, $state, Upload) {
 
-   	$scope.jobID = $stateParams.jobID.split("").reverse().join("");
+   	$scope.jobID = $stateParams.jobID.split("").reverse().join(""); //get the post ID
+    $scope.authData = Auth.$getAuth();
+    //Database refrences.
     $scope.postsRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts/"+ $scope.jobID);
     $scope.messagesRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts/"+ $scope.jobID + "/messages");
     $scope.submissionRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts/"+ $scope.jobID + "/submission");
-  	$scope.authData = Auth.$getAuth();
+    $scope.studentPostsRef = new Firebase("https://homeworkmarket.firebaseio.com/users/"+ $scope.authData.uid + "/posts/" + $scope.jobID);
+    
+    //manage the DB snapshot and use firebase array or object to use data properly.
     $scope.postObject = $firebaseObject($scope.postsRef)
     $scope.messagesArray = $firebaseObject($scope.messagesRef)
     $scope.submissionObject = $firebaseObject($scope.submissionRef)
+    $scope.userPostsObject = $firebaseObject($scope.studentPostsRef)
+    
+    //images for chat and side nav.
     $scope.studentImagePath = 'images/angular-avatars/avatar-03.png';
     $scope.tutorImagePath = 'images/angular-avatars/avatar-05.png';
 
+    //variables to be used.
     $scope.imagesArray = [];
     var keyMessage
     var keySubmission
+    $scope.submittedOrNot //to show if submitted or not to handle submission
+    $scope.postStatus //to show status of post
 
     $scope.postObject.$loaded().then(function() {
         $scope.currentUser = Users.getProfile($scope.authData.uid);
@@ -26,7 +36,7 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
             $scope.currentUserImage = true //true when student false when tutor
             $scope.isStudent = true
         } else {
-            $scope.otherUser = Users.getProfile($scope.authData.uid);
+            $scope.otherUser = Users.getProfile($scope.postObject.authorID);
             $scope.otherUserName = $scope.otherUser.name;
             $scope.otherUserType = $scope.otherUser.type;
             $scope.isTutor = true;
@@ -129,7 +139,17 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
 
     	}
 
+        //manage the status of the post.
+        $scope.postsRef.on("value", function(snapshot) {
+            if(snapshot.val().status == "Accepted") {
+                $scope.postStatus = $scope.postObject.status;
+            } else {
+                $scope.postStatus = $scope.postObject.status;
+            }
+        })
+
     })
+
     //handle messages retreival And attachments if needed to be used in the Ctrl without ng-repeat.
     $scope.messagesArray.$loaded().then(function() {
         $scope.messages = $scope.messagesArray
@@ -149,6 +169,7 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
         });
 
     })
+
     //submit Job by tutor: 
     //Note that it's now pushing to an array of objects. Think if you want to make it set instead of push,
     //which from now I think it would be better to switch.
@@ -159,25 +180,33 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
 
         //check if message content is written otherwise throw error.
         if($scope.submissionComment && $scope.submissionTitle) {
-            $scope.postsRef.child("submission").push({
+            $scope.postsRef.child("submission").set({
                 "submissionTitle": submissionTitle,
                 "submissionComment": comment,
                 "time": submissionTime,
                 "tutorID": $scope.authData.uid,
-                "attachments": ''
+                "attachments": '',
+                "submittedOrNot": true
             })
+
+            //updated the stauts of the post after the edit has been submitted.
+            $scope.postsRef.update({
+                "status": "Assgined"
+            })
+
             //get the key of the last uploaded submission to use for setting up the attachments
             $scope.postsRef.child("submission").orderByKey().limitToLast(1).once('child_added', function(snapshot) {
                 keySubmission = snapshot.key() //get a snapshot of the post's key
             });
             //check if the user uploaded an attachment to push it to the post DB.
             if($scope.imageUrl != null) {
-                $scope.postsRef.child("submission").child(keySubmission).child("attachments").set({
+                $scope.postsRef.child("submission").child("attachments").set({
                     "helpDocuments": $scope.imagesArray
                 })
             }
             $scope.submissionComment = null;
             $scope.submissionTitle = null;
+            $scope.files = null;
         } else {
             console.log("You must include a title and a comment")
             return
@@ -185,32 +214,83 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
 
     }
 
+    //handle editing the submitted job and editining it.
+    //this function reloads to sync data. Need to find another proper way of doing it.
+    // $scope.submittedOrNot = $scope.submissionObject.submittedOrNot;
+    $scope.edit = function() {
+        $scope.postsRef.child("submission").update({
+            "submittedOrNot": false,
+        })
+        return  
+    }
+    $scope.submittedOrNot = $scope.submissionObject.submittedOrNot; //set value to false for the above.
+
     //retreive a submission
     $scope.submittedTitle;
     $scope.submittedComment;
     $scope.submissionAttachments;
     $scope.submissionObject.$loaded().then(function() {
-        $scope.submissionRef.on('value', function(allSubmissionsSnapshot) {
-            allSubmissionsSnapshot.forEach(function(snapshot) {
+        if($scope.submissionObject != null) {
+            $scope.submissionRef.on('value', function(snapshot) {
+                //check if has attachments and get them
                 if(snapshot.hasChild("attachments")) {
                     snapshot.child("attachments").forEach(function(attachmentSnapshot) {
                         $scope.submissionAttachments = attachmentSnapshot.val()
                     })
                 }
-                $scope.submittedComment = snapshot.val().submissionComment,
-                $scope.submittedTitle = snapshot.val().submissionTitle
-            })
+                //check if there are comments and get the,
+                if(snapshot.hasChild("submissionComment") && snapshot.hasChild("submissionTitle")) {
+                    $scope.submittedComment = snapshot.val().submissionComment || "Not submission yet";
+                    $scope.submittedTitle = snapshot.val().submissionTitle || "Not submission yet";
+                    $scope.submittedOrNot = snapshot.val().submittedOrNot
 
+                } else {
+                    $scope.submittedComment =  "Not submission yet",
+                    $scope.submittedTitle = "Not submission yet"
+                }
+
+
+            })
+        } else {
+            $scope.submittedComment =  "Not submission yet",
+            $scope.submittedTitle = "Not submission yet"
+        }
+    })
+
+    //check if job already accepted or not, to hide buttons.
+    $scope.acceptedOrNot = false;
+    $scope.userPostsObject.$loaded().then(function() {
+        $scope.postsRef.on("value", function(snapshot) {
+            if(snapshot.val().status == "Accepted") {
+                $scope.acceptedOrNot = true;
+            } else {
+                $scope.acceptedOrNot = false;
+            }
         })
     })
 
+    //Student accepts submitted work by tutor
+    $scope.acceptSubmission = function() {
+        if($scope.currentUser.type == "Student") {
+            $scope.postsRef.update({
+                "status": "Accepted"
+            })
+            $scope.studentPostsRef.update({
+                "status": "Accepted"
+            })
+        }
+    };
 
+    //Student rejects submitted work by tutor
+    $scope.rejectSubmission = function() {
+
+    }
 
     //remove file
     $scope.remove = function(item) { 
       var index = $scope.files.indexOf(item);
       $scope.files.splice(index, 1);     
-    }
+    };
 
 }])
 
