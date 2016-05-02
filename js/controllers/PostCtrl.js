@@ -92,11 +92,11 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', 'Toasts', '$firebaseObj
     // COLLAPSE =====================
     $scope.isCollapsed = false;
 
-    $scope.myDate = new Date();
+    $scope.dueDate = new Date();
     $scope.minDate = new Date(
-        $scope.myDate.getFullYear(),
-        $scope.myDate.getDay() - 1,
-        $scope.myDate.getDate()
+        $scope.dueDate.getFullYear(),
+        $scope.dueDate.getMonth(),
+        $scope.dueDate.getDate()
     );
 
     // Do an if condition to see if the user is a student or not.

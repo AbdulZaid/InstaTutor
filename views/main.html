@@ -1,13 +1,15 @@
 <div id="mainContainer" >
 <div  layout="row" id="row1">
-    <div layout-margin flex>
+    <div ng-show= "currentUserType == 'Student'" layout-margin flex>
         <div ui-view="postArea">
         </div>
     </div>
-    <div layout-margin flex>
-        <div ng-show= "currentUserType == 'Student'" ui-view="studentAssignmentsArea">        
+    <div layout-margin flex  ng-show= "currentUserType == 'Student'" >
+        <div ui-view="studentAssignmentsArea">        
         </div>
-        <div ng-show= "currentUserType == 'Tutor'" ui-view="tutorAssignmentsArea">        
+    </div>
+    <div layout-margin flex="60" ng-show= "currentUserType == 'Tutor'" >
+        <div ui-view="tutorAssignmentsArea">        
         </div>
     </div>
 </div>

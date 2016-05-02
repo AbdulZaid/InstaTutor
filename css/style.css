@@ -732,7 +732,7 @@ footer.page-footer {
 /*# sourceMappingURL=style.css.map */
 
 .content-padding {
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 0 30px;
 }
@@ -1036,6 +1036,10 @@ md-input-container .md-errors-spacer {
     margin-top: 18px;
     min-height: 40px;
 }
+.post-pay > md-input-container
+{
+    max-width: 215px;
+}
 
 .post-pay > md-input-container {
     margin-top: 0px;
@@ -1131,4 +1135,9 @@ a.logo:hover {
     margin: 0;
 }.jobs-list>.md-no-style.md-button:hover{
     color: inherit;
+}
+
+.post-time .validation-messages {
+    font-size: 12px;
+    color: #dd2c00;
 }
