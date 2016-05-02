@@ -210,6 +210,12 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', 'Toasts', '$firebaseObj
         category: 'Engineering',
         name: 'Industrial Engineering'
     }];
+
+    //remove file
+    $scope.remove = function(item) { 
+      var index = $scope.files.indexOf(item);
+      $scope.files.splice(index, 1);     
+    };
 }])
 
 .config(function($mdDateLocaleProvider) {

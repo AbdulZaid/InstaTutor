@@ -102,15 +102,19 @@
                                 <!-- <img ngf-thumbnail="file || ''">  -->
 
                                 <!-- multiple files -->
-                                <input  id="file-upload" multiple type="file" class="ng-hide" ngf-select ng-model="files" name="files" ngf-pattern="'.pdf,.jpg,video/*,!.jog'" ngf-accept="'.pdf,.jpg,.png, video/*,!.jog'" ngf-max-size="20MB" ngf-min-height="100"  ngf-resize="{width: 100, height: 100}" ngf-select="upload($files)" />
-                                <br>Files:
-                                <ul>
-                                    <li ng-repeat="f in files" style="font:smaller">
-                                        {{f.name}} 
-                                        <img ngf-thumbnail="f || ''"> 
-                                    </li>
-                                </ul>
+                                <input  id="file-upload" multiple type="file" class="ng-hide" ngf-select ng-model="files" name="files" ngf-pattern="'.pdf,.jpg,video/*,!.jog'" ngf-accept="'.pdf,.jpg,.png, video/*,!.jog'" ngf-max-size="20MB" ngf-min-height="100"   ngf-select="upload($files)" />
+                                <div class="attachments-list" ng-if="files">
+                                    <div class="attachment-item" layout-align="center center" ng-repeat="attachment in files" >
+                                        <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="delete" ng-click="remove(attachment)">
+                                            <md-icon class="material-icons">delete</md-icon>
+                                        </md-button>
 
+                                        <div class="attachment-item-content" flex layout="column" layout-align="center center">
+                                            <i ng-class="{'fa fa-file-pdf-o': attachment.type == 'application/pdf', 'fa fa-file-image-o': attachment.type == 'image/png', 'fa fa-file-photo-o': attachment.type == 'image/jpeg', 'fa fa-file-powerpoint-o': attachment.type == 'image/powerpoint' , 'fa fa-file-text-o': attachment.type == 'image/text' , 'fa fa-file-zip-o': attachment.type == 'image/zip' , 'fa fa-file-excel-o': attachment.type == 'image/excel' , 'fa fa-file-file-o': attachment.type == 'image/file' , 'fa fa-file-word-o': attachment.type == 'image/word', 'fa fa-file-code-o': attachment.type == 'image/code', 'fa fa-file-movie-o': attachment.type == 'image/movie', 'fa fa-file-sound-o': attachment.type == 'image/sound', 'fa fa-file-archive-o': attachment.type == 'image/archive'} "></i>
+                                        </div>
+                                        <div class="attachment-item-footer"><div><span>{{attachment.name}}</span></div></div>
+                                    </div>
+                                </div>
                            </div>
                     </form>
                     <div flex layout="column">
