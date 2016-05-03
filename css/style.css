@@ -1141,3 +1141,36 @@ a.logo:hover {
     font-size: 12px;
     color: #dd2c00;
 }
+
+.tutor-last-jobs {
+    height: 376px;
+    margin: 18px;
+}
+
+.dashbord-tutor-img {
+    width: 110px;
+    border-radius: 50%;
+}
+
+.dashbord-tutor-info {
+        padding: 0 15px;
+}
+.dashbord-tutor-info>.md-subheader>.md-subheader-inner {
+        padding: 0;
+    margin-top: 5px;
+    
+}
+.dashbord-tutor-info > div {
+        margin-bottom: 5px;
+}
+
+.dashbord-progress>md-progress-linear {
+        max-width: 235px;
+}
+
+.dashboard-icon {
+    height: 65px;
+    font-size: 65px;
+    width: 65px;
+    color: #89002C;
+}

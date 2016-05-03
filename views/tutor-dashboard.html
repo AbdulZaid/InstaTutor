@@ -1,36 +1,39 @@
 <md-list layout="column">
     <md-divider></md-divider>
     <md-whiteframe md-whiteframe="1" flex layout-padding>
-        <h1 class="md-title">your last Jobs</h1>
+<!--        <h1 class="md-title">your last Jobs</h1>-->
+        <md-subheader><h1 class="md-subhead">Last Jobs</h1></md-subheader>
     </md-whiteframe>
     <md-whiteframe md-whiteframe="1" flex>
-        <md-list-item class="jobs-list" ng-repeat="post in posts| reverse" ng-click="null" ui-sref="jobPost({jobID: post.$id})">
-            <div flex layout="row" class="job-list-content">
-                <div flex>
-                    <div class="md-title">
-                        <span>
-                            <md-icon class="material-icons status-icon">mood</md-icon>
-                            <md-tooltip md-direction="top">
-                                Status: open
-                            </md-tooltip>
-                        </span>
-                        {{post.question}}
+       <md-content class="tutor-last-jobs">
+            <md-list-item class="jobs-list" ng-repeat="post in posts| reverse" ng-click="null" ui-sref="jobPost({jobID: post.$id})">
+                <div flex layout="row" class="job-list-content">
+                    <div flex>
+                        <div class="md-title">
+                            <span>
+                                <md-icon class="material-icons status-icon">mood</md-icon>
+                                <md-tooltip md-direction="top">
+                                    Status: open
+                                </md-tooltip>
+                            </span>
+                            {{post.question}}
+                        </div>
+                        <div class="md-body-1 proposals-item-comment">
+                            <div>In: {{post.field}}</div>
+                            <md-chips class="small-chips">
+                                <!-- <md-chip ng-repeat="tag in post">{{tag}}</md-chip> -->
+                                <md-chip>LMU</md-chip>
+                                <md-chip>University</md-chip>
+                                <!-- <md-chip>calculas</md-chip> -->
+                            </md-chips>
+                        </div>
                     </div>
-                    <div class="md-body-1 proposals-item-comment">
-                        <div>In: {{post.field}}</div>
-                        <md-chips class="small-chips">
-                            <!-- <md-chip ng-repeat="tag in post">{{tag}}</md-chip> -->
-                            <md-chip>LMU</md-chip>
-                            <md-chip>University</md-chip>
-                            <!-- <md-chip>calculas</md-chip> -->
-                        </md-chips>
+                    <div flex="15" layout="column"  layout-align="center center">
+                        <div class="md-headline">${{post.amount}}</div>
+                        <div class="md-subhead">in 1 day</div>
                     </div>
                 </div>
-                <div flex="15" layout="column"  layout-align="center center">
-                    <div class="md-headline">${{post.amount}}</div>
-                    <div class="md-subhead">in 1 day</div>
-                </div>
-            </div>
-        </md-list-item>
+            </md-list-item>
+        </md-content>
     </md-whiteframe>
 </md-list>
