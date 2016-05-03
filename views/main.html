@@ -12,11 +12,14 @@
         <div ui-view="tutorAssignmentsArea">        
         </div>
     </div>
-    <div flex layout-margin>
+    <div flex layout-margin ng-show= "currentUserType == 'Tutor'" >
         <div layout="column">
-        <md-whiteframe layout-padding layout-margin md-whiteframe="1" flex>
-            <h1 class="md-title">my profile</h1>
-            <div layout="row" layout-align="center center">
+        <md-whiteframe layout-margin md-whiteframe="1" flex>
+            <md-subheader>
+              <h1 class="md-subhead">My profile</h1>
+              <md-divider></md-divider>
+            </md-subheader>
+            <div layout="row" layout-align="center center" >
                 <div>
                     <img class="dashbord-tutor-img" src="../images/abdul_img.png">
                 </div>
@@ -33,41 +36,41 @@
         </md-whiteframe>
         <div layout="row" flex>
             <md-whiteframe layout-padding layout-margin md-whiteframe="1" flex>
-                <div layout="row" layout-align="center center">
+                <div layout="row" layout-align="center center" class="dashboard-stat">
                     <div flex>
                         <div class="md-display-1">32</div>
                         <div>finished jobs</div>
                     </div>
-                    <div><md-icon class="material-icons about-icon dashboard-icon">assignment_turned_in</md-icon></div>
+                    <md-icon class="material-icons dashboard-icon">assignment_turned_in</md-icon>
                 </div>
             </md-whiteframe>
             <md-whiteframe layout-padding layout-margin md-whiteframe="1" flex>
-                <div layout="row" layout-align="center center">
+                <div layout="row" layout-align="center center" class="dashboard-stat">
                     <div flex>
                         <div class="md-display-1">$503</div>
                         <div>total revenue</div>
                     </div>
-                    <div><md-icon class="material-icons about-icon dashboard-icon" style="color:#008943;">attach_money</md-icon></div>
+                    <md-icon class="material-icons dashboard-icon" style="color:#008943;">attach_money</md-icon>
                 </div>
             </md-whiteframe>
         </div>
         <div layout="row" flex>
             <md-whiteframe layout-padding layout-margin md-whiteframe="1" flex>
-                <div layout="row" layout-align="center center">
+                <div layout="row" layout-align="center center" class="dashboard-stat">
                     <div flex>
                         <div class="md-display-1">2</div>
-                        <div>active jobs</div>
+                        <div>pending jobs</div>
                     </div>
-                    <div><md-icon class="material-icons about-icon dashboard-icon" style="color:#410089;">notifications_active</md-icon></div>
+                    <md-icon class="material-icons dashboard-icon" style="color:#410089;">notifications_active</md-icon>
                 </div>
             </md-whiteframe>
             <md-whiteframe layout-padding layout-margin md-whiteframe="1" flex>
-                <div layout="row" layout-align="center center">
+                <div layout="row" layout-align="center center" class="dashboard-stat">
                     <div flex>
                         <div class="md-display-1">13</div>
-                        <div>pending proposals</div>
+                        <div>active proposals</div>
                     </div>
-                    <div><md-icon class="material-icons about-icon dashboard-icon" style="color:#008983;">folder_special</md-icon></div>
+                    <md-icon class="material-icons dashboard-icon" style="color:#008983;">folder_special</md-icon>
                 </div>
             </md-whiteframe>
         </div>

@@ -1145,11 +1145,14 @@ a.logo:hover {
 .tutor-last-jobs {
     height: 376px;
     margin: 18px;
+    margin-top: 0px;
 }
 
 .dashbord-tutor-img {
     width: 110px;
     border-radius: 50%;
+    margin-left: 8px;
+    margin-bottom: 8px;
 }
 
 .dashbord-tutor-info {
@@ -1174,3 +1177,12 @@ a.logo:hover {
     width: 65px;
     color: #89002C;
 }
+
+.dashboard-stat {
+    padding: 0;
+    margin: 10px 0px;
+}
+.dashboard-stat>div {
+    margin-left: 6px;
+}
+
