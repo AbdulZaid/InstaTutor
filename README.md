@@ -47,6 +47,24 @@ Why this project is acceptable?
   *  Full stack project ( frontend/backend.)
   *  Personal Challenge 
 
+## Technologies
+
+##### Frontend Section:
+ * JavaScript (AngularJS 2.0)
+ * Angular Material
+ * Google Firebase (Backend)
+ * TypeScript (Security)
+ * Amazon Web Services (AWS)
+ * HTML5 
+ * CSS3
+
+##### Backend Section:
+ * Google Firebase   
+ ![alt text](https://github.com/AbdulZaid/schooltutoring/blob/master/images/Firebase.png "Firebase")
+  * Uses REST API
+  * Stores & sync data with *NoSQL Cloud Database
+  * Uses JSON formated data
+  * Uses realtime connection with all clients
 
 
 ## User’s Point of view
@@ -55,30 +73,35 @@ This application will be responsive web application, that work on different devi
 
 #### Mockup
 
- UI Dashboard For Student Page first mockup
- 
- 
- ![alt text](https://github.com/AbdulZaid/InstaTutor/blob/master/images/ReadMeImages/1interface.png " UI Dashboard For Student Page first mockup")
-
  UI Signup Page
  
  ![alt text](https://github.com/AbdulZaid/InstaTutor/blob/master/images/ReadMeImages/11interface.png "UI Signup Page")
+ 
+ 
+ UI Dashboard For Student Page first mockup
+ 
+ ![alt text](https://github.com/AbdulZaid/InstaTutor/blob/master/images/ReadMeImages/1interface.png " UI Dashboard For Student Page first mockup")
+
 
   UI Job Page
  
  ![alt text](https://github.com/AbdulZaid/InstaTutor/blob/master/images/ReadMeImages/2interface.png "UI Job Page")
 
+
   UI Messages Page
  
  ![alt text](https://github.com/AbdulZaid/InstaTutor/blob/master/images/ReadMeImages/10interface.png "UI Messages Page")
+ 
  
   UI Tutor Dashboard Page
  
  ![alt text](https://github.com/AbdulZaid/InstaTutor/blob/master/images/ReadMeImages/5interface.png "UI Job Page")
 
+
   UI Tutor Submitting a Job back to Student Page
  
  ![alt text](https://github.com/AbdulZaid/InstaTutor/blob/master/images/ReadMeImages/8interface.png "UI Messages Page")
+
 
  
 ## Operations Description
@@ -98,24 +121,6 @@ The project will include:
 
 
 
-## Technologies
-
-##### Frontend Section:
- * JavaScript (AngularJS 2.0)
- * Angular Material
- * Google Firebase (Backend)
- * TypeScript (Security)
- * Amazon Web Services (AWS)
- * HTML5 
- * CSS3
-
-##### Backend Section:
- * Google Firebase   
- ![alt text](https://github.com/AbdulZaid/schooltutoring/blob/master/images/Firebase.png "Firebase")
-  * Uses REST API
-  * Stores & sync data with *NoSQL Cloud Database
-  * Uses JSON formated data
-  * Uses realtime connection with all clients
 
 
 ## Preliminary Development Schedule (milestones)
