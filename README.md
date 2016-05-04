@@ -58,11 +58,27 @@ This application will be responsive web application, that work on different devi
  UI Dashboard For Student Page first mockup
  
  
- ![alt text](https://github.com/AbdulZaid/schooltutoring/blob/master/images/first_mockup.png "UI Main Page first mockup")
+ ![alt text](https://github.com/AbdulZaid/InstaTutor/blob/master/images/ReadMeImages/1interface.png " UI Dashboard For Student Page first mockup")
 
- UI Post Job first mockup
+ UI Signup Page
  
- ![alt text](https://github.com/AbdulZaid/schooltutoring/blob/master/images/first_mockup1.png "UI Post Job first mockup")
+ ![alt text](https://github.com/AbdulZaid/InstaTutor/blob/master/images/ReadMeImages/11interface.png "UI Signup Page")
+
+  UI Job Page
+ 
+ ![alt text](https://github.com/AbdulZaid/InstaTutor/blob/master/images/ReadMeImages/2interface.png "UI Job Page")
+
+  UI Messages Page
+ 
+ ![alt text](https://github.com/AbdulZaid/InstaTutor/blob/master/images/ReadMeImages/10interface.png "UI Messages Page")
+ 
+  UI Tutor Dashboard Page
+ 
+ ![alt text](https://github.com/AbdulZaid/InstaTutor/blob/master/images/ReadMeImages/5interface.png "UI Job Page")
+
+  UI Tutor Submitting a Job back to Student Page
+ 
+ ![alt text](https://github.com/AbdulZaid/InstaTutor/blob/master/images/ReadMeImages/8interface.png "UI Messages Page")
 
  
 ## Operations Description
@@ -86,7 +102,12 @@ The project will include:
 
 ##### Frontend Section:
  * JavaScript (AngularJS 2.0)
- * HTML5 and SASS (maybe bootstrap)
+ * Angular Material
+ * Google Firebase (Backend)
+ * TypeScript (Security)
+ * Amazon Web Services (AWS)
+ * HTML5 
+ * CSS3
 
 ##### Backend Section:
  * Google Firebase   
@@ -98,11 +119,5 @@ The project will include:
 
 
 ## Preliminary Development Schedule (milestones)
-
- * Creating Tutor accounts including full profile.
- * Writing security rules for users (admin, tutor, and student) (by Jan 25th).
- * Proposing to do a job.
- * Assigning jobs to tutors.
- * Realtime messages.
  * Monetization (handling payments.)
 
