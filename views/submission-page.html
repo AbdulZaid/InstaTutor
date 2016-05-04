@@ -34,7 +34,7 @@
                                                     </p>
                                                     <p>
                                                     <div class="attachments-list">
-                                                        <div class="attachment-item" layout-align="center center">
+                                                        <div class="attachment-item attachment-bg" layout-align="center center">
                                                             <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
                                                                 <md-icon class="material-icons">file_download</md-icon>
                                                             </md-button>
@@ -43,7 +43,7 @@
                                                             </div>
                                                             <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
                                                         </div>
-                                                        <div class="attachment-item" layout-align="center center">
+                                                        <div class="attachment-item attachment-bg" layout-align="center center">
                                                             <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
                                                                 <md-icon class="material-icons">file_download</md-icon>
                                                             </md-button>
@@ -52,7 +52,7 @@
                                                             </div>
                                                             <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
                                                         </div>
-                                                        <div class="attachment-item" layout-align="center center">
+                                                        <div class="attachment-item attachment-bg" layout-align="center center">
                                                             <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
                                                                 <md-icon class="material-icons">file_download</md-icon>
                                                             </md-button>
@@ -75,7 +75,7 @@
                                                     {{message.messageContent}}
                                                 </p>
                                                 <div class="attachments-list" ng-repeat="attachmentGroup in message.attachments">
-                                                    <div class="attachment-item" ng-repeat="attachment in attachmentGroup.imagesArray" layout-align="center center">
+                                                    <div class="attachment-item attachment-bg" ng-repeat="attachment in attachmentGroup.imagesArray" layout-align="center center">
                                                         <md-button download="{{ attachment.imageName }}" ng-href="{{ attachment.imageUrl }}" class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
                                                             <md-icon class="material-icons">file_download</md-icon>
                                                         </md-button>
@@ -91,6 +91,7 @@
                                             </div>
                                         </md-list-item>
                                         </md-list>
+                                        <input id="endofchat">
                                     </section>
                             </md-content>
                             </md-content>
@@ -126,12 +127,12 @@
                                     </div>
                                 </div>
                             </md-input-container> 
-                            <md-button aria-label="Send" class="md-icon-button" md-no-focus-style><md-icon class="material-icons about-icon" ng-click="submit(true)">send</md-icon></md-button>
+                            <md-button aria-label="Send" class="md-icon-button" md-no-focus-style ng-click="submit(true)"><md-icon class="material-icons about-icon" >send</md-icon></md-button>
                         </div>
 
                         <!-- (Note) Show on attachment added -->
                         <div class="attachments-list" ng-if="files">
-                            <div class="attachment-item" layout-align="center center" ng-repeat="attachment in files" >
+                            <div class="attachment-item attachment-bg" layout-align="center center" ng-repeat="attachment in files" >
                                 <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="delete" ng-click="remove(attachment)">
                                     <md-icon class="material-icons">delete</md-icon>
                                 </md-button>
@@ -147,7 +148,8 @@
                     </md-tab>
                 <md-tab label="Submission">
                     <div class="md-padding">
-                        <div class="md-whiteframe-1dp" layout-padding layout-margin >
+                       <div ng-show="currentUser.type == 'Student' && noSubmitionyet">No work submited yet, please check with the tutor</div>
+                        <div class="md-whiteframe-1dp" layout-padding layout-margin ng-hide="noSubmitionyet">
                             <h1  class="md-title">Final work submission: " {{submittedTitle}} " </h1>
                             <p ng-show="true" class="md-body-1">{{submittedComment}}</p>
                             <!-- (note) show only when edit -->
@@ -158,7 +160,7 @@
                             <div class="attachments" >
                                 <div class="attachments-list">
                                     <h1  class="md-title">Attachments</h1>
-                                    <div class="attachment-item" layout-align="center center" ng-repeat="document in submissionAttachments">
+                                    <div class="attachment-item attachment-bg" layout-align="center center" ng-repeat="document in submissionAttachments">
                                         <md-button download="{{ document.imageName }}" ng-href="{{ document.imageUrl }}" class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
                                             <md-icon class="material-icons">file_download</md-icon>
                                         </md-button>
@@ -188,18 +190,11 @@
                                 <div ng-show="currentUserType == 'Student'">
                                     <md-button class="md-warn md-raised" ng-if="acceptedOrNot == false" ng-click="rejectSubmission()">Reject</md-button>
                                     <md-button class="md-primary md-raised" ng-if="acceptedOrNot == false" ng-click="acceptSubmission()">Accept</md-button>                               <md-button class="md-primary md-raised" ng-if="acceptedOrNot" ng-click="acceptSubmission()">Dispute</md-button>
-
-                                    <!-- (note) show dialog when accept or reject: -->
-                                    <!--                              1- accept = accpeting this final submssion will release the paymane, are you sure you want to accept? button: "accept and release payment" or "cancel"
-2- rejcet: are you sure you want to reject the submissio? textarea: "write the reason". button: "Reject" or "Cancel" -->
                                 </div>
-                                <!-- (note) show only for tutor when he submits the job  -->
                                 <md-button class="md-primary md-raised" ng-show="currentUserType == 'Tutor' && submittedOrNot" ng-click="edit()">Edit</md-button>
-                                <!-- <md-button class="md-primary md-raised" ng-show="currentUserType == 'Tutor' && !submittedOrNot" ng-click="edit()">Cancel</md-button> -->
                             </div>
                         </div>
 
-                        <!--                </div>-->
                         <!-- (Note) hide div when work is already submited -->
                         <div ng-show="currentUserType == 'Tutor' && !submittedOrNot">
                             <h1 class="md-title">Submit final work</h1>
@@ -217,7 +212,7 @@
                                 </md-input-container>
                                 <!-- (Note) Show on attachment added -->
                                 <div class="attachments-list" ng-if="files">
-                                    <div class="attachment-item" layout-align="center center" ng-repeat="attachment in files" >
+                                    <div class="attachment-item attachment-bg" layout-align="center center" ng-repeat="attachment in files" >
                                         <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="delete" ng-click="remove(attachment)">
                                             <md-icon class="material-icons">delete</md-icon>
                                         </md-button>
@@ -266,8 +261,6 @@
                         <div>
                             <label>Rating cratira 1</label>
                         </div>
-
-                        <!--                <h1 class="md-subtitle">review</h1>-->
                         <md-input-container class="md-block dense-form">
                             <label>Review</label>
                             <textarea></textarea>

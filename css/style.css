@@ -1226,3 +1226,14 @@ a.logo:hover {
 .landing-singup {
         text-align: center;
 }
+
+.attachment-bg {
+    background-color: #fff;
+}
+
+#endofchat {
+    height: 0;
+    width: 0;
+    margin: 0;
+    border: 0;
+}

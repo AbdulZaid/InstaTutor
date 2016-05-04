@@ -187,6 +187,14 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
         templateUrl: "views/tutor-profile.html", 
         controller: "tutorPageCtrl"
     })
+    .state('dashboard.messages', {
+        url: "/messages/",
+        templateUrl: "views/messages.html", 
+    })
+    .state('dashboard.settings', {
+        url: "/settings/",
+        templateUrl: "views/settings.html", 
+    })
     // For any unmatched url, redirect to /state1
     $urlRouterProvider.otherwise('/' )
 })

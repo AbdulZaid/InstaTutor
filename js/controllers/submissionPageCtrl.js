@@ -1,4 +1,4 @@
-myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$firebaseObject','$firebaseArray','$mdDialog','$stateParams','focus', '$location', '$anchorScroll', 'ngToast','$state','Upload',  function ($scope, Auth, Users, Posts, $firebaseObject, $firebaseArray, $mdDialog, $stateParams, focus, $location, $anchorScroll, ngToast, $state, Upload) {
+myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$firebaseObject','$firebaseArray','$mdDialog','$stateParams','focus', '$location', '$anchorScroll', 'ngToast','$state','Upload','focus',  function ($scope, Auth, Users, Posts, $firebaseObject, $firebaseArray, $mdDialog, $stateParams, focus, $location, $anchorScroll, ngToast, $state, Upload, focus) {
 
    	$scope.jobID = $stateParams.jobID.split("").reverse().join(""); //get the post ID
     $scope.authData = Auth.$getAuth();
@@ -17,7 +17,10 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
     //images for chat and side nav.
     $scope.studentImagePath = 'images/angular-avatars/avatar-03.png';
     $scope.tutorImagePath = 'images/angular-avatars/avatar-05.png';
-
+    $scope.endofchat = function()
+    {
+        focus('endofchat');
+    }
     //variables to be used.
     $scope.imagesArray = [];
     var keyMessage
@@ -51,6 +54,7 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
             } else {
                 $scope.submitJob();
             }
+            $scope.endofchat();
         };
 
         $scope.upload = function(files, sendMessageOrSubmit) {
@@ -152,7 +156,8 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
 
     //handle messages retreival And attachments if needed to be used in the Ctrl without ng-repeat.
     $scope.messagesArray.$loaded().then(function() {
-        $scope.messages = $scope.messagesArray
+        $scope.messages = $scope.messagesArray;
+        $scope.endofchat();
         $scope.messagesRef.once("value", function(allMessagesSnapshot) {
             allMessagesSnapshot.forEach(function(messageSnapshot) {
                 if(messageSnapshot.hasChild("attachments")) {
@@ -224,7 +229,7 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
         return  
     }
     $scope.submittedOrNot = $scope.submissionObject.submittedOrNot; //set value to false for the above.
-
+    $scope.noSubmitionyet = false;
     //retreive a submission
     $scope.submittedTitle;
     $scope.submittedComment;
@@ -242,18 +247,21 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
                 if(snapshot.hasChild("submissionComment") && snapshot.hasChild("submissionTitle")) {
                     $scope.submittedComment = snapshot.val().submissionComment || "Not submission yet";
                     $scope.submittedTitle = snapshot.val().submissionTitle || "Not submission yet";
-                    $scope.submittedOrNot = snapshot.val().submittedOrNot
+                    $scope.submittedOrNot = snapshot.val().submittedOrNot;
+                    $scope.noSubmitionyet = false;
 
                 } else {
-                    $scope.submittedComment =  "Not submission yet",
-                    $scope.submittedTitle = "Not submission yet"
+                    $scope.submittedComment =  "No submission yet";
+                    $scope.submittedTitle = "No submission yet";
+                    $scope.noSubmitionyet = true;
                 }
 
 
             })
         } else {
-            $scope.submittedComment =  "Not submission yet",
-            $scope.submittedTitle = "Not submission yet"
+            $scope.submittedComment =  "No submission yet";
+            $scope.submittedTitle = "No submission yet";
+            $scope.noSubmitionyet = true;
         }
     })
 

@@ -54,7 +54,7 @@ myApp.controller('SideNavCtrl', ['$scope','Users','Auth','$location','$firebaseA
 					      link : '',
 					      title: 'Messages',
 					      icon: 'message',
-					      direct: 'dashboard.main',
+					      direct: 'dashboard.messages',
 					      show: true
 					    },
 					    {
@@ -77,7 +77,7 @@ myApp.controller('SideNavCtrl', ['$scope','Users','Auth','$location','$firebaseA
 					    {
 					      link : '',
 					      title: 'Settings',
-					      direct: 'dashboard.main',
+					      direct: 'dashboard.settings',
 					      icon: 'settings'
 					    }
 					];
