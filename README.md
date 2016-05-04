@@ -66,6 +66,23 @@ Why this project is acceptable?
   * Uses JSON formated data
   * Uses realtime connection with all clients
 
+## Operations Description
+
+The project will include:
+ 3 types of users: 
+
+1. Student (create account [profile], post jobs, message tutors, assign jobs to tutors, and rate tutor’s work)
+
+2. Tutor (create account, list specialities and years of experience, write bio, propose to do jobs, submit back)
+
+3. Admin (manage users and data)
+
+#### Demonstration of the system architecture
+
+ ![alt text](https://github.com/AbdulZaid/schooltutoring/blob/master/images/Untitled%20drawing%20(4).jpg "System Architecture")
+
+
+
 
 ## User’s Point of view
 
@@ -101,23 +118,6 @@ This application will be responsive web application, that work on different devi
   UI Tutor Submitting a Job back to Student Page
  
  ![alt text](https://github.com/AbdulZaid/InstaTutor/blob/master/images/ReadMeImages/8interface.png "UI Messages Page")
-
-
- 
-## Operations Description
-
-The project will include:
- 3 types of users: 
-
-1. Student (create account [profile], post jobs, message tutors, assign jobs to tutors, and rate tutor’s work)
-
-2. Tutor (create account, list specialities and years of experience, write bio, propose to do jobs, submit back)
-
-3. Admin (manage users and data)
-
-#### Demonstration of the system architecture
-
- ![alt text](https://github.com/AbdulZaid/schooltutoring/blob/master/images/Untitled%20drawing%20(4).jpg "System Architecture")
 
 
 
