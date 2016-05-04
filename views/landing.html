@@ -1,247 +1,217 @@
+<script type="text/javascript">
+    $(window).scroll(function() {
+        if ($(".top-nav").offset().top > 50) {
+            $(".landingpage-nav").addClass("top-nav-scrolled");
+        } else {
+            $(".landingpage-nav").removeClass("top-nav-scrolled");
+        }
+    });
 
+</script>
 <!-- Pre Loader -->
 <div id="loader-wrapper">
     <div id="loader"></div>
- 
+
     <div class="loader-section section-left"></div>
     <div class="loader-section section-right"></div>
- 
+
 </div>
 
 
 
 <nav class="landingpage-nav">
-      <div class="md-toolbar-tools top-nav" >
-          <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleMenu()">
-              <ng-md-icon icon="menu"></ng-md-icon>
-          </md-button>
-          <h2>
-              <a ui-sref="dashboard.main" class="md-accent logo">InstaTutor</a>
-          </h2>
-<!--
-          <md-button ng-show= "authData" ui-sref="dashboard.myProfile">Dashboard</md-button>
-          <md-button ng-hide= "authData" ui-sref="login">Login</md-button>
-          <md-button ng-hide= "authData" ui-sref="signup">Signup</md-button>
-          <md-button ui-sref="become-tutor">become a tutor</md-button>
-          <md-button ui-sref="tutorProfile">view tutor</md-button>
--->
-          <!-- <md-button ui-sref="jobPost">Jop Page</md-button> -->
-<!--          <md-button ng-show= "authData" ng-click="logout()" ui-sref="main">Logout</md-button>-->
-          <span flex></span>          
-          <div class="nav-item"><a>Login</a></div>
-          <div class="nav-item"><a>Signup</a></div>
-          <div class="nav-item"><a>Become a tutor</a></div>
-      </div>
-  </nav>
+    <div class="md-toolbar-tools top-nav" >
+        <h2>
+            <a ui-sref="dashboard.main" class="md-accent logo">InstaTutor</a>
+        </h2>
+        <span flex></span>          
+        <div class="nav-item" ui-sref="login"><a>Login</a></div>
+        <div class="nav-item" ui-sref="signup"><a>Signup</a></div>
+        <div class="nav-item" ui-sref="signup"><a>become a tutor</a></div>
+    </div>
+</nav>
 
 
 <!--Hero-->
 <div class="section" id="index-banner">
     <div>
-        <div class="text_h cd-headline letters type">
-            <span></span> 
-            <span class="cd-words-wrapper waiting">
-                <b class="is-visible">School work</b>
-                <b>Projects</b>
-                <b>Homeworks</b>
-                <b>Reports</b>
-                <b>Learning</b>
-            </span>
-        </div>
+        <div class="text_h cd-headline letters type">School Help for all</div>
     </div>
     <div class="read-more-arrow animated pulse forever"><span class="mdi-navigation-expand-more"></span></div>
     <img class="hand" src="images/hand.png" />
 </div>
 
-    
+
 <!--About us-->
 
 <div parallax-background parallax-ratio="0.3" class="container-fluid parallax_style1 landing-section" id="intro" style="background: url(../images/about-bg.jpg);"  data-image-src="images/about-bg.jpg">
 
     <div layout="row">
-       <span flex></span>
+        <span flex></span>
         <div>
             <h1 class="md-display-2 text_h2"> School help for all <hr class="h2-line"/></h1>
             <p class="about-us">Platform to connect students looking for help in school work with tutors who have the right knowledge and capabilities to help with a simple and fast way. 
             </p>
-       </div>
+        </div>
+        <span flex></span>
+    </div>
+</div>
+
+<!--Intro and service-->
+<div id="steps" class="section scrollspy">
+    <div>
+        <h2 class="center header text_h2"> Get your job done Right with <span class="span_h2"> 3 easy steps</span> </h2>
+    </div>
+    <div layout="row" layout-align="center center">
+        <span flex></span>
+        <div flex class="landing-step">
+            <!-- mdi-communication-message  -->
+            <md-icon id="step1" class="material-icons landing-steps">create</md-icon>
+            <h1 class="md-headline">1. Post a job</h1>
+            <p class="md-body-1">Choose what kind of work you need and in what subject. specify the details for the work, upload any necessary files, and put how much you are willing to pay.</p>
+        </div>
+        <div flex class="landing-step">
+            <md-icon id="step2" class="material-icons landing-steps">folder_special</md-icon>
+            <h1 class="md-headline">2. Select the right tutor</h1>
+            <p class="md-body-1">Receive offers from the available tutors who are capable to do the work needed. Read about the tutors, see reviews, and choose the right tutor for the job.</p>
+        </div>
+        <div flex class="landing-step">
+            <md-icon id="step3" class="material-icons landing-steps">assignment_turned_in</md-icon>
+            <h1 class="md-headline">3. Receive the work</h1>
+            <p class="md-body-1">Review the finished work, discuss and suggest any modification with the tutor. Receive the work,  write a review about the tutor, and pay only if satisfied.</p>
+        </div>
         <span flex></span>
     </div>
 </div>
 
 
-
-
-
-<!--Intro and service-->
-<div id="steps" class="section scrollspy">
-            <div>
-                <h2 class="center header text_h2"> Get your job done Right with <span class="span_h2"> 3 easy steps</span> </h2>
-            </div>
-            <div layout="row" layout-align="center center">
-            <span flex></span>
-            <div flex class="landing-step">
-                   <!-- mdi-communication-message  -->
-                    <md-icon id="step1" class="material-icons landing-steps">create</md-icon>
-                    <h1 class="md-headline">1. Post a job</h1>
-                    <p class="md-body-1">Choose what kind of work you need and in what subject. specify the details for the work, upload any necessary files, and put how much you are willing to pay.</p>
-            </div>
-            <div flex class="landing-step">
-                    <md-icon id="step2" class="material-icons landing-steps">folder_special</md-icon>
-                    <h1 class="md-headline">2. Select the right tutor</h1>
-                    <p class="md-body-1">Receive offers from the available tutors who are capable to do the work needed. Read about the tutors, see reviews, and choose the right tutor for the job.</p>
-            </div>
-            <div flex class="landing-step">
-                   <!-- mdi-action-done-all mdi-action-thumb-up mdi-action-verified-user mdi-maps-local-shipping mdi-notification-event-available -->
-                    <md-icon id="step3" class="material-icons landing-steps">assignment_turned_in</md-icon>
-                    <h1 class="md-headline">3. Receive the work</h1>
-                    <p class="md-body-1">Review the finished work, discuss and suggest any modification with the tutor. Receive the work,  write a review about the tutor, and pay only if satisfied.</p>
-            </div>
-            <span flex></span>
-            </div>
-</div>
-
-<!--
-<div parallax-background parallax-ratio="0.3" class="container-fluid parallax_style1" style="background: url(../images/apple-iphone-books-desk.jpg);"  data-image-src="images/about-bg.jpg">
-    <div class="parallax-container">
-
-    </div>
-</div>
--->
-
-
 <!--featrues-->
 <div id="features" class="section scrollspy step1">
-            <div class="col s12">
-                <h1 class="md-display-2 text_h2 "> Platform Features <hr class="h2-line"/></h1>
-            </div>
-            <div layout="row">
-                <span flex></span>
-                <div flex="25">
-                    <img class="aboutus-img" src="images/tutors1.jpg"/>
-                </div>
-                <div flex="35" class="features">
-                   <h1 class="md-headline">Our Tutors are the best</h1>
-                    <p class="md-body-1">
-What makes this platform great is the tutors. What they are providing is critical, their knowledge and experience are priceless. They are professors, teachers, students, and experienced professionals. They are always available to help students 24/7. To make students successful and to help build their knowledge.                    </p>
-               <md-button class="md-raised md-primary">Want to be a tutor ?</md-button>
-                </div>
-                <span flex></span>
-            </div>
+    <div class="col s12">
+        <h1 class="md-display-2 text_h2 "> Platform Features <hr class="h2-line"/></h1>
+    </div>
+    <div layout="row">
+        <span flex></span>
+        <div flex="25">
+            <img class="aboutus-img" src="images/tutors1.jpg"/>
+        </div>
+        <div flex="35" class="features">
+            <h1 class="md-headline">Our Tutors are the best</h1>
+            <p class="md-body-1">
+                What makes this platform great is the tutors. What they are providing is critical, their knowledge and experience are priceless. They are professors, teachers, students, and experienced professionals. They are always available to help students 24/7. To make students successful and to help build their knowledge.                    </p>
+            <md-button class="md-raised md-primary" ui-sref="signup">Want to be a tutor ?</md-button>
+        </div>
+        <span flex></span>
+    </div>
 </div>
 <div id="features" class="section scrollspy step2">
-               <div layout="row">
-                <span flex></span>
-<!--
-                <div flex="25">
-                    <img class="aboutus-img" src="images/4552277923_2886cd071e_o.jpg"/>
-                </div>
--->
-                <div flex="35" class="features-left">
-                   <h1 class="md-headline">Fast and Secure</h1>
-                    <p class="md-body-1">
-                        InstaTutor is fast way to get you school work done. If you were late to submit your job or you need it done fast this is the place to find a 24/7 available tutors. Also it's a fast and secure way of paying tutors, the money will be held by us until you receive your work and be satisfied, then we are going to deal with paying the tutor.
-                        
-</p>
-                </div>
-                <div flex="25">
-                    <img class="aboutus-img" src="images/4552277923_2886cd071e_o.jpg"/>
-                </div>
-            <span flex></span>
-            </div>
+    <div layout="row">
+        <span flex></span>
+        <div flex="35" class="features-left">
+            <h1 class="md-headline">Fast and Secure</h1>
+            <p class="md-body-1">
+                InstaTutor is fast way to get you school work done. If you were late to submit your job or you need it done fast this is the place to find a 24/7 available tutors. Also it's a fast and secure way of paying tutors, the money will be held by us until you receive your work and be satisfied, then we are going to deal with paying the tutor.
+
+            </p>
+        </div>
+        <div flex="25">
+            <img class="aboutus-img" src="images/4552277923_2886cd071e_o.jpg"/>
+        </div>
+        <span flex></span>
+    </div>
 </div>
 <div id="features" class="section scrollspy step3">
-               <div layout="row">
-                   <span flex></span>
-                <div flex="25">
-                    <img class="aboutus-img" src="images/7658272558_aebe55277f_o.jpg"/>
-                </div>
-                <div flex="35" class="features">
-                   <h1 class="md-headline">Platform for All</h1>
-                    <p class="md-body-1">Whether you are stuck on a homework, report, project or need help with any school work. This platform made to accommodate different types of school work, all subjects and any education level. We made it easy to find a Specific expertise that can give a valuable help with your school work. 
-</p>
-                </div>
-                   <span flex></span>
-               </div>
-     
+    <div layout="row">
+        <span flex></span>
+        <div flex="25">
+            <img class="aboutus-img" src="images/7658272558_aebe55277f_o.jpg"/>
+        </div>
+        <div flex="35" class="features">
+            <h1 class="md-headline">Platform for All</h1>
+            <p class="md-body-1">Whether you are stuck on a homework, report, project or need help with any school work. This platform made to accommodate different types of school work, all subjects and any education level. We made it easy to find a Specific expertise that can give a valuable help with your school work. 
+            </p>
+        </div>
+        <span flex></span>
+    </div>
+
 </div>
-            
+
 
 
 <div class="section scrollspy" id="signup-for-free">
     <div layout="row" layout-align="center center">
-           <span flex></span>
-            <div flex ui-sref="signup" class="landing-singup">
-               <md-button class="md-raised md-primary">Signup now for free</md-button>
-            </div>
-            <span flex></span>
+        <span flex></span>
+        <div flex ui-sref="signup" class="landing-singup">
+            <md-button class="md-raised md-primary" ui-sref="signup">Signup now for free</md-button>
+        </div>
+        <span flex></span>
     </div>
 </div>
 <footer id="contact" class="page-footer gray scrollspy">
-        <div layout="row">
-           <span flex></span>
-            <div flex="35" flex-offset="5">
-                <form action="contact.php" method="post">
-                  <div layout="row">
-                   <md-input-container flex class="md-icon-float md-block">
-                      <!-- Use floating label instead of placeholder -->
-                      <label>Name</label>
-                      <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
-                      <input ng-model="user.name" type="text">
+    <div layout="row">
+        <span flex></span>
+        <div flex="35" flex-offset="5">
+            <form action="contact.php" method="post">
+                <div layout="row">
+                    <md-input-container flex class="md-icon-float md-block">
+                        <!-- Use floating label instead of placeholder -->
+                        <label>Name</label>
+                        <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+                        <input ng-model="user.name" type="text">
                     </md-input-container>
                     <md-input-container flex class="md-icon-float md-block">
-                      <!-- Use floating label instead of placeholder -->
-                      <label>Email</label>
-                      <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
-                      <input ng-model="user.name" type="text">
+                        <!-- Use floating label instead of placeholder -->
+                        <label>Email</label>
+                        <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+                        <input ng-model="user.name" type="text">
                     </md-input-container>
-                    </div>
-                    <md-input-container flex class="md-icon-float md-block">
-                      <!-- Use floating label instead of placeholder -->
-                      <label>message</label>
-                      <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
-                      <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus></textarea>
-                    </md-input-container>
-                    <div layout="row">
-                        <span flex></span>
-                        <md-button class="md-raised md-primary">Submit</md-button>
-                    </div>
-                </form>
-            </div>
-            <div flex="10" flex-offset="5">
-                <h5 class="white-text">Tutors</h5>
-                <ul>
-                    <li><a class="white-text" href="#">Home</a></li>
-                    <li><a class="white-text" href="#">Blog</a></li>
-                </ul>
-            </div>
-            <div flex="10" flex-offset="3">
-                <h5 class="white-text">Social</h5>
-                <ul>
-                    <li>
-                        <a class="white-text" href="https://www.behance.net/">
-                            <i class="small fa fa-twitter-square white-text"></i> Twitter
-                        </a>
-                    </li>
-                    <li>
-                        <a class="white-text" href="https://www.facebook.com/">
-                            <i class="small fa fa-facebook-square white-text"></i> Facebook
-                        </a>
-                    </li>
-                    <li>
-                        <a class="white-text" href="https://github.com/">
-                            <i class="small fa fa-github-square white-text"></i> Github
-                        </a>
-                    </li>
-                    <li>
-                        <a class="white-text" href="https://www.linkedin.com/in/">
-                            <i class="small fa fa-linkedin-square white-text"></i> Linkedin
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <span flex></span>
+                </div>
+                <md-input-container flex class="md-icon-float md-block">
+                    <!-- Use floating label instead of placeholder -->
+                    <label>message</label>
+                    <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+                    <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                </md-input-container>
+                <div layout="row">
+                    <span flex></span>
+                    <md-button class="md-raised md-primary">Submit</md-button>
+                </div>
+            </form>
         </div>
+        <div flex="10" flex-offset="5">
+            <h5 class="white-text">Tutors</h5>
+            <ul>
+                <li><a class="white-text" href="#">Home</a></li>
+                <li><a class="white-text" href="#">Blog</a></li>
+            </ul>
+        </div>
+        <div flex="10" flex-offset="3">
+            <h5 class="white-text">Social</h5>
+            <ul>
+                <li>
+                    <a class="white-text" href="https://www.behance.net/">
+                        <i class="small fa fa-twitter-square white-text"></i> Twitter
+                    </a>
+                </li>
+                <li>
+                    <a class="white-text" href="https://www.facebook.com/">
+                        <i class="small fa fa-facebook-square white-text"></i> Facebook
+                    </a>
+                </li>
+                <li>
+                    <a class="white-text" href="https://github.com/">
+                        <i class="small fa fa-github-square white-text"></i> Github
+                    </a>
+                </li>
+                <li>
+                    <a class="white-text" href="https://www.linkedin.com/in/">
+                        <i class="small fa fa-linkedin-square white-text"></i> Linkedin
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <span flex></span>
+    </div>
     <div class="footer-copyright darker-gray">
         <div class="container">
             All right reserved for Tutoarina 2015

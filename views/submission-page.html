@@ -1,12 +1,12 @@
 
 <div layout="row" layout-wrap>
     <div flex="70" layout="column">
-            <md-button class="md-warn md-raised md-hue-2" >{{postStatus}}</md-button>       
-            <md-whiteframe md-whiteframe="3" layout-padding layout-margin flex>
+        <md-button class="md-warn md-raised md-hue-2" >{{postStatus}}</md-button>       
+        <md-whiteframe md-whiteframe="3" layout-padding layout-margin flex>
             <div layout="row" layout-align="center center">
                 <h1 class="md-headline">{{projectTitle}}</h1>
                 <span flex=""></span>
-                <span><md-button class="md-raised" ui-sref= "jobPost({jobID: jobID})">Read full post</md-button></span>
+                <span><md-button class="md-raised" ui-sref= "dashboard.jobPost({jobID: jobID})">Read full post</md-button></span>
             </div>
             <div ng-cloak>
                 <md-tabs md-dynamic-height md-border-bottom>
@@ -18,157 +18,85 @@
                                         <md-subheader>Messages</md-subheader>
                                         <md-list layout-padding>
                                             <md-list-item class="md-3-line chat">
-                                                    <img ng-src="../images/abdul_img.png" class="md-avatar" alt="">
-                                                    <div class="md-list-item-text">
-                                                        <p class="md-body-2">
-                                                            This is my message to you
-                                                        </p>
-                                                        <p>
-                                                            this is double content
-                                                        </p>
-                                                        <p class="md-body-2">
-                                                            this is a long content that will wrap around the dive and go to the next line of the chat div this is a long content that will wrap around the dive and go to the next line of the chat div
-                                                        </p>
-                                                        <p>
-                                                            test attachments
-                                                        </p>
-                                                        <p>
-                                                        <div class="attachments-list">
-                                                            <div class="attachment-item" layout-align="center center">
-                                                                <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
-                                                                    <md-icon class="material-icons">file_download</md-icon>
-                                                                </md-button>
-                                                                <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                                                                    <i class="fa fa-file-pdf-o"></i>
-                                                                </div>
-                                                                <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
-                                                            </div>
-                                                            <div class="attachment-item" layout-align="center center">
-                                                                <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
-                                                                    <md-icon class="material-icons">file_download</md-icon>
-                                                                </md-button>
-                                                                <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                                                                    <i class="fa fa-file-powerpoint-o"></i>
-                                                                </div>
-                                                                <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
-                                                            </div>
-                                                            <div class="attachment-item" layout-align="center center">
-                                                                <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
-                                                                    <md-icon class="material-icons">file_download</md-icon>
-                                                                </md-button>
-                                                                <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                                                                    <i class="fa fa-file-word-o"></i>
-                                                                </div>
-                                                                <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
-                                                            </div>
-                                                        </div>
-                                                        </p>
-                                                    </div>
-                                            </md-list-item>
-                                            <md-list-item class="md-3-line chat" ng-repeat="message in messagesArray | orderBy:'-messageTime'" >
-                                            <!-- work on these to assign images to users correctly -->
-                                                <!-- <img ng-src="{'../images/angular-avatars/avatar-03.png': isTutor, '../images/angular-avatars/avatar-05.png': isStudent}" ng-show="currentUserImage"  class="md-avatar" alt=""> -->
-                                                <img ng-src="../images/angular-avatars/avatar-05.png" ng-show="message.authorType == 'Tutor' "class="md-avatar" alt="">
-                                                <img ng-src="../images/angular-avatars/avatar-03.png" ng-show="message.authorType == 'Student'"class="md-avatar" alt="">
-                                                <div ng-class="{'md-list-item-text personal-chat': message.authorName == currentUserName, 'md-list-item-text chat': message.authorName != currentUserName} " >
-                                                    <p>
-                                                        {{message.messageContent}}
+                                                <img ng-src="../images/abdul_img.png" class="md-avatar" alt="">
+                                                <div class="md-list-item-text">
+                                                    <p class="md-body-2">
+                                                        This is my message to you
                                                     </p>
-                                                    <div class="attachments-list" ng-repeat="attachmentGroup in message.attachments">
-                                                        <div class="attachment-item" ng-repeat="attachment in attachmentGroup.imagesArray" layout-align="center center">
-                                                            <md-button download="{{ attachment.imageName }}" ng-href="{{ attachment.imageUrl }}" class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
+                                                    <p>
+                                                        this is double content
+                                                    </p>
+                                                    <p class="md-body-2">
+                                                        this is a long content that will wrap around the dive and go to the next line of the chat div this is a long content that will wrap around the dive and go to the next line of the chat div
+                                                    </p>
+                                                    <p>
+                                                        test attachments
+                                                    </p>
+                                                    <p>
+                                                    <div class="attachments-list">
+                                                        <div class="attachment-item" layout-align="center center">
+                                                            <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
                                                                 <md-icon class="material-icons">file_download</md-icon>
                                                             </md-button>
-
                                                             <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                                                                <i ng-class="{'fa fa-file-pdf-o': attachment.imageType == 'application/pdf', 'fa fa-file-image-o': attachment.imageType == 'image/png', 'fa fa-file-photo-o': attachment.imageType == 'image/jpeg', 'fa fa-file-powerpoint-o': attachment.imageType == 'image/powerpoint' , 'fa fa-file-text-o': attachment.imageType == 'image/text' , 'fa fa-file-zip-o': attachment.imageType == 'image/zip' , 'fa fa-file-excel-o': attachment.imageType == 'image/excel' , 'fa fa-file-file-o': attachment.imageType == 'image/file' , 'fa fa-file-word-o': attachment.imageType == 'image/word', 'fa fa-file-code-o': attachment.imageType == 'image/code', 'fa fa-file-movie-o': attachment.imageType == 'image/movie', 'fa fa-file-sound-o': attachment.imageType == 'image/sound', 'fa fa-file-archive-o': attachment.imageType == 'image/archive'} "></i>
+                                                                <i class="fa fa-file-pdf-o"></i>
                                                             </div>
-                                                            <div class="attachment-item-footer">
-                                                                <div><span>{{attachment.imageName}}</span></div>
+                                                            <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
+                                                        </div>
+                                                        <div class="attachment-item" layout-align="center center">
+                                                            <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
+                                                                <md-icon class="material-icons">file_download</md-icon>
+                                                            </md-button>
+                                                            <div class="attachment-item-content" flex layout="column" layout-align="center center">
+                                                                <i class="fa fa-file-powerpoint-o"></i>
                                                             </div>
+                                                            <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
+                                                        </div>
+                                                        <div class="attachment-item" layout-align="center center">
+                                                            <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
+                                                                <md-icon class="material-icons">file_download</md-icon>
+                                                            </md-button>
+                                                            <div class="attachment-item-content" flex layout="column" layout-align="center center">
+                                                                <i class="fa fa-file-word-o"></i>
+                                                            </div>
+                                                            <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
                                                         </div>
                                                     </div>
+                                                    </p>
                                                 </div>
                                             </md-list-item>
-                                        </md-list>
-                                    </section>
-<!--                                 <section>
-                                    <md-subheader class="md-primary">Unread Messages</md-subheader>
-                                    <md-list layout="column" layout-padding>
-                                        <md-list-item class="md-3-line chat">
-                                            <img ng-src="../images/abdul_img.png" class="md-avatar" alt="">
-                                            <div class="md-list-item-text ">
-                                                <p class="md-body-2">
-                                                    This is my message to you
-                                                </p>
+                                        <md-list-item class="md-3-line chat" ng-repeat="message in messagesArray | orderBy:'-messageTime'" >
+                                            <!-- work on these to assign images to users correctly -->
+                                            <!-- <img ng-src="{'../images/angular-avatars/avatar-03.png': isTutor, '../images/angular-avatars/avatar-05.png': isStudent}" ng-show="currentUserImage"  class="md-avatar" alt=""> -->
+                                            <img ng-src="../images/angular-avatars/avatar-05.png" ng-show="message.authorType == 'Tutor' "class="md-avatar" alt="">
+                                            <img ng-src="../images/angular-avatars/avatar-03.png" ng-show="message.authorType == 'Student'"class="md-avatar" alt="">
+                                            <div ng-class="{'md-list-item-text personal-chat': message.authorName == currentUserName, 'md-list-item-text chat': message.authorName != currentUserName} " >
                                                 <p>
-                                                    this is double content
+                                                    {{message.messageContent}}
                                                 </p>
-                                                <p class="md-body-2">
-                                                    this is a long content that will wrap around the dive and go to the next line of the chat div this is a long content that will wrap around the dive and go to the next line of the chat div
-                                                </p>
-                                                <p>
-                                                    test attachments
-                                                </p>
-                                                <p>
-                                                <div class="attachments-list">
-                                                    <div class="attachment-item" layout-align="center center">
-                                                        <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
+                                                <div class="attachments-list" ng-repeat="attachmentGroup in message.attachments">
+                                                    <div class="attachment-item" ng-repeat="attachment in attachmentGroup.imagesArray" layout-align="center center">
+                                                        <md-button download="{{ attachment.imageName }}" ng-href="{{ attachment.imageUrl }}" class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
                                                             <md-icon class="material-icons">file_download</md-icon>
                                                         </md-button>
+
                                                         <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                                                            <i class="fa fa-file-pdf-o"></i>
+                                                            <i ng-class="{'fa fa-file-pdf-o': attachment.imageType == 'application/pdf', 'fa fa-file-image-o': attachment.imageType == 'image/png', 'fa fa-file-photo-o': attachment.imageType == 'image/jpeg', 'fa fa-file-powerpoint-o': attachment.imageType == 'image/powerpoint' , 'fa fa-file-text-o': attachment.imageType == 'image/text' , 'fa fa-file-zip-o': attachment.imageType == 'image/zip' , 'fa fa-file-excel-o': attachment.imageType == 'image/excel' , 'fa fa-file-file-o': attachment.imageType == 'image/file' , 'fa fa-file-word-o': attachment.imageType == 'image/word', 'fa fa-file-code-o': attachment.imageType == 'image/code', 'fa fa-file-movie-o': attachment.imageType == 'image/movie', 'fa fa-file-sound-o': attachment.imageType == 'image/sound', 'fa fa-file-archive-o': attachment.imageType == 'image/archive'} "></i>
                                                         </div>
-                                                        <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
-                                                    </div>
-                                                    <div class="attachment-item" layout-align="center center">
-                                                        <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
-                                                            <md-icon class="material-icons">file_download</md-icon>
-                                                        </md-button>
-                                                        <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                                                            <i class="fa fa-file-powerpoint-o"></i>
+                                                        <div class="attachment-item-footer">
+                                                            <div><span>{{attachment.imageName}}</span></div>
                                                         </div>
-                                                        <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
-                                                    </div>
-                                                    <div class="attachment-item" layout-align="center center">
-                                                        <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
-                                                            <md-icon class="material-icons">file_download</md-icon>
-                                                        </md-button>
-                                                        <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                                                            <i class="fa fa-file-word-o"></i>
-                                                        </div>
-                                                        <div class="attachment-item-footer"><div><span>This is the name of the file</span></div></div>
                                                     </div>
                                                 </div>
-                                                </p>
                                             </div>
                                         </md-list-item>
-                                    <md-list-item class="md-3-line chat" ng-repeat="reply in messagesArray | orderBy:'-messageTime'" ng-show="reply.authorName != currentUserName">
-                                        <img ng-src="../images/abdul_img.png" class="md-avatar" alt="">
-                                        <div class="md-list-item-text">
-                                            <p>
-                                                {{reply.messageContent}}
-                                            </p>
-                                        </div>
-                                    </md-list-item>
-                                    <md-list-item class="md-3-line chat">
-                                        <img ng-src="../images/abdul_img.png" class="md-avatar" alt="">
-                                        <div class="md-list-item-text personal-chat">
-                                            <p>
-                                                I can help you with that for sure
-                                            </p>
-                                            <p>
-                                                Just send me the report and i will send you my feedback
-                                            </p>
-                                        </div>
-                                    </md-list-item>
-                                    </md-list>
-                                </section> -->
+                                        </md-list>
+                                    </section>
                             </md-content>
-                        </md-content>
-                    </div>
-                <div class="send-chat-container">
-                    <div layout="row" layout-align="center center">
+                            </md-content>
+                        </div>
+                    <div class="send-chat-container">
+                        <div layout="row" layout-align="center center">
 
                             <form action="https://tutoring-images.s3.amazonaws.com/" method="post" enctype="multipart/form-data"  name="form">
                                 <div flex layout="column">
@@ -187,115 +115,20 @@
 
                                     <!-- multiple files -->
                                     <input id="file-upload" multiple type="file" class="ng-hide" ngf-select ng-model="files" name="files" ngf-pattern="'.pdf,.jpg,video/*,!.jog'" ngf-accept="'.pdf,.jpg,.png, video/*,!.jog'" ngf-max-size="20MB" ngf-min-height="100"  ngf-resize="{width: 100, height: 100}" ngf-select="upload($files)" />
-                               </div>
-                        </form>
-                        <md-input-container class="md-block dense-form" flex-gt-sm>
-                            <label>Text</label>
-                            <input required type="text" ng-model="message" name="messageContainer">
-                            <div ng-messages="messageContainer.$error" role="alert">
-                              <div ng-message-exp="['required']">
-                                Please type in something with your message.
-                              </div>
-                            </div>
-                        </md-input-container> 
-                        <md-button aria-label="Send" class="md-icon-button" md-no-focus-style><md-icon class="material-icons about-icon" ng-click="submit(true)">send</md-icon></md-button>
-                    </div>
-
-                    <!-- (Note) Show on attachment added -->
-                    <div class="attachments-list" ng-if="files">
-                        <div class="attachment-item" layout-align="center center" ng-repeat="attachment in files" >
-                            <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="delete" ng-click="remove(attachment)">
-                                <md-icon class="material-icons">delete</md-icon>
-                            </md-button>
-
-                            <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                                <i ng-class="{'fa fa-file-pdf-o': attachment.type == 'application/pdf', 'fa fa-file-image-o': attachment.type == 'image/png', 'fa fa-file-photo-o': attachment.type == 'image/jpeg', 'fa fa-file-powerpoint-o': attachment.type == 'image/powerpoint' , 'fa fa-file-text-o': attachment.type == 'image/text' , 'fa fa-file-zip-o': attachment.type == 'image/zip' , 'fa fa-file-excel-o': attachment.type == 'image/excel' , 'fa fa-file-file-o': attachment.type == 'image/file' , 'fa fa-file-word-o': attachment.type == 'image/word', 'fa fa-file-code-o': attachment.type == 'image/code', 'fa fa-file-movie-o': attachment.type == 'image/movie', 'fa fa-file-sound-o': attachment.type == 'image/sound', 'fa fa-file-archive-o': attachment.type == 'image/archive'} "></i>
-                            </div>
-                            <div class="attachment-item-footer"><div><span>{{attachment.name}}</span></div></div>
-                        </div>
-                    </div>
-                </div>
-                <!--        </div>-->
-                </md-tab>
-            <md-tab label="Submission">
-                <div class="md-padding">
-<!--                <div class="list-of-work">-->
-                    <div class="md-whiteframe-1dp" layout-padding layout-margin >
-                        <h1  class="md-title">Final work submission: " {{submittedTitle}} " </h1>
-                        <!--                            <h4></h4>-->
-                        <p ng-show="true" class="md-body-1">{{submittedComment}}</p>
-                        <!-- (note) show only when edit -->
-                        <md-input-container ng-show="false" style="margin-top:20px;" class="md-block dense-form">
-                            <label>comment</label>
-                            <textarea rows="5">verdsfsdf sdl;fs fdsla;fdsf l;asdfk ;lsf sd fl;sdf sd;lf sadf sdfl sdflds;a'lksdfadsl; fs;fl'a sd</textarea>
-                        </md-input-container>
-                        <div class="attachments" >
-                            <div class="attachments-list">
-                                <h1  class="md-title">Attachments</h1>
-                                <div class="attachment-item" layout-align="center center" ng-repeat="document in submissionAttachments">
-                                    <md-button download="{{ document.imageName }}" ng-href="{{ document.imageUrl }}" class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
-                                        <md-icon class="material-icons">file_download</md-icon>
-                                    </md-button>
-                                    <!-- show for delete -->
-<!--                                     <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="delete" ng-click="remove(attachment)">
-                                        <md-icon class="material-icons">delete</md-icon>
-                                    </md-button> -->
-
-                                    <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                                        <i ng-class="{'fa fa-file-pdf-o': document.imageType == 'application/pdf', 'fa fa-file-image-o': document.imageType == 'image/png', 'fa fa-file-photo-o': document.imageType == 'image/jpeg', 'fa fa-file-powerpoint-o': document.imageType == 'image/powerpoint' , 'fa fa-file-text-o': document.imageType == 'image/text' , 'fa fa-file-zip-o': document.imageType == 'image/zip' , 'fa fa-file-excel-o': document.imageType == 'image/excel' , 'fa fa-file-file-o': document.imageType == 'image/file' , 'fa fa-file-word-o': document.imageType == 'image/word', 'fa fa-file-code-o': document.imageType == 'image/code', 'fa fa-file-movie-o': document.imageType == 'image/movie', 'fa fa-file-sound-o': document.imageType == 'image/sound', 'fa fa-file-archive-o': document.imageType == 'image/archive'} "></i>
-                                    </div>
-                                    <div class="attachment-item-footer"><div><span>{{document.imageName}}</span></div></div>
                                 </div>
-                            </div>
-                        </div>
-                        <!-- (note) show only when edit -->
-                        <div layout="row" layout-align="center center" ng-show="false">
+                            </form>
                             <md-input-container class="md-block dense-form" flex-gt-sm>
-                                <!--                        <label>Add Attachments</label>-->
-                                <md-button aria-label="attach" md-no-focus-style>
-                                    <md-icon class="material-icons about-icon">attach_file</md-icon>
-                                    Attach file
-                                </md-button>
-                                <span>no files attached</span>
-                            </md-input-container>
-                            <span flex></span>
-                            <md-button class="md-raised md-primary">submit</md-button>
+                                <label>Text</label>
+                                <input required type="text" ng-model="message" name="messageContainer">
+                                <div ng-messages="messageContainer.$error" role="alert">
+                                    <div ng-message-exp="['required']">
+                                        Please type in something with your message.
+                                    </div>
+                                </div>
+                            </md-input-container> 
+                            <md-button aria-label="Send" class="md-icon-button" md-no-focus-style><md-icon class="material-icons about-icon" ng-click="submit(true)">send</md-icon></md-button>
                         </div>
 
-                        <span ng-if="acceptedOrNot">Thank you, you have already accepted the job.</span>
-                        <div layout="row" layout-align="center center" ng-show="true">
-                            <span flex></span>
-                            <!-- (note) show only for the student -->
-                            <div ng-show="currentUserType == 'Student'">
-                                <md-button class="md-warn md-raised" ng-if="acceptedOrNot == false" ng-click="rejectSubmission()">Reject</md-button>
-                                <md-button class="md-primary md-raised" ng-if="acceptedOrNot == false" ng-click="acceptSubmission()">Accept</md-button>                               <md-button class="md-primary md-raised" ng-if="acceptedOrNot" ng-click="acceptSubmission()">Dispute</md-button>
-
-                                <!-- (note) show dialog when accept or reject: -->
-                                <!--                              1- accept = accpeting this final submssion will release the paymane, are you sure you want to accept? button: "accept and release payment" or "cancel"
-                                    2- rejcet: are you sure you want to reject the submissio? textarea: "write the reason". button: "Reject" or "Cancel" -->
-                            </div>
-                            <!-- (note) show only for tutor when he submits the job  -->
-                            <md-button class="md-primary md-raised" ng-show="currentUserType == 'Tutor' && submittedOrNot" ng-click="edit()">Edit</md-button>
-                            <!-- <md-button class="md-primary md-raised" ng-show="currentUserType == 'Tutor' && !submittedOrNot" ng-click="edit()">Cancel</md-button> -->
-                        </div>
-                    </div>
-                    
-<!--                </div>-->
-                <!-- (Note) hide div when work is already submited -->
-                <div ng-show="currentUserType == 'Tutor' && !submittedOrNot">
-                    <h1 class="md-title">Submit final work</h1>
-                    <p class="md-body-1">Here you will submit the final work to the client so he can accepte it and you will get your money</p>
-                    <form name="userForm">
-                        
-                        <md-input-container class="md-block dense-form" flex-gt-sm >
-                            <label>title</label>
-                            <input required type="text" ng-model="submissionTitle">
-                        </md-input-container>
-                            
-                        <md-input-container class="md-block dense-form">
-                            <label>comment</label>
-                            <textarea rows="5" ng-model="submissionComment"></textarea>
-                        </md-input-container>
                         <!-- (Note) Show on attachment added -->
                         <div class="attachments-list" ng-if="files">
                             <div class="attachment-item" layout-align="center center" ng-repeat="attachment in files" >
@@ -309,68 +142,151 @@
                                 <div class="attachment-item-footer"><div><span>{{attachment.name}}</span></div></div>
                             </div>
                         </div>
-                    </form>
-                        <div layout="row" layout-align="center center">
-                            <form action="https://tutoring-images.s3.amazonaws.com/" method="post" enctype="multipart/form-data"  name="form">
-                                <div flex layout="column">
+                    </div>
+                    <!--        </div>-->
+                    </md-tab>
+                <md-tab label="Submission">
+                    <div class="md-padding">
+                        <div class="md-whiteframe-1dp" layout-padding layout-margin >
+                            <h1  class="md-title">Final work submission: " {{submittedTitle}} " </h1>
+                            <p ng-show="true" class="md-body-1">{{submittedComment}}</p>
+                            <!-- (note) show only when edit -->
+                            <md-input-container ng-show="false" style="margin-top:20px;" class="md-block dense-form">
+                                <label>comment</label>
+                                <textarea rows="5">verdsfsdf sdl;fs fdsla;fdsf l;asdfk ;lsf sd fl;sdf sd;lf sadf sdfl sdflds;a'lksdfadsl; fs;fl'a sd</textarea>
+                            </md-input-container>
+                            <div class="attachments" >
+                                <div class="attachments-list">
+                                    <h1  class="md-title">Attachments</h1>
+                                    <div class="attachment-item" layout-align="center center" ng-repeat="document in submissionAttachments">
+                                        <md-button download="{{ document.imageName }}" ng-href="{{ document.imageUrl }}" class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="download">
+                                            <md-icon class="material-icons">file_download</md-icon>
+                                        </md-button>
+                                        <div class="attachment-item-content" flex layout="column" layout-align="center center">
+                                            <i ng-class="{'fa fa-file-pdf-o': document.imageType == 'application/pdf', 'fa fa-file-image-o': document.imageType == 'image/png', 'fa fa-file-photo-o': document.imageType == 'image/jpeg', 'fa fa-file-powerpoint-o': document.imageType == 'image/powerpoint' , 'fa fa-file-text-o': document.imageType == 'image/text' , 'fa fa-file-zip-o': document.imageType == 'image/zip' , 'fa fa-file-excel-o': document.imageType == 'image/excel' , 'fa fa-file-file-o': document.imageType == 'image/file' , 'fa fa-file-word-o': document.imageType == 'image/word', 'fa fa-file-code-o': document.imageType == 'image/code', 'fa fa-file-movie-o': document.imageType == 'image/movie', 'fa fa-file-sound-o': document.imageType == 'image/sound', 'fa fa-file-archive-o': document.imageType == 'image/archive'} "></i>
+                                        </div>
+                                        <div class="attachment-item-footer"><div><span>{{document.imageName}}</span></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div layout="row" layout-align="center center" ng-show="false">
+                                <md-input-container class="md-block dense-form" flex-gt-sm>
+                                    <md-button aria-label="attach" md-no-focus-style>
+                                        <md-icon class="material-icons about-icon">attach_file</md-icon>
+                                        Attach file
+                                    </md-button>
+                                    <span>no files attached</span>
+                                </md-input-container>
+                                <span flex></span>
+                                <md-button class="md-raised md-primary">submit</md-button>
+                            </div>
 
-                                    <input type="hidden" name="key" value="uploads/${filename}" />
-                                    <input type="hidden" name="acl" value="public-read" />
-                                    <input type="hidden" name="success_action_redirect" value="">
-                                    <input type="hidden" name="content-type" value="" />
-                                    <input type="hidden" name="AWSAccessKeyId" value="AKIAIVXWPHX7GO3MKQ4Q" />
-                                    <input type="hidden" name="policy" value="ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogInR1dG9yaW5nLWltYWdlcyJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIka2V5IiwgInVwbG9hZHMvJHtmaWxlbmFtZX0iXSwKICAgIHsiYWNsIjogInB1YmxpYyJ9LAogICAgeyJzdWNjZXNzX2FjdGlvbl9yZWRpcmVjdCI6ICIifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJENvbnRlbnQtVHlwZSIsICIiXSwKICAgIFsiY29udGVudC1sZW5ndGgtcmFuZ2UiLCAwLCA1MjQyODgwMDBdCiAgXQp9" />
-                                    <input type="hidden" name="signature" value="rxU33vRiXFsIEUFPB8obDa7iolc=" />
+                            <span ng-if="acceptedOrNot">Thank you, you have already accepted the job.</span>
+                            <div layout="row" layout-align="center center" ng-show="true">
+                                <span flex></span>
+                                <!-- (note) show only for the student -->
+                                <div ng-show="currentUserType == 'Student'">
+                                    <md-button class="md-warn md-raised" ng-if="acceptedOrNot == false" ng-click="rejectSubmission()">Reject</md-button>
+                                    <md-button class="md-primary md-raised" ng-if="acceptedOrNot == false" ng-click="acceptSubmission()">Accept</md-button>                               <md-button class="md-primary md-raised" ng-if="acceptedOrNot" ng-click="acceptSubmission()">Dispute</md-button>
 
-                                    <label for="file-upload" class="md-button md-raised" >Upload Files</label>
-                                    <!-- multiple files -->
-                                    <input id="file-upload" multiple type="file" class="ng-hide" ngf-select ng-model="files" name="files" ngf-pattern="'.pdf,.jpg,video/*,!.jog'" ngf-accept="'.pdf,.jpg,.png, video/*,!.jog'" ngf-max-size="20MB" ngf-min-height="100"  ngf-resize="{width: 100, height: 100}" ngf-select="upload($files)" />
-                               </div>
+                                    <!-- (note) show dialog when accept or reject: -->
+                                    <!--                              1- accept = accpeting this final submssion will release the paymane, are you sure you want to accept? button: "accept and release payment" or "cancel"
+2- rejcet: are you sure you want to reject the submissio? textarea: "write the reason". button: "Reject" or "Cancel" -->
+                                </div>
+                                <!-- (note) show only for tutor when he submits the job  -->
+                                <md-button class="md-primary md-raised" ng-show="currentUserType == 'Tutor' && submittedOrNot" ng-click="edit()">Edit</md-button>
+                                <!-- <md-button class="md-primary md-raised" ng-show="currentUserType == 'Tutor' && !submittedOrNot" ng-click="edit()">Cancel</md-button> -->
+                            </div>
+                        </div>
+
+                        <!--                </div>-->
+                        <!-- (Note) hide div when work is already submited -->
+                        <div ng-show="currentUserType == 'Tutor' && !submittedOrNot">
+                            <h1 class="md-title">Submit final work</h1>
+                            <p class="md-body-1">Here you will submit the final work to the client so he can accepte it and you will get your money</p>
+                            <form name="userForm">
+
+                                <md-input-container class="md-block dense-form" flex-gt-sm >
+                                    <label>title</label>
+                                    <input required type="text" ng-model="submissionTitle">
+                                </md-input-container>
+
+                                <md-input-container class="md-block dense-form">
+                                    <label>comment</label>
+                                    <textarea rows="5" ng-model="submissionComment"></textarea>
+                                </md-input-container>
+                                <!-- (Note) Show on attachment added -->
+                                <div class="attachments-list" ng-if="files">
+                                    <div class="attachment-item" layout-align="center center" ng-repeat="attachment in files" >
+                                        <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="delete" ng-click="remove(attachment)">
+                                            <md-icon class="material-icons">delete</md-icon>
+                                        </md-button>
+
+                                        <div class="attachment-item-content" flex layout="column" layout-align="center center">
+                                            <i ng-class="{'fa fa-file-pdf-o': attachment.type == 'application/pdf', 'fa fa-file-image-o': attachment.type == 'image/png', 'fa fa-file-photo-o': attachment.type == 'image/jpeg', 'fa fa-file-powerpoint-o': attachment.type == 'image/powerpoint' , 'fa fa-file-text-o': attachment.type == 'image/text' , 'fa fa-file-zip-o': attachment.type == 'image/zip' , 'fa fa-file-excel-o': attachment.type == 'image/excel' , 'fa fa-file-file-o': attachment.type == 'image/file' , 'fa fa-file-word-o': attachment.type == 'image/word', 'fa fa-file-code-o': attachment.type == 'image/code', 'fa fa-file-movie-o': attachment.type == 'image/movie', 'fa fa-file-sound-o': attachment.type == 'image/sound', 'fa fa-file-archive-o': attachment.type == 'image/archive'} "></i>
+                                        </div>
+                                        <div class="attachment-item-footer"><div><span>{{attachment.name}}</span></div></div>
+                                    </div>
+                                </div>
                             </form>
+                            <div layout="row" layout-align="center center">
+                                <form action="https://tutoring-images.s3.amazonaws.com/" method="post" enctype="multipart/form-data"  name="form">
+                                    <div flex layout="column">
 
-                            <span flex></span>
-                            <md-button class="md-raised md-primary" ng-click="submit(false)">submit</md-button>
+                                        <input type="hidden" name="key" value="uploads/${filename}" />
+                                        <input type="hidden" name="acl" value="public-read" />
+                                        <input type="hidden" name="success_action_redirect" value="">
+                                        <input type="hidden" name="content-type" value="" />
+                                        <input type="hidden" name="AWSAccessKeyId" value="AKIAIVXWPHX7GO3MKQ4Q" />
+                                        <input type="hidden" name="policy" value="ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogInR1dG9yaW5nLWltYWdlcyJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIka2V5IiwgInVwbG9hZHMvJHtmaWxlbmFtZX0iXSwKICAgIHsiYWNsIjogInB1YmxpYyJ9LAogICAgeyJzdWNjZXNzX2FjdGlvbl9yZWRpcmVjdCI6ICIifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJENvbnRlbnQtVHlwZSIsICIiXSwKICAgIFsiY29udGVudC1sZW5ndGgtcmFuZ2UiLCAwLCA1MjQyODgwMDBdCiAgXQp9" />
+                                        <input type="hidden" name="signature" value="rxU33vRiXFsIEUFPB8obDa7iolc=" />
+
+                                        <label for="file-upload" class="md-button md-raised" >Upload Files</label>
+                                        <!-- multiple files -->
+                                        <input id="file-upload" multiple type="file" class="ng-hide" ngf-select ng-model="files" name="files" ngf-pattern="'.pdf,.jpg,video/*,!.jog'" ngf-accept="'.pdf,.jpg,.png, video/*,!.jog'" ngf-max-size="20MB" ngf-min-height="100"  ngf-resize="{width: 100, height: 100}" ngf-select="upload($files)" />
+                                    </div>
+                                </form>
+
+                                <span flex></span>
+                                <md-button class="md-raised md-primary" ng-click="submit(false)">submit</md-button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </md-tab>
-            <md-tab label="Review">
-               <div class="md-padding" ng-show="isStudent">
-                    <h1 class="md-title">Review and Rate the tutor</h1>
-                    <p class="md-body-1">Help us in rating the work of the tutor, this will help us in bringing better tutors, and also in selecting the best tutors for you in future work. </p>
-                    <div>
-                        <label>Rating cratira 1</label>
+                </md-tab>
+                <md-tab label="Review">
+                    <div class="md-padding" ng-show="isStudent">
+                        <h1 class="md-title">Review and Rate the tutor</h1>
+                        <p class="md-body-1">Help us in rating the work of the tutor, this will help us in bringing better tutors, and also in selecting the best tutors for you in future work. </p>
+                        <div>
+                            <label>Rating cratira 1</label>
+                        </div>
+                        <div>
+                            <label>Rating cratira 1</label>
+                        </div>
+                        <div>
+                            <label>Rating cratira 1</label>
+                        </div>
+
+                        <!--                <h1 class="md-subtitle">review</h1>-->
+                        <md-input-container class="md-block dense-form">
+                            <label>Review</label>
+                            <textarea></textarea>
+                        </md-input-container>
+                        <md-button class="md-primary">Send Review</md-button>
                     </div>
-                    <div>
-                        <label>Rating cratira 1</label>
+                    <div ng-show="isTutor">
+                        See Student Review on your submission
                     </div>
-                    <div>
-                        <label>Rating cratira 1</label>
-                    </div>
+                </md-tab>
 
-    <!--                <h1 class="md-subtitle">review</h1>-->
-                    <md-input-container class="md-block dense-form">
-                       <label>Review</label>
-                        <textarea></textarea>
-                    </md-input-container>
-                    <md-button class="md-primary">Send Review</md-button>
-                </div>
-                <div ng-show="isTutor">
-                    See Student Review on your submission
-                </div>
-            </md-tab>
-
-            </md-tabs>
-        </div>
+                </md-tabs>
+            </div>
 
 
-    </md-whiteframe>        
+        </md-whiteframe>        
 </div>
 <div flex="30">
     <md-whiteframe layout-margin md-whiteframe="3" flex layout="column">
-<!--         <md-button class="md-raised md-primary" ng-click="propose(authorID, jobID)">Propose</md-button>
-        <md-button class="md-raised">Bookmark</md-button>
-        <md-divider></md-divider> -->
         <div class="md-title" style="text-align:center">User Details</div>
         <div class="user-info" style="text-align:center">
             <img src="../images/angular-avatars/avatar-03.png" ng-show="!currentUserImage" class="md-avatar profile-image" />

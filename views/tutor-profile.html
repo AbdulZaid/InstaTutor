@@ -1,23 +1,21 @@
 <div layout="column" layout-wrap>
     <div flex>
         <md-whiteframe layout-margin md-whiteframe="3" flex layout="row">
-          <div  layout="column" layout-align="center center" style="padding:40px" ng-cloak>
-            <p>Select a tutor to review his/her profile</p>
-            <div layout="column" layout-align="center center">
-              <md-select placeholder="Assign to user" ng-model="user" md-on-open="loadUsers()" style="min-width: 200px;">
-                <md-option ng-value="user" ng-repeat="user in tutors  | orderBy:'-name':true">{{user.name}}</md-option>
-              </md-select>
-              <p class="md-caption">You have assigned the task to: {{ user ? user.name : 'No one yet' }}</p>
+            <div  layout="column" layout-align="center center" style="padding:40px" ng-cloak>
+                <p>Select a tutor to review his/her profile</p>
+                <div layout="column" layout-align="center center">
+                    <md-select placeholder="Assign to user" ng-model="user" md-on-open="loadUsers()" style="min-width: 200px;">
+                        <md-option ng-value="user" ng-repeat="user in tutors  | orderBy:'-name':true">{{user.name}}</md-option>
+                    </md-select>
+                    <p class="md-caption">You have assigned the task to: {{ user ? user.name : 'No one yet' }}</p>
+                </div>
             </div>
-          </div>
         </md-whiteframe>
         <md-whiteframe layout-margin md-whiteframe="3" flex layout="row">
-            <!--                <md-divider></md-divider>-->
             <div flex="60" layout="row" style="    border-right: solid 2px #EEEEEE; "layout-align="center center">
                 <div flex="30"><img style="height:160px;width:160px;" src="../images/angular-avatars/avatar-02.png" class="md-avatar profile-image tutor-profile-image" /></div>
                 <div flex="70">
                     <h1 class="md-headline" style="margin-bottom: 8px;">{{user.name}}</h1>
-                    <!--                       <div class="md-secondary">online</div>-->
                     <div>
                         <span>
                             <md-icon class="material-icons star-icon-colored">star</md-icon>
@@ -79,85 +77,11 @@
                     </md-list-item>
                 </md-list>
             </div>
-            <!--
-                <div class="md-title" style="text-align:center">User Details</div>
-                <div class="user-info" style="text-align:center">
-                    <img src="../images/abdul_img.png" class="md-avatar profile-image" />
-                    <div class="md-title">Abdul Alzaid</div>
-                    <div>
-                        <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
-                        <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
-                        <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
-                        <span><md-icon class="material-icons star-icon-colored">star</md-icon></span>
-                        <span><md-icon class="material-icons star-icon">star</md-icon></span>
-                    </div>
-                    <div class="md-subhead">16 reviews</div>
-                </div>
-                <md-divider></md-divider>
-                <md-button class="md-raised md-primary" ng-click="propose(authorID, jobID)">Send Tutor a Message</md-button>
-                <md-button class="md-raised">Invite to a Job</md-button>
-                <div class="md-title">About:</div>
-                <md-list>
-                <md-list-item class="md-1-line">
-                <span><md-icon class="material-icons about-icon">work</md-icon></span>
-                  <div class="md-list-item-text">
-                    <p>5 Jobs Purchased</p>
-                  </div>
-                </md-list-item>
-                <md-list-item class="md-1-line">
-                <span><md-icon class="material-icons about-icon">location_on</md-icon></span>
-                  <div class="md-list-item-text">
-                    <p>From Los Angeles</p>
-                  </div>
-                </md-list-item>
-                <md-list-item class="md-1-line">
-                 <span><md-icon class="material-icons about-icon">school</md-icon></span>
-                  <div class="md-list-item-text">
-                    <p>Student at LMU</p>
-                  </div>
-                </md-list-item>
-                <md-list-item class="md-1-line">
-                 <span><md-icon class="material-icons about-icon">book</md-icon></span>
-                  <div class="md-list-item-text">
-                    <p>Studying Software Engineering</p>
-                  </div>
-                </md-list-item>
-                </md-list>
-                <div layout="row">
-                   <span flex=""></span>
-                    <span><md-button class="md-raised"><md-icon class="material-icons" style="color: darkgreen">check</md-icon> Verified</md-button></span>
-                </div>
-                -->
         </md-whiteframe>
     </div>
     <div flex layout="row">
         <div flex layout="column">
             <md-whiteframe md-whiteframe="3" layout-padding layout-margin flex>
-                <!--
-                    <div  class="post-header-info" flex layout="row" layout-align="center center">
-                    <div flex class="post-header-info2">
-                    <md-tooltip md-direction="top">
-                    Due Date
-                    </md-tooltip>
-                    <span><md-icon class="material-icons about-icon">access_time</md-icon></span>
-                    <span>{{dueDate}}</span>
-                    </div>
-                    <div flex class="post-header-info2">
-                    <md-tooltip md-direction="top">
-                    Expected Job Price
-                    </md-tooltip>
-                    <span><md-icon class="material-icons about-icon">payment</md-icon></span>
-                    <span>{{amount}} $</span>
-                    </div>
-                    <div flex class="post-header-info2">
-                    <md-tooltip md-direction="top">
-                    Job Status
-                    </md-tooltip>
-                    <span><md-icon class="material-icons about-icon">mood</md-icon></span>
-                    <span>Open</span>
-                    </div>
-                    </div>
-                    -->
                 <div ng-cloak>
                     <md-content>
                         <md-tabs md-dynamic-height md-border-bottom>
@@ -171,7 +95,6 @@
                                             <md-chip>Hockey</md-chip>
                                             <md-chip>Lacrosse</md-chip>
                                             <md-chip>Baseball</md-chip>
-                                            <!-- Static chips are transcluded -->
                                             <md-chip>Math</md-chip>
                                         </md-chips>
                                     </p>
@@ -190,44 +113,6 @@
                                     </div>
                                 </md-content>
                             </md-tab>
-<!--                             <md-tab label="Ratings">
-                                <md-content class="md-padding">
-                                    <h1 class="md-title">Ratings</h1>
-                                    <div>
-                                        <div layout>
-                                            <div flex="20" layout layout-align="center center">
-                                                <span class="md-body-1">Knowledgeability</span>
-                                            </div>
-                                            <md-slider flex md-discrete ng-model="89" step="1" min="1" max="100" aria-label="rating 1" ng-readonly="true" >
-                                            </md-slider>
-                                        </div>
-                                        <div layout layout-align="center center">
-                                            <div flex="20" layout layout-align="center center">
-                                                <span class="md-body-1">Clarity of Response</span>
-                                            </div>
-                                            <md-slider flex md-discrete="false" ng-model="85" step="1" min="1" max="100" aria-label="rating 1" ng-readonly="true" >
-                                            </md-slider>
-                                                  <span flex="10" >(8.2)</span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div layout>
-                                            <div flex="20" layout layout-align="center center">
-                                                <span class="md-body-1">Politeness</span>
-                                            </div>
-                                            <md-slider flex md-discrete ng-model="95" step="1" min="1" max="100" aria-label="rating 1" ng-readonly="true">
-                                            </md-slider>
-                                        </div>
-                                        <div layout>
-                                            <div flex="20" layout layout-align="center center">
-                                                <span class="md-body-1">Speed to Response</span>
-                                            </div>
-                                            <md-slider flex md-discrete ng-model="86" step="1" min="1" max="100" aria-label="rating 1" ng-readonly="true">
-                                            </md-slider>
-                                        </div>
-                                    </div>
-                                </md-content>
-                            </md-tab> -->
                         </md-tabs>
                     </md-content>
                 </div>

@@ -1,55 +1,67 @@
-<div layout="row" layout-wrap>
-  <div flex="30">
-  </div>
 
-  <div flex="40" class= "md-hue-1 md-whiteframe-z2" style="margin-top: 70px;">
-    <div>
-        <md-toolbar>
-        <div class="md-toolbar-tools">
-          <h2>
-            <span>Sign up</span>
-          </h2>
-          <span flex></span>
-        </div>
-      </md-toolbar>
+<nav class="landingpage-nav top-nav-scrolled">
+    <div class="md-toolbar-tools top-nav" >
+        <h2>
+            <a ui-sref="landing" class="md-accent logo">InstaTutor</a>
+        </h2>
+        <span flex></span>          
+        <div class="nav-item" ui-sref="login"><a>Login</a></div>
+        <div class="nav-item" ui-sref="signup"><a>Signup</a></div>
+        <div class="nav-item" ui-sref="landing"><a>homepage</a></div>
+    </div>
+</nav>
+<div layout="row" layout-wrap>
+    <div flex="30">
     </div>
 
-    <md-content class="loginContainer">
-      <form class="form-horizontal" > 
-
-        <md-input-container class="md-block">
-        <!-- Use floating placeholder instead of label -->
-        <md-icon md-svg-src="" class="handle"></md-icon>
-        <input ng-model="handle" type="text" placeholder="handle (required)" ng-required="true">
-        </md-input-container>
-
-        <md-input-container class="md-block">
-        <!-- Use floating placeholder instead of label -->
-        <md-icon md-svg-src="" class="email"></md-icon>
-        <input ng-model="email" type="email" placeholder="Email (required)" ng-required="true">
-        </md-input-container>
-          
-          <label class="userTypeField">User Type</label>
-          <md-select ng-model="userType" class="userTypeField">
-          <md-optgroup label="User Type">
-              <md-option ng-value="userType.label" ng-repeat="userType in userTypes">{{userType.label}}</md-option>
-          </md-optgroup>
-          </md-select>
-
-        <md-input-container class="md-block">
-        <!-- Use floating placeholder instead of label -->
-        <md-icon md-svg-src="" class="password"></md-icon>
-        <input ng-model="password" type="password" placeholder="Password (required)" ng-required="true">
-        </md-input-container>
-        <div flex-xs flex="50" class="rememberMe">
-          <md-checkbox aria-label="Checkbox">
-            Remember Me
-          </md-checkbox>
+    <div flex="40" class= "md-hue-1 md-whiteframe-z2" style="margin-top: 100px;">
+        <div>
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>
+                        <span>Sign up</span>
+                    </h2>
+                    <span flex></span>
+                </div>
+            </md-toolbar>
         </div>
-        <md-button class="md-raised md-primary loginButton"  ng-click="create()"  type="submit">Sign up</md-button>
-        <span>Already have an account login <a href="#/login"> here</a></span>
-    </form>
-    </md-content>
-  </div>
-  <div flex="30">
-  </div>
+
+        <md-content class="loginContainer">
+            <form class="form-horizontal" > 
+
+                <md-input-container class="md-block">
+                    <!-- Use floating placeholder instead of label -->
+                    <md-icon md-svg-src="" class="handle"></md-icon>
+                    <input ng-model="handle" type="text" placeholder="handle (required)" ng-required="true">
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <!-- Use floating placeholder instead of label -->
+                    <md-icon md-svg-src="" class="email"></md-icon>
+                    <input ng-model="email" type="email" placeholder="Email (required)" ng-required="true">
+                </md-input-container>
+
+                <label class="userTypeField">User Type</label>
+                <md-select ng-model="userType" class="userTypeField">
+                    <md-optgroup label="User Type">
+                        <md-option ng-value="userType.label" ng-repeat="userType in userTypes">{{userType.label}}</md-option>
+                    </md-optgroup>
+                </md-select>
+
+                <md-input-container class="md-block">
+                    <!-- Use floating placeholder instead of label -->
+                    <md-icon md-svg-src="" class="password"></md-icon>
+                    <input ng-model="password" type="password" placeholder="Password (required)" ng-required="true">
+                </md-input-container>
+                <div flex-xs flex="50" class="rememberMe">
+                    <md-checkbox aria-label="Checkbox">
+                        Remember Me
+                    </md-checkbox>
+                </div>
+                <md-button class="md-raised md-primary loginButton"  ng-click="create()"  type="submit">Sign up</md-button>
+                <span>Already have an account login <a href="#/login"> here</a></span>
+            </form>
+        </md-content>
+    </div>
+    <div flex="30">
+    </div>

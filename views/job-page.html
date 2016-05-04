@@ -146,7 +146,7 @@
                             <md-button class="md-warn" ng-disabled="true">Assigned</md-button>
                         </div>
                         <div flex="15" class="proposal-item-action-menu" layout="column"  layout-align="center center" ng-show="proposal.assigned  && authorID == currentUser.$id">
-                            <md-button class="md-warn" ui-sref="submissionPage({jobID: submissionPageID}) ">Message</md-button>
+                            <md-button class="md-warn" ui-sref="dashboard.submissionPage({jobID: submissionPageID}) ">Message</md-button>
                         </div>
                     </div>
                 </md-list-item>
@@ -163,29 +163,6 @@
                     <md-input-container class="md-block dense-form" flex-gt-sm>
                         <label>Time to complete</label>
                         <input required type="number" step="1.0">
-                        <!--(Note) please but a menu of the time estimation insted of just text field suggested list is bellow -->
-                        <!--
-                            <md-select>
-                                <md-option value="less than an hour">
-                                less than an hour
-                                </md-option>
-                                <md-option value="less than 3 hour">
-                                less than 3 hour
-                                </md-option>
-                                <md-option value="less than a day">
-                                less than a day
-                                </md-option>
-                                <md-option value="less than 3 day">
-                                less than 3 day
-                                </md-option>
-                                <md-option value="less than a week">
-                                less than a week
-                                </md-option>
-                                <md-option value="less than 3 weeks">
-                                less than 3 weeks
-                                </md-option>
-                            </md-select>
-                            -->
                     </md-input-container>
                 </div>
                 <md-input-container class="md-block dense-form">
@@ -201,7 +178,7 @@
     </div>
     <div flex="30">
         <md-whiteframe layout-margin md-whiteframe="3" flex layout="column" ng-show="isTutor">
-            <md-button class="md-warn md-raised md-hue-2" ng-show="assignedTo == currentUser.name"  ui-sref="submissionPage({jobID: submissionPageID})">Submit</md-button>
+            <md-button class="md-warn md-raised md-hue-2" ng-show="assignedTo == currentUser.name"  ui-sref="dashboard.submissionPage({jobID: submissionPageID})">Submit</md-button>
             <md-button class="md-raised md-primary" ng-click="proposalFocus()" ng-show="isTutor">Propose</md-button>
             <md-button class="md-raised" ng-show="isTutor" ng-click="bookmark()">Bookmark</md-button>
             <md-divider></md-divider>
@@ -276,7 +253,7 @@
         </md-whiteframe>
         <!-- Student View -->
         <md-whiteframe layout-margin md-whiteframe="3" flex layout="column" ng-show="!isTutor">
-            <md-button class="md-warn md-raised md-hue-2" ng-show="assigned && assignedTo == tutorName && authorID == currentUser.$id"  ui-sref="submissionPage({jobID: submissionPageID})">Go to Submission</md-button>
+            <md-button class="md-warn md-raised md-hue-2" ng-show="assigned && assignedTo == tutorName && authorID == currentUser.$id"  ui-sref="dashboard.submissionPage({jobID: submissionPageID})">Go to Submission</md-button>
             <md-list>
                 <md-list-item class="md-1-line">
                     <span>

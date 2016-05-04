@@ -17,7 +17,7 @@
                 {{job.message}}
               </p>
             </div>
-            <md-button class="md-raised" ng-click="view($event)" ui-sref="jobPost({jobID: job.$id})" ng-disabled="isDisabled">View Job</md-button>
+            <md-button class="md-raised" ng-click="view($event)" ui-sref="dashboard.jobPost({jobID: job.$id})" ng-disabled="isDisabled">View Job</md-button>
             <md-button class="md-raised" ng-click="message(job.$id, job.postID)" ng-disabled="isDisabled" ng-model="isDisabled">Message</md-button>
             <md-button class="md-raised md-primary" ng-click="submit(job.tutorID, job.$id, job.postID, job.tutorName)" ng-disabled="isDisabled"> Submit</md-button>
 

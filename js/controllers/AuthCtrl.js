@@ -15,7 +15,7 @@ myApp.controller('AuthCtrl', ['$scope','Auth', '$log','$rootScope','$state', fun
 		  "password": $scope.password
 		}).then(function(authData) {
 		  console.log("Logged in as:", authData.uid);
-		  $state.go("main")
+		  $state.go("dashboard.main")
 		}).catch(function(error) {
 		  console.error("Authentication failed:", error);
 		});

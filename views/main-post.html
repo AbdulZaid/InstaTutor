@@ -1,19 +1,23 @@
 <div id="mainContainer" class="container">
     <div ng-show= "authData" class="row" id="row1">
         <div layout="row" layout-xs="column" >
-            <md-content flex layout-padding class="autoScroll md-whiteframe-1dp" layout-padding>
+            <md-content flex class="autoScroll md-whiteframe-1dp" layout-padding>
                 <form name="userForm" ng-submit="$event.preventDefault()">
                     <div flex layout="column">
-                        <h1 class="md-title">Ask for a Tutor</h1>
+                        <!--                        <h1 class="md-title">Ask for a Tutor</h1>-->
+                        <md-subheader style="margin:-8px;">
+                            <h1 class="md-subhead">Ask for a Tutor</h1>
+                            <md-divider></md-divider>
+                        </md-subheader>
                         <div layout="row">
                             <md-input-container flex class="dense-form">
-                              <label>Question title?</label>
-                              <input required name ="title" type="text" ng-model="$parent.question" minlength="10" maxlength="70" ng-focus="showQuestion()" ng-blur="showQuestion()">
-                              <div ng-messages="userForm.title.$error" role="alert">
-                              <div ng-message-exp="['required', 'minlength', 'maxlength']">
-                                Please, Your question must be between 10 and 70 characters long and look like a real question.
-                              </div>
-                            </div>
+                                <label>Question title?</label>
+                                <input required name ="title" type="text" ng-model="$parent.question" minlength="10" maxlength="70" ng-focus="showQuestion()" ng-blur="showQuestion()">
+                                <div ng-messages="userForm.title.$error" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength']">
+                                        Please, Your question must be between 10 and 70 characters long and look like a real question.
+                                    </div>
+                                </div>
                             </md-input-container>
 
                             <md-input-container ng-show="questionDisplayed" class="dense-form">
@@ -26,16 +30,16 @@
                                         <md-option ng-value="field.name" ng-repeat="field in fields | filter: {category: 'Engineering' }">{{field.name}}</md-option>
                                     </md-optgroup>
                                 </md-select>
-                             <div ng-messages="userForm.field.$error" role="alert">
-                              <div ng-message-exp="['required']">
-                                Please choose the field where you need help in.
-                              </div>
-                            </div>
-                          </md-input-container>
+                                <div ng-messages="userForm.field.$error" role="alert">
+                                    <div ng-message-exp="['required']">
+                                        Please choose the field where you need help in.
+                                    </div>
+                                </div>
+                            </md-input-container>
                         </div>
                         <md-input-container ng-show="questionDisplayed"  class="md-block  md-whiteframe-1z dense-form" >
-                          <label>What are the details?</label>
-                          <textarea style= "max-height: 25vh; overflow-y: auto; scroll-glue" ng-model="$parent.textModel"  minlength= "10" maxlength= "1500" md-maxlength="1500" rows="8" md-select-on-focus required name ="textArea"></textarea>
+                            <label>What are the details?</label>
+                            <textarea style= "max-height: 25vh; overflow-y: auto; scroll-glue" ng-model="$parent.textModel"  minlength= "10" maxlength= "1500" md-maxlength="1500" rows="8" md-select-on-focus required name ="textArea"></textarea>
                             <div ng-messages="userForm.textArea.$error" role="alert">
                                 <div ng-message-exp="['required', 'minlength', 'maxlength']">
                                     Your help details must be between 10 and 1500 characters long to help tutors understand you better!.
@@ -44,88 +48,88 @@
                         </md-input-container>
                     </div>
 
-<!--                     <form name="userForm" ng-submit="$event.preventDefault()">
- -->                    <div layout="row" layout-align="center center" ng-show="questionDisplayed">
-                           <div flex class="post-pay">
-                           <label>Willing to pay:</label>
-                            <md-input-container class="dense-form">
-                                <label>$</label>
-                                <input ng-model="moneyAmount" class="dense-form" type="number" step="1.0" required name ="amount">
+                    <!--                     <form name="userForm" ng-submit="$event.preventDefault()">
+-->                    <div layout="row" layout-align="center center" ng-show="questionDisplayed">
+                    <div flex class="post-pay">
+                        <label>Willing to pay:</label>
+                        <md-input-container class="dense-form">
+                            <label>$</label>
+                            <input ng-model="moneyAmount" class="dense-form" type="number" step="1.0" required name ="amount">
                             <div ng-messages="userForm.amount.$error" role="alert">
                                 <div ng-message-exp="['required']">
                                     Please enter an amount you're willing to pay for tutors to help you.
                                 </div>
                             </div>
-                            </md-input-container>
-                            </div>
-                            <div flex class="post-time">
-                                 <label>Expected due date:</label>
-                                  <md-datepicker required name="dateField" ng-model="dueDate" md-placeholder="Enter date" md-min-date="minDate" required ></md-datepicker>
+                        </md-input-container>
+                    </div>
+                    <div flex class="post-time">
+                        <label>Expected due date:</label>
+                        <md-datepicker required name="dateField" ng-model="dueDate" md-placeholder="Enter date" md-min-date="minDate" required ></md-datepicker>
 
-                                  <div class="validation-messages" ng-messages="userForm.dateField.$error" role="alert">
-                                    <div ng-message="valid">The entered value is not a date!</div>
-                                    <div ng-message="required">This date is required!</div>
-                                    <div ng-message="mindate">Date is too early!</div>
-                                    <div ng-message="maxdate">Date is too late!</div>
-                                    <div ng-message="filtered">Only weekends are allowed!</div>
-                                  </div>
-                            <!--     <ng-md-icon icon="attach_file" style="fill: grey" size="35" input="file" ng-click=""></ng-md-icon>  -->
-                            </div>
+                        <div class="validation-messages" ng-messages="userForm.dateField.$error" role="alert">
+                            <div ng-message="valid">The entered value is not a date!</div>
+                            <div ng-message="required">This date is required!</div>
+                            <div ng-message="mindate">Date is too early!</div>
+                            <div ng-message="maxdate">Date is too late!</div>
+                            <div ng-message="filtered">Only weekends are allowed!</div>
                         </div>
+                        <!--     <ng-md-icon icon="attach_file" style="fill: grey" size="35" input="file" ng-click=""></ng-md-icon>  -->
+                    </div>
+                    </div>
                     <div flex layout="column">
                         <md-chips class="dense-form" ng-show="questionDisplayed" 
-                            ng-model="tags"
-                            readonly="readonly"
-                            placeholder="Enter tags "
-                            delete-button-label="Remove Tag"
-                            delete-hint="Press delete to remove tag"
-                            secondary-placeholder="+Tag"></md-chips>
+                                  ng-model="tags"
+                                  readonly="readonly"
+                                  placeholder="Enter tags "
+                                  delete-button-label="Remove Tag"
+                                  delete-hint="Press delete to remove tag"
+                                  secondary-placeholder="+Tag"></md-chips>
                     </div>
                 </form>
 
-                        <form action="https://tutoring-images.s3.amazonaws.com/" method="post" enctype="multipart/form-data"  name="form">
-                            <div flex layout="column">
-
-                                <input type="hidden" name="key" value="uploads/${filename}" />
-                                <input type="hidden" name="acl" value="public-read" />
-                                <input type="hidden" name="success_action_redirect" value="">
-                                <input type="hidden" name="content-type" value="" />
-                                <input type="hidden" name="AWSAccessKeyId" value="AKIAIVXWPHX7GO3MKQ4Q" />
-                                <input type="hidden" name="policy" value="ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogInR1dG9yaW5nLWltYWdlcyJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIka2V5IiwgInVwbG9hZHMvJHtmaWxlbmFtZX0iXSwKICAgIHsiYWNsIjogInB1YmxpYyJ9LAogICAgeyJzdWNjZXNzX2FjdGlvbl9yZWRpcmVjdCI6ICIifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJENvbnRlbnQtVHlwZSIsICIiXSwKICAgIFsiY29udGVudC1sZW5ndGgtcmFuZ2UiLCAwLCA1MjQyODgwMDBdCiAgXQp9" />
-                                <input type="hidden" name="signature" value="rxU33vRiXFsIEUFPB8obDa7iolc=" />
-
-                                <!-- <input type="file" ngf-select  ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" id="file-upload" multiple ngf-max-size="20MB" ngf-min-height="100"  ngf-resize="{width: 100, height: 100}" /> -->
-                                <label ng-show="questionDisplayed" for="file-upload" class="md-button md-raised" >Upload Files</label>
-
-                                <!-- Single File -->
-                                <!-- <input type="file" id="file-upload" class="ng-hide" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"  ngf-resize="{width: 100, height: 100}" /> -->
-                                <!-- <img ngf-thumbnail="file || ''">  -->
-
-                                <!-- multiple files -->
-                                <input  id="file-upload" multiple type="file" class="ng-hide" ngf-select ng-model="files" name="files" ngf-pattern="'.pdf,.jpg,video/*,!.jog'" ngf-accept="'.pdf,.jpg,.png, video/*,!.jog'" ngf-max-size="20MB" ngf-min-height="100"   ngf-select="upload($files)" />
-                                <div class="attachments-list" ng-if="files">
-                                    <div class="attachment-item" layout-align="center center" ng-repeat="attachment in files" >
-                                        <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="delete" ng-click="remove(attachment)">
-                                            <md-icon class="material-icons">delete</md-icon>
-                                        </md-button>
-
-                                        <div class="attachment-item-content" flex layout="column" layout-align="center center">
-                                            <i ng-class="{'fa fa-file-pdf-o': attachment.type == 'application/pdf', 'fa fa-file-image-o': attachment.type == 'image/png', 'fa fa-file-photo-o': attachment.type == 'image/jpeg', 'fa fa-file-powerpoint-o': attachment.type == 'image/powerpoint' , 'fa fa-file-text-o': attachment.type == 'image/text' , 'fa fa-file-zip-o': attachment.type == 'image/zip' , 'fa fa-file-excel-o': attachment.type == 'image/excel' , 'fa fa-file-file-o': attachment.type == 'image/file' , 'fa fa-file-word-o': attachment.type == 'image/word', 'fa fa-file-code-o': attachment.type == 'image/code', 'fa fa-file-movie-o': attachment.type == 'image/movie', 'fa fa-file-sound-o': attachment.type == 'image/sound', 'fa fa-file-archive-o': attachment.type == 'image/archive'} "></i>
-                                        </div>
-                                        <div class="attachment-item-footer"><div><span>{{attachment.name}}</span></div></div>
-                                    </div>
-                                </div>
-                           </div>
-                    </form>
+                <form action="https://tutoring-images.s3.amazonaws.com/" method="post" enctype="multipart/form-data"  name="form">
                     <div flex layout="column">
 
-                    <!-- <form name="userForm" ng-submit="$event.preventDefault()"> -->
-                           <md-button class="md-raised md-primary post-submit" ng-click="submit()"  ng-show= "authData && questionDisplayed" ng-disabled="userForm.$invalid">Post</md-button>    
+                        <input type="hidden" name="key" value="uploads/${filename}" />
+                        <input type="hidden" name="acl" value="public-read" />
+                        <input type="hidden" name="success_action_redirect" value="">
+                        <input type="hidden" name="content-type" value="" />
+                        <input type="hidden" name="AWSAccessKeyId" value="AKIAIVXWPHX7GO3MKQ4Q" />
+                        <input type="hidden" name="policy" value="ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogInR1dG9yaW5nLWltYWdlcyJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIka2V5IiwgInVwbG9hZHMvJHtmaWxlbmFtZX0iXSwKICAgIHsiYWNsIjogInB1YmxpYyJ9LAogICAgeyJzdWNjZXNzX2FjdGlvbl9yZWRpcmVjdCI6ICIifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJENvbnRlbnQtVHlwZSIsICIiXSwKICAgIFsiY29udGVudC1sZW5ndGgtcmFuZ2UiLCAwLCA1MjQyODgwMDBdCiAgXQp9" />
+                        <input type="hidden" name="signature" value="rxU33vRiXFsIEUFPB8obDa7iolc=" />
+
+                        <!-- <input type="file" ngf-select  ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" id="file-upload" multiple ngf-max-size="20MB" ngf-min-height="100"  ngf-resize="{width: 100, height: 100}" /> -->
+                        <label ng-show="questionDisplayed" for="file-upload" class="md-button md-raised" >Upload Files</label>
+
+                        <!-- Single File -->
+                        <!-- <input type="file" id="file-upload" class="ng-hide" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"  ngf-resize="{width: 100, height: 100}" /> -->
+                        <!-- <img ngf-thumbnail="file || ''">  -->
+
+                        <!-- multiple files -->
+                        <input  id="file-upload" multiple type="file" class="ng-hide" ngf-select ng-model="files" name="files" ngf-pattern="'.pdf,.jpg,video/*,!.jog'" ngf-accept="'.pdf,.jpg,.png, video/*,!.jog'" ngf-max-size="20MB" ngf-min-height="100"   ngf-select="upload($files)" />
+                        <div class="attachments-list" ng-if="files">
+                            <div class="attachment-item" layout-align="center center" ng-repeat="attachment in files" >
+                                <md-button class="md-primary md-raised attachment-item-download" flex layout="rwo" layout-align="center center" aria-label="delete" ng-click="remove(attachment)">
+                                    <md-icon class="material-icons">delete</md-icon>
+                                </md-button>
+
+                                <div class="attachment-item-content" flex layout="column" layout-align="center center">
+                                    <i ng-class="{'fa fa-file-pdf-o': attachment.type == 'application/pdf', 'fa fa-file-image-o': attachment.type == 'image/png', 'fa fa-file-photo-o': attachment.type == 'image/jpeg', 'fa fa-file-powerpoint-o': attachment.type == 'image/powerpoint' , 'fa fa-file-text-o': attachment.type == 'image/text' , 'fa fa-file-zip-o': attachment.type == 'image/zip' , 'fa fa-file-excel-o': attachment.type == 'image/excel' , 'fa fa-file-file-o': attachment.type == 'image/file' , 'fa fa-file-word-o': attachment.type == 'image/word', 'fa fa-file-code-o': attachment.type == 'image/code', 'fa fa-file-movie-o': attachment.type == 'image/movie', 'fa fa-file-sound-o': attachment.type == 'image/sound', 'fa fa-file-archive-o': attachment.type == 'image/archive'} "></i>
+                                </div>
+                                <div class="attachment-item-footer"><div><span>{{attachment.name}}</span></div></div>
+                            </div>
+                        </div>
                     </div>
-                       
-                        <!-- <md-button class="md-raised" ng-click="postMessage()"  ng-show= "authData">Post</md-button>  -->
+                </form>
+                <div flex layout="column">
+
+                    <!-- <form name="userForm" ng-submit="$event.preventDefault()"> -->
+                    <md-button class="md-raised md-primary post-submit" ng-click="submit()"  ng-show= "authData && questionDisplayed" ng-disabled="userForm.$invalid">Post</md-button>    
+                </div>
+
+                <!-- <md-button class="md-raised" ng-click="postMessage()"  ng-show= "authData">Post</md-button>  -->
                 <!-- </form> -->
-                
+
             </md-content>
         </div>
     </div>
