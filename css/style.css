@@ -242,7 +242,7 @@ md-warn {
 }
 
 .text_h {
-    padding: 20% 0;
+    padding: 13% 0;
     font-size: 6.0em;
     font-weight: 100;
     color:white;
@@ -260,7 +260,7 @@ md-warn {
     letter-spacing: 7px;
 }
 
-.text_h2 {font-weight: 100;margin-bottom: 4%; line-height: 4.5rem;}
+.text_h2 {font-weight: 100;margin-bottom: 4%; line-height: 4.5rem;text-align: center;}
 
 .span_h2 {font-weight: 300;color: #26a69a;}
 
@@ -545,19 +545,21 @@ footer.page-footer {
     -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12) !important;
 }
 
-.promo > #step1 {
+.landing-step > #step1 {
     color: #4db6ac;
 }
-.promo > #step2 {
+.landing-step > #step2 {
     color: #4db6ac;
 }
-.promo > #step3 {
+.landing-step > #step3 {
     color: #4db6ac;
 }
 .about-us {
     text-align: center;
     margin-top: -20px;
     padding: 0 10%;
+    font-size: 26px;
+    max-width: 1024px;
 }
 
 .h2-line {
@@ -573,7 +575,7 @@ footer.page-footer {
 */
     padding-top: 90px;
     padding-bottom: 80px;
-    min-height: 400px;
+    min-height: 270px;
     background: transparent;
 }
 
@@ -1186,3 +1188,40 @@ a.logo:hover {
     margin-left: 6px;
 }
 
+
+.dashboard {
+    height: 100%;
+    color: rgba(0,0,0,.87);
+    background: #fff;
+    position: relative;
+}
+
+.landingpage-nav {
+    position: fixed;
+    background-color: transparent;
+    width: 100%;
+    z-index: 99999;
+    color: #fff;
+}
+
+.nav-item {
+    padding: 16px;
+}
+.nav-item:hover {
+        background-color: rgba(0, 0, 0, 0.18);
+}
+
+.landing-steps {
+    font-size: 85px;
+    width: 85px;
+    height: 85px;
+}
+
+.landing-step {
+    text-align: center;
+    padding: 20px;
+}
+
+.landing-singup {
+        text-align: center;
+}

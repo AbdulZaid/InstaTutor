@@ -37,53 +37,6 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 
     // Now set up the states
     $stateProvider
-    .state('main', {
-        url: "/home",
-        views: {
-                // the main template will be placed here (relatively named)
-                '': { 
-                    templateUrl: 'views/main.html',
-                    controller: 'mainController'
-                },
-                // the child views will be defined here (absolutely named)
-                'postArea@main': { 
-                    templateUrl: 'views/main-post.html',
-                    controller: 'PostCtrl' 
-                },
-                'studentAssignmentsArea@main': {
-                    templateUrl: 'views/student-dashboard-posts.html',
-                    controller: 'StudentAssignmentCtrl'  //the same Controller as the dashboard-myAssignments.
-                },
-                'tutorAssignmentsArea@main': {
-                    templateUrl: 'views/tutor-dashboard.html',
-                    controller: 'TutorDashboardCtrl'  //the same Controller as the dashboard-myAssignments.
-                }
-        },
-
-        module: "private", //custom attributes will be used later.
-        data: {
-            requireLogin: true,
-        },
-        resolve: {
-            // controller will not be loaded until $waitForAuth resolves
-            // Auth refers to our $firebaseAuth wrapper in the example above
-            "currentAuth": ["Auth", function(Auth) {
-              // $waitForAuth returns a promise so the resolve waits for it to complete
-              // console.log("waiting for auth")
-              return Auth.$waitForAuth();
-            }]
-        },
-        resolve: {
-            // controller will not be loaded until $requireAuth resolves
-            // Auth refers to our $firebaseAuth wrapper in the example above
-            "currentAuth": ["Auth", function(Auth) {
-              // $requireAuth returns a promise so the resolve waits for it to complete
-              // If the promise is rejected, it will throw a $stateChangeError (see above)
-              // console.log("requiring auth")
-              return Auth.$requireAuth();
-            }]
-        }
-    })
     .state('landing', {
         url: "/landing",
         templateUrl: "views/landing.html",
@@ -108,9 +61,10 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
         module: "public",
     })
     .state('dashboard', {
-        url: "/dashboard",
+        url: "",
             // controller: 'ProfileCtrl',
-            // templateUrl: "views/dashboard.html",
+             templateUrl: "views/dashboard.html",
+            abstract: true,
 
         views: {
             // the main template will be placed here (relatively named)
@@ -146,6 +100,53 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             }]
         }
     })
+    .state('dashboard.main', {
+        url: "/",
+        views: {
+                // the main template will be placed here (relatively named)
+                '': { 
+                    templateUrl: 'views/main.html',
+                    controller: 'mainController'
+                },
+                // the child views will be defined here (absolutely named)
+                'postArea@dashboard.main': { 
+                    templateUrl: 'views/main-post.html',
+                    controller: 'PostCtrl' 
+                },
+                'studentAssignmentsArea@dashboard.main': {
+                    templateUrl: 'views/student-dashboard-posts.html',
+                    controller: 'StudentAssignmentCtrl'  //the same Controller as the dashboard-myAssignments.
+                },
+                'tutorAssignmentsArea@dashboard.main': {
+                    templateUrl: 'views/tutor-dashboard.html',
+                    controller: 'TutorDashboardCtrl'  //the same Controller as the dashboard-myAssignments.
+                }
+        },
+
+        module: "private", //custom attributes will be used later.
+        data: {
+            requireLogin: true,
+        },
+        resolve: {
+            // controller will not be loaded until $waitForAuth resolves
+            // Auth refers to our $firebaseAuth wrapper in the example above
+            "currentAuth": ["Auth", function(Auth) {
+              // $waitForAuth returns a promise so the resolve waits for it to complete
+              // console.log("waiting for auth")
+              return Auth.$waitForAuth();
+            }]
+        },
+        resolve: {
+            // controller will not be loaded until $requireAuth resolves
+            // Auth refers to our $firebaseAuth wrapper in the example above
+            "currentAuth": ["Auth", function(Auth) {
+              // $requireAuth returns a promise so the resolve waits for it to complete
+              // If the promise is rejected, it will throw a $stateChangeError (see above)
+              // console.log("requiring auth")
+              return Auth.$requireAuth();
+            }]
+        }
+    })
     .state('dashboard.myProfile', {
         url: "/myProfile",
         templateUrl: "views/dashboard-profile.html",
@@ -171,23 +172,23 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
         templateUrl: "views/dashboard-explore-tutors.html", 
         controller: "tutorPageCtrl"
     })
-    .state('jobPost', {
+    .state('dashboard.jobPost', {
         url: "/job/:jobID",
         templateUrl: "views/job-page.html", 
         controller: "JobPageCtrl"
     })
-    .state('submissionPage', {
+    .state('dashboard.submissionPage', {
         url: "/submission/:jobID",
         templateUrl: "views/submission-page.html", 
         controller: "submissionPageCtrl"
     })
-    .state('tutorProfile', {
+    .state('dashboard.tutorProfile', {
         url: "/tutor/:jobID",
         templateUrl: "views/tutor-profile.html", 
         controller: "tutorPageCtrl"
     })
     // For any unmatched url, redirect to /state1
-    $urlRouterProvider.otherwise('/home' )
+    $urlRouterProvider.otherwise('/' )
 })
 
 
