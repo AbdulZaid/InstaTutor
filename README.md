@@ -5,11 +5,35 @@ By Abdul Alzaid
 
 ## Project Description
 
-The InstaTutor web appliaction will allow students and tutors to collaborate with each other through the web. 
-
- First the student can post a full description of the job, which can be listed as (Math, English, History, etc.,) and upload files when necessary for all tutors to see.  Then, tutors can propose to the student to help him/her with the job, and from there the student after reviewing the tutors profile can assigns the job to the desired tutor.  
- Both the student and tutor can communicate with each other by sending real-time messages.  
+InstaTutor provides an environment for students and tutors to collaborate with each other in the context of schoolwork help. 
+First the student can post a full description of the job, which can be listed as (Math, English, History, etc.,) and upload files when necessary for all tutors to see. Then, tutors can propose to the student to help him/her with the job. Then, the student can review the tutor's profile and assigns the job to the desired tutor.
+Both the student and tutor can communicate with each other by sending real-time messages.
 When the tutor is finished he/she can post back the files with their helpful notes included and mark the job as done.
+
+
+The application allows students and tutors to register for different types of accounts. The student account type allows the user to post new jobs for tutor’s help that involve:
+ * Question/Title
+ * Content/details
+ * Due Date
+ * Category (Math, CMSI, etc.)
+ * Upload documents (optional)
+ * Set price
+ *  Tutors review jobs and submit proposal
+ *  tudents review proposals and assign a certain tutor
+ *  Direct messages between tutors and students.
+ *  Tutor work on the job and adds notes, then submit the notes back to student.
+ *  Student accepts/rejects the work submitted by tutors.
+ *  Release payment. (tutor now have receive their money)
+ *  Job is marked as comeplete.
+
+
+## Project Goals
+
+* Have tutoring available for students at any time/ anywhere.
+* Platform for all school work. (variety of subjects)
+* Allow passionate tutors to get extra income. 
+
+
 
 ## Justifications
 
@@ -18,11 +42,14 @@ Why this project is acceptable?
   * Will demonstrate my knowledge in technologies and languages that I learned
   * Will allow me to work with Cloud Database.
   * Will be full-stack project frontend/backend.
-  * Technical difficulty is moderate (manageable.)
-  * Expands on or solves the problem with Academic Resource Center.
-    *  Saves students plenty of time.
-    *  Accessible at any time on any platform.
-    *  Wide range of subjects & Competitive tutors in various fields.  (CMSI, Math, History, Physics, etc.)
+  * Expands on or solves the problem with Academic Resource Center. (not available all the time)
+   *  Saves students plenty of time.
+   *  Accessible at any time on any platform.
+   *  Wide range of subjects & Competitive tutors in various fields.  (CMSI, Math, History, Physics, etc.)
+  *  Full stack project ( frontend/backend.)
+  *  Personal Challenge 
+
+
 
 ## User’s Point of view
 
