@@ -1237,3 +1237,11 @@ a.logo:hover {
     margin: 0;
     border: 0;
 }
+
+.landing-footer-form>label {
+    color: #DADADA;
+}
+
+.landing-footer-form>input , .landing-footer-form>textarea {
+    border-color: #DADADA;
+}
