@@ -25,7 +25,7 @@ myApp.controller('SignupCtrl', ['$scope','Auth','$location','$firebaseAuth','$st
 			  
 			}).then(function(authData) {
 			  console.log("Logged in as:", authData.uid);
-			  $state.go("main")
+		  	  $state.go("dashboard.main")
 
 				ref.child("users").child(authData.uid).set({
 					  provider: authData.provider,

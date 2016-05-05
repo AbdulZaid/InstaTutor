@@ -63,7 +63,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     .state('dashboard', {
         url: "",
             // controller: 'ProfileCtrl',
-             templateUrl: "views/dashboard.html",
+            templateUrl: "views/dashboard.html",
             abstract: true,
 
         views: {
