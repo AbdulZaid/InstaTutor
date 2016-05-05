@@ -17,7 +17,7 @@ The application allows students and tutors to register for different types of ac
   * Upload documents (optional)
   * Set price
  *  Tutors review jobs and submit proposal  
- *  tudents review proposals and assign a certain tutor
+ *  Sudents review proposals and assign a certain tutor
  *  Direct messages between tutors and students.
  *  Tutor work on the job and adds notes, then submit the notes back to student.
  *  Student accepts/rejects the work submitted by tutors.
@@ -107,7 +107,7 @@ This application will be responsive web application, that work on different devi
 
   UI Messages Page
  
- ![alt text](https://github.com/AbdulZaid/InstaTutor/blob/master/images/ReadMeImages/10interface.png "UI Messages Page")
+ ![alt text](https://github.com/AbdulZaid/InstaTutor/blob/master/images/ReadMeImages/12interface.png "UI Messages Page")
  
  
   UI Tutor Dashboard Page
