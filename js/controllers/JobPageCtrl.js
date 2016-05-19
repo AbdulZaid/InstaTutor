@@ -1,4 +1,4 @@
-myApp.controller('JobPageCtrl', ['$scope','Auth','Users','Posts','$firebaseObject','$firebaseArray','$mdDialog','$stateParams','focus', '$location', '$anchorScroll', 'ngToast','$state',  function ($scope, Auth, Users, Posts, $firebaseObject, $firebaseArray, $mdDialog, $stateParams, focus, $location, $anchorScroll, ngToast, $state) {
+myApp.controller('JobPageCtrl', ['$scope','Auth','Users','Posts','Toasts', '$firebaseObject','$firebaseArray','$mdDialog','$stateParams','focus', '$location', '$anchorScroll', 'ngToast','$state',  function ($scope, Auth, Users, Posts, Toasts, $firebaseObject, $firebaseArray, $mdDialog, $stateParams, focus, $location, $anchorScroll, ngToast, $state) {
   
   $scope.authData = Auth.$getAuth();
   $scope.jobID = $stateParams.jobID;
@@ -228,13 +228,11 @@ myApp.controller('JobPageCtrl', ['$scope','Auth','Users','Posts','$firebaseObjec
           .ok('Please do it!')
           .cancel('Aoh no');
     $mdDialog.show(confirm).then(function() {
-      ngToast.create({
-        className: 'success',
-        content: 'hey you, you just deleted your post successfully' 
-      })      
+    Toasts.deletePostSuccess();
     $scope.authorRef.child($scope.authorID).child("posts").child(postID).remove()
     $scope.generalPostsRef.child(postID).remove()
-    $state.go('main')
+    $state.go("dashboard.main")
+
     }, function() {
       ngToast.create({
         className: 'warning',

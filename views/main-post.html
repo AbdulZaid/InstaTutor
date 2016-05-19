@@ -12,7 +12,7 @@
                         <div layout="row">
                             <md-input-container flex class="dense-form">
                                 <label>Question title?</label>
-                                <input required name ="title" type="text" ng-model="$parent.question" minlength="10" maxlength="70" ng-focus="showQuestion()" ng-blur="showQuestion()">
+                                <input required name ="title" type="text" ng-model="question" minlength="10" maxlength="70" ng-focus="showQuestion()" ng-blur="showQuestion()">
                                 <div ng-messages="userForm.title.$error" role="alert">
                                     <div ng-message-exp="['required', 'minlength', 'maxlength']">
                                         Please, Your question must be between 10 and 70 characters long and look like a real question.
@@ -39,7 +39,7 @@
                         </div>
                         <md-input-container ng-show="questionDisplayed"  class="md-block  md-whiteframe-1z dense-form" >
                             <label>What are the details?</label>
-                            <textarea style= "max-height: 25vh; overflow-y: auto; scroll-glue" ng-model="$parent.textModel"  minlength= "10" maxlength= "1500" md-maxlength="1500" rows="8" md-select-on-focus required name ="textArea"></textarea>
+                            <textarea style= "max-height: 25vh; overflow-y: auto; scroll-glue" ng-model="textModel"  minlength= "10" maxlength= "1500" md-maxlength="1500" rows="8" md-select-on-focus required name ="textArea"></textarea>
                             <div ng-messages="userForm.textArea.$error" role="alert">
                                 <div ng-message-exp="['required', 'minlength', 'maxlength']">
                                     Your help details must be between 10 and 1500 characters long to help tutors understand you better!.

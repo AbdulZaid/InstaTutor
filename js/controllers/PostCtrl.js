@@ -137,7 +137,12 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', 'Toasts', '$firebaseObj
                             className: 'success',
                             content: 'you just posted a new job successfully'
                         })
-                        Toasts.newPostToast()
+                        Toasts.newPostToast();
+                        //clear fields
+                        $scope.question = '';
+                        $scope.textModel = '';
+                        $scope.field = '';
+                        $scope.moneyAmount = null;
                     }
                 })
             postsRef.orderByKey().limitToLast(1).on('child_added', function(snapshot) {

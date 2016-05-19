@@ -8,3 +8,5 @@ css/css
 css/style.css.map
 
 *.map
+
+firebase-debug.log

@@ -51,7 +51,7 @@ myApp.factory('Toasts', ['$firebaseAuth','$firebaseObject','$firebaseArray','$md
 	    newPostToast : function() {
 	        $mdToast.show(
 	            $mdToast.simple()
-	            .content('thanks for your post asshole' )
+	            .content('thanks for your post')
 	            .position(getToastPosition() )
 	            .hideDelay(3000)
 	        );

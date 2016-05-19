@@ -1,4 +1,4 @@
-myApp.controller('StudentAssignmentCtrl', ['$scope','Auth','Users','Toasts', '$firebaseObject','$firebaseArray','$mdDialog','ngToast', function ($scope, Auth, Users, Toasts, $firebaseObject, $firebaseArray, $mdDialog, ngToast) {
+myApp.controller('StudentAssignmentCtrl', ['$scope','Auth','Users','Toasts', '$state', '$firebaseObject','$firebaseArray','$mdDialog','ngToast', function ($scope, Auth, Users, Toasts, $state, $firebaseObject, $firebaseArray, $mdDialog, ngToast) {
   var userRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
   var postRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
   $scope.userAuth = Auth.$getAuth()
@@ -25,8 +25,9 @@ myApp.controller('StudentAssignmentCtrl', ['$scope','Auth','Users','Toasts', '$f
           .cancel('Aoh no');
     $mdDialog.show(confirm).then(function() {
       Toasts.deletePostSuccess();
-      userRef.child(authorID).child("posts").child(postID).remove()
-      postRef.child(postID).remove()
+      userRef.child(authorID).child("posts").child(postID).remove();
+      postRef.child(postID).remove();
+
     }, function() {
       ngToast.create({
         className: 'warning',
