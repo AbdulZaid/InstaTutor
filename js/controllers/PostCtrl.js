@@ -133,10 +133,6 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', 'Toasts', '$firebaseObj
                     if (error) {
                         alert("Data could not be saved." + error);
                     } else {
-                        ngToast.create({
-                            className: 'success',
-                            content: 'you just posted a new job successfully'
-                        })
                         Toasts.newPostToast();
                         //clear fields
                         $scope.question = '';
@@ -168,7 +164,7 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', 'Toasts', '$firebaseObj
                     if (error) {
                         alert("Data could not be saved." + error);
                     } else {
-                        Toasts.newPostToast()
+                        Toasts.newPostToast();
                     }
                 }) //add new post to user's posts.
             //check if the user uploaded an image to push it to the post DB.
@@ -182,11 +178,7 @@ myApp.controller('PostCtrl', ['$scope', 'Auth', 'Users', 'Toasts', '$firebaseObj
                 }) //add new post to user's posts.
             }
         } else {
-            alert("you are not a student.")
-            ngToast.create({
-                className: 'danger',
-                content: 'you are not authorised to post a job. '
-            })
+            Toasts.newPostToastUnauth();
         }
     };
 

@@ -1,4 +1,4 @@
-myApp.controller('StudentAssignmentCtrl', ['$scope','Auth','Users','Toasts', '$state', '$firebaseObject','$firebaseArray','$mdDialog','ngToast', function ($scope, Auth, Users, Toasts, $state, $firebaseObject, $firebaseArray, $mdDialog, ngToast) {
+myApp.controller('StudentAssignmentCtrl', ['$scope','Auth','Users','Toasts', '$state', '$firebaseObject','$firebaseArray','$mdDialog','ngToast','Toasts', function ($scope, Auth, Users, Toasts, $state, $firebaseObject, $firebaseArray, $mdDialog, ngToast) {
   var userRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
   var postRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
   $scope.userAuth = Auth.$getAuth()

@@ -126,10 +126,6 @@ myApp.controller('JobPageCtrl', ['$scope','Auth','Users','Posts','Toasts', '$fir
     $scope.authorRef.child($scope.authData.uid).child("bookmarks").push({
       postURL: '/job/' + $scope.jobID
     })
-    ngToast.create({
-      className: 'success',
-      content: 'hey you, you just bookmarked this post successfully' 
-    })  
   }
 
 
@@ -186,9 +182,10 @@ myApp.controller('JobPageCtrl', ['$scope','Auth','Users','Posts','Toasts', '$fir
       "tutorID": tutorID
     })
 
-    console.log("hey you, you got a deal on your proposal" + proposalID)
-    ngToast.create('hey you, you just agreed on a deal with ' + " " +  tutorName );
-
+    //notifications come from here.
+    // console.log("hey you, you got a deal on your proposal" + proposalID)
+    // ngToast.create('hey you, you just agreed on a deal with ' + " " +  tutorName );
+    Toasts.dealWithTutor();
   };
 
 
@@ -204,18 +201,11 @@ myApp.controller('JobPageCtrl', ['$scope','Auth','Users','Posts','Toasts', '$fir
           .ok('Please do it!')
           .cancel('Aoh no');
     $mdDialog.show(confirm).then(function() {
-      ngToast.create({
-        className: 'success',
-        content: 'hey you, you just deleted your proposal successfully' 
-      })      
-    $scope.authorRef.child($scope.authorID).child("posts").child(postID).child("proposals").child(proposalID).remove()
-    $scope.authorRef.child($scope.authData.uid).child("tutorProposals").child(proposalID).remove()
+      Toasts.deleteProposalSuccess();
+      $scope.authorRef.child($scope.authorID).child("posts").child(postID).child("proposals").child(proposalID).remove()
+      $scope.authorRef.child($scope.authData.uid).child("tutorProposals").child(proposalID).remove()
     }, function() {
-      ngToast.create({
-        className: 'warning',
-        content: 'Unfortunately you attempt to delete was not successful' 
-      })
-      $scope.status = 'You decided to keep your debt.';
+        Toasts.deleteProposalFailure();
     });
   }
 
@@ -234,11 +224,7 @@ myApp.controller('JobPageCtrl', ['$scope','Auth','Users','Posts','Toasts', '$fir
     $state.go("dashboard.main")
 
     }, function() {
-      ngToast.create({
-        className: 'warning',
-        content: 'you decided not to remove the post Yay' 
-      })
-      $scope.status = 'You decided to keep your debt.';
+      Toasts.deletePostFailure();
     });
   }
     

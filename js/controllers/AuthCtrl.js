@@ -8,6 +8,16 @@ myApp.controller('AuthCtrl', ['$scope','Auth', '$log','$rootScope','$state', fun
 	    $scope.authData = authData;
 	  } 
 	})
+	
+	// firebase.auth().onAuthStateChanged(function(user) {
+	//   if (user) {
+	//     $scope.authData = user;
+	//   } else {
+	//     // No user is signed in.
+	//     $scope.authData = user;
+	//     console.log("there's no auth data avaliable.")
+	//   }
+	// });
 
 	$scope.login = function() {
 		Auth.$authWithPassword({

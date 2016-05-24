@@ -1,5 +1,5 @@
-myApp.controller('AssignmentCtrl', ['$scope', 'Auth', 'Users', 'Posts', '$firebaseArray', '$firebaseObject', 'ngToast', '$mdDialog', '$mdMedia', 
-  function($scope, Auth, Users, Posts, $firebaseArray, $firebaseObject, ngToast, $mdDialog, $mdMedia, $location) {
+myApp.controller('AssignmentCtrl', ['$scope', 'Auth', 'Users', 'Posts','Toasts', '$firebaseArray', '$firebaseObject', 'ngToast', '$mdDialog', '$mdMedia', 
+  function($scope, Auth, Users, Posts, Toasts, $firebaseArray, $firebaseObject, ngToast, $mdDialog, $mdMedia, $location) {
 
     var postRef = new Firebase("https://homeworkmarket.firebaseio.com/messages/posts");
     var authorRef = new Firebase("https://homeworkmarket.firebaseio.com/users");
@@ -145,10 +145,11 @@ myApp.controller('AssignmentCtrl', ['$scope', 'Auth', 'Users', 'Posts', '$fireba
                             "assigned": false,
                             "viewed": false,
                         })
-                        ngToast.create({
-                            className: 'success',
-                            content: 'you just propsed to do ' + authorCurrentPost.author
-                        })
+                        Toasts.newProposalToastSuccess();
+                        // ngToast.create({
+                        //     className: 'success',
+                        //     content: 'you just propsed to do ' + authorCurrentPost.author
+                        // })
                     }
 
                     //function to check priorities. 
@@ -158,10 +159,12 @@ myApp.controller('AssignmentCtrl', ['$scope', 'Auth', 'Users', 'Posts', '$fireba
                 })
         } else {
             console.log("I'm not a tutor or not authorised")
-            ngToast.create({
-                className: 'danger',
-                content: 'you are not authorised to propose, or you have already proposed '
-            })
+            // ngToast.create({
+            //     className: 'danger',
+            //     content: 'you are not authorised to propose, or you have already proposed '
+            // })
+            Toasts.newProposalToastFailure();
+
         }
     }
 

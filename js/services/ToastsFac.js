@@ -51,7 +51,79 @@ myApp.factory('Toasts', ['$firebaseAuth','$firebaseObject','$firebaseArray','$md
 	    newPostToast : function() {
 	        $mdToast.show(
 	            $mdToast.simple()
-	            .content('thanks for your post')
+	            .content('Thanks for your post, please wait for proposals')
+	            .position(getToastPosition() )
+	            .hideDelay(4000)
+	        );
+	    },
+
+	    newPostToastUnauth : function() {
+	        $mdToast.show(
+	            $mdToast.simple()
+	            .content('You are not authorised to post a job.')
+	            .position(getToastPosition() )
+	            .hideDelay(4000)
+	        );
+	    },
+	    
+	    newProposalToastSuccess : function() {
+	        $mdToast.show(
+	            $mdToast.simple()
+	            .content('Thanks for your proposal')
+	            .position(getToastPosition() )
+	            .hideDelay(3000)
+	        );
+	    },
+
+	    newProposalToastFailure : function() {
+	        $mdToast.show(
+	            $mdToast.simple()
+	            .content('You are not authorised to propose, or you have already proposed')
+	            .position(getToastPosition() )
+	            .hideDelay(4000)
+	        );
+	    },
+
+	    newStudentProposalAcceptedToast : function() {
+	        $mdToast.show(
+	            $mdToast.simple()
+	            .content('You just accepted a proposal, go and talk to them')
+	            .position(getToastPosition() )
+	            .hideDelay(3000)
+	        );
+	    },
+
+	    newTutorProposalAcceptedToast : function() {
+	        $mdToast.show(
+	            $mdToast.simple()
+	            .content('A student just accepted your proposal')
+	            .position(getToastPosition() )
+	            .hideDelay(3000)
+	        );
+	    },
+
+	    newProposalRejectedToast : function() {
+	        $mdToast.show(
+	            $mdToast.simple()
+	            .content('You just rejected a proposal successfully')
+	            .position(getToastPosition() )
+	            .hideDelay(3000)
+	        );
+	    },
+
+	    deleteProposalSuccess: function() {
+	    	$mdToast.show(
+	            $mdToast.simple()
+	            .content('Hey you, you just deleted your proposal successfully')
+	            .position(getToastPosition() )
+	            .hideDelay(3000)
+	        );
+	    },
+
+	    deleteProposalFailure: function() {
+	    	$mdToast.show(
+	            $mdToast.simple()
+	            .content('You decided not to delete your proposal')
 	            .position(getToastPosition() )
 	            .hideDelay(3000)
 	        );
@@ -67,7 +139,35 @@ myApp.factory('Toasts', ['$firebaseAuth','$firebaseObject','$firebaseArray','$md
 	        );
 	    },
 
+	    deletePostFailure : function() {
+	        $mdToast.show(
+	            $mdToast.simple()
+	            .content('You decided not to remove the post Yay' )
+	            .position(getToastPosition())
+	            .hideDelay(3000)
+	            .theme('$mdThemingProvider')
+	        );
+	    },
 
+	    dealWithTutor : function() {
+	    	$mdToast.show(
+	            $mdToast.simple()
+	            .content('hey you, you just agreed on the deal!' )
+	            .position(getToastPosition())
+	            .hideDelay(3000)
+	            .theme('$mdThemingProvider')
+	        );
+	    },
+
+	    bookmark : function () {
+	    	$mdToast.show(
+	    		$mdToast.simple()
+	    		.content('This post was added to your bookmarks')
+	    		.position(getToastPosition())
+	            .hideDelay(3000)
+	            .theme('$mdThemingProvider')
+	    	);
+	    },
 	}
 	return  Toasts;
 }])
