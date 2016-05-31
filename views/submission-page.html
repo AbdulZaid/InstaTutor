@@ -248,24 +248,46 @@
                         </div>
                     </div>
                 </md-tab>
-                <md-tab label="Review">
-                    <div class="md-padding" ng-show="isStudent">
+                <md-tab label="Review" ng-if="showReview" >
+                    <div class="md-padding" ng-show="isStudent" ng-controller="submissionPageCtrl">
+                        <form name="reviewForm">
+
                         <h1 class="md-title">Review and Rate the tutor</h1>
                         <p class="md-body-1">Help us in rating the work of the tutor, this will help us in bringing better tutors, and also in selecting the best tutors for you in future work. </p>
-                        <div>
-                            <label>Rating cratira 1</label>
+
+                        <h4>Answer: {{answer}}/5 </h4>
+                        <div layout>
+                          <md-slider flex md-discrete ng-model="answer" step="1" min="0" max="5" aria-label="rating">
+                          </md-slider>
                         </div>
-                        <div>
-                            <label>Rating cratira 1</label>
+                        
+                        <h4>Clarity: {{clarity}}/5 </h4>
+                        <div layout>
+                          <md-slider flex md-discrete ng-model="clarity" step="1" min="0" max="5" aria-label="rating">
+                          </md-slider>
                         </div>
-                        <div>
-                            <label>Rating cratira 1</label>
+                        
+                        <h4>Helpfulness: {{helpfulness}}/5 </h4>
+                        <div layout>
+                          <md-slider flex md-discrete ng-model="helpfulness" step="1" min="0" max="5" aria-label="rating">
+                          </md-slider>
                         </div>
+
+                        <h4>Communication: {{communication}}/5 </h4>
+                        <div layout>
+                          <md-slider flex md-discrete ng-model="communication" step="1" min="0" max="5" aria-label="rating">
+                          </md-slider>
+                        </div>
+
+
+                        <h3>Write a Review</h3>
+
                         <md-input-container class="md-block dense-form">
-                            <label>Review</label>
-                            <textarea></textarea>
+                            <label for="review_content">Review</label>
+                            <textarea name="review_content" ng-model="reviewComment"></textarea>
                         </md-input-container>
-                        <md-button class="md-primary">Send Review</md-button>
+                        <md-button class="md-primary" ng-click="postReview()">Send Review</md-button>
+                        </form>
                     </div>
                     <div ng-show="isTutor">
                         See Student Review on your submission

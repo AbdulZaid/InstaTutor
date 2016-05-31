@@ -144,13 +144,38 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
     	}
 
         //manage the status of the post.
+        $scope.showReview = false; //show review tab or hide if the status isn't cleared.
         $scope.postsRef.on("value", function(snapshot) {
             if(snapshot.val().status == "Accepted") {
                 $scope.postStatus = $scope.postObject.status;
+                $scope.showReview = true;
+            } else if(snapshot.val().status == "open") {
+                $scope.postStatus = $scope.postObject.status;
+                $scope.showReview = true;
             } else {
                 $scope.postStatus = $scope.postObject.status;
+                $scope.showReview = false;
             }
         })
+
+        $scope.postReview = function() {
+            var reviewComment = $scope.reviewComment;
+            var clarity = $scope.clarity;
+            var answer = $scope.answer;
+            var helpfulness = $scope.helpfulness;
+            var communication = $scope.communication;
+            if($scope.currentUser.type == "Student") {
+                firebase.database().ref("users/"+ $scope.postObject.tutorID + "/reviews").push({
+                    "reviewComment": reviewComment,
+                    "studentName": $scope.currentUser.name,
+                    "price": $scope.postObject.amount,
+                    "clarity": clarity || null,
+                    "answer": answer || null,
+                    "helpfulness": helpfulness || null,
+                    "communication": communication || null
+                })
+            }
+        }
 
     })
 
@@ -291,7 +316,14 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
 
     //Student rejects submitted work by tutor
     $scope.rejectSubmission = function() {
-
+        if($scope.currentUser.type == "Student") {
+            $scope.postsRef.update({
+                "status": "open"
+            })
+            $scope.studentPostsRef.update({
+                "status": "open"
+            })
+        }
     }
 
     //remove file
@@ -299,6 +331,11 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
       var index = $scope.files.indexOf(item);
       $scope.files.splice(index, 1);     
     };
+
+
+
+    $scope.Math = window.Math;
+
 
 }])
 
