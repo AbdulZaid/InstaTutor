@@ -1,4 +1,4 @@
-myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$firebaseObject','$firebaseArray','$mdDialog','$stateParams','focus', '$location', '$anchorScroll', 'ngToast','$state','Upload','focus',  function ($scope, Auth, Users, Posts, $firebaseObject, $firebaseArray, $mdDialog, $stateParams, focus, $location, $anchorScroll, ngToast, $state, Upload, focus) {
+myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts', 'Toasts', '$firebaseObject','$firebaseArray','$mdDialog','$stateParams','focus', '$location', '$anchorScroll', 'ngToast','$state','Upload','focus',  function ($scope, Auth, Users, Posts, Toasts, $firebaseObject, $firebaseArray, $mdDialog, $stateParams, focus, $location, $anchorScroll, ngToast, $state, Upload, focus) {
 
    	$scope.jobID = $stateParams.jobID.split("").reverse().join(""); //get the post ID
     $scope.authData = Auth.$getAuth();
@@ -103,6 +103,8 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
                             className: 'danger',
                             content: 'You must upload and image, or your image was not uploaded successfully'
                         })
+                        Toasts.imageHandler();
+
                     }, function(evt) {
                         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                         console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
@@ -151,12 +153,28 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
                 $scope.showReview = true;
             } else if(snapshot.val().status == "open") {
                 $scope.postStatus = $scope.postObject.status;
-                $scope.showReview = true;
+                $scope.showReview = false;
             } else {
                 $scope.postStatus = $scope.postObject.status;
                 $scope.showReview = false;
             }
         })
+
+        //checks if student already reviewed the answer and hides the tab
+        if($scope.currentUser.type == "Student") {
+            firebase.database().ref("users/"+ $scope.postObject.tutorID + "/reviews").orderByChild('studentName')
+            .on('value', function(snapshot) {
+                if(snapshot.hasChildren()) {
+                    snapshot.forEach(function(childSnapshot) {
+                       if(childSnapshot.child('studentName').val() === $scope.currentUserName) {
+                            console.log($scope.currentUserName)
+                            $scope.showReview = false;
+                        }
+                    })
+
+                }
+            })
+        }
 
         $scope.postReview = function() {
             var reviewComment = $scope.reviewComment;
@@ -173,6 +191,16 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
                     "answer": answer || null,
                     "helpfulness": helpfulness || null,
                     "communication": communication || null
+                }).then(function(promise) {
+                    if(promise) {
+                        Toasts.successfulReview();
+                    } else {
+                        Toasts.unSuccessfulReview();
+                    }
+                }, function(promise) {
+                    if(promise) {
+                        Toasts.unSuccessfulReview();
+                    }
                 })
             }
         }
@@ -217,7 +245,13 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
                 "tutorID": $scope.authData.uid,
                 "attachments": '',
                 "submittedOrNot": true
-            })
+            }, function(error) {
+                if (error) {
+                   Toasts.jobSubmissionFaliure();
+                } else {
+                   Toasts.jobSubmissionSuccess();
+                }
+            });
 
             //updated the stauts of the post after the edit has been submitted.
             $scope.postsRef.update({
@@ -238,6 +272,7 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
             $scope.submissionTitle = null;
             $scope.files = null;
         } else {
+            Toasts.jobSubmissionFields();
             console.log("You must include a title and a comment")
             return
         }
@@ -310,6 +345,12 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
             })
             $scope.studentPostsRef.update({
                 "status": "Accepted"
+            }, function(error) {
+                if (error) {
+                    Toasts.jobAcceptedFaliure();
+                } else {
+                    Toasts.jobAcceptedSuccess();
+                }
             })
         }
     };
@@ -320,8 +361,15 @@ myApp.controller('submissionPageCtrl', ['$scope','Auth','Users','Posts','$fireba
             $scope.postsRef.update({
                 "status": "open"
             })
+
             $scope.studentPostsRef.update({
                 "status": "open"
+            }, function(error) {
+                if (error) {
+                    Toasts.jobRejectedFaliure();
+                } else {
+                    Toasts.jobRejectedSuccess();
+                }
             })
         }
     }

@@ -159,6 +159,16 @@ myApp.factory('Toasts', ['$firebaseAuth','$firebaseObject','$firebaseArray','$md
 	        );
 	    },
 
+	    imageHandler : function() {
+	    	$mdToast.show(
+	            $mdToast.simple()
+	            .content('You must upload and image, or your image was not uploaded successfully' )
+	            .position(getToastPosition())
+	            .hideDelay(3000)
+	            .theme('$mdThemingProvider')
+	        );
+	    },
+
 	    bookmark : function () {
 	    	$mdToast.show(
 	    		$mdToast.simple()
@@ -167,6 +177,97 @@ myApp.factory('Toasts', ['$firebaseAuth','$firebaseObject','$firebaseArray','$md
 	            .hideDelay(3000)
 	            .theme('$mdThemingProvider')
 	    	);
+	    },
+
+
+	    jobSubmissionSuccess : function() {
+	    	$mdToast.show(
+	            $mdToast.simple()
+	            .content('Your work has been submitted successfully. Wait for student response!')
+	            .position(getToastPosition())
+	            .hideDelay(4500)
+	            .theme('$mdThemingProvider')
+	        );
+	    },
+
+	    jobSubmissionFaliure : function() {
+	    	$mdToast.show(
+	            $mdToast.simple()
+	            .content('unfortunately your work was not posted successfully, Check Internet connection!')
+	            .position(getToastPosition())
+	            .hideDelay(4000)
+	            .theme('$mdThemingProvider')
+	        );
+	    },
+
+	    jobSubmissionFields : function() {
+	    	$mdToast.show(
+	            $mdToast.simple()
+	            .content('Please fill in the required fields.')
+	            .position(getToastPosition())
+	            .hideDelay(4000)
+	            .theme('$mdThemingProvider')
+	        );
+	    },
+
+	    jobAcceptedSuccess : function() {
+	    	$mdToast.show(
+	            $mdToast.simple()
+	            .content('Thank you for your acceptance! Please go and review the tutor.')
+	            .position(getToastPosition())
+	            .hideDelay(5000)
+	            .theme('$mdThemingProvider')
+	        );
+	    },
+
+	    jobAcceptedFaliure : function() {
+	    	$mdToast.show(
+	            $mdToast.simple()
+	            .content('Please check your connection')
+	            .position(getToastPosition())
+	            .hideDelay(4000)
+	            .theme('$mdThemingProvider')
+	        );
+	    },
+
+	    jobRejectedSuccess : function() {
+	    	$mdToast.show(
+	            $mdToast.simple()
+	            .content('You have rejected the submission. Please allow tutors to respond or resubmit.')
+	            .position(getToastPosition())
+	            .hideDelay(5500)
+	            .theme('$mdThemingProvider')
+	        );
+	    },
+
+	    jobRejectedFaliure : function() {
+	    	$mdToast.show(
+	            $mdToast.simple()
+	            .content('Please check your connection')
+	            .position(getToastPosition())
+	            .hideDelay(4000)
+	            .theme('$mdThemingProvider')
+	        );
+	    },
+
+	    successfulReview : function() {
+	    	$mdToast.show(
+	            $mdToast.simple()
+	            .content('Thank you! your review was posted successfully' )
+	            .position(getToastPosition())
+	            .hideDelay(3000)
+	            .theme('$mdThemingProvider')
+	        );
+	    },
+
+	    unSuccessfulReview : function() {
+	    	$mdToast.show(
+	            $mdToast.simple()
+	            .content('unfortunately your review was not posted successfully')
+	            .position(getToastPosition())
+	            .hideDelay(3000)
+	            .theme('$mdThemingProvider')
+	        );
 	    },
 	}
 	return  Toasts;
